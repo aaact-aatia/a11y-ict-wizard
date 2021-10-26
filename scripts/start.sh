@@ -16,9 +16,14 @@ then
     echo "database populated"
 fi
 
+
+
 # starting NGINX service 
 echo "Starting NGINX service"
 service nginx start
+
+echo "Starting sshd service"
+/usr/sbin/sshd
 
 echo "Strating application with pm2 process manager"
 pm2-runtime ./bin/www
