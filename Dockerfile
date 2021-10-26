@@ -54,6 +54,12 @@ COPY . .
 # install dependencies 
 RUN npm install
 
+RUN apt-get install -y net-tools
+RUN apt-get update && apt-get install -y ssh
+RUN echo "root:Docker!" | chpasswd
+RUN mkdir /run/sshd
+COPY sshd_config /etc/ssh/
+
 RUN dos2unix ./scripts/start.sh
 
 # make startup script executable 
@@ -61,7 +67,7 @@ RUN chmod 777 ./scripts/start.sh
 
 # make the script to be the entrypoint
 ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
-EXPOSE 80
+EXPOSE 80 2222
 
 
 
