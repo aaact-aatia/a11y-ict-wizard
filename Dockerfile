@@ -54,6 +54,8 @@ COPY . .
 # install dependencies 
 RUN npm install
 
+RUN apt-get install -y mongodb
+
 RUN apt-get install -y net-tools
 RUN apt-get update && apt-get install -y ssh
 RUN echo "root:Docker!" | chpasswd
