@@ -22,6 +22,9 @@ fi
 echo "Starting NGINX service"
 service nginx start
 
+echo "Starting mongodb service"
+service mongodb start
+
 echo "Starting sshd service"
 /usr/sbin/sshd
 
