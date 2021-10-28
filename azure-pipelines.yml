@@ -35,5 +35,5 @@ stages:
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
-        #tags: |
-        #  $(tag)
+        tags: |
+          $(tag)
