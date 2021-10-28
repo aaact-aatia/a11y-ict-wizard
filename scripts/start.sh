@@ -15,7 +15,7 @@ echo "Mongo DB started, starting application"
 if [ "$POPULATE_DB"  == "true" ]
 then
     echo "Populating Mongo Database"
-    ./mongotools/bin/mongorestore --uri=${MONGODB_URI} dump/
+    ./mongotools/bin/mongorestore --uri=${DB_URI} dump/
     echo "database populated"
 else
     echo "Populating false"
