@@ -2,6 +2,9 @@
 ./wait
 echo "Starting application in ${NODE_ENV} environment"
 
+echo "Starting mongodb service"
+service mongodb start
+echo "Started mongodb service"
 
 if [ "$WAIT_FOR_MONGO" == "true" ]
 then
@@ -29,10 +32,6 @@ echo "Started NGINX service"
 echo "Starting sshd service"
 /usr/sbin/sshd
 echo "Started sshd service"
-
-echo "Starting mongodb service"
-service mongodb start
-echo "Started mongodb service"
 
 echo "Strating application with pm2 process manager"
 pm2-runtime ./bin/www
