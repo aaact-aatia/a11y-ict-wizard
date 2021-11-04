@@ -15,14 +15,14 @@ else
 fi 
 echo "Mongo DB started, starting application"
 
-if [ "$POPULATE_DB"  == "true" ]
-then
+#if [ "$POPULATE_DB"  == "true" ]
+#then
  #   echo "Populating Mongo Database"
  #   ./mongotools/bin/mongorestore --uri=${DB_URI} dump/
  #   echo "database populated"
-else
-    echo "Populating false"
-fi
+#else
+#    echo "Populating false"
+#fi
 
 # starting NGINX service 
 echo "Starting NGINX service"
