@@ -67,7 +67,7 @@ RUN chmod 777 ./scripts/start.sh
 
 # make the script to be the entrypoint
 ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
-EXPOSE 80 2222
+EXPOSE 80 2222 10255
 
 
 
