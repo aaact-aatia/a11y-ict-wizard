@@ -11,7 +11,7 @@ const app = express();
 app.locals.moment = require('moment');
 
 // Database connection
-const mongoDB = process.env.DB_URI || 'mongodb://127.0.0.1/a11y-req';
+const mongoDB = process.env.DB_URI || 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
 mongoose.connect(mongoDB, { 
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -35,8 +35,8 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Simple authorization for edit routes
-const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME || "admin";
-const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD || "admin";
+const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME || "testcio";
+const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD || "DlJzhvIBogboQeDYlUevzBz5wvlcQylltbl6nmZdiPdMRkfBDe55P5xRNuEPVPh5rcfXSGoKlG2YhSweDfeqLQ==";
 
 const basicAuth = auth.basic(
   { realm: "Editing requires login" },
