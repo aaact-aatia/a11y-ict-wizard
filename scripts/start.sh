@@ -2,9 +2,9 @@
 ./wait
 echo "Starting application in ${NODE_ENV} environment"
 
-echo "Starting mongodb service"
-service mongodb start
-echo "Started mongodb service"
+#echo "Starting mongodb service"
+#service mongodb start
+#echo "Started mongodb service"
 
 if [ "$WAIT_FOR_MONGO" == "true" ]
 then
@@ -17,9 +17,9 @@ echo "Mongo DB started, starting application"
 
 if [ "$POPULATE_DB"  == "true" ]
 then
-    echo "Populating Mongo Database"
-    ./mongotools/bin/mongorestore --uri=${DB_URI} dump/
-    echo "database populated"
+ #   echo "Populating Mongo Database"
+ #   ./mongotools/bin/mongorestore --uri=${DB_URI} dump/
+ #   echo "database populated"
 else
     echo "Populating false"
 fi
