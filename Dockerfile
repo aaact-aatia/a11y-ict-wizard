@@ -33,10 +33,10 @@ RUN npm install -g pm2
 WORKDIR /home/app
 SHELL ["/bin/bash", "-c"]
 
-#RUN wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-x86_64-100.0.2.tgz && \
-#tar -xzf mongodb-database-tools-debian92-x86_64-100.0.2.tgz  && \
-#mv mongodb-database-tools-debian92-x86_64-100.0.2 mongotools && \
-#chmod 777 ./mongotools/bin/mongorestore 
+RUN wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-x86_64-100.0.2.tgz && \
+tar -xzf mongodb-database-tools-debian92-x86_64-100.0.2.tgz  && \
+mv mongodb-database-tools-debian92-x86_64-100.0.2 mongotools && \
+chmod 777 ./mongotools/bin/mongorestore 
 
 RUN apt-get install -y netcat
 ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait ./wait
