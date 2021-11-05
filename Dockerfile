@@ -5,11 +5,11 @@ ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
 
 # Change me in production
-ENV DB_URI "mongodb://testcio:ouyCkfCvwzA6Tp1XrK3R0qHrnL6B2kje4IZahGD6jHoKJDFNnNCkFvtgyaqvHP72io5OpjtMQTfZ7At6kaN0YQ==@testcio.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@testcio@" 
+ENV DB_URI "mongodb://testcio.mongo.cosmos.azure.com:10255/?ssl=true"
 ENV BASIC_AUTH_USERNAME "testcio"
 ENV BASIC_AUTH_PASSWORD "ouyCkfCvwzA6Tp1XrK3R0qHrnL6B2kje4IZahGD6jHoKJDFNnNCkFvtgyaqvHP72io5OpjtMQTfZ7At6kaN0YQ=="
 ENV WAIT_FOR_MONGO "true"
-ENV WAIT_HOSTS "mongodb://testcio:ouyCkfCvwzA6Tp1XrK3R0qHrnL6B2kje4IZahGD6jHoKJDFNnNCkFvtgyaqvHP72io5OpjtMQTfZ7At6kaN0YQ==@testcio.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@testcio@"
+ENV WAIT_HOSTS "mongodb://testcio.mongo.cosmos.azure.com:10255/?ssl=true"
 
 
 
