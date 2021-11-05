@@ -12,13 +12,22 @@ app.locals.moment = require('moment');
 
 // Database connection
 // const mongoDB = process.env.DB_URI || 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
-const mongoDB = 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
-mongoose.connect(mongoDB, { 
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+// Database connection
+try 
+{
+    const mongoDB = 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
+    mongoose.connect(mongoDB, { 
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+    console.log(`MongoDB Connected: ${conn.connection.host}`)
+} 
+catch (error) 
+{
+    console.error(`Error: ${error.message}`)   
+}
 
 // Express server configuration (see also /bin/www)
 app.set('views', path.join(__dirname, 'views'));
