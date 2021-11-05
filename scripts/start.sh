@@ -2,9 +2,9 @@
 ./wait
 echo "Starting application in ${NODE_ENV} environment"
 
-#echo "Starting mongodb service"
-#service mongodb start
-#echo "Started mongodb service"
+echo "Starting mongodb service"
+service mongodb start
+echo "Started mongodb service"
 
 if [ "$WAIT_FOR_MONGO" == "true" ]
 then

@@ -21,7 +21,7 @@ rm /etc/nginx/sites-available/default && \
 rm /etc/nginx/sites-enabled/default
 
 RUN apt-get install -y net-tools
-#RUN apt-get install -y mongodb
+RUN apt-get install -y mongodb
 
 # dos2unix used to convert scripts written on windows systems to unix formats
 RUN apt-get install -y dos2unix

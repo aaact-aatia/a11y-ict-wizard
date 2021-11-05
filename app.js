@@ -22,7 +22,7 @@ try
     });
     const db = mongoose.connection;
     db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-    console.log(`MongoDB Connected: ${conn.connection.host}`)
+    console.log(`MongoDB Connected: ${mongoose.connection.host}`)
 } 
 catch (error) 
 {
