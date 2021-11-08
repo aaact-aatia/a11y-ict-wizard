@@ -15,7 +15,7 @@ app.locals.moment = require('moment');
 // Database connection
 try 
 {
-    const mongoDB = 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req/?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@testcio@';
+    const mongoDB = 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@testcio@';
     mongoose.connect(mongoDB, { 
       useNewUrlParser: true,
       useUnifiedTopology: true
