@@ -15,7 +15,7 @@ app.locals.moment = require('moment');
 // Database connection
 try 
 {
-    const mongoDB = 'mongodb://ictaccessibilitydb:p0OojYa1ZFaKnMkUx1zZB4F80z8NlnLzJsVNpUGFvitetTr0eqS8VXecI6Qm0vGeefQpUFXsdvspEoFx78jxGA==@ictaccessibilitydb.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibilitydb@';
+    const mongoDB = 'mongodb://ictaccessibilitydb:p0OojYa1ZFaKnMkUx1zZB4F80z8NlnLzJsVNpUGFvitetTr0eqS8VXecI6Qm0vGeefQpUFXsdvspEoFx78jxGA==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibilitydb@';
     mongoose.connect(mongoDB, { 
       useNewUrlParser: true,
       useUnifiedTopology: true
