@@ -46,7 +46,8 @@ COPY ./nginx ./nginx
 
 # copying over nginx vhost to appropriate location and testing configuration
 RUN dos2unix ./nginx/default.conf && \
-mv ./nginx/default.conf /etc/nginx/sites-enabled/default && \
+mv ./nginx/default.conf /etc/nginx.conf && \
+#mv ./nginx/default.conf /etc/nginx/sites-enabled/default && \
 nginx -t 
 
 # copy over application files 
