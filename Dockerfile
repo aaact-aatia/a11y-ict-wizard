@@ -47,10 +47,10 @@ COPY ./nginx ./nginx
 # copying over nginx vhost to appropriate location and testing configuration
 RUN dos2unix ./nginx/default.conf && \
 mv ./nginx/default.conf /etc/nginx/sites-enabled/default && \
-mv ./nginx/nginx.conf /etc/nginx/nginx.conf
+mv ./nginx/nginx.conf /etc/nginx/nginx.conf && \
 nginx -t 
 
-mv ./scripts/mongodb.conf /etc/mongodb.conf
+mv ./scripts/mongodb.conf /etc/mongodb.conf && \
 
 # copy over application files 
 COPY . .
