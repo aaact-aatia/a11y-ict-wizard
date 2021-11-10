@@ -5,11 +5,11 @@ ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
 
 # Change me in production
-ENV DB_URI "mongodb://169.254.129.3:27017/a11y-req"
+ENV DB_URI "mongodb://169.254.129.2:27017/a11y-req"
 ENV BASIC_AUTH_USERNAME "ictaccessibility-db"
 ENV BASIC_AUTH_PASSWORD "zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ=="
 ENV WAIT_FOR_MONGO "true"
-ENV WAIT_HOSTS "mongodb://169.254.129.3:27017/a11y-req"
+ENV WAIT_HOSTS "mongodb://169.254.129.2:27017/a11y-req"
 
 
 
