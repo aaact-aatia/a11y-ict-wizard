@@ -49,12 +49,13 @@ RUN dos2unix ./nginx/default.conf && \
 mv ./nginx/default.conf /etc/nginx/sites-enabled/default
 
 RUN dos2unix ./nginx/nginx.conf && \
-mv ./nginx/nginx.conf /etc/nginx/nginx.conf
+mv ./nginx/nginx.conf /etc/nginx/nginx.conf && \
+nginx -t 
 
 RUN dos2unix ./scripts/mongodb.conf && \
 mv ./scripts/mongodb.conf /etc/mongodb.conf
 
-nginx -t 
+
 
 
 
