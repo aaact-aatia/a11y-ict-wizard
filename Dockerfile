@@ -5,11 +5,11 @@ ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
 
 # Change me in production
-ENV DB_URI "mongodb://127.0.0.1:27017/a11y-req"
+ENV DB_URI "mongodb://ictaccessibility-db:zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibility-db@"
 ENV BASIC_AUTH_USERNAME "ictaccessibility-db"
 ENV BASIC_AUTH_PASSWORD "zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ=="
 ENV WAIT_FOR_MONGO "true"
-ENV WAIT_HOSTS "mongodb://127.0.0.1:27017/a11y-req"
+ENV WAIT_HOSTS "mongodb://ictaccessibility-db:zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibility-db@"
 
 
 
@@ -79,7 +79,7 @@ RUN chmod 777 ./scripts/start.sh
 
 # make the script to be the entrypoint
 ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
-EXPOSE 80 2222 27017 27018
+EXPOSE 80 2222
 
 
 
