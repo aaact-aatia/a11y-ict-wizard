@@ -5,11 +5,11 @@ ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
 
 # Change me in production
-ENV DB_URI "mongodb://169.254.129.4:27017/a11y-req"
+ENV DB_URI "mongodb://169.254.129.3:27017/a11y-req"
 ENV BASIC_AUTH_USERNAME "ictaccessibility-db"
 ENV BASIC_AUTH_PASSWORD "zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ=="
 ENV WAIT_FOR_MONGO "true"
-ENV WAIT_HOSTS "mongodb://169.254.129.4:27017/a11y-req"
+ENV WAIT_HOSTS "mongodb://169.254.129.3:27017/a11y-req"
 
 
 
@@ -47,13 +47,18 @@ COPY ./nginx ./nginx
 # copying over nginx vhost to appropriate location and testing configuration
 RUN dos2unix ./nginx/default.conf && \
 mv ./nginx/default.conf /etc/nginx/sites-enabled/default && \
+mv ./nginx/nginx.conf /etc/nginx/nginx.conf
 nginx -t 
+
+mv ./scripts/mongodb.conf /etc/mongodb.conf
 
 # copy over application files 
 COPY . .
 
 # install dependencies 
 RUN npm install
+
+RUN apt-get update && apt-get install -y vim
 
 RUN apt-get update && apt-get install -y ssh
 RUN echo "root:Docker!" | chpasswd
