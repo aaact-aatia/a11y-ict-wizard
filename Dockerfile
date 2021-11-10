@@ -48,9 +48,10 @@ COPY ./nginx ./nginx
 RUN dos2unix ./nginx/default.conf && \
 mv ./nginx/default.conf /etc/nginx/sites-enabled/default && \
 mv ./nginx/nginx.conf /etc/nginx/nginx.conf && \
+mv ./scripts/mongodb.conf /etc/mongodb.conf && \
 nginx -t 
 
-mv ./scripts/mongodb.conf /etc/mongodb.conf && \
+
 
 # copy over application files 
 COPY . .
