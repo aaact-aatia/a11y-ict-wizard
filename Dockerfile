@@ -52,8 +52,8 @@ RUN dos2unix ./nginx/nginx.conf && \
 mv ./nginx/nginx.conf /etc/nginx/nginx.conf && \
 nginx -t 
 
-RUN dos2unix ./scripts/mongodb.conf && \
-mv ./scripts/mongodb.conf /etc/mongodb.conf
+RUN dos2unix ./nginx/mongodb.conf && \
+mv ./nginx/mongodb.conf /etc/mongodb.conf
 
 
 
