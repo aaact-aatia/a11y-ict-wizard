@@ -35,6 +35,8 @@ stages:
         sed -i 's/_BASICAUTHUSERNAME_/$(_BASICAUTHUSERNAME_)/' Dockerfile;	
         sed -i 's/_BASICAUTHPASSWORD_/$(_BASICAUTHPASSWORD_)/' Dockerfile;
         sed -i 's/_WAITFORMONGO_/$(_WAITFORMONGO_)/' Dockerfile;
+        sed -i 's/_WAITHOSTS_/$(_WAITHOSTS_)/' Dockerfile;
+        sed -i 's/_DBURI_/$(_DBURI_)/' Dockerfile;        
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
