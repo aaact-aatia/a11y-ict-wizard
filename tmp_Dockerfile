@@ -5,15 +5,15 @@ ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
 
 # Change me in production
-ENV DB_URI  "__DB_URI__"
+ENV DB_URI  "_DBURI_"
 # "mongodb://ictaccessibility-db:zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibility-db@"
-ENV BASIC_AUTH_USERNAME "__BASIC_AUTH_USERNAME__"
+ENV BASIC_AUTH_USERNAME "_BASICAUTHUSERNAME_"
 #"ictaccessibility-db"
-ENV BASIC_AUTH_PASSWORD "__BASIC_AUTH_PASSWORD__"
+ENV BASIC_AUTH_PASSWORD "_BASICAUTHPASSWORD_"
 #"zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ=="
-ENV WAIT_FOR_MONGO "__WAIT_FOR_MONGO__"
+ENV WAIT_FOR_MONGO "_WAITFORMONGO_"
 #"true"
-ENV WAIT_HOSTS "__WAIT_HOSTS__"
+ENV WAIT_HOSTS "_WAITHOSTS_"
 #"mongodb://ictaccessibility-db:zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibility-db@"
 
 
