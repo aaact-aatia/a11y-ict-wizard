@@ -30,12 +30,9 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script:
-        CR=$(printf '\r')
-        ls
-        printf '\r'
-        cp tmp_Dockerfile Dockerfile
-        printf '\r'       
+    - script:        
+        ls       
+        cp tmp_Dockerfile Dockerfile           
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
