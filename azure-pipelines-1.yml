@@ -31,7 +31,11 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - script:
+        CR=$(printf '\r')
         ls
+        printf '\r'
+        cp tmp_Dockerfile Dockerfile
+        printf '\r'       
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
