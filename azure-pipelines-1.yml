@@ -14,6 +14,7 @@ variables:
   imageRepository: 'ayreqgit'
   containerRegistry: 'itcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
   #tag: '$(Build.BuildId)'
 
@@ -36,6 +37,7 @@ stages:
         sed -i 's/__BASIC_AUTH_PASSWORD__/$(__BASIC_AUTH_PASSWORD__)/g' /Dockerfile
         sed -i 's/__WAIT_FOR_MONGO__/$(__WAIT_FOR_MONGO__)/g' /Dockerfile
         sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)/g' /Dockerfile
+      workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
     - task: Docker@2
