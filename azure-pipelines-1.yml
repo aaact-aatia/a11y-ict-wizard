@@ -32,11 +32,11 @@ stages:
     steps:
     - script:  
         cp tmp_Dockerfile Dockerfile;
-        sed -i 's/__DB_URI__/$(__DB_URI__)' Dockerfile;
-        sed -i 's/__BASIC_AUTH_USERNAME__/$(__BASIC_AUTH_USERNAME__)' Dockerfile;	
-        sed -i 's/__BASIC_AUTH_PASSWORD__/$(__BASIC_AUTH_PASSWORD__)' Dockerfile;
-        sed -i 's/__WAIT_FOR_MONGO__/$(__WAIT_FOR_MONGO__)' Dockerfile;
-        sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)' Dockerfile;
+        sed -i 's/__DB_URI__/$(__DB_URI__)/' Dockerfile;
+        sed -i 's/__BASIC_AUTH_USERNAME__/$(__BASIC_AUTH_USERNAME__)/' Dockerfile;	
+        sed -i 's/__BASIC_AUTH_PASSWORD__/$(__BASIC_AUTH_PASSWORD__)/' Dockerfile;
+        sed -i 's/__WAIT_FOR_MONGO__/$(__WAIT_FOR_MONGO__)/' Dockerfile;
+        sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)/' Dockerfile;
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
