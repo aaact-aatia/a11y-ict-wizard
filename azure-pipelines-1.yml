@@ -29,6 +29,7 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
+<<<<<<< HEAD
     - script:
         cp tmp_Dockerfile Dockerfile
         sed -i 's/__DB_URI__/$(__DB_URI__)/g' Dockerfile
@@ -38,6 +39,8 @@ stages:
         sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)/g' Dockerfile
       displayName: 'PreBuild'
 
+=======
+>>>>>>> 917acd6e59fd07d4e640b815c5181579bc9ac57f
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
