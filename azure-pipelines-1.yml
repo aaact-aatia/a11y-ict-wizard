@@ -31,8 +31,8 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - script:        
-        ls       
-        cp tmp_Dockerfile Dockerfile           
+        ls;       
+        cp tmp_Dockerfile Dockerfile;          
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
 
