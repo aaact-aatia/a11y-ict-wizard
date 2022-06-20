@@ -30,12 +30,12 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - script:
-        cp tmp_Dockerfile Dockerfile
-        sed -i 's/__DB_URI__/$(__DB_URI__)/g' Dockerfile
-        sed -i 's/__BASIC_AUTH_USERNAME__/$(__BASIC_AUTH_USERNAME__)/g' Dockerfile	
-        sed -i 's/__BASIC_AUTH_PASSWORD__/$(__BASIC_AUTH_PASSWORD__)/g' Dockerfile
-        sed -i 's/__WAIT_FOR_MONGO__/$(__WAIT_FOR_MONGO__)/g' Dockerfile
-        sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)/g' Dockerfile
+        cp /tmp_Dockerfile /Dockerfile
+        sed -i 's/__DB_URI__/$(__DB_URI__)/g'/Dockerfile
+        sed -i 's/__BASIC_AUTH_USERNAME__/$(__BASIC_AUTH_USERNAME__)/g' /Dockerfile	
+        sed -i 's/__BASIC_AUTH_PASSWORD__/$(__BASIC_AUTH_PASSWORD__)/g' /Dockerfile
+        sed -i 's/__WAIT_FOR_MONGO__/$(__WAIT_FOR_MONGO__)/g' /Dockerfile
+        sed -i 's/_WAIT_HOSTS__/$(__WAIT_HOSTS__)/g' /Dockerfile
       displayName: 'PreBuild'
 
     - task: Docker@2
