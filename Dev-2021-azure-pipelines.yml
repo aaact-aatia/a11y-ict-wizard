@@ -14,6 +14,7 @@ variables:
   imageRepository: 'sand-ayreqgit'
   containerRegistry: 'itcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
   #tag: '$(Build.BuildId)'
 
@@ -38,7 +39,7 @@ stages:
         sed -i 's/_DBURI_/$(_DBURI_)/' Dockerfile;        
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild'
-      
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
