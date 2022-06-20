@@ -10,6 +10,10 @@ const auth = require('http-auth');
 const app = express();
 app.locals.moment = require('moment');
 
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+console.log(process.env.DB_URI);
+
 // Database connection
 // const mongoDB = process.env.DB_URI || 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
 // Database connection
