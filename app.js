@@ -10,14 +10,10 @@ const auth = require('http-auth');
 const app = express();
 app.locals.moment = require('moment');
 
-console.log(process.env.DB_URI);
 
-// Database connection
-// const mongoDB = process.env.DB_URI || 'mongodb://testcio.mongo.cosmos.azure.com:10255/a11y-req';
-// Database connection
 try 
 {
-    const mongoDB = process.env.DB_URI //'mongodb://ictaccessibility-db:zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==@ictaccessibility-db.mongo.cosmos.azure.com:10255/a11y-req?ssl=true&replicaSet=globaldb&retrywrites=false&maxIdleTimeMS=120000&appName=@ictaccessibility-db@';
+    const mongoDB = process.env.DB_URI 
     //const mongoDB = 'mongodb://127.0.0.1:27017/a11y-req';
     mongoose.connect(mongoDB, { 
       useNewUrlParser: true,
@@ -48,8 +44,8 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Simple authorization for edit routes
-const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME //|| "ictaccessibility-db";
-const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD //|| "zSZahFS5wwHKhq0XsY3NuAXxnqWaPu7vu9JItRqpLQiOidYyI5WbbVLU7IzyT8Rz0gNqmeJQaDPuiEY6oEHyKQ==";
+const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME
+const BASIC_AUTH_PASSWORD = process.env.BASIC_AUTH_PASSWORD
 
 const basicAuth = auth.basic(
   { realm: "Editing requires login" },
