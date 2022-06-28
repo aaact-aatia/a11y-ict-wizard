@@ -1,7 +1,7 @@
 # a11y-req
 Accessibility Requirements Generator for Information Communication Technology (ICT) Procurement. Based on EN 301 549 (2018).
 
-[Use the tool](http://a11yreq.herokuapp.com)
+[Use the tool](https://2018-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca)
 
 ## Motivation
 The EU [Accessible ICT Procurement Toolkit](http://mandate376.standards.eu/procurement-stages/writing-a-call-for-tenders/wizard/technical-requirements/) contains a tool which generates a custom set of accessibility requirements - a subset of the Functional Accessibility Requirements clauses from the EN 301 549 (2014). These clauses are included in a downloadable HTML document for inclusion in procurements.
