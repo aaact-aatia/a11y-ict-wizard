@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-// const sassMiddleware = require('node-sass-middleware');
+const sassMiddleware = require("node-sass-middleware");
 const mongoose = require("mongoose");
 const auth = require("http-auth");
 
