@@ -96,9 +96,9 @@ exports.download = (req, res, next) => {
     res.attachment(strings.filename);
 
     // Remove Tables and Figures annex if not applicable
-    figureClauses = ['5.1.4', '8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.2.5', '8.3.2.6',
-                     '8.3.3.1.1', '8.3.3.1.2', '8.3.3.1.3.2', '8.3.3.1.3.3', '8.3.3.2.1', '8.3.3.2.2',
-                     '8.3.3.2.3.1', '8.3.3.2.3.2'];
+    figureClauses = ['5.1.4', '8.3.4.1', '8.3.4.2', '8.3.4.3.2', '8.3.4.3.3', '8.3.2.5', '8.3.2.6',
+                     '8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.3.1', '8.3.3.2',
+                     '8.3.3.3.1', '8.3.3.3.2'];
     results.annex = results.annex.filter(function (el) {
       return !el.name.includes('figures') ||
               results.fps.some(e => figureClauses.includes(e.number));
