@@ -47,10 +47,10 @@ exports.download = (req, res, next) => {
   let strings = { template: req.params.template };
   if (req.params.template.slice(-2) === 'fr') {
     strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.docx';
-    strings.title = 'Exigences en matière de TIC accessibles (basées sur la norme EN 301 549 v2.1.2)';
+    strings.title = 'Exigences en matière de TIC accessibles (basées sur la norme EN 301 549 v3.2.1)';
   } else {
     strings.filename = 'Annex X - ICT Accessibility Requirements.docx';
-    strings.title = 'ICT Accessibility Requirements (Based on EN 301 549 v2.1.2)';
+    strings.title = 'ICT Accessibility Requirements (Based on EN 301 549 v3.2.1)';
   }
   if (req.params.template.includes("evaluation")) {
     if (req.params.template.slice(-2) === 'fr') {
@@ -96,9 +96,9 @@ exports.download = (req, res, next) => {
     res.attachment(strings.filename);
 
     // Remove Tables and Figures annex if not applicable
-    figureClauses = ['5.1.4', '8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.2.5', '8.3.2.6',
-                     '8.3.3.1.1', '8.3.3.1.2', '8.3.3.1.3.2', '8.3.3.1.3.3', '8.3.3.2.1', '8.3.3.2.2',
-                     '8.3.3.2.3.1', '8.3.3.2.3.2'];
+    figureClauses = ['5.1.4', '8.3.4.1', '8.3.4.2', '8.3.4.3.2', '8.3.4.3.3', '8.3.2.5', '8.3.2.6',
+                     '8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.3.1', '8.3.3.2',
+                     '8.3.3.3.1', '8.3.3.3.2'];
     results.annex = results.annex.filter(function (el) {
       return !el.name.includes('figures') ||
               results.fps.some(e => figureClauses.includes(e.number));
