@@ -1,12 +1,12 @@
 # a11y-req
-Accessibility Requirements Generator for Information Communication Technology (ICT) Procurement. Based on EN 301 549 (2018).
+Accessibility Requirements Generator for Information Communication Technology (ICT) Procurement. Based on EN 301 549 (2018 annd 2021).
 
-[Use the tool](https://2018-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca)
+[Use the 2018 tool](https://2018-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca)
 
 ## Motivation
 The EU [Accessible ICT Procurement Toolkit](http://mandate376.standards.eu/procurement-stages/writing-a-call-for-tenders/wizard/technical-requirements/) contains a tool which generates a custom set of accessibility requirements - a subset of the Functional Accessibility Requirements clauses from the EN 301 549 (2014). These clauses are included in a downloadable HTML document for inclusion in procurements.
 
-Unfortunately, this tool was never updated to the 2018 standard. The motivation for a11y-req was to recreate this system, but with a Content Management System (CMS) to allow the clauses and informative sections to be updated as the EN 301 549 refreshes. At the same time, we wished to generate documents in both French and English.
+Unfortunately, this tool was never updated to the 2018 or 2021 standard. The motivation for a11y-req was to recreate this system, but with a Content Management System (CMS) to allow the clauses and informative sections to be updated as the EN 301 549 refreshes. At the same time, we wished to generate documents in both French and English.
 
 ## Functional design decisions
 Initially, we followed the same principle of having commonly procured ICT as presets. (Each preset has a certain subset of the requirements relevant to that type of ICT.) In the process of piloting actual procurements, we found that the technical requirements in each Statement of Work (SoW) differed enough that a custom set of accessibility requirements should be chosen for each procurement.
@@ -46,13 +46,13 @@ The above issues are primarily due to the requirement of generating Word documen
 
 Instructions for editing the generated documents are available within the app (Step 3 instructions).
 
-Other [issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11y-req/issues).
+Other [issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11y-ict-wizard/issues).
 
 ## Setup
 
 ### Running Natively
 - Install node.js, npm, and MongoDB
-- Clone this repository: `git clone https://github.com/aaact-aatia/a11y-req`
+- Clone this repository: `git clone https://github.com/aaact-aatia/a11y-ict-wizard`
 - In the created directory, run `npm install`
 
 ### Using Docker 
@@ -136,4 +136,4 @@ CSS for Word documents. Unfortunately, editing this is a matter of trial and err
 Options for generating documents, common to all `download_*` views.
 
 ## Support
-Open an issue in this repository (preferred), or email [jules.kuehn@canada.ca](mailto:jules.kuehn@canada.ca).
+Open an issue in this repository (preferred), or email AAACT-AATIA)(mailto:aaact-aatia@ssc-spc.gc.ca).
