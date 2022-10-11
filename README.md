@@ -52,7 +52,7 @@ Other [issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11
 
 ### Running Natively
 - Install node.js, npm, and MongoDB
-- Clone this repository: `git clone https://github.com/aaact-aatia/a11y-req`
+- Clone this repository: `git clone https://github.com/aaact-aatia/a11y-ict-wizard`
 - In the created directory, run `npm install`
 
 ### Using Docker 
@@ -136,4 +136,4 @@ CSS for Word documents. Unfortunately, editing this is a matter of trial and err
 Options for generating documents, common to all `download_*` views.
 
 ## Support
-Open an issue in this repository (preferred), or email [jules.kuehn@canada.ca](mailto:jules.kuehn@canada.ca).
+Open an issue in this repository 
