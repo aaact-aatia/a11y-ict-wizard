@@ -47,10 +47,10 @@ exports.download = (req, res, next) => {
   let strings = { template: req.params.template };
   if (req.params.template.slice(-2) === 'fr') {
     strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.docx';
-    strings.title = 'Exigences en matière de TIC accessibles (basées sur la norme EN 301 549 v2.1.2)';
+    strings.title = 'Exigences en matière de TIC accessibles';
   } else {
     strings.filename = 'Annex X - ICT Accessibility Requirements.docx';
-    strings.title = 'ICT Accessibility Requirements (Based on EN 301 549 v2.1.2)';
+    strings.title = 'ICT Accessibility Requirements';
   }
   if (req.params.template.includes("evaluation")) {
     if (req.params.template.slice(-2) === 'fr') {
