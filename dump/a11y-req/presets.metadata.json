@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"a11y-req.presets"}],"uuid":"a996eff3cdd94903badb869479371d45"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"3f2b8fae0e9849b98a95aa05338aea4d","collectionName":"presets","type":"collection"}
