@@ -1,7 +1,7 @@
 # a11y-req
-Accessibility Requirements Generator for Information Communication Technology (ICT) Procurement. Based on EN 301 549 (2018 annd 2021).
+Accessibility Requirements Generator for Information Communication Technology (ICT) Procurement. Based on EN 301 549.
 
-[Use the 2018 tool](https://2018-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca)
+[The tool based on both the 2018 and 2021 versions of the EN 301 549 can be found under the "Procurement" section on the Digital Accessibility Toolkit](https://a11y.canada.ca/en/guides/)
 
 ## Motivation
 The EU [Accessible ICT Procurement Toolkit](http://mandate376.standards.eu/procurement-stages/writing-a-call-for-tenders/wizard/technical-requirements/) contains a tool which generates a custom set of accessibility requirements - a subset of the Functional Accessibility Requirements clauses from the EN 301 549 (2014). These clauses are included in a downloadable HTML document for inclusion in procurements.
@@ -19,6 +19,8 @@ The wizard follows three steps:
 3. Documents are generated from the requirements and can be downloaded in several formats, in both French and English.
 
 All generated documents include a statement which identifies precisely which clauses are included. This statement can be copy / pasted into this tool at step 2 in order to resume fine-tuning of a previous clause selection.
+
+Note* to access the 2018 version of the tool you will need to checkout the "2018" branch, the "2021" version is part of the "main" branch.
 
 ## Known issues
 This application should be considered a prototype. While the documents generated are free from textual errors and can be used in actual procurement activities, there are a number of unresolved issues, including:
@@ -68,6 +70,7 @@ A production ready container has been created for your convenience complete with
 - Run `npm run devstart` to start the node.js server
 - Visit [localhost:3000](http://localhost:3000)
 - To edit content via the CMS, visit [localhost:3000/edit](http://localhost:3000/edit)
+- use "admin" for both username and password in dev
 
 ### Using Docker 
 
