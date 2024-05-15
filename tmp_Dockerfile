@@ -17,7 +17,12 @@ RUN apt update && \
 	rm /etc/nginx/sites-enabled/default
 
 RUN apt-get install -y net-tools
-RUN apt-get install -y mongodb
+
+# Add the MongoDB repository
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add - && \
+	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian buster/mongodb-org/4.4 main" | tee /etc/apt/sources.list.d/mongodb-org-4.4.list && \
+	apt-get update && \
+	apt-get install -y mongodb-org
 
 # dos2unix used to convert scripts written on windows systems to unix formats
 RUN apt-get install -y dos2unix
