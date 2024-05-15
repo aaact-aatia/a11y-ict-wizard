@@ -1,4 +1,4 @@
-// Make changes in style.scss (not style.css)
+/*  Make changes in style.scss (not style.css) */
 
 .form-control {
   width: 100%;
@@ -8,24 +8,24 @@ main {
   padding-bottom: 30px;
 }
 
-// .right {
-//   float: right;
-// }
+/*  .right {
+   float: right;
+ } */
 
 .document-properties {
   margin-top: 10px;
 }
 
-// p.form-instructions-link {
-//   height: 0;
-//   margin-bottom: 0;
-// }
+/* p.form-instructions-link {
+   height: 0;
+   margin-bottom: 0;
+ } */
 
-// WET Overrides
+/* WET Overrides */
 
 .form-control {
   height: auto;
-  min-height: 37px; // Hard-coded height fails Resize Text criterion
+  min-height: 37px; /* Hard-coded height fails Resize Text criterion */
 }
 
 legend {
@@ -60,7 +60,7 @@ button.btn.btn-link {
   text-decoration: underline;
 }
 
-// Clause tree (from ARIA example with minor edits)
+/* Clause tree (from ARIA example with minor edits)*/
 
 ul[role="tree"] {
   margin: 10px 0;
@@ -128,7 +128,7 @@ i.info {
 }
 
 [role="treeitem"].endNode label {
-  // Prevent overlapping with "info" icon
+  /* Prevent overlapping with "info" icon */
   padding-right: 25px;
 }
 
@@ -151,7 +151,7 @@ i.info {
 [role="treeitem"] div.checkbox.focus.hover,
 [role="treeitem"] div.focus:hover {
   background-color: #eee;
-  // outline: solid 2px #666;
+  /* outline: solid 2px #666; */
 }
 
 [role="treeitem"] div.checkbox.hover,
@@ -198,9 +198,11 @@ i.info {
   padding-left: auto !important;
 }
 
-// Wizard styling
+/* Wizard styling*/
 
-$color-focus: #1c578a;
+:root {
+  --color-focus: #1c578a;
+}
 
 #wizard label {
   padding: 2px 5px 2px 25px;
