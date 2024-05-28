@@ -17,9 +17,8 @@ section#wizard
     legend
       span.field-name Does the <abbr title="Information Communication Technology">ICT</abbr> procurement provide...
      
-    button(class="btn btn-default" onclick="selectAll()") Select all
-    console.log("select all activated")
-    button(class="btn btn-default" onclick="deselectAll()" style="margin-left : 1%") Deselect all
+    button#selectAll(class="btn btn-default" onclick="checkAll()") Select all
+    button#unselectAll(class="btn btn-default" onclick="uncheckAll()" style="margin-left : 1%") Deselect all
 
     .row
       .col-md-6

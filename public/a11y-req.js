@@ -204,6 +204,29 @@ var updateWizard = function () {
 
 };
 
+function checkAll() {
+  const section = document.querySelector('#wizard');
+  const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+      if (!checkbox.checked){
+        checkbox.checked = true;
+      }
+  });
+  console.log("select all activated")
+}
+
+function uncheckAll() {
+  const container = document.querySelector('#wizard');
+  const checkboxes = container.querySelectorAll('.checkbox input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+      if (checkbox.checked){
+        checkbox.checked = false;
+      }
+  });
+  console.log("deselect all activated")
+}
+    
+
 /* Generator preset handling */
 
 // var setupPresetHandler = function () {
