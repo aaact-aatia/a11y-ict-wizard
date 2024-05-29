@@ -3,7 +3,7 @@
 
 $(document).on("wb-ready.wb", function (event) {
 
-  // setupPresetHandler();
+  setupQuestionHandler();
 
   setupTreeHandler();
 
@@ -82,7 +82,6 @@ var setupTreeHandler = function () {
     e.preventDefault();
   });
   $('#selectNone').click(function (e) {
-    selectNone();
     e.preventDefault();
   });
   $('#expandAll').click(function (e) {
@@ -204,28 +203,30 @@ var updateWizard = function () {
 
 };
 
-function checkAll() {
-  const section = document.querySelector('#wizard');
-  const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-      if (!checkbox.checked){
-        checkbox.checked = true;
-      }
-  });
-  console.log("select all activated")
-}
+// Call the setup function to initialize the question handler
+$(document).ready(function() {
+  setupQuestionHandler();
+});
 
-function uncheckAll() {
-  const container = document.querySelector('#wizard');
-  const checkboxes = container.querySelectorAll('.checkbox input[type="checkbox"]');
-  checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
-        checkbox.checked = false;
-      }
+var setupQuestionHandler = function () {
+  // Bind click events for checkAll and uncheckAll buttons
+  $('#checkAll').click(function (e) {
+    e.preventDefault();
+    checkAllCheckboxes(true);
+    updateWizard();
   });
-  console.log("deselect all activated")
-}
-    
+
+  $('#uncheckAll').click(function (e) {
+    e.preventDefault();
+    checkAllCheckboxes(false);
+    updateWizard();
+  });
+};
+
+var checkAllCheckboxes = function (check) {
+  $('#wizard .checkbox input[type="checkbox"]').prop('checked', check);
+};
+
 
 /* Generator preset handling */
 
