@@ -5,8 +5,9 @@ mixin checkbox(label, name, onlyIf)
     -name = 'checkbox' + i++
   .checkbox
       label(for=name)
-        input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false))
+        input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) checked)
         | !{label}
+
 
 section#wizard
   //- p
@@ -15,6 +16,10 @@ section#wizard
   fieldset
     legend
       span.field-name Does the <abbr title="Information Communication Technology">ICT</abbr> procurement provide...
+
+    button#checkAll(class="btn btn-default") Select all
+    button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
+
     .row
       .col-md-6
         each preset, index in preset_list

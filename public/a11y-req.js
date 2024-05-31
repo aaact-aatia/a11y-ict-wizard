@@ -3,7 +3,7 @@
 
 $(document).on("wb-ready.wb", function (event) {
 
-  // setupPresetHandler();
+  setupQuestionHandler();
 
   setupTreeHandler();
 
@@ -82,7 +82,6 @@ var setupTreeHandler = function () {
     e.preventDefault();
   });
   $('#selectNone').click(function (e) {
-    selectNone();
     e.preventDefault();
   });
   $('#expandAll').click(function (e) {
@@ -203,6 +202,31 @@ var updateWizard = function () {
   });
 
 };
+
+// Call the setup function to initialize the question handler
+$(document).ready(function() {
+  setupQuestionHandler();
+});
+
+var setupQuestionHandler = function () {
+  // Bind click events for checkAll and uncheckAll buttons
+  $('#checkAll').click(function (e) {
+    e.preventDefault();
+    checkAllCheckboxes(true);
+    updateWizard();
+  });
+
+  $('#uncheckAll').click(function (e) {
+    e.preventDefault();
+    checkAllCheckboxes(false);
+    updateWizard();
+  });
+};
+
+var checkAllCheckboxes = function (check) {
+  $('#wizard .checkbox input[type="checkbox"]').prop('checked', check);
+};
+
 
 /* Generator preset handling */
 
