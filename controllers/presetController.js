@@ -10,6 +10,24 @@ const strings = {
   presetNameRequired: 'Preset name required'
 }
 
+exports.preset_download = (req, res, next) => {
+  Preset.find()
+  .sort([['order', 'ascending']])
+  .exec((err, presets) => {
+    if (err) {
+      console.error(err);
+      return next(err);
+    }
+    // Convert presets to JSON string
+    const presetsData = JSON.stringify(presets, null, 2); // Adding null, 2 for pretty printing
+    
+    // Send the data as a downloadable file
+    res.setHeader('Content-disposition', 'attachment; filename=presets_list.json');
+    res.send(presetsData);
+  });
+};
+
+
 // Display list of all Presets
 exports.preset_list = (req, res, next) => {
   Preset.find()

@@ -14,3 +14,22 @@ block content
       li There are no #{type}s to display.
 
   a(href='/edit/' + type + '/create') Create #{type}
+  <br>
+
+  //- if type === 'preset'
+  //-   form(action="#", method='GET')
+  //-   button(type='submit' class="btn.btn-default") Download presets
+  //- else if type === 'clause'
+  //-   form(action="#", method='GET')
+  //-   button(type='submit' class="btn.btn-default") Download clauses
+  //- else 
+  //-   form(action="#", method='GET')
+  //-   button(type='submit' class="btn.btn-default") Download infos
+
+  if type === 'preset'
+    a(href="/edit/presetsdownload" ) Download presets list
+  else if type === 'clause'
+    a(href='/edit/clausesdownload') Download clauses list
+  else 
+    a(href='/edit/infosdownload' ) Download information list
+  

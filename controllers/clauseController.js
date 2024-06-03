@@ -17,6 +17,23 @@ const strings = {
   updateClause: 'Update clause'
 }
 
+exports.clause_download = (req, res, next) => {
+
+  Clause.find()
+  .sort([['number', 'ascending']])
+  .exec((err, clauses) => {
+    if (err) {
+      return next(err);
+    }
+    // Convert clause to JSON string
+    const clausesData = JSON.stringify(clauses, null, 2);
+    
+    // Send the data as a downloadable file
+    res.setHeader('Content-disposition', 'attachment; filename=clauses_list.json');
+    res.send(clausesData);
+  });
+};
+
 // Display list of all Clauses
 exports.clause_list = (req, res, next) => {
   Clause.find()

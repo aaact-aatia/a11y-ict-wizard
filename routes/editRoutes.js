@@ -10,6 +10,11 @@ const preset_controller = require('../controllers/presetController');
 router.get('/', info_controller.edit_list);
 
 
+//GET JSON file on download
+router.get('/presetsdownload', preset_controller.preset_download);
+router.get('/clausesdownload', clause_controller.clause_download);
+router.get('/infosdownload', info_controller.info_download);
+
 /* Clauses */
 
 // GET request for list of all Clauses
