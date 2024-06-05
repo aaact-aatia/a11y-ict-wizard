@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const HtmlDocx = require('html-docx-js');
 
 const Clause = require('../models/clauseSchema');
-const Preset = require('../models/presetSchema');
+const Question = require('../models/questionSchema');
 const Info = require('../models/infoSchema');
 const toClauseTree = require('./clauseTree');
 
@@ -13,32 +13,32 @@ const getTestableClauses = (clauses) =>
   clauses.filter((clause) =>
     !clause.informative && clause.description.length > 0);
 
-// Select functional accessibility requirements or preset
+// Select functional accessibility requirements or question
 exports.wizard_get = (req, res, next) => {
   async.parallel({
     clauses: (callback) => Clause.find().exec(callback),
-    presets: (callback) => Preset.find().exec(callback)
+    questions: (callback) => Question.find().exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
     res.render('wizard', {
       title: 'ICT accessibility requirements wizard',
       clause_tree: toClauseTree(results.clauses),
-      preset_list: results.presets
+      question_list: results.questions
     });
   });
 };
 
-// Select functional accessibility requirements or preset
+// Select functional accessibility requirements or question
 exports.wizard_fr_get = (req, res, next) => {
   async.parallel({
     clauses: (callback) => Clause.find().exec(callback),
-    presets: (callback) => Preset.find().exec(callback)
+    questions: (callback) => Question.find().exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
     res.render('wizard_fr', {
       title: 'Assistant des exigences d\'accessibilité des TIC',
       clause_tree: toClauseTree(results.clauses),
-      preset_list: results.presets
+      question_list: results.questions
     });
   });
 };

@@ -6,12 +6,12 @@ block form
   form(method='POST' action='')
     .form-group
       label.required(for='name')
-        span.field-name Preset name (English) 
+        span.field-name Question name (English) 
         strong.required (required)
       input#name.form-control(type='text' placeholder='' required='required' name='name' value=(itemExists ? item.name : ''))
     .form-group
       label.required(for='frName')
-        span.field-name Preset name (French) 
+        span.field-name Question name (French) 
         strong.required (required)
       input#frName.form-control(lang='fr' type='text' placeholder='' required='required' name='frName' value=(itemExists ? item.frName : ''))
     .form-group
@@ -33,7 +33,7 @@ block form
     .checkbox
       label(for='onlyIf')
         input#onlyIf(type='checkbox' name='onlyIf' checked=(itemExists ? item.onlyIf : false))
-        | Select clauses if and only if the clause is included in another selected preset AND this preset is selected
+        | Select clauses if and only if the clause is included in another selected question AND this question is selected
 
     include includes/clause_tree
       

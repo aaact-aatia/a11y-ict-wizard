@@ -4,7 +4,7 @@ const { JSDOM } = require('jsdom');
 const innertext = require('innertext');
 
 const Clause = require('../models/clauseSchema');
-const Preset = require('../models/presetSchema.js');
+const Question = require('../models/questionSchema.js');
 
 const strings = {
   listTitle: 'Edit clauses',
@@ -16,6 +16,23 @@ const strings = {
   clauseNotFound: 'Clause not found',
   updateClause: 'Update clause'
 }
+
+exports.clause_download = (req, res, next) => {
+
+  Clause.find()
+  .sort([['number', 'ascending']])
+  .exec((err, clauses) => {
+    if (err) {
+      return next(err);
+    }
+    // Convert clause to JSON string
+    const clausesData = JSON.stringify(clauses, null, 2);
+    
+    // Send the data as a downloadable file
+    res.setHeader('Content-disposition', 'attachment; filename=clauses_list.json');
+    res.send(clausesData);
+  });
+};
 
 // Display list of all Clauses
 exports.clause_list = (req, res, next) => {
@@ -152,16 +169,16 @@ exports.clause_delete_post = (req, res, next) => {
   async.parallel({
     clause: (callback) =>
       Clause.findById(req.body.itemid).exec(callback),
-    clause_presets: (callback) =>
-      Preset.find({ clauses: req.body.itemid }).exec(callback)
+    clause_questions: (callback) =>
+      Question.find({ clauses: req.body.itemid }).exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
-    if (results.clause_presets.length > 0) {
-      // Clause has presets referencing it which must be deleted first
+    if (results.clause_questions.length > 0) {
+      // Clause has questions referencing it which must be deleted first
       res.render('item_delete', {
         title: strings.deleteClause,
         item: results.clause,
-        dependencies: results.clause_presets,
+        dependencies: results.clause_questions,
         breadcrumbs: [
           { url: '/', text: 'Home' },
           { url: '/edit', text: 'Edit content' },

@@ -22,17 +22,17 @@ section#wizard
 
     .row
       .col-md-6
-        each preset, index in preset_list
-          if index <= preset_list.length/2
-            +checkbox(preset.name, preset._id, preset.onlyIf)
+        each question, index in question_list
+          if index <= question_list.length/2
+            +checkbox(question.name, question._id, question.onlyIf)
       .col-md-6
-        each preset, index in preset_list
-          if index > preset_list.length/2
-            +checkbox(preset.name, preset._id, preset.onlyIf)
+        each question, index in question_list
+          if index > question_list.length/2
+            +checkbox(question.name, question._id, question.onlyIf)
 
   //- Hidden data (for client-side javascript)
-  .hidden#preset-data
-    each preset in preset_list
-      ul.preset(data-preset-id=preset._id)
-        each clause in preset.clauses
+  .hidden#question-data
+    each question in question_list
+      ul.question(data-question-id=question._id)
+        each clause in question.clauses
           li !{clause._id}
