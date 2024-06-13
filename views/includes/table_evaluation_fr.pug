@@ -1,32 +1,8 @@
 if item_list.length > 0
-  table.table.table-bordered.evaluation(alt='Tableau des exigences à compléter par l\'evaluateur')
-    thead
-      tr.active
-        th.col-sm-4(scope='col') Clause de la norme EN 301 549
-        th(scope='col') Respectée ?
-        th(scope='col') Points
-        th.col-sm-6(scope='col') Explication
-    tbody
-      each item in test_list
-        tr
-          td(valign='top')
-            p
-              strong #{item.number} #{item.frName}
-          td(valign='top') &nbsp;
-          td(valign='top') &nbsp;
-          td(valign='top') &nbsp;
-      tr
-        td(valign='top') Points totaux
-        td(valign='top') ---
-        td(valign='top') &nbsp;
-        td(valign='top') Somme des points ci-dessus
-      tr
-        td(valign='top') Points maximum
-        td(valign='top') ---
-        td(valign='top')= test_list.length
-        td(valign='top') Nombre de critères ci-dessus
-      tr
-        td(valign='top') Score de conformité %
-        td(valign='top') ---
-        td(valign='top') &nbsp;
-        td(valign='top') Points totaux * 100/Points maximum
+  if item_list.length > 0
+  if item_list.length > 0
+  p Vous trouverez ci-dessous la liste des exigences sélectionnées à l’annexe X dont la conformité peut être évaluée. Cette liste peut être utilisé comme point de départ lors de la création d’un rapport de conformité sur l’accessibilité (RCA) pour votre solution. Si des exigences ne sont pas respectées, assurez-vous de les inclure dans votre ACR. De même, si des exigences ne s’appliquent pas, elles peuvent être marquées comme non applicables.
+  each item in test_list 
+    <ol>
+      <li>#{item.number} #{item.frName}</li>
+    </ol>

@@ -1,32 +1,6 @@
 if item_list.length > 0
-  table.table.table-bordered.evaluation(alt='Requirements table to be completed by evaluator')
-    thead
-      tr.active
-        th.col-sm-4(scope='col') EN 301 549 clause
-        th(scope='col') Supports?
-        th(scope='col') Points
-        th.col-sm-6(scope='col') Explanation
-    tbody
-      each item in test_list
-        tr
-          td(valign='top')
-            p
-              strong #{item.number} #{item.name}
-          td(valign='top') &nbsp;
-          td(valign='top') &nbsp;
-          td(valign='top') &nbsp;
-      tr
-        td(valign='top') Total points
-        td(valign='top') ---
-        td(valign='top') &nbsp;
-        td(valign='top') Sum of points above
-      tr
-        td(valign='top') Maximum points
-        td(valign='top') ---
-        td(valign='top')= test_list.length
-        td(valign='top') Number of criteria above
-      tr
-        td(valign='top') Conformance score %
-        td(valign='top') ---
-        td(valign='top') &nbsp;
-        td(valign='top') Total points * 100 / Maximum points
+  p Below is the list of the requirements selected in Annex X which can be evaluated for conformance. This can be used as a starting point when creating an accessibility compliance report(ACR) for your solution. If requirements are missed ensure to include them in your ACR. Similarly, if requirements do not apply they can be marked as not applicable.
+  each item in test_list 
+    <ol>
+      <li>#{item.number} #{item.name}</li>
+    </ol>
