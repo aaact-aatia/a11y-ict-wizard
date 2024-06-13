@@ -10,9 +10,9 @@ const question_controller = require('../controllers/questionController');
 router.get('/', info_controller.edit_list);
 
 //GET JSON file on download
-router.get('/questionsdownload', question_controller.question_download);
-router.get('/clausesdownload', clause_controller.clause_download);
-router.get('/infosdownload', info_controller.info_download);
+router.get('/questionsdownload', question_controller.question_json_get);
+router.get('/clausesdownload', clause_controller.clause_json_get);
+router.get('/infosdownload', info_controller.info_json_get);
 
 /* Clauses */
 

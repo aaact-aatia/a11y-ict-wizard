@@ -17,7 +17,7 @@ const strings = {
   updateClause: 'Update clause'
 }
 
-exports.clause_download = (req, res, next) => {
+exports.clause_json_get = (req, res, next) => {
 
   Clause.find()
   .sort([['number', 'ascending']])

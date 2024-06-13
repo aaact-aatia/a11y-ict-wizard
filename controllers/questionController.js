@@ -10,7 +10,7 @@ const strings = {
   questionNameRequired: 'Question name required'
 }
 
-exports.question_download = (req, res, next) => {
+exports.question_json_get = (req, res, next) => {
   Question.find()
   .sort([['order', 'ascending']])
   .exec((err, questions) => {
