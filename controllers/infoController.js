@@ -9,6 +9,22 @@ const strings = {
   sectionTitleRequired: 'Section title required'
 }
 
+exports.info_download = (req, res, next) => {
+  Info.find()
+    .sort([['order', 'ascending']])
+    .exec((err, infos) => {
+      if (err) {
+        return next(err);
+      }
+      // Convert infos to JSON string
+      const infosData = JSON.stringify(infos, null, 2);
+      
+      // Send the data as a downloadable file
+      res.setHeader('Content-disposition', 'attachment; filename=infos_list.json');
+      res.send(infosData);
+    });
+};
+
 // Display edit menu
 exports.edit_list = (req, res, next) => {
   res.render('edit', {

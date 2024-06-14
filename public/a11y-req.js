@@ -203,28 +203,36 @@ var updateWizard = function () {
 
 };
 
-// Call the setup function to initialize the question handler
+// Call the setup function to initialize the handler
 $(document).ready(function() {
   setupQuestionHandler();
 });
 
 var setupQuestionHandler = function () {
-  // Bind click events for checkAll and uncheckAll buttons
+  // Bind events for checkAll and uncheckAll buttons
   $('#checkAll').click(function (e) {
     e.preventDefault();
-    checkAllCheckboxes(true);
+    const section = document.querySelector('#wizard');
+    const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        if (!checkbox.checked){
+          checkbox.checked = true;
+        }
+    });
     updateWizard();
   });
 
   $('#uncheckAll').click(function (e) {
     e.preventDefault();
-    checkAllCheckboxes(false);
+    const section = document.querySelector('#wizard');
+    const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked){
+          checkbox.checked = false;
+        }
+    });
     updateWizard();
   });
-};
-
-var checkAllCheckboxes = function (check) {
-  $('#wizard .checkbox input[type="checkbox"]').prop('checked', check);
 };
 
 
