@@ -14,6 +14,11 @@ router.get('/questionsdownload', question_controller.question_json_get);
 router.get('/clausesdownload', clause_controller.clause_json_get);
 router.get('/infosdownload', info_controller.info_json_get);
 
+//GET JSON file on download
+router.get('/presetsdownload', preset_controller.preset_download);
+router.get('/clausesdownload', clause_controller.clause_download);
+router.get('/infosdownload', info_controller.info_download);
+
 /* Clauses */
 
 // GET request for list of all Clauses
