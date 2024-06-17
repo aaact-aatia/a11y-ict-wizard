@@ -4,7 +4,7 @@ const { JSDOM } = require('jsdom');
 const innertext = require('innertext');
 
 const Clause = require('../models/clauseSchema');
-const Preset = require('../models/presetSchema.js');
+const Question = require('../models/questionSchema.js');
 
 const strings = {
   listTitle: 'Edit clauses',
@@ -17,7 +17,7 @@ const strings = {
   updateClause: 'Update clause'
 }
 
-exports.clause_download = (req, res, next) => {
+exports.clause_json_get = (req, res, next) => {
 
   Clause.find()
   .sort([['number', 'ascending']])
@@ -169,16 +169,16 @@ exports.clause_delete_post = (req, res, next) => {
   async.parallel({
     clause: (callback) =>
       Clause.findById(req.body.itemid).exec(callback),
-    clause_presets: (callback) =>
-      Preset.find({ clauses: req.body.itemid }).exec(callback)
+    clause_questions: (callback) =>
+      Question.find({ clauses: req.body.itemid }).exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
-    if (results.clause_presets.length > 0) {
-      // Clause has presets referencing it which must be deleted first
+    if (results.clause_questions.length > 0) {
+      // Clause has questions referencing it which must be deleted first
       res.render('item_delete', {
         title: strings.deleteClause,
         item: results.clause,
-        dependencies: results.clause_presets,
+        dependencies: results.clause_questions,
         breadcrumbs: [
           { url: '/', text: 'Home' },
           { url: '/edit', text: 'Edit content' },

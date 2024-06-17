@@ -9,9 +9,9 @@ The EU Accessible ICT Procurement Toolkit contains a tool which generates a cust
 Unfortunately, this tool was never updated to the 2018 or 2021 standard. The motivation for a11y-req was to recreate this system, but with a Content Management System (CMS) to allow the clauses and informative sections to be updated as the EN 301 549 refreshes. At the same time, we wished to generate documents in both French and English.
 
 ## Functional design decisions
-Initially, we followed the same principle of having commonly procured ICT as presets. (Each preset has a certain subset of the requirements relevant to that type of ICT.) In the process of piloting actual procurements, we found that the technical requirements in each Statement of Work (SoW) differed enough that a custom set of accessibility requirements should be chosen for each procurement.
+Initially, we followed the same principle of having commonly procured ICT as questions. (Each question has a certain subset of the requirements relevant to that type of ICT.) In the process of piloting actual procurements, we found that the technical requirements in each Statement of Work (SoW) differed enough that a custom set of accessibility requirements should be chosen for each procurement.
 
-In contrast to the overly simple "preset" solution, selecting each requirement manually is time consuming and requires strong knowledge of the EN 301 549 standard. A "wizard" style was chosen as a middle-ground between presets and the manual selection, inspired by the [GSA Accessibility Requirements Tool](https://a11y.canada.ca/en/procurement/).
+In contrast to the overly simple "preset" solution, selecting each requirement manually is time consuming and requires strong knowledge of the EN 301 549 standard. A "wizard" style was chosen as a middle-ground between questions and the manual selection, inspired by the [GSA Accessibility Requirements Tool](https://a11y.canada.ca/en/procurement/).
 
 The wizard follows three steps:
 1. The technical authority responsible for the SoW answers questions about the ICT functionality. Answering these questions require minimal knowledge of accessibility. Relevant clauses will be automatically selected based on a mapping between the questions and the clauses.

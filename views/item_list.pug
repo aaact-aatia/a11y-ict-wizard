@@ -16,20 +16,9 @@ block content
   a(href='/edit/' + type + '/create') Create #{type}
   <br>
 
-  //- if type === 'preset'
-  //-   form(action="#", method='GET')
-  //-   button(type='submit' class="btn.btn-default") Download presets
-  //- else if type === 'clause'
-  //-   form(action="#", method='GET')
-  //-   button(type='submit' class="btn.btn-default") Download clauses
-  //- else 
-  //-   form(action="#", method='GET')
-  //-   button(type='submit' class="btn.btn-default") Download infos
-
-  if type === 'preset'
-    a(href="/edit/presetsdownload" ) Download presets list
+  if type === 'question'
+    a(href="/edit/questionsdownload" ) Download question list as JSON
   else if type === 'clause'
-    a(href='/edit/clausesdownload') Download clauses list
+    a(href='/edit/clausesdownload') Download clause list as JSON
   else 
-    a(href='/edit/infosdownload' ) Download information list
-  
+    a(href='/edit/infosdownload' ) Download information list as JSON

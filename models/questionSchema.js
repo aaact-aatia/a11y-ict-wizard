@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const PresetSchema = new Schema({
+const QuestionSchema = new Schema({
   name: { type: String, required: true },
   frName: { type: String },
   description: { type: String },
@@ -11,8 +11,8 @@ const PresetSchema = new Schema({
   onlyIf: { type: Boolean }
 });
 
-PresetSchema.virtual('url').get(function () {
-  return '/edit/preset/' + this._id;
+QuestionSchema.virtual('url').get(function () {
+  return '/edit/question/' + this._id;
 });
 
-module.exports = mongoose.model('Preset', PresetSchema);
+module.exports = mongoose.model('Question', QuestionSchema);

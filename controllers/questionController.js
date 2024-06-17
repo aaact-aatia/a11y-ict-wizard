@@ -1,43 +1,42 @@
 const async = require('async');
 
-const Preset = require('../models/presetSchema');
+const Question = require('../models/questionSchema'); 
 const Clause = require('../models/clauseSchema');
 const toClauseTree = require('./clauseTree');
 
 const strings = {
-  listTitle: 'Edit presets',
-  createTitle: 'Create preset',
-  presetNameRequired: 'Preset name required'
+  listTitle: 'Edit questions',
+  createTitle: 'Create question',
+  questionNameRequired: 'Question name required'
 }
 
-exports.preset_download = (req, res, next) => {
-  Preset.find()
+exports.question_json_get = (req, res, next) => {
+  Question.find()
   .sort([['order', 'ascending']])
-  .exec((err, presets) => {
+  .exec((err, questions) => {
     if (err) {
       console.error(err);
       return next(err);
     }
-    // Convert presets to JSON string
-    const presetsData = JSON.stringify(presets, null, 2); // Adding null, 2 for pretty printing
+    // Convert questions to JSON string
+    const questionsData = JSON.stringify(questions, null, 2); // Adding null, 2 for pretty printing
     
     // Send the data as a downloadable file
-    res.setHeader('Content-disposition', 'attachment; filename=presets_list.json');
-    res.send(presetsData);
+    res.setHeader('Content-disposition', 'attachment; filename=questions_list.json');
+    res.send(questionsData);
   });
 };
 
-
-// Display list of all Presets
-exports.preset_list = (req, res, next) => {
-  Preset.find()
+// Display list of all Questions
+exports.question_list = (req, res, next) => {
+  Question.find()
     .sort([['order', 'ascending']])
-    .exec((err, list_presets) => {
+    .exec((err, list_questions) => {
       if (err) { return next(err); }
       res.render('item_list', {
         title: strings.listTitle,
-        item_list: list_presets,
-        type: 'preset',
+        item_list: list_questions,
+        type: 'question',
         breadcrumbs: [
           { url: '/', text: 'Home' },
           { url: '/edit', text: 'Edit content' }
@@ -46,25 +45,25 @@ exports.preset_list = (req, res, next) => {
     });
 };
 
-// Display preset create form on GET
-exports.preset_create_get = (req, res, next) => {
+// Display question create form on GET
+exports.question_create_get = (req, res, next) => {
   Clause.find()
     .exec((err, results) => {
       if (err) { return next(err); }
-      res.render('preset_form', {
+      res.render('question_form', {
         title: strings.createTitle,
         clause_tree: toClauseTree(results),
         breadcrumbs: [
           { url: '/', text: 'Home' },
           { url: '/edit', text: 'Edit content' },
-          { url: '/edit/presets', text: 'Edit presets' },
+          { url: '/edit/questions', text: 'Edit questions' },
         ]
       });
     });
 };
 
-// Handle Preset create on POST
-exports.preset_create_post = (req, res, next) => {
+// Handle Question create on POST
+exports.question_create_post = (req, res, next) => {
 
   // Edge case: < 2 clauses selected
   if (!(req.body.clauses instanceof Array)) {
@@ -75,7 +74,7 @@ exports.preset_create_post = (req, res, next) => {
     }
   }
 
-  let preset = new Preset({
+  let question = new Question({
     name: req.body.name,
     frName: req.body.frName,
     description: req.body.description,
@@ -85,52 +84,52 @@ exports.preset_create_post = (req, res, next) => {
     onlyIf: req.body.onlyIf === 'on'
   });
 
-  // Check if Preset with same name already exists.
-  Preset.findOne({ 'name': req.body.name })
-    .exec((err, found_preset) => {
+  // Check if Question with same name already exists.
+  Question.findOne({ 'name': req.body.name })
+    .exec((err, found_question) => {
       if (err) { return next(err); }
-      if (found_preset) { res.redirect(found_preset.url); }
+      if (found_question) { res.redirect(found_question.url); }
       else {
-        preset.save((err) => {
+        question.save((err) => {
           if (err) { return next(err); }
-          // Preset saved. Redirect to presets list.
-          res.redirect('/edit/presets');
+          // Question saved. Redirect to questions list.
+          res.redirect('/edit/questions');
         });
       }
     });
 };
 
-// Display preset update form on GET
-exports.preset_update_get = (req, res, next) => {
+// Display question update form on GET
+exports.question_update_get = (req, res, next) => {
 
-  // Get preset for form
+  // Get question for form
   async.parallel({
-    preset: (callback) => Preset.findById(req.params.id).exec(callback),
+    question: (callback) => Question.findById(req.params.id).exec(callback),
     clauses: (callback) => Clause.find().exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
-    if (results.preset == null) { // No results.
-      let err = new Error('Preset not found');
+    if (results.question == null) { // No results.
+      let err = new Error('Question not found');
       err.status = 404;
       return next(err);
     }
     results.clauses = results.clauses.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-    res.render('preset_form', {
-      title: 'Edit preset',
-      item: results.preset,
+    res.render('question_form', {
+      title: 'Edit question',
+      item: results.question,
       clause_tree: toClauseTree(results.clauses),
       breadcrumbs: [
         { url: '/', text: 'Home' },
         { url: '/edit', text: 'Edit content' },
-        { url: '/edit/presets', text: 'Edit presets' },
+        { url: '/edit/questions', text: 'Edit questions' },
       ]
     });
   });
 
 };
 
-// Handle preset update on POST.
-exports.preset_update_post = (req, res, next) => {
+// Handle question update on POST.
+exports.question_update_post = (req, res, next) => {
 
   // Edge case: < 2 clauses selected
   if (!(req.body.clauses instanceof Array)) {
@@ -141,8 +140,8 @@ exports.preset_update_post = (req, res, next) => {
     }
   }
 
-  // Create a preset object with escaped/trimmed data and old id.
-  let preset = new Preset({
+  // Create a question object with escaped/trimmed data and old id.
+  let question = new Question({
     name: req.body.name,
     frName: req.body.frName,
     description: req.body.description,
@@ -153,46 +152,46 @@ exports.preset_update_post = (req, res, next) => {
     _id: req.params.id // This is required, or a new ID will be assigned
   });
 
-  Preset.findByIdAndUpdate(req.params.id, preset, {}, (err, thepreset) => {
+  Question.findByIdAndUpdate(req.params.id, question, {}, (err, thequestion) => {
     if (err) { return next(err); }
-    // Successful - redirect to presets list
-    res.redirect('/edit/presets');
+    // Successful - redirect to questions list
+    res.redirect('/edit/questions');
   });
 };
 
 
-// Display Preset delete form on GET.
-exports.preset_delete_get = (req, res, next) => {
+// Display Question delete form on GET.
+exports.question_delete_get = (req, res, next) => {
   async.parallel({
-    preset: (callback) => Preset.findById(req.params.id).exec(callback)
+    question: (callback) => Question.findById(req.params.id).exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
-    if (results.preset == null) { // No results.
-      res.redirect('/edit/presets');
+    if (results.question == null) { // No results.
+      res.redirect('/edit/questions');
     }
     res.render('item_delete', {
-      title: 'Delete Preset',
-      item: results.preset,
+      title: 'Delete Question',
+      item: results.question,
       breadcrumbs: [
         { url: '/', text: 'Home' },
         { url: '/edit', text: 'Edit content' },
-        { url: '/edit/presets', text: 'Edit presets' },
-        { url: results.preset.url, text: results.preset.name }
+        { url: '/edit/questions', text: 'Edit questions' },
+        { url: results.question.url, text: results.question.name }
       ]
     });
   });
 };
 
-// Handle Preset delete on POST.
-exports.preset_delete_post = (req, res, next) => {
+// Handle Question delete on POST.
+exports.question_delete_post = (req, res, next) => {
   async.parallel({
-    preset: (callback) => Preset.findById(req.body.itemid).exec(callback)
+    question: (callback) => Question.findById(req.body.itemid).exec(callback)
   }, (err, results) => {
     if (err) { return next(err); }
-    // Success. Delete object and redirect to the list of presets.
-    Preset.findByIdAndRemove(req.body.itemid, (err) => {
+    // Success. Delete object and redirect to the list of questions.
+    Question.findByIdAndRemove(req.body.itemid, (err) => {
       if (err) { return next(err); }
-      res.redirect('/edit/presets')
+      res.redirect('/edit/questions')
     })
   });
 };

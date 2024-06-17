@@ -181,8 +181,8 @@ var updateWizard = function () {
 
   // Select relevant Step 2 clauses based on Step 1 selections
   $('#wizard input:checked').not('.onlyIf').each(function () {
-    var presetId = this.id;
-    $('#preset-data ul[data-preset-id='+presetId+'] li').each(function () {
+    var questionId = this.id;
+    $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
         $clause.click();
@@ -192,8 +192,8 @@ var updateWizard = function () {
 
   // Deselect irrelevant Step 2 clauses based on Step 1 "if and only if" selections
   $('#wizard input.onlyIf').not(':checked').each(function () {
-    var presetId = this.id;
-    $('#preset-data ul[data-preset-id='+presetId+'] li').each(function () {
+    var questionId = this.id;
+    $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
         $clause.click();
@@ -235,23 +235,22 @@ var setupQuestionHandler = function () {
   });
 };
 
+/* Generator question handling */
 
-/* Generator preset handling */
-
-// var setupPresetHandler = function () {
-//   // #preset is the <select> element (see /views/select_fps.pug)
-//   $('#preset').change(function () { updatePresetSelections(); });
+// var setupQuestionHandler = function () {
+//   // #question is the <select> element (see /views/select_fps.pug)
+//   $('#question').change(function () { updateQuestionSelections(); });
 // };
 
-// var updatePresetSelections = function () {
-//   var preset = $('#preset').val();
+// var updateQuestionSelections = function () {
+//   var question = $('#question').val();
 //   // Save existing selections
 
 //   // Uncheck all checkboxes
 //   $('#clauses input').prop('checked', false);
-//   // Get hidden preset data (see /views/select_fps.pug)
-//   $('#' + preset + ' li').each(function () {
-//     // Check the preset checkboxes
+//   // Get hidden question data (see /views/select_fps.pug)
+//   $('#' + question + ' li').each(function () {
+//     // Check the question checkboxes
 //     $('#' + this.innerHTML).prop('checked', true);
 //   });
 //   $('[role="treeitem"]').each(function () {

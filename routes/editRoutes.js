@@ -4,11 +4,15 @@ const router = express.Router();
 // Require controller modules.
 const clause_controller = require('../controllers/clauseController');
 const info_controller = require('../controllers/infoController');
-const preset_controller = require('../controllers/presetController');
+const question_controller = require('../controllers/questionController');
 
 // GET edit (admin) page
 router.get('/', info_controller.edit_list);
 
+//GET JSON file on download
+router.get('/questionsdownload', question_controller.question_json_get);
+router.get('/clausesdownload', clause_controller.clause_json_get);
+router.get('/infosdownload', info_controller.info_json_get);
 
 //GET JSON file on download
 router.get('/presetsdownload', preset_controller.preset_download);
@@ -67,28 +71,28 @@ router.get('/info/:id/delete', info_controller.info_delete_get);
 router.post('/info/:id/delete', info_controller.info_delete_post);
 
 
-/* Commodity Presets */
+/* Commodity Questions */
 
-// GET request for list of all Presets
-router.get('/presets', preset_controller.preset_list);
+// GET request for list of all Questions
+router.get('/questions', question_controller.question_list);
 
-// GET request for creating a Preset
-router.get('/preset/create', preset_controller.preset_create_get);
+// GET request for creating a Question
+router.get('/question/create', question_controller.question_create_get);
 
-// POST request for creating a Preset
-router.post('/preset/create', preset_controller.preset_create_post);
+// POST request for creating a Question
+router.post('/question/create', question_controller.question_create_post);
 
-// GET request to edit Preset
-router.get('/preset/:id', preset_controller.preset_update_get);
+// GET request to edit Question
+router.get('/question/:id', question_controller.question_update_get);
 
-// POST request to edit Preset
-router.post('/preset/:id', preset_controller.preset_update_post);
+// POST request to edit Question
+router.post('/question/:id', question_controller.question_update_post);
 
-// GET request to delete Preset
-router.get('/preset/:id/delete', preset_controller.preset_delete_get);
+// GET request to delete Question
+router.get('/question/:id/delete', question_controller.question_delete_get);
 
-// POST request to delete Preset
-router.post('/preset/:id/delete', preset_controller.preset_delete_post);
+// POST request to delete Question
+router.post('/question/:id/delete', question_controller.question_delete_post);
 
 
 module.exports = router;

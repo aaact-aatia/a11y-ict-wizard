@@ -9,7 +9,7 @@ const strings = {
   sectionTitleRequired: 'Section title required'
 }
 
-exports.info_download = (req, res, next) => {
+exports.info_json_get = (req, res, next) => {
   Info.find()
     .sort([['order', 'ascending']])
     .exec((err, infos) => {
