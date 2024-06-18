@@ -18,7 +18,28 @@ block content
 
   if type === 'question'
     a(href="/edit/questionsdownload" ) Download question list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore question list
   else if type === 'clause'
     a(href='/edit/clausesdownload') Download clause list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore clause list
   else 
     a(href='/edit/infosdownload' ) Download information list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore information list
+
+  section(id="centred-popup-modal" class="mfp-hide modal-dialog modal-content overlay-def")
+    header(class="modal-header")
+      h2(class="modal-title") Upload JSON and restore #{type} list
+    div(class="modal-body")
+      p Note: By uploading and submitting a JSON file, you will modify the #{type} database to be an exact copy of your JSON file. The data from the previous database will be unrecoverable so be sure to make a copy of the current database if you think you will need it in the future.
+      form(action ="/edit/questionsrestore" method="post" enctype="multipart/form-data", id="form")
+        <label for= "fileInput">Upload #{type} JSON file</label>
+        <input type="file" id="fileInput" accept="application/json">
+        <button id="modal-submit-button">Submit</button>
+
+  script.
+    $(document).ready(function() {
+      $( "#centred-popup-modal" ).trigger( "open.wb-overlaylbx" );
+    });
