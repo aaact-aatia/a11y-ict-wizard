@@ -11,6 +11,8 @@ $(document).on("wb-ready.wb", function (event) {
 
   setupClauseListHandler();
 
+  setupRestoreJSONHandler();
+
   // Replace <textarea> with rich text editor (CKEditor)
   // https://stackoverflow.com/questions/46559354/how-to-set-the-height-of-ckeditor-5-classic-editor/56550285#56550285
   function MinHeightPlugin(editor) {
@@ -234,6 +236,135 @@ var setupQuestionHandler = function () {
     updateWizard();
   });
 };
+
+// Triggers the modal when the restore link is activated
+$(document).ready(function() {
+  $( "#centred-popup-modal" ).trigger( "open.wb-overlaylbx" );
+});
+
+// Restore JSON files
+$(document).ready(function() {
+  setupRestoreJSONHandler();
+});
+
+var setupRestoreJSONHandler = function () {
+  checkFile();
+  // sendFileToServer();
+}
+
+var checkFile = function () {
+  const fileInput = document.getElementById('fileInput');
+  if (fileInput) {
+    // Check if the event listener is already attached before adding it
+    if (!fileInput.hasListener) {
+      fileInput.hasListener = true; // Set a flag to prevent re-attaching
+
+      fileInput.addEventListener('change', async (event) => {
+        console.log("Listener added")
+        const file = event.target.files[0];
+        if (!file){
+          alert('No file selected.');
+          return;
+        }
+
+        const parseJsonFile = (file) => {
+          return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.onload = (event) => resolve(JSON.parse(event.target.result)); // triggered when the file is successfully read
+            fileReader.onerror = (error) => reject(error); // triggered if an error occurs during file reading
+            fileReader.readAsText(file);
+          });
+        };
+
+        let typer=""
+
+        const currentURL = window.location.href;
+        console.log('Current URL:', currentURL);
+        if (currentURL.includes("questions")) {
+          type = "question"
+        } else if (currentURL.includes("clauses")) {
+          type = "clause"
+        } else {
+          type = "info"
+        } 
+
+        console.log("Typer " + type);
+
+        try {
+          const object = await parseJsonFile(file);
+          // console.log('Parsed JSON object:', object);
+
+          //Determine which type of file it has to be then perform checks on the parsed JSON object
+          switch (type) {
+            case "question":
+              console.log("You are in question");
+
+              if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
+                // `object[0]` exists and is not null or undefined
+                console.log("JSON is not empty");
+
+                if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
+                  console.log('This is indeed a question JSON list.');
+                  // You can add more checks or actions here
+                } else {
+                  console.log('This is not a question JSON list.');
+                  alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document.")
+                }
+              } else {
+                alert("The file you uploaded is empty.")
+              }
+
+              break;
+
+            case "clause":
+              console.log("You are in clause");
+
+              if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
+                // `object[0]` exists and is not null or undefined
+                console.log("The JSON file is not empty");
+
+                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
+                  console.log('This is indeed a clause JSON list.');
+                  
+                } else {
+                  console.log('This is not a clause JSON list.');
+                  alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document.")
+                }
+              } else {
+                alert("The file you uploaded is empty.")
+              }
+
+              break;
+
+            case "info":
+              console.log("You are in info");
+
+              if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
+                // `object[0]` exists and is not null or undefined
+                console.log("The JSON file is not empty");
+
+                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name')  && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml')&& object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
+                  console.log('This is indeed an info JSON list.');
+                  
+                } else {
+                  console.log('This is not a clause JSON list.');
+                  alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document.")
+                }
+              } else {
+                alert("The file you uploaded is empty.")
+              }
+
+              break;
+          }
+        } catch (error) {
+          console.error('Error parsing JSON file:', error);
+          alert('Error parsing JSON file.'); // can be removed after testing
+        }
+      });
+    }
+  }
+}
+
 
 /* Generator question handling */
 
