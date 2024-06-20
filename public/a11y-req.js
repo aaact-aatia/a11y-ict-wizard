@@ -288,8 +288,6 @@ var checkFile = function () {
           type = "info"
         } 
 
-        console.log("Typer " + type);
-
         try {
           const object = await parseJsonFile(file);
           // console.log('Parsed JSON object:', object);
@@ -301,15 +299,14 @@ var checkFile = function () {
 
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
-                console.log("JSON is not empty");
 
                 if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
                   console.log('This is indeed a question JSON list.');
-                  // You can add more checks or actions here
+                  
                 } else {
                   console.log('This is not a question JSON list.');
-                  alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document.")
-                }
+                  alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
+                } 
               } else {
                 alert("The file you uploaded is empty.")
               }
@@ -321,17 +318,16 @@ var checkFile = function () {
 
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
-                console.log("The JSON file is not empty");
 
                 if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
                   console.log('This is indeed a clause JSON list.');
                   
                 } else {
                   console.log('This is not a clause JSON list.');
-                  alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document.")
+                  alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
                 }
               } else {
-                alert("The file you uploaded is empty.")
+                alert("The file you uploaded is empty. Note: Until you add the correct document the Submit button will be disabled.")
               }
 
               break;
@@ -341,14 +337,13 @@ var checkFile = function () {
 
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
-                console.log("The JSON file is not empty");
 
                 if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name')  && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml')&& object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
                   console.log('This is indeed an info JSON list.');
                   
                 } else {
                   console.log('This is not a clause JSON list.');
-                  alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document.")
+                  alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. Note that until you add the correct document the Submit button will be disabled.")
                 }
               } else {
                 alert("The file you uploaded is empty.")

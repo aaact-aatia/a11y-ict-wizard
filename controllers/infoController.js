@@ -12,12 +12,19 @@ const strings = {
 exports.info_json_get = (req, res, next) => {
   Info.find()
     .sort([['order', 'ascending']])
+    .lean()
     .exec((err, infos) => {
       if (err) {
         return next(err);
       }
-      // Convert infos to JSON string
-      const infosData = JSON.stringify(infos, null, 2);
+
+      const transformedInfo = infos.map(info => {
+        info._id = { "$oid": info._id.toString() };
+  
+        return info;
+      });
+  
+      const infosData = JSON.stringify(transformedInfo, null, 2);
       
       // Send the data as a downloadable file
       res.setHeader('Content-disposition', 'attachment; filename=infos_list.json');

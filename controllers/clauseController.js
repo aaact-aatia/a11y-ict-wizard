@@ -21,12 +21,19 @@ exports.clause_json_get = (req, res, next) => {
 
   Clause.find()
   .sort([['number', 'ascending']])
+  .lean()
   .exec((err, clauses) => {
     if (err) {
       return next(err);
     }
-    // Convert clause to JSON string
-    const clausesData = JSON.stringify(clauses, null, 2);
+
+    const transformedClauses = clauses.map(clause => {
+      clause._id = { "$oid": clause._id.toString() };
+
+      return clause;
+    });
+
+    const clausesData = JSON.stringify(transformedClauses, null, 2);
     
     // Send the data as a downloadable file
     res.setHeader('Content-disposition', 'attachment; filename=clauses_list.json');

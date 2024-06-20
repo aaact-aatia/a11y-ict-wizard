@@ -13,13 +13,22 @@ const strings = {
 exports.question_json_get = (req, res, next) => {
   Question.find()
   .sort([['order', 'ascending']])
+  .lean()
   .exec((err, questions) => {
     if (err) {
       console.error(err);
       return next(err);
     }
-    // Convert questions to JSON string
-    const questionsData = JSON.stringify(questions, null, 2); // Adding null, 2 for pretty printing
+    
+    const transformedQuestions = questions.map(question => {
+      question._id = { "$oid": question._id.toString() };
+      question.clauses = question.clauses.map(clause => ({ "$oid": clause.toString() }));
+
+      return question;
+    });
+
+    const questionsData = JSON.stringify(transformedQuestions, null, 2); // Adding null, 2 for pretty printing
+
     
     // Send the data as a downloadable file
     res.setHeader('Content-disposition', 'attachment; filename=questions_list.json');
