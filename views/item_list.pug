@@ -37,4 +37,4 @@ block content
       form(action ='/edit/' + type + 'srestore' method="post" enctype="multipart/form-data", id="form")
         label(for= "fileInput") Upload #{type} JSON file
         input(type="file" id="fileInput" accept="application/json")
-        button(id="modal-submit-button") Submit
+        button(type="submit" id="modal-submit-button" aria-disabled="true") Submit

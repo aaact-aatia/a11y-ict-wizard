@@ -249,7 +249,7 @@ $(document).ready(function() {
 
 var setupRestoreJSONHandler = function () {
   checkFile();
-  // sendFileToServer();
+  sendFileToServer();
 }
 
 var checkFile = function () {
@@ -258,9 +258,10 @@ var checkFile = function () {
     // Check if the event listener is already attached before adding it
     if (!fileInput.hasListener) {
       fileInput.hasListener = true; // Set a flag to prevent re-attaching
-
+      
       fileInput.addEventListener('change', async (event) => {
-        console.log("Listener added")
+        const submitButton = document.getElementById("modal-submit-button");
+        
         const file = event.target.files[0];
         if (!file){
           alert('No file selected.');
@@ -276,10 +277,9 @@ var checkFile = function () {
           });
         };
 
-        let typer=""
+        let type=""
 
         const currentURL = window.location.href;
-        console.log('Current URL:', currentURL);
         if (currentURL.includes("questions")) {
           type = "question"
         } else if (currentURL.includes("clauses")) {
@@ -295,65 +295,76 @@ var checkFile = function () {
           //Determine which type of file it has to be then perform checks on the parsed JSON object
           switch (type) {
             case "question":
-              console.log("You are in question");
-
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
                 if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
                   console.log('This is indeed a question JSON list.');
-                  
+                  submitButton.setAttribute("aria-disabled", "false");
                 } else {
                   console.log('This is not a question JSON list.');
+                  submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
                 } 
-              } else {
-                alert("The file you uploaded is empty.")
               }
-
               break;
 
             case "clause":
-              console.log("You are in clause");
-
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
-                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
+                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('weight')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
                   console.log('This is indeed a clause JSON list.');
+                  submitButton.setAttribute("aria-disabled", "false");
                   
                 } else {
                   console.log('This is not a clause JSON list.');
+                  submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
                 }
-              } else {
-                alert("The file you uploaded is empty. Note: Until you add the correct document the Submit button will be disabled.")
               }
-
               break;
 
             case "info":
-              console.log("You are in info");
-
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
                 if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name')  && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml')&& object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
                   console.log('This is indeed an info JSON list.');
+                  submitButton.setAttribute("aria-disabled", "false");
                   
                 } else {
-                  console.log('This is not a clause JSON list.');
+                  console.log('This is not a info JSON list.');
+                  submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. Note that until you add the correct document the Submit button will be disabled.")
                 }
-              } else {
-                alert("The file you uploaded is empty.")
               }
-
               break;
           }
         } catch (error) {
           console.error('Error parsing JSON file:', error);
           alert('Error parsing JSON file.'); // can be removed after testing
+        }
+      });
+    }
+  }
+
+}
+
+var sendFileToServer = function () {
+  const submitButton = document.getElementById("modal-submit-button");
+  if (submitButton){
+    if (!submitButton.hasListener) {
+      submitButton.hasListener = true; // Set a flag to prevent re-attaching
+      
+      submitButton.addEventListener('click', function(event) {
+        const submitState = submitButton.getAttribute("aria-disabled");
+        
+        if (submitState == "true") {
+          event.preventDefault();
+          console.log("Event prevented");
+        } else {
+          alert("event launched"); //can be removed after testing
         }
       });
     }
