@@ -1,4 +1,5 @@
 const async = require('async');
+const mongoose = require('mongoose');
 
 const Info = require('../models/infoSchema');
 
@@ -9,7 +10,43 @@ const strings = {
   sectionTitleRequired: 'Section title required'
 }
 
-// exports.info_json_restore_post= (req, res, next) => {}
+exports.info_json_restore_post= (req, res, next) => {
+  console.log("In server. Form data");
+  const JavaInfoFile = req.body;
+
+  function convertToMongoFormat(javaContent) {
+    try {
+      return javaContent.map(item => { 
+        if (item._id && item._id.$oid) {
+          let infoOID = item._id.$oid
+          item._id = mongoose.Types.ObjectId(infoOID);
+        }
+      });
+    } catch (err) {
+      console.log('Error in convertToMongoFormat:', err);
+      throw err;
+    }
+  }
+
+  const formattedData = convertToMongoFormat(JavaInfoFile);
+
+  // Function to update MongoDB collection
+  async function updateInfoCollection() {
+
+    try {
+      await Info.deleteMany({});
+      await Info.insertMany(JavaInfoFile);
+
+      return true;
+    } catch (err) {
+      console.log('Error updating data:', err);
+    }
+  }
+
+  updateInfoCollection()
+    .then(() => res.json({ message: 'Data updated successfully. Please refresh the page to get your updated database.' }))
+    .catch((err) => res.status(500).json({ message: 'Error updating data.' }));
+}
 
 exports.info_json_get = (req, res, next) => {
   Info.find()

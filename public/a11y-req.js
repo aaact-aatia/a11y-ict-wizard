@@ -290,7 +290,6 @@ var checkFile = function () {
 
         try {
           const object = await parseJsonFile(file);
-          // console.log('Parsed JSON object:', object);
 
           //Determine which type of file it has to be then perform checks on the parsed JSON object
           switch (type) {
@@ -375,8 +374,6 @@ var sendFileToServer = function () {
         event.preventDefault();
         const ariaDisabled = submitButton.getAttribute("aria-disabled");
 
-        console.log ("Aria-disabled: " + ariaDisabled)
-
         if (ariaDisabled == "true") {
           console.log("Event prevented");
           return;
@@ -397,10 +394,6 @@ var sendFileToServer = function () {
           console.log("Invalid JSON file:", e);
         }
 
-        // console.log("");
-        console.log(jsonContent)
-        // console.log("");
-  
         fetch(formComponent.action,{
           method:'Post',
           headers: {'Content-Type': 'application/json'},

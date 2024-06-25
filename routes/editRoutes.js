@@ -16,8 +16,8 @@ router.get('/infosdownload', info_controller.info_json_get);
 
 //POST Restore JSON file
 router.post('/questionsrestore', question_controller.question_json_restore_post);
-// router.post('/clausesrestore', clause_controller.clause_json_restore_post);
-// router.post('/infosrestore', info_controller.info_json_restore_post);
+router.post('/clausesrestore', clause_controller.clause_json_restore_post);
+router.post('/infosrestore', info_controller.info_json_restore_post);
 
 /* Clauses */
 
