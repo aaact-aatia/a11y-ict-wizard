@@ -31,10 +31,27 @@ block content
 
   section(id="centred-popup-modal" class="mfp-hide modal-dialog modal-content overlay-def")
     header(class="modal-header")
-      h2(class="modal-title") Upload JSON and restore #{type} list
-    div(class="modal-body")
-      p Note: By uploading and submitting a JSON file, you will modify the #{type} database to be an exact copy of your JSON file. The data from the previous database will be unrecoverable so be sure to make a copy of the current database if you think you will need it in the future.
+      h2(class="modal-title" aria-live="polite") Upload JSON and restore #{type} list
+    div(class="modal-body" id="dialog")
+      p#dialog-text Note: By uploading and submitting a JSON file, you will modify the #{type} database to be an exact copy of your JSON file. The data from the previous database will be unrecoverable so be sure to make a copy of the current database if you think you will need it in the future.
       form(action ='/edit/' + type + 'srestore' method="post" enctype="multipart/form-data", id="form")
         label(for= "fileInput") Upload #{type} JSON file
         input(type="file" id="fileInput" accept="application/json")
         button(type="submit" id="modal-submit-button" aria-disabled="true") Submit
+
+
+//- const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+//- const formSubmission = document.getElementById('modal-submit-button') as HTMLFormElement;
+  
+//-   formSubmission.addEventListener('submit', (event)=>{
+//-     console.log("File submitted")
+    
+//-     event.preventDefault();
+//-   })
+
+  
+//-   fileInput.addEventListener('change', (event)=>{
+//-     if (event.target.files && event.target.files[0]){
+
+//-     }
+//-   })

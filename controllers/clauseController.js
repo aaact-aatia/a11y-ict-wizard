@@ -17,6 +17,9 @@ const strings = {
   updateClause: 'Update clause'
 }
 
+
+// exports.clause_json_restore_post= (req, res, next) => {}
+
 exports.clause_json_get = (req, res, next) => {
 
   Clause.find()

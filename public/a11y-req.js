@@ -342,7 +342,7 @@ var checkFile = function () {
               break;
           }
         } catch (error) {
-          console.error('Error parsing JSON file:', error);
+          console.log('Error parsing JSON file:', error);
           alert('Error parsing JSON file.'); // can be removed after testing
         }
       });
@@ -352,20 +352,72 @@ var checkFile = function () {
 }
 
 var sendFileToServer = function () {
+
+  function readFileAsText(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        resolve(event.target.result);
+      };
+      reader.onerror = function(error) {
+        reject(error);
+      };
+      reader.readAsText(file);
+    });
+  }
+  
   const submitButton = document.getElementById("modal-submit-button");
   if (submitButton){
     if (!submitButton.hasListener) {
       submitButton.hasListener = true; // Set a flag to prevent re-attaching
       
-      submitButton.addEventListener('click', function(event) {
-        const submitState = submitButton.getAttribute("aria-disabled");
-        
-        if (submitState == "true") {
-          event.preventDefault();
+      submitButton.addEventListener('click', async function(event) {
+        event.preventDefault();
+        const ariaDisabled = submitButton.getAttribute("aria-disabled");
+
+        console.log ("Aria-disabled: " + ariaDisabled)
+
+        if (ariaDisabled == "true") {
           console.log("Event prevented");
-        } else {
-          alert("event launched"); //can be removed after testing
+          return;
         }
+        
+        const formComponent = document.getElementById("form");
+        let jsonContent;
+        // const formData = new FormData();
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        // Parse the JSON content
+        try {
+          const fileContent = await readFileAsText(file);
+          const jsonObject = JSON.parse(fileContent);
+          jsonContent = JSON.stringify(jsonObject);
+        } catch (e) {
+          console.log("Invalid JSON file:", e);
+        }
+
+        // console.log("");
+        console.log(jsonContent)
+        // console.log("");
+  
+        fetch(formComponent.action,{
+          method:'Post',
+          headers: {'Content-Type': 'application/json'},
+          body: jsonContent
+        })
+        .then(response => response.json())
+        .then(data => {
+          const dialogText = document.getElementById('dialog-text');
+          dialogText.textContent = data.message;
+          formComponent.remove();
+        })
+        .catch(error => {
+          console.log('Error:', error);
+          const dialogText = document.getElementById('dialog-text');
+          dialogText.textContent = 'An error occurred while uploading the file. Try again';
+          dialogText.textContent = data.message;
+        });
       });
     }
   }

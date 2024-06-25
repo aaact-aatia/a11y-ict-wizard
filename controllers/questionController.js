@@ -1,4 +1,5 @@
 const async = require('async');
+const mongoose = require('mongoose');
 
 const Question = require('../models/questionSchema'); 
 const Clause = require('../models/clauseSchema');
@@ -9,6 +10,48 @@ const strings = {
   createTitle: 'Create question',
   questionNameRequired: 'Question name required'
 }
+
+exports.question_json_restore_post =(req, res, next) => {
+    console.log("In server. Form data");
+    const JavaQuestionFile = req.body;
+
+    function convertToMongoFormat(javaContent) {
+      try {
+        return javaContent.map(item => { 
+            if (item._id && item._id.$oid) {
+              let questionOID = item._id.$oid
+              item._id = mongoose.Types.ObjectId(questionOID);
+            }
+            
+            item.clauses = item.clauses.map(clause => mongoose.Types.ObjectId(clause.$oid));
+            return item;
+        });
+    } catch (err) {
+        console.log('Error in convertToMongoFormat:', err);
+        throw err;
+    }
+    }
+
+    const formattedData = convertToMongoFormat(JavaQuestionFile);
+
+    // Function to update MongoDB collection
+    async function updateQuestionCollection() {
+
+      try {
+        await Question.deleteMany({});
+        await Question.insertMany(JavaQuestionFile);
+
+        return true;
+      } catch (err) {
+        console.log('Error updating data:', err);
+      }
+    }
+  
+    updateQuestionCollection()
+      .then(() => res.json({ message: 'Data updated successfully.' }))
+      .catch((err) => res.status(500).json({ message: 'Error updating data.' }));
+}
+
 
 exports.question_json_get = (req, res, next) => {
   Question.find()
@@ -134,7 +177,6 @@ exports.question_update_get = (req, res, next) => {
       ]
     });
   });
-
 };
 
 // Handle question update on POST.

@@ -9,6 +9,8 @@ const strings = {
   sectionTitleRequired: 'Section title required'
 }
 
+// exports.info_json_restore_post= (req, res, next) => {}
+
 exports.info_json_get = (req, res, next) => {
   Info.find()
     .sort([['order', 'ascending']])
