@@ -303,7 +303,7 @@ var checkFile = function () {
                 } else {
                   console.log('This is not a question JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
-                  alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
+                  alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
                 } 
               }
               break;
@@ -319,7 +319,7 @@ var checkFile = function () {
                 } else {
                   console.log('This is not a clause JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
-                  alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. Note: Until you add the correct document the Submit button will be disabled.")
+                  alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
                 }
               }
               break;
@@ -335,7 +335,7 @@ var checkFile = function () {
                 } else {
                   console.log('This is not a info JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
-                  alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. Note that until you add the correct document the Submit button will be disabled.")
+                  alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. \nNote that until you add the correct document the Submit button will be disabled.")
                 }
               }
               break;
