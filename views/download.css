@@ -1,26 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
-  font-size: 10pt;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-table,
-th,
-td {
-  border: 1px solid black;
-}
-
-th {
-  background: #eeeeee;
-}
-
-table td,
-table td * {
-  vertical-align: top;
-  font-family: 'Arial', sans-serif;
+  font-size: 12pt;
 }
 
 h1,
@@ -32,10 +12,6 @@ a {
   color: rgb(5, 99, 193);
 }
 
-th,
-td {
-  margin: 2px;
-}
 
 p,
 ol,
@@ -44,8 +20,8 @@ ul {
   margin-bottom: 6pt;
 }
 
-th p {
-  margin-bottom: 0;
+ol li {
+  padding-left: 6pt; 
 }
 
 figure {
@@ -58,9 +34,6 @@ figcaption {
   font-weight: bold;
 }
 
-table.table.table-bordered.evaluation th.col-sm-6 {
-  width: 50%;
-}
 
 /* MS Word specific CSS to force landscape orientation, correct styles, etc */
 
