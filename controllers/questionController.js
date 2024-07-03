@@ -1,4 +1,5 @@
 const async = require('async');
+const mongoose = require('mongoose');
 
 const Question = require('../models/questionSchema'); 
 const Clause = require('../models/clauseSchema');
@@ -10,16 +11,66 @@ const strings = {
   questionNameRequired: 'Question name required'
 }
 
+exports.question_json_restore_post =(req, res, next) => {
+  const JavaQuestionFile = req.body;
+
+  function convertToMongoFormat(javaContent) {
+    try {
+      return javaContent.map(item => { 
+        if (item._id && item._id.$oid) {
+          let questionOID = item._id.$oid
+          item._id = mongoose.Types.ObjectId(questionOID);
+        }
+        
+        item.clauses = item.clauses.map(clause => mongoose.Types.ObjectId(clause.$oid));
+        return item;
+      });
+    } catch (err) {
+        console.log('Error in convertToMongoFormat:', err);
+        throw err;
+    }
+  }
+
+  const formattedData = convertToMongoFormat(JavaQuestionFile);
+
+  // Function to update MongoDB collection
+  async function updateQuestionCollection() {
+
+    try {
+      await Question.deleteMany({});
+      await Question.insertMany(JavaQuestionFile);
+
+      return true;
+    } catch (err) {
+      console.log('Error updating data:', err);
+    }
+  }
+
+  updateQuestionCollection()
+    .then(() => res.json({ message: 'Data updated successfully. Please note that when you close this modal the page will refresh to show the updated data.', success: true  }))
+    .catch((err) => res.status(500).json({ message: 'Error updating data.', success: false }));
+}
+
+
 exports.question_json_get = (req, res, next) => {
   Question.find()
   .sort([['order', 'ascending']])
+  .lean()
   .exec((err, questions) => {
     if (err) {
       console.error(err);
       return next(err);
     }
-    // Convert questions to JSON string
-    const questionsData = JSON.stringify(questions, null, 2); // Adding null, 2 for pretty printing
+    
+    const transformedQuestions = questions.map(question => {
+      question._id = { "$oid": question._id.toString() };
+      question.clauses = question.clauses.map(clause => ({ "$oid": clause.toString() }));
+
+      return question;
+    });
+
+    const questionsData = JSON.stringify(transformedQuestions, null, 2); // Adding null, 2 for pretty printing
+
     
     // Send the data as a downloadable file
     res.setHeader('Content-disposition', 'attachment; filename=questions_list.json');
@@ -125,7 +176,6 @@ exports.question_update_get = (req, res, next) => {
       ]
     });
   });
-
 };
 
 // Handle question update on POST.

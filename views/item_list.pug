@@ -18,7 +18,43 @@ block content
 
   if type === 'question'
     a(href="/edit/questionsdownload" ) Download question list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore question list
   else if type === 'clause'
     a(href='/edit/clausesdownload') Download clause list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore clause list
   else 
     a(href='/edit/infosdownload' ) Download information list as JSON
+    <br>
+    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore information list
+
+  section(id="centred-popup-modal" class="mfp-hide modal-dialog modal-content overlay-def")
+    header(class="modal-header")
+      h2(class="modal-title") Upload JSON and restore #{type} list
+    div(class="modal-body" id="dialog")
+      p#dialog-text(aria-live="polite") Note: By uploading and submitting a JSON file, you will modify the #{type} database to be an exact copy of your JSON file. The data from the previous database will be unrecoverable so be sure to make a copy of the current database if you think you will need it in the future.
+      form(action ='/edit/' + type + 'srestore' method="post" enctype="multipart/form-data", id="form")
+        label(for= "fileInput") Upload #{type} JSON file
+        input(type="file" id="fileInput" accept="application/json")
+        button(type="submit" id="modal-submit-button" aria-disabled="true") Submit
+      div(class="modal-footer")
+        button(id="close-overlay" class="btn btn-primary pull-left popup-modal-dismiss" type="button") Close
+        button(id="cancel-overlay" class="btn btn-primary pull-left popup-modal-dismiss" type="button") Cancel
+
+
+//- const fileInput = document.getElementById('fileInput') as HTMLInputElement;
+//- const formSubmission = document.getElementById('modal-submit-button') as HTMLFormElement;
+  
+//-   formSubmission.addEventListener('submit', (event)=>{
+//-     console.log("File submitted")
+    
+//-     event.preventDefault();
+//-   })
+
+  
+//-   fileInput.addEventListener('change', (event)=>{
+//-     if (event.target.files && event.target.files[0]){
+
+//-     }
+//-   })

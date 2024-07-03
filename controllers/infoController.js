@@ -1,4 +1,5 @@
 const async = require('async');
+const mongoose = require('mongoose');
 
 const Info = require('../models/infoSchema');
 
@@ -9,15 +10,60 @@ const strings = {
   sectionTitleRequired: 'Section title required'
 }
 
+exports.info_json_restore_post= (req, res, next) => {
+  console.log("In server. Form data");
+  const JavaInfoFile = req.body;
+
+  function convertToMongoFormat(javaContent) {
+    try {
+      return javaContent.map(item => { 
+        if (item._id && item._id.$oid) {
+          let infoOID = item._id.$oid
+          item._id = mongoose.Types.ObjectId(infoOID);
+        }
+      });
+    } catch (err) {
+      console.log('Error in convertToMongoFormat:', err);
+      throw err;
+    }
+  }
+
+  const formattedData = convertToMongoFormat(JavaInfoFile);
+
+  // Function to update MongoDB collection
+  async function updateInfoCollection() {
+
+    try {
+      await Info.deleteMany({});
+      await Info.insertMany(JavaInfoFile);
+
+      return true;
+    } catch (err) {
+      console.log('Error updating data:', err);
+    }
+  }
+
+  updateInfoCollection()
+    .then(() => res.json({ message: 'Data updated successfully. Please note that when you close this modal the page will refresh to show the updated data.', success: true  }))
+    .catch((err) => res.status(500).json({ message: 'Error updating data.', success: false }));
+}
+
 exports.info_json_get = (req, res, next) => {
   Info.find()
     .sort([['order', 'ascending']])
+    .lean()
     .exec((err, infos) => {
       if (err) {
         return next(err);
       }
-      // Convert infos to JSON string
-      const infosData = JSON.stringify(infos, null, 2);
+
+      const transformedInfo = infos.map(info => {
+        info._id = { "$oid": info._id.toString() };
+  
+        return info;
+      });
+  
+      const infosData = JSON.stringify(transformedInfo, null, 2);
       
       // Send the data as a downloadable file
       res.setHeader('Content-disposition', 'attachment; filename=infos_list.json');

@@ -1,4 +1,12 @@
 /*  Make changes in style.scss (not style.css) */
+[aria-disabled="true"] {
+  opacity: 0.5;
+}
+
+#modal-submit-button{
+  margin-top: 1vh;
+  color: rgb(0, 0, 0);
+}
 
 .form-control {
   width: 100%;

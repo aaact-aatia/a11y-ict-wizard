@@ -1,4 +1,5 @@
 const async = require('async');
+const mongoose = require('mongoose');
 
 const { JSDOM } = require('jsdom');
 const innertext = require('innertext');
@@ -17,16 +18,61 @@ const strings = {
   updateClause: 'Update clause'
 }
 
+exports.clause_json_restore_post= (req, res, next) => {
+  console.log("In server. Form data");
+  const JavaClauseFile = req.body;
+
+  function convertToMongoFormat(javaContent) {
+    try {
+      return javaContent.map(item => { 
+        if (item._id && item._id.$oid) {
+          let clauseOID = item._id.$oid
+          item._id = mongoose.Types.ObjectId(clauseOID);
+        }
+      });
+    } catch (err) {
+      console.log('Error in convertToMongoFormat:', err);
+      throw err;
+    }
+  }
+
+  const formattedData = convertToMongoFormat(JavaClauseFile);
+
+  // Function to update MongoDB collection
+  async function updateClauseCollection() {
+
+    try {
+      await Clause.deleteMany({});
+      await Clause.insertMany(JavaClauseFile);
+
+      return true;
+    } catch (err) {
+      console.log('Error updating data:', err);
+    }
+  }
+
+  updateClauseCollection()
+    .then(() => res.json({ message: 'Data updated successfully. Please note that when you close this modal the page will refresh to show the updated data.', success: true  }))
+    .catch((err) => res.status(500).json({ message: 'Error updating data.', success: false }));
+}
+
 exports.clause_json_get = (req, res, next) => {
 
   Clause.find()
   .sort([['number', 'ascending']])
+  .lean()
   .exec((err, clauses) => {
     if (err) {
       return next(err);
     }
-    // Convert clause to JSON string
-    const clausesData = JSON.stringify(clauses, null, 2);
+
+    const transformedClauses = clauses.map(clause => {
+      clause._id = { "$oid": clause._id.toString() };
+
+      return clause;
+    });
+
+    const clausesData = JSON.stringify(transformedClauses, null, 2);
     
     // Send the data as a downloadable file
     res.setHeader('Content-disposition', 'attachment; filename=clauses_list.json');
