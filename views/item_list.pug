@@ -38,6 +38,9 @@ block content
         label(for= "fileInput") Upload #{type} JSON file
         input(type="file" id="fileInput" accept="application/json")
         button(type="submit" id="modal-submit-button" aria-disabled="true") Submit
+      div(class="modal-footer")
+        button(id="close-overlay" class="btn btn-primary pull-left popup-modal-dismiss" type="button") Close
+        button(id="cancel-overlay" class="btn btn-primary pull-left popup-modal-dismiss" type="button") Cancel
 
 
 //- const fileInput = document.getElementById('fileInput') as HTMLInputElement;

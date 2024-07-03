@@ -373,12 +373,15 @@ var sendFileToServer = function () {
       submitButton.addEventListener('click', async function(event) {
         event.preventDefault();
         const ariaDisabled = submitButton.getAttribute("aria-disabled");
+        let updateSuccessful = false;
 
         if (ariaDisabled == "true") {
           console.log("Event prevented");
           return;
         }
-        
+        const cancelButton = document.getElementById("cancel-overlay");
+        const closeButton = document.getElementById("close-overlay");
+
         const formComponent = document.getElementById("form");
         let jsonContent;
         // const formData = new FormData();
@@ -404,6 +407,18 @@ var sendFileToServer = function () {
           const dialogText = document.getElementById('dialog-text');
           dialogText.textContent = data.message;
           formComponent.remove();
+          cancelButton.remove();
+          updateSuccessful = data.success
+        
+          if (updateSuccessful){
+            closeButton.classList.remove("popup-modal-dismiss")
+            closeButton.addEventListener('click', function() {
+              window.location.reload(); 
+            });
+
+          } else {
+            console.log('Data update failed');
+          }
         })
         .catch(error => {
           console.log('Error:', error);

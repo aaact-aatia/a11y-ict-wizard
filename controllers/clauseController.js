@@ -52,8 +52,8 @@ exports.clause_json_restore_post= (req, res, next) => {
   }
 
   updateClauseCollection()
-    .then(() => res.json({ message: 'Data updated successfully. Please refresh the page to get your updated database.' }))
-    .catch((err) => res.status(500).json({ message: 'Error updating data.' }));
+    .then(() => res.json({ message: 'Data updated successfully. Please note that when you close this modal the page will refresh to show the updated data.', success: true  }))
+    .catch((err) => res.status(500).json({ message: 'Error updating data.', success: false }));
 }
 
 exports.clause_json_get = (req, res, next) => {
