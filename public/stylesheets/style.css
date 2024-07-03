@@ -5,6 +5,8 @@
 
 #modal-submit-button{
   margin-top: 1vh;
+  margin-bottom: 1vh;
+  font-size: small;
   color: rgb(0, 0, 0);
 }
 

@@ -3,13 +3,15 @@
 
 $(document).on("wb-ready.wb", function (event) {
 
-  setupQuestionHandler();
-
   setupTreeHandler();
 
   setupWizardHandler();
 
   setupClauseListHandler();
+
+  updateWizard();
+
+  setupQuestionHandler();
 
   setupRestoreJSONHandler();
 
