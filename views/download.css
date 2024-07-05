@@ -20,8 +20,8 @@ ul {
   margin-bottom: 6pt;
 }
 
-ol li {
-  padding-left: 6pt; 
+ul li {
+  margin-left: 6pt; 
 }
 
 figure {

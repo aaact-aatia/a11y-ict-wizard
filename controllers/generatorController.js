@@ -54,9 +54,9 @@ exports.download = (req, res, next) => {
   }
   if (req.params.template.includes("evaluation")) {
     if (req.params.template.slice(-2) === 'fr') {
-      strings.filename = "Annexe Y - Évaluation de l'accessibilité des TIC.docx";
+      strings.filename = "Annexe Y - Exigences testables selectés dans l'Annexe X.docx";
     } else {
-      strings.filename = 'Annex Y - ICT Accessibility Evaluation.docx';
+      strings.filename = 'Annex Y - Testable requirements selected in Annex X.docx';
     }
   }
   // Edge case: < 2 clauses selected
