@@ -3,6 +3,6 @@ if item_list.length > 0
   p Below is the list of the requirements selected in Annex X which can be evaluated for conformance. This can be used as a starting point when creating an accessibility compliance report(ACR) for your solution. If requirements are missed ensure to include them in your ACR. Similarly, if requirements do not apply they can be marked as not applicable.
   ul
     each item in test_list 
-      li #{item.number} #{item.frName}
+      li #{item.number} #{item.name}
       - count = count + 1
   p Total count of testable requirements: <strong>#{count}</strong>
