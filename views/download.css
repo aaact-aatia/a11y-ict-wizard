@@ -3,6 +3,26 @@ body {
   font-size: 12pt;
 }
 
+table {
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+th {
+  background: #eeeeee;
+}
+
+table td,
+table td * {
+  vertical-align: top;
+  font-family: 'Arial', sans-serif;
+}
+
 h1,
 h2 {
   font-size: 18pt;
@@ -12,6 +32,10 @@ a {
   color: rgb(5, 99, 193);
 }
 
+th,
+td {
+  margin: 2px;
+}
 
 p,
 ol,
@@ -20,12 +44,20 @@ ul {
   margin-bottom: 6pt;
 }
 
+th p {
+  margin-bottom: 0;
+}
+
 ul li {
-  margin-left: 10pt; 
+  padding-left: 6pt; 
 }
 
 figure {
   display: table;
+}
+
+table.table.table-bordered.evaluation th.col-sm-6 {
+  width: 50%;
 }
 
 figcaption {
