@@ -1,13 +1,23 @@
 -var i = 0
 
-mixin checkbox(label, name, onlyIf)
+mixin checkbox(label, name, onlyIf, description)
   if name === undefined
     -name = 'checkbox' + i++
+  - var descri = description
   .checkbox
       label(for=name)
         input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) checked)
         | !{label}
+        a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`More info on ${label}` tabindex="0")
+          svg(width="24" height="24" viewBox="-10 -10 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(20%, -1%)")
+            path(d="M24 16V24M24 32H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2239ab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round")
 
+  section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`moreInfo${name}`)
+    header.modal-header
+      h2.modal-title More information on '!{label}'
+    div.modal-body#dialog
+      p Description:
+      | !{descri}
 
 section#wizard
   //- p
@@ -24,11 +34,11 @@ section#wizard
       .col-md-6
         each question, index in question_list
           if index <= question_list.length/2
-            +checkbox(question.name, question._id, question.onlyIf)
+            +checkbox(question.name, question._id, question.onlyIf, question.description)
       .col-md-6
         each question, index in question_list
           if index > question_list.length/2
-            +checkbox(question.name, question._id, question.onlyIf)
+            +checkbox(question.name, question._id, question.onlyIf, question.description)
 
   //- Hidden data (for client-side javascript)
   .hidden#question-data
