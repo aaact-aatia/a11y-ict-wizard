@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "Предишен (лява стрелка ключ)",
 	first: "Първи",
 	last: "Последно",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "Търсене и менюта",
 	email: "Мейл",
 	"menu-close": "Затворете менюто",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "Покажи Затворени надписи"
 	},
 	"cc-err": "Грешка при зареждане на затворени надписи",
+	fs: "Enter full screen",
 	adesc: {
 		on: "Активиране на аудио описание",
 		off: "Изключване на аудио описание"
 	},
 	pos: "Позиция:",
 	dur: "Общо време:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "Споделете",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Покажи _MENU_ вписвания",
 	filter: "Филтриране на елементи",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "Инструкции: навигационна карта",
 	"geo-tgllyr": "Превключване на дисплея на слоя",
 	"geo-hdnlyr": "Този слой в момента е скрит.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "Юг",
 	"geo-aoi-west": "Запад",
 	"geo-aoi-instructions": "Равен кутия на картата или въведете координатите по-долу и кликнете върху бутона \"Добави\".",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "Равенство",
 	"geo-aoi-btnclear": "Премахнете",
 	"geo-geoloc-btn": "Увеличите към текущото местоположение",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );
@@ -266,7 +280,7 @@ $.extend( $.validator.messages, {
 	creditcard: "Моля, въведете валиден номер на кредитна карта.",
 	equalTo: "Моля, въведете същата стойност отново.",
 	extension: "Моля, въведете стойност с валидно разширение.",
-	maxlength: $.validator.format( "Моля, въведете повече от {0} символа." ),
+	maxlength: $.validator.format( "Моля, въведете не повече от {0} символа." ),
 	minlength: $.validator.format( "Моля, въведете поне {0} символа." ),
 	rangelength: $.validator.format( "Моля, въведете стойност с дължина между {0} и {1} символа." ),
 	range: $.validator.format( "Моля, въведете стойност между {0} и {1}." ),

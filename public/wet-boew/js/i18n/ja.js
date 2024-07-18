@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "前へ（左矢印キー）",
 	first: "最初",
 	last: "最後",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "検索とメニュー",
 	email: "メール",
 	"menu-close": "メニューを閉じる",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "クローズドキャプションを表示"
 	},
 	"cc-err": "クローズドキャプションを実行できませんでした。",
+	fs: "Enter full screen",
 	adesc: {
 		on: "音声ガイドを有効にする",
 		off: "音声ガイドを無効にする"
 	},
 	pos: "現在位置：",
 	dur: "合計時間：",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "共有",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "_MENU_エントリーを表示",
 	filter: "検索条件を指定する",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "地図ナビゲーションの使い方",
 	"geo-tgllyr": "レイヤーの表示・非表示の切り替え",
 	"geo-hdnlyr": "このレイヤーは表示されていません。",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "南",
 	"geo-aoi-west": "西",
 	"geo-aoi-instructions": "Disegnare scatola sulla mappa o inserire le coordinate di sotto e fare clic sul pulsante \"Aggiungi\".",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "描く",
 	"geo-aoi-btnclear": "削除する",
 	"geo-geoloc-btn": "現在の場所にズーム",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );

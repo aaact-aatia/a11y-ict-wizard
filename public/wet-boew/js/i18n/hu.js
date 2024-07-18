@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "Előző (bal nyíl gomb)",
 	first: "Első",
 	last: "Utolsó",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "Keresés és menük",
 	email: "Email",
 	"menu-close": "Zárja be a menüt",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "Feliratozás bekapcsolása"
 	},
 	"cc-err": "Hiba a felirat betöltése közben",
+	fs: "Enter full screen",
 	adesc: {
 		on: "Narráció bekapcsolása",
 		off: "Narráció kikapcsolása"
 	},
 	pos: "Jelenlegi pozíció:",
 	dur: "Összidő:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "Oszd",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: "&#160;",
 	lenMenu: "Megjelenítés _MENU_ bejegyzés",
 	filter: "Szűrés",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "Utasítás: Térkép navigáció",
 	"geo-tgllyr": "Váltás a megjelenítési réteg",
 	"geo-hdnlyr": "Ez a réteg jelenleg rejtve.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "Dél",
 	"geo-aoi-west": "Nyugat",
 	"geo-aoi-instructions": "Döntetlen box a térképen vagy adja meg a koordinátákat, majd kattintson a \"Hozzáadás\" gombra.",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "Rajzol",
 	"geo-aoi-btnclear": "Eltávolít",
 	"geo-geoloc-btn": "Nagyítás az aktuális helyre",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );

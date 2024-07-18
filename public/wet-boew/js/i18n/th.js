@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "ก่อน (คีย์ลูกศรซ้าย)",
 	first: "แรก",
 	last: "ล่าสุด",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "ค้นหาและเมนู",
 	email: "อีเมล์",
 	"menu-close": "ปิดเมนู",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "แสดงปิด captioning"
 	},
 	"cc-err": "ข้อผิดพลาดคำอธิบายปิดโหลด",
+	fs: "Enter full screen",
 	adesc: {
 		on: "เปิดใช้งานคำอธิบายเสียง",
 		off: "ปิดการใช้งานคำอธิบายเสียง"
 	},
 	pos: "ตำแหน่งปัจจุบัน:",
 	dur: "รวมเวลา:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "แบ่งปัน",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "แสดงรายการ _MENU_",
 	filter: "กรองรายการ",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "คำแนะนำ: แผนที่นำร่อง",
 	"geo-tgllyr": "สลับการแสดงผลของชั้น",
 	"geo-hdnlyr": "ชั้นนี้ซ่อนอยู่.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "ใต้",
 	"geo-aoi-west": "ทิศตะวันตก",
 	"geo-aoi-instructions": "วาดกล่องบนแผนที่หรือป้อนพิกัดด้านล่างและคลิกที่ปุ่ม \"เพิ่ม\"",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "วาด",
 	"geo-aoi-btnclear": "เอาออก",
 	"geo-geoloc-btn": "ขยายไปยังสถานที่ปัจจุบัน",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );

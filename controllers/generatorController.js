@@ -2,7 +2,7 @@
 
 const async = require('async');
 const mongoose = require('mongoose');
-const HtmlDocx = require('html-docx-js');
+const HtmltoDocx = require('html-to-docx');
 
 const Clause = require('../models/clauseSchema');
 const Question = require('../models/questionSchema');
@@ -93,8 +93,8 @@ exports.download = (req, res, next) => {
       res.redirect('/view/create');
     }
     results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-    res.attachment(strings.filename);
 
+    
     // Remove Tables and Figures annex if not applicable
     figureClauses = ['5.1.4', '8.3.4.1', '8.3.4.2', '8.3.4.3.2', '8.3.4.3.3', '8.3.2.5', '8.3.2.6',
                      '8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.3.1', '8.3.3.2',
@@ -103,7 +103,8 @@ exports.download = (req, res, next) => {
       return !el.name.includes('figures') ||
               results.fps.some(e => figureClauses.includes(e.number));
     });
-    console.log(results.annex.length);
+    res.attachment(strings.filename);
+
     res.render(strings.template, {
       title: strings.title,
       item_list: results.fps,
@@ -112,7 +113,12 @@ exports.download = (req, res, next) => {
       annex: results.annex
     },
     (err, output) => {
-      res.send(HtmlDocx.asBlob(output, {
+      if (err) { 
+        return next(err); 
+      }
+      console.log(strings.template)
+
+      HtmltoDocx(output, '' ,{
         orientation: req.body.orientation,
         margins: {
           top: 1304,
@@ -120,7 +126,11 @@ exports.download = (req, res, next) => {
           left: 1134,
           right: 1134
         }
-      }));
+      }).then(docxBuffer =>{
+        res.send(docxBuffer);
+      }).catch(err => {
+        next(err);
+      });
     });
   });
 }

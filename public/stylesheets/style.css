@@ -63,6 +63,10 @@ button.btn.btn-link {
   height: 200px;
 }
 
+.mfp-container{
+  background-color: transparent;
+}
+
 #wb-info a {
   font-size: 1em;
   text-decoration: underline;

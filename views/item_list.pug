@@ -19,17 +19,17 @@ block content
   if type === 'question'
     a(href="/edit/questionsdownload" ) Download question list as JSON
     <br>
-    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore question list
+    a(href="#modal-uploadJSON" aria-controls="modal-uploadJSON" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore question list
   else if type === 'clause'
     a(href='/edit/clausesdownload') Download clause list as JSON
     <br>
-    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore clause list
+    a(href="#modal-uploadJSON" aria-controls="modal-uploadJSON" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore clause list
   else 
     a(href='/edit/infosdownload' ) Download information list as JSON
     <br>
-    a(href="#centred-popup-modal" aria-controls="centred-popup-modal" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore information list
+    a(href="#modal-uploadJSON" aria-controls="modal-uploadJSON" class="wb-lbx lbx-modal" id="restoreModal") Upload JSON and restore information list
 
-  section(id="centred-popup-modal" class="mfp-hide modal-dialog modal-content overlay-def")
+  section(id="modal-uploadJSON" class="mfp-hide modal-dialog modal-content overlay-def")
     header(class="modal-header")
       h2(class="modal-title") Upload JSON and restore #{type} list
     div(class="modal-body" id="dialog")

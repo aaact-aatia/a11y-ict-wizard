@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "Precedente (tasto freccia sinistra)",
 	first: "Primo",
 	last: "Ultimo",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "Ricerca e menu",
 	email: "E-mail",
 	"menu-close": "Chiudere il menu",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "Mostra i sottotitoli"
 	},
 	"cc-err": "Errore caricamento sottotitoli",
+	fs: "Enter full screen",
 	adesc: {
 		on: "Attiva descrizione audio",
 		off: "Disattiva descrizione audio"
 	},
 	pos: "Posizione attuale:",
 	dur: "Tempo totale:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "Condividi",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: "&#160;",
 	lenMenu: "Mostra _MENU_ voci",
 	filter: "Filtra gli articoli",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "Istruzioni: come navigare sulla mappa",
 	"geo-tgllyr": "Alternare la visualizzazione del livello",
 	"geo-hdnlyr": "Questo livello è attualmente nascosto.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "Sud",
 	"geo-aoi-west": "Occidente",
 	"geo-aoi-instructions": "Delineare un'area sulla mappa o inserire i dati qui sotto e fare clic sul pulsante \"Disegnare\".",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "Disegnare",
 	"geo-aoi-btnclear": "Rimuovere",
 	"geo-geoloc-btn": "Zoom alla posizione corrente",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );
@@ -255,29 +269,52 @@ wb.doc.one( "formLanguages.wb", function() {
  * Locale: IT (Italian; Italiano)
  */
 $.extend( $.validator.messages, {
-	required: "Campo obbligatorio",
-	remote: "Controlla questo campo",
-	email: "Inserisci un indirizzo email valido",
-	url: "Inserisci un indirizzo web valido",
-	date: "Inserisci una data valida",
-	dateISO: "Inserisci una data valida (ISO)",
-	number: "Inserisci un numero valido",
-	digits: "Inserisci solo numeri",
-	creditcard: "Inserisci un numero di carta di credito valido",
-	equalTo: "Il valore non corrisponde",
-	extension: "Inserisci un valore con un&apos;estensione valida",
-	maxlength: $.validator.format( "Non inserire pi&ugrave; di {0} caratteri" ),
-	minlength: $.validator.format( "Inserisci almeno {0} caratteri" ),
-	rangelength: $.validator.format( "Inserisci un valore compreso tra {0} e {1} caratteri" ),
-	range: $.validator.format( "Inserisci un valore compreso tra {0} e {1}" ),
-	max: $.validator.format( "Inserisci un valore minore o uguale a {0}" ),
-	min: $.validator.format( "Inserisci un valore maggiore o uguale a {0}" ),
-	nifES: "Inserisci un NIF valido",
-	nieES: "Inserisci un NIE valido",
-	cifES: "Inserisci un CIF valido",
-	currency: "Inserisci una valuta valida"
+	required: "Campo obbligatorio.",
+	remote: "Controlla questo campo.",
+	email: "Inserisci un indirizzo email valido.",
+	url: "Inserisci un indirizzo web valido.",
+	date: "Inserisci una data valida.",
+	dateISO: "Inserisci una data valida (ISO).",
+	number: "Inserisci un numero valido.",
+	digits: "Inserisci solo numeri.",
+	creditcard: "Inserisci un numero di carta di credito valido.",
+	equalTo: "Il valore non corrisponde.",
+	extension: "Inserisci un valore con un&apos;estensione valida.",
+	maxlength: $.validator.format( "Non inserire pi&ugrave; di {0} caratteri." ),
+	minlength: $.validator.format( "Inserisci almeno {0} caratteri." ),
+	rangelength: $.validator.format( "Inserisci un valore compreso tra {0} e {1} caratteri." ),
+	range: $.validator.format( "Inserisci un valore compreso tra {0} e {1}." ),
+	max: $.validator.format( "Inserisci un valore minore o uguale a {0}." ),
+	min: $.validator.format( "Inserisci un valore maggiore o uguale a {0}." ),
+	nifES: "Inserisci un NIF valido.",
+	nieES: "Inserisci un NIE valido.",
+	cifES: "Inserisci un CIF valido.",
+	currency: "Inserisci una valuta valida."
 } );
 return $;
 }));
+(function( factory ) {
+	if ( typeof define === "function" && define.amd ) {
+		define( ["jquery", "../jquery.validate"], factory );
+	} else if (typeof module === "object" && module.exports) {
+		module.exports = factory( require( "jquery" ) );
+	} else {
+		factory( jQuery );
+	}
+}(function( $ ) {
 
+/*
+ * Localized default methods for the jQuery validation plugin.
+ * Locale: IT
+ */
+$.extend( $.validator.methods, {
+	date: function( value, element ) {
+		return this.optional( element ) || /^\d\d?\-\d\d?\-\d\d\d?\d?$/.test( value );
+	},
+	number: function( value, element ) {
+		return this.optional( element ) || /^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:,\d+)?$/.test( value );
+	}
+} );
+return $;
+}));
 });

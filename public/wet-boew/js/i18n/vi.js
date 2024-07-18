@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "Trang trước (phím mũi tên trái)",
 	first: "Đầu tiên",
 	last: "Cuối cùng",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "Tìm kiếm và thực đơn",
 	email: "Email",
 	"menu-close": "Đóng menu",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "Hiện Đóng cửa phụ đề"
 	},
 	"cc-err": "Lỗi khi đang nạp chú thích đóng",
+	fs: "Enter full screen",
 	adesc: {
 		on: "Kích hoạt tính năng mô tả âm thanh",
 		off: "Vô hiệu hoá mô tả âm thanh"
 	},
 	pos: "Chức vụ hiện tại:",
 	dur: "Tổng thời gian:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "Chia",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "Hiển thị _MENU_ mục",
 	filter: "Lọc mặt hàng",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "Hướng dẫn: Bản đồ Navigation",
 	"geo-tgllyr": "Chuyển đổi các màn hình hiển thị của lớp",
 	"geo-hdnlyr": "Lớp này hiện đang ẩn!",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "Nam",
 	"geo-aoi-west": "Tây",
 	"geo-aoi-instructions": "Vẽ hộp trên bản đồ hoặc nhập tọa độ bên dưới và nhấp vào nút \"Add\".",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "Vẽ",
 	"geo-aoi-btnclear": "Hủy bỏ",
 	"geo-geoloc-btn": "Phóng to đến vị trí hiện tại",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );
@@ -271,7 +285,7 @@ $.extend( $.validator.messages, {
 	rangelength: $.validator.format( "Hãy nhập từ {0} đến {1} kí tự." ),
 	range: $.validator.format( "Hãy nhập từ {0} đến {1}." ),
 	max: $.validator.format( "Hãy nhập từ {0} trở xuống." ),
-	min: $.validator.format( "Hãy nhập từ {1} trở lên." )
+	min: $.validator.format( "Hãy nhập từ {0} trở lên." )
 } );
 return $;
 }));

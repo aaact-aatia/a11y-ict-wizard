@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "이전 (왼쪽 화살표 키)",
 	first: "처음으로",
 	last: "마지막",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "검색 및 메뉴",
 	email: "이메일",
 	"menu-close": "메뉴를 닫습니다",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "쇼는 캡션 휴무"
 	},
 	"cc-err": "로드하는 중 오류가 발생 자막",
+	fs: "Enter full screen",
 	adesc: {
 		on: "오디오 설명을 사용",
 		off: "오디오 설명을 해제합니다"
 	},
 	pos: "현재 위치 :",
 	dur: "총 시간",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "공유",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "_MENU_ 항목을 표시",
 	filter: "필터 항목",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "방법 :지도 탐색",
 	"geo-tgllyr": "레이어의 표시를 전환",
 	"geo-hdnlyr": "이 층은 현재 숨겨져 있습니다!",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "남쪽으로",
 	"geo-aoi-west": "서쪽",
 	"geo-aoi-instructions": "지도에 상자를 그리거나 아래 좌표를 입력하고 \"추가\"버튼을 클릭합니다.",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "무승부",
 	"geo-aoi-btnclear": "제거",
 	"geo-geoloc-btn": "현재 위치로 확대",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );

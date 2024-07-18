@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "I mëparshëm (kyç majtë arrow)",
 	first: "I parë",
 	last: "I fundit",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "Kërko dhe menutë",
 	email: "Email",
 	"menu-close": "Mbylle menu",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "Trego Mbyllur captioning"
 	},
 	"cc-err": "Captions Gabim gjatë ngarkimit të mbyllura",
+	fs: "Enter full screen",
 	adesc: {
 		on: "Aktivizo përshkrimin audio",
 		off: "Disable përshkrimin audio"
 	},
 	pos: "Pozicioni aktual:",
 	dur: "Koha totale:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "Share",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: "&#160;",
 	lenMenu: "Trego _MENU_ hyra",
 	filter: "Artikuj filtër",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "Udhëzime: Harta navigacion",
 	"geo-tgllyr": "Nyjëtim shfaqjen e shtresës",
 	"geo-hdnlyr": "Kjo shtresë është e fshehur tani.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "Jug",
 	"geo-aoi-west": "Perëndimi",
 	"geo-aoi-instructions": "Teken boks op kaart of ingaan koördinate hieronder en klik op die knoppie \"Voeg deur\".",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "Barazim",
 	"geo-aoi-btnclear": "Heq",
 	"geo-geoloc-btn": "Zoom në pozicionin juaj e tanishme",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );

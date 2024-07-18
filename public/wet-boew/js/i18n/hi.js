@@ -54,7 +54,7 @@ wb.i18nDict = {
 	"prv-l": "पिछला (बाएँ तीर कुंजी)",
 	first: "पहले",
 	last: "अंतिम",
-	page: "Page",
+	page: "Jump to: Page",
 	"srch-menus": "खोज और मेनू",
 	email: "ईमेल",
 	"menu-close": "मेनू बंद",
@@ -88,12 +88,15 @@ wb.i18nDict = {
 		on: "बंद कैप्शन दिखाएं"
 	},
 	"cc-err": "लोड करने में त्रुटि बंद कैप्शन",
+	fs: "Enter full screen",
 	adesc: {
 		on: "ऑडियो विवरण सक्षम",
 		off: "ऑडियो विवरण अक्षम"
 	},
 	pos: "वर्तमान स्थिति:",
 	dur: "कुल समय:",
+	msgYoutubeNotLoad: "Video encountered loading issues",
+	msgYoutubeVdLoad: "Loading Youtube video",
 
 	/* Share widget */
 	"shr-txt": "शेयर",
@@ -184,6 +187,14 @@ wb.i18nDict = {
 	info1000: ",",
 	lenMenu: "_MENU_ प्रविष्टियों दिखाएं",
 	filter: "फ़िल्टर आइटम",
+	tbFilterInst: "This table provides a sorting feature via the buttons across the column header row with only one instance visible at a time.",
+
+	/* Twitter embedded timeline */
+	"twitter-start-notice": "Start of @%username%’s X timeline",
+	"twitter-end-notice": "End of @%username%’s X timeline",
+	"twitter-skip-end": "Skip to end of @%username%’s X timeline",
+	"twitter-skip-start": "Skip to start of @%username%’s X timeline",
+	"twitter-timeline-title": "X timeline",
 
 	/* Geomap */
 	"geo-mapctrl": "@geo-mapctrl@",
@@ -198,7 +209,8 @@ wb.i18nDict = {
 	"geo-allyttl": "निर्देश: मानचित्र नेविगेशन",
 	"geo-tgllyr": "परत के प्रदर्शन टॉगल करें",
 	"geo-hdnlyr": "इस परत वर्तमान में छिपा हुआ है.",
-	"geo-bmapurl": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_CBCT_GEOM_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
+	"geo-bmap-url": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT3978/MapServer/WMTS/",
+	"geo-bmap-matrix-set": "default028mm",
 	"geo-bmapttl": "BaseMaps_CBMT3978",
 	"geo-bmapurltxt": "//geoappext.nrcan.gc.ca/arcgis/rest/services/BaseMaps/CBMT_TXT_3978/MapServer/WMTS/tile/1.0.0/BaseMaps_CBMT3978/{Style}/{TileMatrixSet}/{TileMatrix}/{TileRow}/{TileCol}.jpg",
 	"geo-attrlnk": "//geogratis.gc.ca/geogratis/CBM_CBC?lang=en",
@@ -213,6 +225,7 @@ wb.i18nDict = {
 	"geo-aoi-south": "दक्षिण",
 	"geo-aoi-west": "पश्चिम",
 	"geo-aoi-instructions": "मानचित्र पर बॉक्स आकर्षित या नीचे निर्देशांक दर्ज करें और \"जोड़ें\" बटन पर क्लिक करें।",
+	"geo-aoi-title": "Draw box on map or enter coordinates",
 	"geo-aoi-btndraw": "खींचना",
 	"geo-aoi-btnclear": "हटाना",
 	"geo-geoloc-btn": "वर्तमान स्थान पर ज़ूम",
@@ -225,6 +238,7 @@ wb.i18nDict = {
 	"wb-enable": "Switch to standard version",
 	"disable-notice-h": "Notice: Basic HTML",
 	"disable-notice": "You are viewing Basic HTML view. Some features may be disabled.",
+	"skip-prefix": "Skip to:",
 
 	/* Dismissable content */
 	"dismiss": "Dismiss",
@@ -234,7 +248,7 @@ wb.i18nDict = {
 
 	/* Filter */
 	"fltr-lbl": "Filter<span class=\"wb-inv\"> content: results appear below as you type.</span>",
-	"fltr-info": "Showing _NBITEM_ filtered from _TOTAL_ total entries"
+	"fltr-info": "Showing <span data-nbitem></span> filtered from <span data-total></span> total entries"
 };
 
 } )( wb );
