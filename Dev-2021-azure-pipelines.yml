@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'itcaccessibilityRegistry-7902'
+  dockerRegistryServiceConnection: 'itcaccessibilityregistry-sc'
   imageRepository: 'sand-ayreqgit'
   containerRegistry: 'itcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
