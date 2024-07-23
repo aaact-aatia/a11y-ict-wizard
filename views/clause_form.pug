@@ -37,13 +37,13 @@ block form
           | #{item.frDescription}
     .form-group
       label(for='compliance')
-        span.field-name Determination of conformance (English) 
+        span.field-name Relationship to functional performance statements (English) 
       textarea#compliance.form-control(name='compliance' rows='10')
         if itemExists
           | #{item.compliance}
     .form-group
       label(for='frCompliance')
-        span.field-name Determination of conformance (French) 
+        span.field-name Relationship to functional performance statements (French) 
       textarea#frCompliance.form-control(lang='fr' name='frCompliance' rows='10')
         if itemExists
           | #{item.frCompliance}
