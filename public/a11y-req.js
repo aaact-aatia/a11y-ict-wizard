@@ -3,13 +3,15 @@
 
 $(document).on("wb-ready.wb", function (event) {
 
-  setupQuestionHandler();
-
   setupTreeHandler();
 
   setupWizardHandler();
 
   setupClauseListHandler();
+
+  updateWizard();
+
+  setupQuestionHandler();
 
   setupRestoreJSONHandler();
 
@@ -179,30 +181,31 @@ var selectNone = function () {
 };
 
 var updateWizard = function () {
-  selectNone();
+  if ($('#wizard').length > 0) {
+    selectNone();
 
-  // Select relevant Step 2 clauses based on Step 1 selections
-  $('#wizard input:checked').not('.onlyIf').each(function () {
-    var questionId = this.id;
-    $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
-        $clause.click();
-      }
+    // Select relevant Step 2 clauses based on Step 1 selections
+    $('#wizard input:checked').not('.onlyIf').each(function () {
+      var questionId = this.id;
+      $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
+        $clause = $('#'+this.innerHTML);
+        if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
+          $clause.click();
+        }
+      });
     });
-  });
 
-  // Deselect irrelevant Step 2 clauses based on Step 1 "if and only if" selections
-  $('#wizard input.onlyIf').not(':checked').each(function () {
-    var questionId = this.id;
-    $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
-      if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
-        $clause.click();
-      }
+    // Deselect irrelevant Step 2 clauses based on Step 1 "if and only if" selections
+    $('#wizard input.onlyIf').not(':checked').each(function () {
+      var questionId = this.id;
+      $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
+        $clause = $('#'+this.innerHTML);
+        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
+          $clause.click();
+        }
+      });
     });
-  });
-
+  }
 };
 
 // Call the setup function to initialize the handler

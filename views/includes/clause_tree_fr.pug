@@ -17,7 +17,7 @@ mixin fpsCheckbox(clause, selected, endNode)
 
 mixin createTree(tree)
   each clauseNode in tree
-    -var selected = itemExists && item.clauses.indexOf(clauseNode.clause.id) > -1 ? 'checked' : true
+    -var selected = itemExists && item.clauses.indexOf(clauseNode.clause.id) > -1 ? 'checked' : false
     if clauseNode.children.length === 0
       //- Add aria-checked properties via javascript (need to check for mixed state)
       li.endNode(role='treeitem' class=clauseNode.clause.informative ? 'informative' : '' aria-expanded='false')
