@@ -8,6 +8,9 @@ yarn-error.log*
 # Tempority files created by Pandoc
 /tmp
 
+# Temprorary files created by the Word
+~$*
+
 # Runtime data
 pids
 *.pid
