@@ -98,10 +98,14 @@ The code is based on:
 
 It also depends on the following libraries:
 - [GCWeb Theme for WET](https://wet-boew.github.io/themes-dist/GCWeb/gcweb-theme/release/v5.0-en.html) (Government of Canada design system based on Bootstrap)
-- [html-docx-js](https://github.com/evidenceprime/html-docx-js) (for generating Word documents)
+- [Pandoc](https://pandoc.org) (for generating Word documents)
 - [CKEditor 5](https://ckeditor.com/ckeditor-5/) (rich text editor)
 
 Images are stored in the database inline (base64 encoded).
+
+## Using Pandoc
+
+Pandoc is used for generating Word documents from HTML. To ensure the correct formatting and styling of the generated documents, a reference DOCX file (`reference.docx`) is used.
 
 ## Editing the code
 The files most likely to require modification are:
