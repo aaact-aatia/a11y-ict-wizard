@@ -2,9 +2,9 @@
 
 const async = require('async');
 const mongoose = require('mongoose');
-const pandoc = require('node-pandoc');
 const fs = require('fs');
 const path = require('path');
+const pandocBin = require('pandoc-bin');
 
 const Clause = require('../models/clauseSchema');
 const Question = require('../models/questionSchema');
@@ -144,14 +144,36 @@ exports.download = (req, res, next) => {
 				// Define Pandoc arguments
 				const docxPath = path.join(tmpDir, strings.filename);
 				const referenceDocxPath = path.join(__dirname, '../reference.docx'); // Correct path to reference.docx at project root
-				const args = ['-f', 'html', '-t', 'docx', '--reference-doc', referenceDocxPath, '-o', docxPath];
+				const args = [
+					tempHtmlPath,
+					'-f',
+					'html',
+					'-t',
+					'docx',
+					'--reference-doc',
+					referenceDocxPath,
+					'-o',
+					docxPath
+				];
 
 				console.log('Running Pandoc command...');
-				// Call Pandoc
-				pandoc(tempHtmlPath, args, (pandocErr, result) => {
-					if (pandocErr) {
-						console.error('Error during Pandoc conversion:', pandocErr);
-						return next(pandocErr);
+				// Call Pandoc using the pandoc-bin binary path
+				const pandocCommand = pandocBin.path;
+				const options = {
+					env: process.env
+				};
+				const pandocProcess = require('child_process').spawn(pandocCommand, args, options);
+
+				pandocProcess.on('error', (pandocErr) => {
+					console.error('Error during Pandoc conversion:', pandocErr);
+					return next(pandocErr);
+				});
+
+				pandocProcess.on('close', (code) => {
+					if (code !== 0) {
+						const error = new Error(`Pandoc process exited with code ${code}`);
+						console.error('Pandoc process error:', error);
+						return next(error);
 					}
 					console.log('Pandoc conversion successful');
 
