@@ -2,7 +2,9 @@
 
 const async = require('async');
 const mongoose = require('mongoose');
-const HtmlDocx = require('html-docx-js');
+const pandoc = require('node-pandoc');
+const fs = require('fs');
+const path = require('path');
 
 const Clause = require('../models/clauseSchema');
 const Question = require('../models/questionSchema');
@@ -12,6 +14,12 @@ const toClauseTree = require('./clauseTree');
 const getTestableClauses = (clauses) => 
   clauses.filter((clause) =>
     !clause.informative && clause.description.length > 0);
+
+// Ensure the tmp directory exists
+const tmpDir = path.join(__dirname, '../tmp');
+if (!fs.existsSync(tmpDir)) {
+	fs.mkdirSync(tmpDir);
+}
 
 // Select functional accessibility requirements or question
 exports.wizard_get = (req, res, next) => {
@@ -93,7 +101,6 @@ exports.download = (req, res, next) => {
       res.redirect('/view/create');
     }
     results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-    res.attachment(strings.filename);
 
     // Remove Tables and Figures annex if not applicable
     figureClauses = ['5.1.4', '8.3.4.1', '8.3.4.2', '8.3.4.3.2', '8.3.4.3.3', '8.3.2.5', '8.3.2.6',
@@ -103,7 +110,10 @@ exports.download = (req, res, next) => {
       return !el.name.includes('figures') ||
               results.fps.some(e => figureClauses.includes(e.number));
     });
-    console.log(results.annex.length);
+
+		// Set the correct headers for the attachment
+		res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
+
     res.render(strings.template, {
       title: strings.title,
       item_list: results.fps,
@@ -112,15 +122,32 @@ exports.download = (req, res, next) => {
       annex: results.annex
     },
     (err, output) => {
-      res.send(HtmlDocx.asBlob(output, {
-        orientation: req.body.orientation,
-        margins: {
-          top: 1304,
-          bottom: 1304,
-          left: 1134,
-          right: 1134
-        }
-      }));
+				if (err) {
+					return next(err);
+				}
+				console.log(strings.template);
+
+				// Write the rendered HTML to a temporary file in the tmp directory
+				const tempHtmlPath = path.join(tmpDir, 'temp.html');
+				fs.writeFileSync(tempHtmlPath, output, 'utf8');
+
+				// Define Pandoc arguments
+				const docxPath = path.join(tmpDir, strings.filename);
+				const args = ['-f', 'html', '-t', 'docx', '-o', docxPath];
+
+				// Call Pandoc
+				pandoc(tempHtmlPath, args, (err, result) => {
+					if (err) {
+						return next(err);
+					}
+					// Read the resulting DOCX file and send it as a response
+					fs.readFile(docxPath, (err, data) => {
+						if (err) {
+							return next(err);
+						}
+						res.send(data);
+					});
+				});
     });
   });
 }

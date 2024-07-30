@@ -5,6 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Tempority files created by Pandoc
+/tmp
+
 # Runtime data
 pids
 *.pid
