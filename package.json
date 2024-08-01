@@ -18,7 +18,7 @@
     "express": "~4.19.2",
     "express-validator": "^7.1.0",
     "html-docx-js": "^0.3.1",
-    "http-auth": "^3.2.3",
+    "http-auth": "^4.0.0",
     "http-errors": "~1.6.3",
     "innertext": "^1.0.3",
     "jsdom": "^15.1.1",
