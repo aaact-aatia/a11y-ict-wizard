@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const authConnect = require("http-auth-connect");
 
 const mongoose = require("mongoose");
 const auth = require("http-auth");
@@ -49,7 +50,7 @@ const basicAuth = auth.basic(
 // THE IMPORTANT PART
 // Associate routes
 app.use("/", require("./routes/generatorRoutes"));
-app.use("/edit", auth.connect(basicAuth), require("./routes/editRoutes"));
+app.use("/edit", authConnect(basicAuth), require("./routes/editRoutes"));
 
 // Error handling
 app.use((req, res, next) => next(createError(404)));
