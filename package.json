@@ -14,7 +14,7 @@
     "@ckeditor/ckeditor5-upload": "^42.0.1",
     "async": "^3.x.x",
     "cookie-parser": "~1.4.4",
-    "debug": "~4.3.5",
+    "debug": "^4.3.5",
     "express": "~4.19.2",
     "express-validator": "^7.1.0",
     "html-docx-js": "^0.3.1",
