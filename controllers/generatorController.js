@@ -157,7 +157,7 @@ exports.download = (req, res, next) => {
 
 					// Convert Blob to Buffer
 					docxBlob.arrayBuffer().then((arrayBuffer) => {
-						const docxBuffer = Buffer.from(arrayBuffer);
+						const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));
 
 						const tempDocxPath = path.join(tmpDir, strings.filename);
 						fs.writeFile(tempDocxPath, docxBuffer, (writeErr) => {
