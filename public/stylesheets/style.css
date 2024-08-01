@@ -33,6 +33,10 @@ main {
 
 /* WET Overrides */
 
+.mfp-container{
+  background-color: transparent;
+}
+
 .form-control {
   height: auto;
   min-height: 37px; /* Hard-coded height fails Resize Text criterion */
