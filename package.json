@@ -20,7 +20,7 @@
     "html-docx-js": "^0.3.1",
     "http-auth": "^4.0.0",
     "http-errors": "^2.0.0",
-    "innertext": "^1.0.3",
+    "innertext": "^1.0.x",
     "jsdom": "^15.1.1",
     "moment": "^2.24.0",
     "mongoose": "^5.7.5",
