@@ -10,8 +10,8 @@
     "node": "10.x"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^12.2.0",
-    "@ckeditor/ckeditor5-upload": "^11.1.1",
+    "@ckeditor/ckeditor5-build-classic": "^42.0.1",
+    "@ckeditor/ckeditor5-upload": "^42.0.1",
     "async": "^3.1.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
