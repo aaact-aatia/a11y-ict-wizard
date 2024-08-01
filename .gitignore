@@ -6,7 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # Temporary files from Word generator
-/tmp
+/tmp/*.docx
+/tmp/*.html
 
 # Runtime data
 pids
