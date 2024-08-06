@@ -230,3 +230,17 @@ i.info {
 #wizard input:focus {
   background-color: none;
 }
+
+.image-link {
+  margin-left: 6px;
+  padding-left: 11px;
+  padding-right: 11px;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+}
+
+.image-link:focus {
+  border: 1.5px solid black; 
+  outline: none; 
+}
