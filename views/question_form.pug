@@ -34,6 +34,10 @@ block form
       label(for='onlyIf')
         input#onlyIf(type='checkbox' name='onlyIf' checked=(itemExists ? item.onlyIf : false))
         | Select clauses if and only if the clause is included in another selected question AND this question is selected
+    .checkbox
+      label(for='isUber')
+        input#isUber(type='checkbox' name='isUber' checked=(itemExists ? item.isUber : false))
+        | Select checkbox if and only if the question is an uber question
 
     include includes/clause_tree
       
