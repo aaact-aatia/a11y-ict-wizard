@@ -69,6 +69,11 @@ button.btn.btn-link {
   height: 200px;
 }
 
+.modal-footer{
+  padding-left: 0px;
+  margin-top: 10px;
+}
+
 #wb-info a {
   font-size: 1em;
   text-decoration: underline;
@@ -218,8 +223,14 @@ i.info {
   --color-focus: #1c578a;
 }
 
+.wizard-questions{
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
 #wizard label {
   padding: 2px 5px 2px 25px;
+  display: inline;
 }
 
 #wizard .checkbox.focus,

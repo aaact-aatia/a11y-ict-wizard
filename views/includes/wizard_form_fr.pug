@@ -33,15 +33,16 @@ section#wizard
         if question.isUber
           - uberQuestions_list.push(question);
 
-    .row
-      .col-md-6
-        each question, index in uberQuestions_list
-          if index <= uberQuestions_list.length/2
-            +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
-      .col-md-6
-        each question, index in uberQuestions_list
-          if index > uberQuestions_list.length/2
-            +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
+    div.wizard-questions
+      .row
+        .col-md-6
+          each question, index in uberQuestions_list
+            if index <= uberQuestions_list.length/2
+              +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
+        .col-md-6
+          each question, index in uberQuestions_list
+            if index > uberQuestions_list.length/2
+              +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
 
   //- Hidden data (for client-side javascript)
   .hidden#question-data

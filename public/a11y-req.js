@@ -382,8 +382,7 @@ var sendFileToServer = function () {
           console.log("Event prevented");
           return;
         }
-        const cancelButton = document.getElementById("cancel-overlay");
-        const closeButton = document.getElementById("close-overlay");
+        const closeButton = document.getElementById("cancel-overlay");
 
         const formComponent = document.getElementById("form");
         let jsonContent;
@@ -409,8 +408,8 @@ var sendFileToServer = function () {
         .then(data => {
           const dialogText = document.getElementById('dialog-text');
           dialogText.textContent = data.message;
+          closeButton.textContent = "Close"
           formComponent.remove();
-          cancelButton.remove();
           updateSuccessful = data.success
         
           if (updateSuccessful){
