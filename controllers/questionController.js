@@ -125,6 +125,10 @@ exports.question_create_post = (req, res, next) => {
     }
   }
 
+  console.log('onlyIf value:', req.body.onlyIf);
+  console.log('isUber value:', req.body.isUber);
+  console.log('')
+
   let question = new Question({
     name: req.body.name,
     frName: req.body.frName,
@@ -132,7 +136,8 @@ exports.question_create_post = (req, res, next) => {
     frDescription: req.body.frDescription,
     clauses: req.body.clauses,
     order: req.body.order,
-    onlyIf: req.body.onlyIf === 'on'
+    onlyIf: req.body.onlyIf === 'on',
+    isUber: req.body.isUber === 'on'
   });
 
   // Check if Question with same name already exists.
@@ -199,6 +204,7 @@ exports.question_update_post = (req, res, next) => {
     clauses: req.body.clauses,
     order: req.body.order,
     onlyIf: req.body.onlyIf === 'on',
+    isUber: req.body.isUber === 'on',
     _id: req.params.id // This is required, or a new ID will be assigned
   });
 

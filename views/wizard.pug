@@ -3,7 +3,7 @@ extends layout
 block content
   h1#wb-cont(property='name')= title
   //- h3 About
-  p Use this tool to generate requirements documents specific to the Information Communication Technology (ICT) you are procuring. Requirements are based on the  EN 301 549 V3.2.1 (2021-03).
+  p Use this tool to generate requirements documents specific to the Information Communication Technology (ICT) you are procuring. Requirements are based on the  EN 301 549 (2025).
   //- h3 Instructions
   //- ol
   //-   li Answer questions under 'Does the ICT include:' in the order they are listed.
@@ -27,46 +27,64 @@ block content
             summary Step 1: Define ICT functionality
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep1' aria-controls='instructionsStep1' role='button' title='Step 1 instructions') Instructions: Step 1
+            - var step = 1
             include includes/wizard_form
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Next
+
           details#details-step2
-            summary Step 2: Refine clause selection
+            summary Step 2: Refine ICT functionality
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button' title='Step 2 instructions') Instructions: Step 2
-            include includes/clause_tree
+            - var step = 2
+            include includes/wizard_refined_form
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Next
+
           details#details-step3
-            summary Step 3: Generate requirements documents
+            summary Step 3: Refine clause selection
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions: Step 3
+            include includes/clause_tree
+            a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Next
+
+          details#details-step4
+            summary Step 4: Generate requirements documents
+            p.form-instructions-link
+              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
             include includes/download_chooser
 
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1
     header.modal-header
       h2.modal-title Instructions: Step 1
     .modal-body
-      p Select all checkboxes which apply to the ICT being procured, even those which appear redundant.
+      p Select all checkboxes which does not apply to the ICT being procured, even those which appear redundant.
       p
         | Note that the procured product / service must itself 
-        strong provide
+        strong not provide
         |  the component or feature. For example, consider the case of procuring e-learning services:
       ol
         li
           p The statement of work specifies that the supplier must use a certain video-conferencing platform.
-          p "Two-way communication" and "Two-way video communication" requirements should not be selected (since these functions are not provided by the supplier as part of this procurement).
+          p "Two-way communication" and "Two-way video communication" requirements should be selected (since these functions are not provided by the supplier as part of this procurement).
         li
           p The statement of work includes a learning management system with content-editing abilities, to be chosen or developed by the supplier.
-          p "Authoring tools" should be selected (since the supplier is providing content authoring functionality as part of this procurement).
+          p "Authoring tools" should not be selected (since the supplier is providing content authoring functionality as part of this procurement).
       p When you are satisfied that your selection is correct, proceed to Step 2 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
 
-      
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep2
     header.modal-header
       h2.modal-title Instructions: Step 2
     .modal-body
+      p To be updated
+      p When you are satisfied that your selection is correct, proceed to Step 3 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
+
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+    header.modal-header
+      h2.modal-title Instructions: Step 3
+    .modal-body
       p
-        | Relevant requirements (clauses) have now been selected based on your answers in Step 1. Use the checkbox tree to inspect which clauses have been selected. Make sure that they apply to your procurement.
+        | Relevant requirements (clauses) have now been selected based on your answers in Step 1 and 2. Use the checkbox tree to inspect which clauses have been selected. Make sure that they apply to your procurement.
       h3 When should you deselect a clause?
       p
         | Only deselect the clauses that you are certain will not be part of the procured product / service. Err on the side of including any requirement that may be necessary. Individual clauses can be marked "not applicable" by suppliers, so it isn't a problem to include an inapplicable clause.
@@ -90,9 +108,9 @@ block content
       p
         | Activate the "Enter clause list" button located after the clause tree. Copy the clause list from your previously generated document and paste it in the form field. Your previous clause selection will be restored in the checkbox tree. You can then make any required modifications to the selection.
       
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4
     header.modal-header
-      h2.modal-title Instructions: Step 3
+      h2.modal-title Instructions: Step 4
     .modal-body
       p Click the links to download requirements documents. For most procurements, "Requirements with informative sections" should be included. When conformance is being rated, also include an "Evaluation template".
       p You may wish to give the documents more descriptive filenames after downloading.
