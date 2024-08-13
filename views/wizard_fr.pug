@@ -13,22 +13,36 @@ block content
             summary Étape 1 : Définir la fonctionnalité des TIC
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep1' aria-controls='instructionsStep1' role='button' title='Step 1 instructions') Instructions : Étape 1
+            - var step = 1
             include includes/wizard_form_fr
+            div
+              p(style="display: inline-block; margin-right: 10px")
+                strong Nombre totale de clause applicable: 
+              p.clause-count(style="display: inline-block") 0
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Suivant
           
           details#details-step2
             summary Étape 2 : Préciser la fonctionnalité des TIC
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button' title='Step 2 instructions') Instructions : Étape 2
-            include includes/wizard_refined_form_fr
+            - var step = 2
+            include includes/wizard_form_fr
+            div
+              p(style="display: inline-block; margin-right: 10px")
+                strong Nombre totale de clause applicable: 
+              p.clause-count(style="display: inline-block") 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Entrer la liste de clauses
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Suivant
 
           details#details-step3
-            summary Étape 3 : Préciser la sélection de clause
+            summary Étape 3 : Vérifier la sélection de clause
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep2' role='button' title='Step 3 instructions') Instructions : Étape 3
             include includes/clause_tree_fr
+            div
+              p(style="display: inline-block; margin-right: 10px")
+                strong Nombre totale de clause applicable: 
+              p.clause-count(style="display: inline-block") 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Entrer la liste de clauses
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Suivant
           

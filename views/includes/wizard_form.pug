@@ -27,29 +27,55 @@ section#wizard
     legend
       span.field-name The <abbr title="Information Communication Technology">ICT</abbr> procurement...
 
-    button#checkAll(class="btn btn-default") Select all
-    button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
-
     - var uberQuestions_list = [];
+    - var nonUberQuestions_list = [];
     
     each question in question_list
         if question.isUber
           - uberQuestions_list.push(question);
+        if !(question.isUber)
+          - nonUberQuestions_list.push(question);
 
-    div.wizard-questions
-      .row
-        .col-md-6
-          each question, index in uberQuestions_list
-            if index <= uberQuestions_list.length/2
-              +checkbox(question.name, question._id, question.onlyIf, question.description)
-        .col-md-6
-          each question, index in uberQuestions_list
-            if index > uberQuestions_list.length/2
-              +checkbox(question.name, question._id, question.onlyIf, question.description)
+    if step == 1
+      button#checkAll(class="btn btn-default") Select all
+      button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
+      div.wizard-questions
+        .row
+          .col-md-6
+            each question, index in uberQuestions_list
+              if index < uberQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description)
+          .col-md-6
+            each question, index in uberQuestions_list
+              if index >= uberQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description)
+    else if step == 2
+      div.wizard-questions
+        .row
+          .col-md-6
+            each question, index in nonUberQuestions_list
+              if index < nonUberQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description)
+          .col-md-6
+            each question, index in nonUberQuestions_list
+              if index >= nonUberQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description)
 
   //- Hidden data (for client-side javascript)
   .hidden#question-data
     each question in question_list
+      ul.question(data-question-id=question._id)
+        each clause in question.clauses
+          li !{clause._id}
+  
+  .hidden#uber-question-data
+    each question in uberQuestions_list
+      ul.question(data-question-id=question._id)
+        each clause in question.clauses
+          li !{clause._id}
+  
+  .hidden#non-uber-question-data
+    each question in nonUberQuestions_list
       ul.question(data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}

@@ -81,8 +81,6 @@ var updateClauseSelections = function () {
 
 var setupTreeHandler = function () {
   $('#selectAll').click(function (e) {
-    $('#clauses input').prop('checked', true).prop('indeterminate', false);
-    $('[role="treeitem"]').attr('aria-checked', true);
     e.preventDefault();
   });
   $('#selectNone').click(function (e) {
@@ -143,14 +141,9 @@ var setupWizardHandler = function () {
 
   wizardChanged = false;
 
-  $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
-    if (wizardChanged) {
-      updateWizard();
-      wizardChanged = false;
-    }
+  $('#wizard input').on('change', function () {
+    updateWizard();
   });
-
-  $('#wizard input').change(function () { wizardChanged = true; })
 
   // Focus highlighting
   // $('#wizard input').focus(function () { $(this).closest('.checkbox').addClass('focus'); });
@@ -180,8 +173,16 @@ var selectNone = function () {
   $('[role="treeitem"]').attr('aria-checked', false);
 };
 
+var selectAll = function () {
+  $('#clauses input').prop('checked', true).prop('indeterminate', false);
+  $('[role="treeitem"]').attr('aria-checked', true);
+};
+
+
 var updateWizard = function () {
   if ($('#wizard').length > 0) {
+    var checkedCount = 0;
+    var testableCount = 0;
     selectNone();
 
     // Select relevant Step 2 clauses based on Step 1 selections
@@ -191,6 +192,10 @@ var updateWizard = function () {
         $clause = $('#'+this.innerHTML);
         if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
           $clause.click();
+          checkedCount = checkedCount + 1;
+          if (!($clause.hasClass('informative'))) {
+            testableCount++
+          }
         }
       });
     });
@@ -201,12 +206,43 @@ var updateWizard = function () {
       $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
         $clause = $('#'+this.innerHTML);
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
+          checkedCount = checkedCount + 1;
           $clause.click();
+          if (!($clause.hasClass('informative'))) {
+            testableCount++
+          }
         }
       });
     });
   }
+  console.log("Total checked: " + checkedCount);
+  console.log("Total testable clause: " + testableCount);
+  console.log("Total informative:", (checkedCount - testableCount));
+  $('.clause-count').html("<strong>" + testableCount + "</strong>");
 };
+
+// var clauseCount = function (){
+//   var informativeCheckedCount = 0;
+//   var informativeCount = 0;
+//   var checkedCount = 0;
+
+//   $('[role="treeitem"].informative:checked').each(function() {
+//     informativeCheckedCount++;
+//   });
+
+//   $('[role="treeitem"].informative').each(function() {
+//     informativeCount++;
+//   });
+
+//   $('[role="treeitem"]:checked').each(function() {
+//     checkedCount++;
+//   });
+
+//   // console.log("Total number of informative checked checkboxes: " + informativeCheckedCount);
+//   // console.log("Total number of informative checkboxes: " + informativeCount);
+//   // console.log("Total number of checked checkboxes: " + checkedCount);
+//   return (checkedCount - informativeCheckedCount);
+// }
 
 // Call the setup function to initialize the handler
 $(document).ready(function() {
