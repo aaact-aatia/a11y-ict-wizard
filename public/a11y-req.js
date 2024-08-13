@@ -181,50 +181,33 @@ var selectAll = function () {
 
 var updateWizard = function () {
   if ($('#wizard').length > 0) {
-    var checkedCount = 0;
+    var uncheckedCount = 0;
     var testableCount = 0;
     var totalClauses = 0
-    selectAll();
-    $('#clauses input:checked').each(function () {
-      totalClauses++;
-    });
-    $('.total-clause').html("<strong>Total clauses: " + totalClauses + "</strong>");
-    
+
+    // Everything has to be selected by default for negative selection
+    selectAll();    
 
     // Select relevant Step 2 clauses based on Step 1 selections
     $('#wizard input:checked').not('.onlyIf').each(function () {
       var questionId = this.id;
       $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
         $clause = $('#'+this.innerHTML);
-        if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
+        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
           $clause.click();
-          checkedCount = checkedCount + 1;
-          if (!($clause.hasClass('informative'))) {
-            testableCount++
-          }
         }
       });
     });
 
-    // Deselect irrelevant Step 2 clauses based on Step 1 "if and only if" selections
-    $('#wizard input.onlyIf').not(':checked').each(function () {
-      var questionId = this.id;
-      $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
-        $clause = $('#'+this.innerHTML);
-        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
-          checkedCount = checkedCount + 1;
-          $clause.click();
-          if (!($clause.hasClass('informative'))) {
-            testableCount++
-          }
-        }
-      });
+    // Just to count total number of clauses can be removed afterwards
+    $('#clauses input:checked').each(function () {
+      if ( ($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative')) ) {
+        totalClauses++;
+      }
     });
+    
+    $('.clause-count').html("<strong>" + totalClauses + "</strong>");
   }
-  console.log("Total checked: " + checkedCount);
-  console.log("Total testable clause: " + testableCount);
-  console.log("Total informative:", (checkedCount - testableCount));
-  $('.clause-count').html("<strong>" + testableCount + "</strong>");
 };
 
 // var clauseCount = function (){
