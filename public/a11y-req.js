@@ -214,6 +214,7 @@ var updateWizard = function () {
         }
       });
     });
+    $('.clause-count').html("<strong>" + testableCount + "</strong>");
   }
 };
 
