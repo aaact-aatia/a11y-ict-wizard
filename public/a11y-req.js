@@ -183,7 +183,13 @@ var updateWizard = function () {
   if ($('#wizard').length > 0) {
     var checkedCount = 0;
     var testableCount = 0;
-    selectNone();
+    var totalClauses = 0
+    selectAll();
+    $('#clauses input:checked').each(function () {
+      totalClauses++;
+    });
+    $('.total-clause').html("<strong>Total clauses: " + totalClauses + "</strong>");
+    
 
     // Select relevant Step 2 clauses based on Step 1 selections
     $('#wizard input:checked').not('.onlyIf').each(function () {
@@ -215,7 +221,34 @@ var updateWizard = function () {
       });
     });
   }
+  console.log("Total checked: " + checkedCount);
+  console.log("Total testable clause: " + testableCount);
+  console.log("Total informative:", (checkedCount - testableCount));
+  $('.clause-count').html("<strong>" + testableCount + "</strong>");
 };
+
+// var clauseCount = function (){
+//   var informativeCheckedCount = 0;
+//   var informativeCount = 0;
+//   var checkedCount = 0;
+
+//   $('[role="treeitem"].informative:checked').each(function() {
+//     informativeCheckedCount++;
+//   });
+
+//   $('[role="treeitem"].informative').each(function() {
+//     informativeCount++;
+//   });
+
+//   $('[role="treeitem"]:checked').each(function() {
+//     checkedCount++;
+//   });
+
+//   // console.log("Total number of informative checked checkboxes: " + informativeCheckedCount);
+//   // console.log("Total number of informative checkboxes: " + informativeCount);
+//   // console.log("Total number of checked checkboxes: " + checkedCount);
+//   return (checkedCount - informativeCheckedCount);
+// }
 
 // Call the setup function to initialize the handler
 $(document).ready(function() {
