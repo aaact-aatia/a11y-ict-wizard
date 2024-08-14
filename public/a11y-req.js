@@ -206,7 +206,7 @@ var updateWizard = function () {
       }
     });
     
-    $('.clause-count').html("<strong>" + totalClauses + "</strong>");
+    $('.clause-count').html("<strong>Total number of clause applicable: " + totalClauses + "</strong>");
   }
 };
 
@@ -217,22 +217,14 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
 
 
 var step2QuestionHandler = function () {
-
-  // $('#wizard input').not('.isUber').each(function () {
-  //   var $element = $('.checkbox#'+this.id);
-  //   $element.attr('aria-disabled', 'true');
-  // })
-
   $('#wizard input').not('.isUber').each(function () {
     var questionId = this.id;
     var covered = true;
-    console.log(questionId)
     $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if (covered) {
         if (($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) && covered) {
           covered = false;
-          console.log("Isn't covered")
         }
       }
     });
