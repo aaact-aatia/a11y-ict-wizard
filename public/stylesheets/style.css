@@ -1,6 +1,19 @@
 /*  Make changes in style.scss (not style.css) */
 [aria-disabled="true"] {
   opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+input[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.no-pointer-events {
+  cursor: not-allowed;
+  pointer-events: none;
 }
 
 #modal-submit-button{

@@ -139,8 +139,6 @@ var initCK = function (element, lang) {
 
 var setupWizardHandler = function () {
 
-  wizardChanged = false;
-
   $('#wizard input').on('change', function () {
     updateWizard();
   });
@@ -181,8 +179,6 @@ var selectAll = function () {
 
 var updateWizard = function () {
   if ($('#wizard').length > 0) {
-    var uncheckedCount = 0;
-    var testableCount = 0;
     var totalClauses = 0
 
     // Everything has to be selected by default for negative selection
@@ -229,14 +225,21 @@ var step2QuestionHandler = function () {
       }
     });
     var $element = $('.checkbox#'+questionId);
+    var $checkbox = $(this);
+    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]')
     if (covered) {
       $element.attr('aria-disabled', 'true');
-      console.log("Aria disabled set")
-
+      $element.attr('tabindex', 0);
+      $dialogLink.attr('tabindex', -1);
+      $dialogLink.addClass('no-pointer-events');
+      $checkbox.attr('disabled', true);
     } else {
       $element.removeAttr('aria-disabled');
+      $element.removeAttr('tabindex');
+      $dialogLink.attr('tabindex',0);
+      $dialogLink.removeClass('no-pointer-events');
+      $checkbox.removeAttr('disabled');
     }
-    console.log("")
   });
 }
 
