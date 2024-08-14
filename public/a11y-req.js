@@ -210,28 +210,44 @@ var updateWizard = function () {
   }
 };
 
-// var clauseCount = function (){
-//   var informativeCheckedCount = 0;
-//   var informativeCount = 0;
-//   var checkedCount = 0;
+$(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
+  console.log("Tab changed")
+  step2QuestionHandler();
+});
 
-//   $('[role="treeitem"].informative:checked').each(function() {
-//     informativeCheckedCount++;
-//   });
 
-//   $('[role="treeitem"].informative').each(function() {
-//     informativeCount++;
-//   });
+var step2QuestionHandler = function () {
 
-//   $('[role="treeitem"]:checked').each(function() {
-//     checkedCount++;
-//   });
+  // $('#wizard input').not('.isUber').each(function () {
+  //   var $element = $('.checkbox#'+this.id);
+  //   $element.attr('aria-disabled', 'true');
+  // })
 
-//   // console.log("Total number of informative checked checkboxes: " + informativeCheckedCount);
-//   // console.log("Total number of informative checkboxes: " + informativeCount);
-//   // console.log("Total number of checked checkboxes: " + checkedCount);
-//   return (checkedCount - informativeCheckedCount);
-// }
+  $('#wizard input').not('.isUber').each(function () {
+    var questionId = this.id;
+    var covered = true;
+    console.log(questionId)
+    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
+      $clause = $('#'+this.innerHTML);
+      if (covered) {
+        if (($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) && covered) {
+          covered = false;
+          console.log("Isn't covered")
+        }
+      }
+    });
+    var $element = $('.checkbox#'+questionId);
+    if (covered) {
+      $element.attr('aria-disabled', 'true');
+      console.log("Aria disabled set")
+
+    } else {
+      $element.removeAttr('aria-disabled');
+    }
+    console.log("")
+  });
+}
+
 
 // Call the setup function to initialize the handler
 $(document).ready(function() {

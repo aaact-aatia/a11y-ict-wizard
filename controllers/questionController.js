@@ -125,10 +125,6 @@ exports.question_create_post = (req, res, next) => {
     }
   }
 
-  console.log('onlyIf value:', req.body.onlyIf);
-  console.log('isUber value:', req.body.isUber);
-  console.log('')
-
   let question = new Question({
     name: req.body.name,
     frName: req.body.frName,
