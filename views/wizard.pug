@@ -29,6 +29,9 @@ block content
               a.overlay-lnk.right(href='#instructionsStep1' aria-controls='instructionsStep1' role='button' title='Step 1 instructions') Instructions: Step 1
             - var step = 1
             include includes/wizard_form
+            div(aria-live="polite")
+              p.clause-count
+                strong Total number of clause applicable: 0
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Next
 
           details#details-step2
@@ -36,15 +39,20 @@ block content
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button' title='Step 2 instructions') Instructions: Step 2
             - var step = 2
-            include includes/wizard_refined_form
-            a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
+            include includes/wizard_form
+            div(aria-live="polite")
+              p.clause-count
+                strong Total number of clause applicable: 0
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Next
 
           details#details-step3
-            summary Step 3: Refine clause selection
+            summary Step 3: Review clause selection
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions: Step 3
             include includes/clause_tree
+            div(aria-live="polite")
+              p.clause-count
+                strong Total number of clause applicable: 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Next
 

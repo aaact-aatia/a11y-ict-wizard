@@ -81,8 +81,6 @@ var updateClauseSelections = function () {
 
 var setupTreeHandler = function () {
   $('#selectAll').click(function (e) {
-    $('#clauses input').prop('checked', true).prop('indeterminate', false);
-    $('[role="treeitem"]').attr('aria-checked', true);
     e.preventDefault();
   });
   $('#selectNone').click(function (e) {
@@ -143,14 +141,9 @@ var setupWizardHandler = function () {
 
   wizardChanged = false;
 
-  $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
-    if (wizardChanged) {
-      updateWizard();
-      wizardChanged = false;
-    }
+  $('#wizard input').on('change', function () {
+    updateWizard();
   });
-
-  $('#wizard input').change(function () { wizardChanged = true; })
 
   // Focus highlighting
   // $('#wizard input').focus(function () { $(this).closest('.checkbox').addClass('focus'); });
@@ -180,23 +173,23 @@ var selectNone = function () {
   $('[role="treeitem"]').attr('aria-checked', false);
 };
 
+var selectAll = function () {
+  $('#clauses input').prop('checked', true).prop('indeterminate', false);
+  $('[role="treeitem"]').attr('aria-checked', true);
+};
+
+
 var updateWizard = function () {
   if ($('#wizard').length > 0) {
-    selectNone();
+    var uncheckedCount = 0;
+    var testableCount = 0;
+    var totalClauses = 0
+
+    // Everything has to be selected by default for negative selection
+    selectAll();    
 
     // Select relevant Step 2 clauses based on Step 1 selections
     $('#wizard input:checked').not('.onlyIf').each(function () {
-      var questionId = this.id;
-      $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
-        $clause = $('#'+this.innerHTML);
-        if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
-          $clause.click();
-        }
-      });
-    });
-
-    // Deselect irrelevant Step 2 clauses based on Step 1 "if and only if" selections
-    $('#wizard input.onlyIf').not(':checked').each(function () {
       var questionId = this.id;
       $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
         $clause = $('#'+this.innerHTML);
@@ -205,8 +198,48 @@ var updateWizard = function () {
         }
       });
     });
+
+    // Just to count total number of clauses can be removed afterwards
+    $('#clauses input:checked').each(function () {
+      if ( ($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative')) ) {
+        totalClauses++;
+      }
+    });
+    
+    $('.clause-count').html("<strong>Total number of clause applicable: " + totalClauses + "</strong>");
   }
 };
+
+$(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
+  console.log("Tab changed")
+  step2QuestionHandler();
+});
+
+
+var step2QuestionHandler = function () {
+  $('#wizard input').not('.isUber').each(function () {
+    var questionId = this.id;
+    var covered = true;
+    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
+      $clause = $('#'+this.innerHTML);
+      if (covered) {
+        if (($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) && covered) {
+          covered = false;
+        }
+      }
+    });
+    var $element = $('.checkbox#'+questionId);
+    if (covered) {
+      $element.attr('aria-disabled', 'true');
+      console.log("Aria disabled set")
+
+    } else {
+      $element.removeAttr('aria-disabled');
+    }
+    console.log("")
+  });
+}
+
 
 // Call the setup function to initialize the handler
 $(document).ready(function() {
@@ -382,8 +415,7 @@ var sendFileToServer = function () {
           console.log("Event prevented");
           return;
         }
-        const cancelButton = document.getElementById("cancel-overlay");
-        const closeButton = document.getElementById("close-overlay");
+        const closeButton = document.getElementById("cancel-overlay");
 
         const formComponent = document.getElementById("form");
         let jsonContent;
@@ -409,8 +441,8 @@ var sendFileToServer = function () {
         .then(data => {
           const dialogText = document.getElementById('dialog-text');
           dialogText.textContent = data.message;
+          closeButton.textContent = "Close"
           formComponent.remove();
-          cancelButton.remove();
           updateSuccessful = data.success
         
           if (updateSuccessful){
