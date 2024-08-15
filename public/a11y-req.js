@@ -207,38 +207,73 @@ var updateWizard = function () {
 };
 
 $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
-  console.log("Tab changed")
+  step1QuestionHandler();
   step2QuestionHandler();
 });
 
+var checkedClauseIds = [];
+var step1QuestionHandler = function () {
+  while (checkedClauseIds.length > 0) {
+    checkedClauseIds.pop(); // Remove the last element
+  }
+  $('#wizard input.isUber:checked').each(function () {
+    var questionId = this.id;
+    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
+      $clause = $('#'+this.innerHTML);
+      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+        if (!checkedClauseIds.includes(this.innerHTML.trim())){
+          checkedClauseIds.push(this.innerHTML.trim());
+        }
+      }
+    });
+  });
+
+}
 
 var step2QuestionHandler = function () {
   $('#wizard input').not('.isUber').each(function () {
     var questionId = this.id;
     var covered = true;
+    var checkedinStep1 = true;
+    
+    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
+      var clauseId = this.innerHTML.trim();
+      $clause = $('#'+this.innerHTML);
+      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+        if (!(checkedClauseIds.includes(clauseId))){
+          checkedinStep1 = false
+        }
+      }
+    });
+
     $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if (covered) {
-        if (($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) && covered) {
+        // If claused is checked that means that uber was not selected and question is not covered.
+        if ($clause.is(':checked') && checkedinStep1) {
           covered = false;
         }
       }
     });
+
     var $element = $('.checkbox#'+questionId);
-    var $checkbox = $(this);
+    var $questionStep2Checkbox = $(this);
     var $dialogLink = $('a[href="#moreInfo'+questionId+'"]')
-    if (covered) {
-      $element.attr('aria-disabled', 'true');
+
+    if (covered && checkedinStep1) {
+      $element.attr('aria-disabled', true);
       $element.attr('tabindex', 0);
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
-      $checkbox.attr('disabled', true);
-    } else {
+      $questionStep2Checkbox.attr('disabled', true);
+      $questionStep2Checkbox.prop('checked', true);
+    }  else if ($questionStep2Checkbox.is(':disabled'))  {
       $element.removeAttr('aria-disabled');
       $element.removeAttr('tabindex');
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
-      $checkbox.removeAttr('disabled');
+      $questionStep2Checkbox.removeAttr('disabled');
+      $questionStep2Checkbox.prop('checked',false);
     }
   });
 }
@@ -262,6 +297,7 @@ var setupQuestionHandler = function () {
     });
     updateWizard();
   });
+  
 
   $('#uncheckAll').click(function (e) {
     e.preventDefault();
