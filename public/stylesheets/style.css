@@ -37,6 +37,7 @@ main {
 
 .document-properties {
   margin-top: 10px;
+  margin-left: 10px;
 }
 
 /* p.form-instructions-link {
@@ -75,6 +76,10 @@ fieldset {
 
 button.btn.btn-link {
   font-size: 17px;
+}
+
+.clause-count{
+  margin-left: 10px;
 }
 
 .btn{

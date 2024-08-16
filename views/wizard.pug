@@ -32,7 +32,7 @@ block content
             div(aria-live="polite")
               p.clause-count
                 strong Total number of clause applicable: 0
-            a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Next
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step2', style='margin-bottom: 10px;') Next
 
           details#details-step2
             summary Step 2: Refine ICT functionality
@@ -43,7 +43,8 @@ block content
             div(aria-live="polite")
               p.clause-count
                 strong Total number of clause applicable: 0
-            a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Next
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step1', style='margin-bottom: 10px;') Previous
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step3', style='margin-bottom: 10px;') Next
 
           details#details-step3
             summary Step 3: Review clause selection
@@ -54,13 +55,16 @@ block content
               p.clause-count
                 strong Total number of clause applicable: 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
-            a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Next
+            div(style='margin-top: 8px;')
+              a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Previous
+              a.btn.btn-default.wb-tabs-ext.right(href='#details-step4', style='margin-bottom: 10px;') Next
 
           details#details-step4
             summary Step 4: Generate requirements documents
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
             include includes/download_chooser
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px; margin-top: 10px;') Previous
 
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1
     header.modal-header
