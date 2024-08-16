@@ -209,6 +209,7 @@ var updateWizard = function () {
 $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   step1QuestionHandler();
   step2QuestionHandler();
+  step3Handler();
 });
 
 var checkedClauseIds = [];
@@ -275,10 +276,27 @@ var step2QuestionHandler = function () {
       $questionStep2Checkbox.removeAttr('disabled');
       $questionStep2Checkbox.prop('checked',false);
     }
-
   });
 }
 
+var step3Handler = function () {
+  $('#clauses input').each(function () {
+    var $this = $(this);
+    if ($this.prop('indeterminate')) {
+      // Checkbox is in indeterminate state
+      $this.siblings('span.remove-text').text('');
+      $this.siblings('span').css('color', 'black');
+    } else if ($this.is(':checked')) {
+      // Checkbox is checked
+      $this.siblings('span.remove-text').text('');
+      $this.siblings('span').css('color', 'black');
+    } else {
+      // Checkbox is not checked
+      $this.siblings('span.remove-text').text('[remove]  ');
+      $this.siblings('span').css('color', 'red');
+    }
+  });
+}
 
 // Call the setup function to initialize the handler
 $(document).ready(function() {
