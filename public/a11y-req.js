@@ -250,7 +250,7 @@ var step2QuestionHandler = function () {
       $clause = $('#'+this.innerHTML);
       if (covered) {
         // If claused is checked that means that uber was not selected and question is not covered.
-        if ($clause.is(':checked') && checkedinStep1) {
+        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
           covered = false;
         }
       }
@@ -258,7 +258,7 @@ var step2QuestionHandler = function () {
 
     var $element = $('.checkbox#'+questionId);
     var $questionStep2Checkbox = $(this);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]')
+    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
 
     if (covered && checkedinStep1) {
       $element.attr('aria-disabled', true);
@@ -275,6 +275,7 @@ var step2QuestionHandler = function () {
       $questionStep2Checkbox.removeAttr('disabled');
       $questionStep2Checkbox.prop('checked',false);
     }
+
   });
 }
 
