@@ -42,7 +42,7 @@ section#wizard
     if step == 1
       button#checkAll(class="btn btn-default") Select all
       button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
-      div.wizard-questions
+      div.wizard-questions.step1
         .row
           .col-md-6
             each question, index in uberQuestions_list
