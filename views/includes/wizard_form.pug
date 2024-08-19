@@ -14,7 +14,10 @@ mixin checkbox(label, name, onlyIf, description, isUber)
 
   section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`moreInfo${name}`)
     header.modal-header
-      h2.modal-title More information on '!{label}'
+      h2.modal-title
+        | More information on:
+        br
+        | '!{label}'
     div.modal-body#dialog
       p Description:
       | !{descri}
