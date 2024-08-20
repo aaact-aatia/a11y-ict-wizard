@@ -141,6 +141,7 @@ var setupWizardHandler = function () {
 
   $('#wizard input').on('change', function () {
     updateWizard();
+    step1SubsetsQuestionHandler();
   });
 
   // Focus highlighting
@@ -194,7 +195,7 @@ var updateWizard = function () {
     selectAll();    
 
     // Select relevant Step 2 clauses based on Step 1 selections
-    $('#wizard input:checked').not('.onlyIf').each(function () {
+    $('#wizard input:checked').each(function () {
       var questionId = this.id;
       $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
         $clause = $('#'+this.innerHTML);
@@ -213,25 +214,124 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   step3Handler();
 });
 
-var uncheckedClauseIds = [];
+var uncheckedStep1ClauseIds = [];
+var checkedStep1QuestionsIds = [];
+var first = false
 
-// Adds all the clauses associated to the checked questions to the array uncheckedClauseIds
+//good version
+var step1SubsetsQuestionHandler = function () {
+  $('#wizard input.isUber:checked').each(function () {
+    var questionId = this.id;
+    var $questionStep1Checkbox = $(this);
+    var $element = $('.checkbox#'+questionId);
+    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+
+    if (!checkedStep1QuestionsIds.includes(questionId)){
+      if ($questionStep1Checkbox.is(':disabled'))  {
+        $element.removeAttr('aria-disabled');
+        $element.removeAttr('tabindex');
+        $dialogLink.attr('tabindex',0);
+        $dialogLink.removeClass('no-pointer-events');
+        $questionStep1Checkbox.removeAttr('disabled');
+        $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+      }
+    }
+  });
+
+  while (uncheckedStep1ClauseIds.length > 0) {
+    uncheckedStep1ClauseIds.pop(); // Remove the all element in array
+  }
+  while (checkedStep1QuestionsIds.length > 0) {
+    checkedStep1QuestionsIds.pop(); // Remove the all element in array
+  }
+  $('#wizard input.isUber:checked').each(function () {
+    var questionId = this.id;
+    checkedStep1QuestionsIds.push(questionId);
+    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
+      $clause = $('#'+this.innerHTML);
+      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+        if (!uncheckedStep1ClauseIds.includes(this.innerHTML.trim())){
+          uncheckedStep1ClauseIds.push(this.innerHTML.trim());
+        }
+      }
+    });
+  });
+
+  $('#wizard input.isUber').each(function () {
+    var questionId = this.id;
+    if (checkedStep1QuestionsIds.includes(questionId)){
+      return true;
+    }
+    var covered = true;
+    var checkedParentinStep1 = true;
+    
+    // Used to link the Step 1 question and subset Step 1 question
+    // Verifies if all the clauses unchecked of each uber question are found in the array 
+    // If it's not checkedParentinStep1 knows that it is not a covered question
+    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
+      var clauseId = this.innerHTML.trim();
+      $clause = $('#'+this.innerHTML);
+      // only verifies unchecked informative endnode clauses
+      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+        // if checkedParentinStep1 = false, it means the the subset uber questions was unchecked or that the question itself is not an uber
+        if (!(uncheckedStep1ClauseIds.includes(clauseId))){
+          checkedParentinStep1 = false
+        }
+      }
+    });
+
+    // Verifies if all the clauses of the uber question are all unchecked, if they are covered = true
+    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
+      $clause = $('#'+this.innerHTML);
+      if (covered) {
+        // If clause is checked that means that uber question was not selected and question is not covered.
+        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
+          covered = false;
+        }
+      }
+    });
+
+    var $element = $('.checkbox#'+questionId);
+    var $questionStep1Checkbox = $(this);
+    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+
+    if (covered && checkedParentinStep1) {
+      $element.attr('aria-disabled', true);
+      $element.attr('tabindex', 0);
+      $dialogLink.attr('tabindex', -1);
+      $dialogLink.addClass('no-pointer-events');
+      $questionStep1Checkbox.attr('disabled', true);
+      $questionStep1Checkbox.prop('checked', true).prop('indeterminate', false);
+    }  else if ($questionStep1Checkbox.is(':disabled'))  {
+      $element.removeAttr('aria-disabled');
+      $element.removeAttr('tabindex');
+      $dialogLink.attr('tabindex',0);
+      $dialogLink.removeClass('no-pointer-events');
+      $questionStep1Checkbox.removeAttr('disabled');
+      $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+    }
+  });
+  updateWizard();
+}
+
+var uncheckedStep2ClauseIds = [];
+
+// Adds all the clauses associated to the checked questions to the array uncheckedStep2ClauseIds
 var step1QuestionHandler = function () {
-  while (uncheckedClauseIds.length > 0) {
-    uncheckedClauseIds.pop(); // Remove the all element in array
+  while (uncheckedStep2ClauseIds.length > 0) {
+    uncheckedStep2ClauseIds.pop(); // Remove the all element in array
   }
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!uncheckedClauseIds.includes(this.innerHTML.trim())){
-          uncheckedClauseIds.push(this.innerHTML.trim());
+        if (!uncheckedStep2ClauseIds.includes(this.innerHTML.trim())){
+          uncheckedStep2ClauseIds.push(this.innerHTML.trim());
         }
       }
     });
   });
-
 }
 
 var step2QuestionHandler = function () {
@@ -249,7 +349,7 @@ var step2QuestionHandler = function () {
       // only check unchecked non-informative endnode clauses
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         // if checkedinStep1 = false, it means the the subset uber questions was unchecked or that the question istself is not an uber
-        if (!(uncheckedClauseIds.includes(clauseId))){
+        if (!(uncheckedStep2ClauseIds.includes(clauseId))){
           checkedinStep1 = false
         }
       }
@@ -325,6 +425,7 @@ var setupQuestionHandler = function () {
       }
     });
     updateWizard();
+    step1SubsetsQuestionHandler();
   });
   
 
@@ -337,6 +438,7 @@ var setupQuestionHandler = function () {
         checkbox.checked = false;
       }
     });
+    step1SubsetsQuestionHandler();
     step1QuestionHandler();
     step2QuestionHandler();
     updateWizard();
@@ -404,10 +506,8 @@ var checkFile = function () {
                 // `object[0]` exists and is not null or undefined
 
                 if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
-                  console.log('This is indeed a question JSON list.');
                   submitButton.setAttribute("aria-disabled", "false");
                 } else {
-                  console.log('This is not a question JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
                 } 
@@ -419,11 +519,8 @@ var checkFile = function () {
                 // `object[0]` exists and is not null or undefined
 
                 if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('weight')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
-                  console.log('This is indeed a clause JSON list.');
-                  submitButton.setAttribute("aria-disabled", "false");
-                  
+                  submitButton.setAttribute("aria-disabled", "false");                 
                 } else {
-                  console.log('This is not a clause JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
                 }
@@ -435,11 +532,8 @@ var checkFile = function () {
                 // `object[0]` exists and is not null or undefined
 
                 if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name')  && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml')&& object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
-                  console.log('This is indeed an info JSON list.');
-                  submitButton.setAttribute("aria-disabled", "false");
-                  
+                  submitButton.setAttribute("aria-disabled", "false");                  
                 } else {
-                  console.log('This is not a info JSON list.');
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. \nNote that until you add the correct document the Submit button will be disabled.")
                 }

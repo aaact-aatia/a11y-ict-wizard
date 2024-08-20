@@ -42,7 +42,7 @@ section#wizard
     if step == 1
       button#checkAll(class="btn btn-default") Select all
       button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
-      div.wizard-questions.step1
+      div.wizard-questions
         .row
           .col-md-6
             each question, index in uberQuestions_list
@@ -73,6 +73,7 @@ section#wizard
   
   .hidden#uber-question-data
     each question in uberQuestions_list
+      //- p #{question._id}: #{question.name}
       ul.question(uber-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
