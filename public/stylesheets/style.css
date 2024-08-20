@@ -11,6 +11,12 @@ input[aria-disabled="true"] {
   pointer-events: none;
 }
 
+input[type="checkbox"].read-only[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 .no-pointer-events {
   cursor: not-allowed;
   pointer-events: none;

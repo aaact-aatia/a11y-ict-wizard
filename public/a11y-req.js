@@ -289,9 +289,19 @@ var updateWizard = function () {
 };
 
 $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
+  if (!($newPanel.attr('id') === 'details-step3')){
+    $('#clauses input').each(function () {
+      $(this).removeAttr('aria-disabled');
+    })
+  }
   step1QuestionHandler();
   step2QuestionHandler();
   step3Handler();
+  if ($newPanel.attr('id') === 'details-step3'){
+    $('#clauses input').each(function () {
+      $(this).attr('aria-disabled', true);
+    })
+  }
 });
 
 var uncheckedStep1ClauseIds = [];

@@ -14,6 +14,19 @@
  * @desc  after page has loaded initialize all treeitems based on the role=treeitem
  */
 
+$(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
+  console.log($newPanel.attr('id'));
+  if ($newPanel.attr('id') === 'details-step3'){
+    $('#clauses input').each(function () {
+      $(this).attr('aria-disabled', true);
+    });
+  } else {
+    $('#clauses input').each(function () {
+      $(this).removeAttr('aria-disabled');
+    });
+  }
+});
+
 // EDIT: Use WET init function
 $(document).on("wb-ready.wb", function (event) {
 
@@ -25,6 +38,7 @@ $(document).on("wb-ready.wb", function (event) {
   }
 
 });
+
 
 /*
 *   @varructor
@@ -369,6 +383,12 @@ Treeitem.prototype.handleKeydown = function (event) {
     char = event.key,
     clickEvent;
 
+  if ($(tgt).is('input:checkbox') && $(tgt).attr('aria-disabled') === 'true')  {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    return;
+  }
+
   function isPrintableCharacter(str) {
     return str.length === 1 && str.match(/\S/);
   }
@@ -497,6 +517,12 @@ Treeitem.prototype.handleKeydown = function (event) {
 };
 
 Treeitem.prototype.handleClick = function (event) {
+  if ($(event.target).is('input:checkbox') && $(event.target).attr('aria-disabled') === 'true') {
+    event.stopImmediatePropagation();
+    event.preventDefault();
+    return;
+  }
+
   /* Edit to ARIA code: expand or collapse text of clauses */
   if ($(document.activeElement).is('.endNode[aria-expanded="true"]')) {
     if (!$(event.target).is('.checkbox') && !$(event.target).is('i')) {
@@ -561,6 +587,12 @@ $(document).on("wb-ready.wb", function (event) {
   $('[role="treeitem"] input:checkbox').click(function (event) {
     // console.log('tree checkbox clicked');
     // event.preventDefault();
+    if ($(this).attr('aria-disabled') === 'true') {
+      // Do nothing if checkbox is aria-disabled
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
     $node = $(this).closest('li');
     cycleSelect($node);
     event.stopImmediatePropagation();
@@ -570,6 +602,12 @@ $(document).on("wb-ready.wb", function (event) {
   $('[role="treeitem"] label').click(function (event) {
     // State of the checkbox must be handled through JS to match
     // aria-checked property of parent
+    if ($(this).find('input:checkbox').attr('aria-disabled') === 'true') {
+      // Do nothing if checkbox is aria-disabled
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      return;
+    }
     event.preventDefault();
     $node = $(this).closest('li');
     cycleSelect($node);
@@ -597,40 +635,52 @@ var selectionStates = {};
 var cycleSelect = function ($node) {
   var state = getState($node);
   // console.log($node);
-  if (state === 'mixed') {
-    // If clearing a mixed state, save the state for later
-    // Then, the next state is 'checked'
-    $node.find('input').each(function () {
-      var id = $(this).attr('id');
-      selectionStates[id] = $(this).is(':checked');
-      $(this).prop('checked', true);
-    });
-  }
-  else if (state === 'true') {
-    // Next state is off
-    $node.find('input').each(function () {
-      $(this).prop('checked', false);
-    });
-  }
-  else if (state === 'false') {
-    // Next state is restoring the mixed state
-    $node.find('input').each(function () {
-      var id = $(this).attr('id');
-      var oldState = selectionStates[id];
-      if (oldState === undefined) {
-        oldState = true;
+  $node.find('input:checkbox').each(function () {
+    var $checkbox = $(this);
+    var id = $checkbox.attr('id');
+    var wasChecked = selectionStates[id] !== undefined ? selectionStates[id] : $checkbox.is(':checked');
+    var isDisabled = $checkbox.attr('aria-disabled') === 'true';
+    
+    if (isDisabled) {
+      // Preserve state of aria-disabled checkboxes
+      $checkbox.prop('checked', wasChecked);
+    } else {
+      if (state === 'mixed') {
+        // If clearing a mixed state, save the state for later
+        // Then, the next state is 'checked'
+        $node.find('input').each(function () {
+          var id = $(this).attr('id');
+          selectionStates[id] = $(this).is(':checked');
+          $(this).prop('checked', true);
+        });
       }
-      $(this).prop('checked', oldState);
-    });
-    // If all children remain unchecked, toggle to 'checked'
-    if ($node.find('input:checked').not(':first').length === 0) {
-      $node.find('input').each(function () {
-        var id = $(this).attr('id');
-        selectionStates[id] = undefined;
-        $(this).prop('checked', true);
-      });
+      else if (state === 'true') {
+        // Next state is off
+        $node.find('input').each(function () {
+          $(this).prop('checked', false);
+        });
+      }
+      else if (state === 'false') {
+        // Next state is restoring the mixed state
+        $node.find('input').each(function () {
+          var id = $(this).attr('id');
+          var oldState = selectionStates[id];
+          if (oldState === undefined) {
+            oldState = true;
+          }
+          $(this).prop('checked', oldState);
+        });
+        // If all children remain unchecked, toggle to 'checked'
+        if ($node.find('input:checked').not(':first').length === 0) {
+          $node.find('input').each(function () {
+            var id = $(this).attr('id');
+            selectionStates[id] = undefined;
+            $(this).prop('checked', true);
+          });
+        }
+      }
     }
-  }
+  });
 
   updateAriaChecked($node);
 
