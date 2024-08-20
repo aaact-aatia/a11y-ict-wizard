@@ -40,8 +40,12 @@ section#wizard
           - nonUberQuestions_list.push(question);
 
     if step == 1
-      button#checkAll(class="btn btn-default") Select all
-      button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Deselect all
+      .btn-group
+        button#checkAll(class="btn btn-default") Select all
+        button#uncheckAll(class="btn btn-default") Deselect all
+      .btn-group(style="margin-left : 10px")
+        button#showAllDisabledStep1(class="btn btn-default") Show disabled
+        button#hideAllDisabledStep1(class="btn btn-default")  Hide disabled
       div.wizard-questions
         .row
           .col-md-6
@@ -53,6 +57,9 @@ section#wizard
               if index >= uberQuestions_list.length/2
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber)
     else if step == 2
+      .btn-group(style="margin-left : 10px")
+        button#showAllDisabledStep2(class="btn btn-default") Show disabled
+        button#hideAllDisabledStep2(class="btn btn-default")  Hide disabled
       div.wizard-questions
         .row
           .col-md-6
@@ -65,6 +72,8 @@ section#wizard
                 +checkbox(question.name, question._id, question.onlyIf, question.description)
 
   //- Hidden data (for client-side javascript)
+  div(aria-live="polite")
+    p.disabledQuestions.hidden Nothing disabled
   .hidden#question-data
     each question in question_list
       ul.question(data-question-id=question._id)

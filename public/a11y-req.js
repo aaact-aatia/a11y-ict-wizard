@@ -15,6 +15,10 @@ $(document).on("wb-ready.wb", function (event) {
 
   setupRestoreJSONHandler();
 
+  showDisabled();
+
+  hideDisabled();
+
   // Replace <textarea> with rich text editor (CKEditor)
   // https://stackoverflow.com/questions/46559354/how-to-set-the-height-of-ckeditor-5-classic-editor/56550285#56550285
   function MinHeightPlugin(editor) {
@@ -167,6 +171,70 @@ var selectClauses = function (clauses, select) {
   }
 }
 
+var showDisabled = function(){
+  $('#showAllDisabledStep1').click(function (e) {
+    e.preventDefault();
+    $('#wizard input.isUber:checked:disabled').each(function() {
+      var questionId = this.id;
+      var $element = $('.checkbox#'+questionId);
+      $element.removeClass('hidden');
+    });
+    $('.disabledQuestions').text("Disable questions are now shown.");
+  });
+
+  $('#showAllDisabledStep2').click(function (e) {
+    e.preventDefault();
+    $('#wizard input:checked:disabled').not('.isUber').each(function() {
+      var questionId = this.id;
+      var $element = $('.checkbox#'+questionId);
+      $element.removeClass('hidden');
+    });
+    $('.disabledQuestions').text("Disable questions are now shown.");
+  });
+
+  $('#showAllDisabledClauses').click(function (e) {
+    e.preventDefault();
+    $('#clauses input:not(:checked)').each(function () {
+      var $element = $(this).closest('.checkbox');
+      $element.removeClass('hidden');
+    });
+    $('.disabledClauses').text("Disable clauses are now shown.");
+  });
+}
+
+var hideDisabled = function(){
+  $('#hideAllDisabledStep1').click(function (e) {
+    e.preventDefault();
+    $('#wizard input.isUber:checked:disabled').each(function() {
+      var questionId = this.id;
+      var $element = $('.checkbox#'+questionId);
+      $element.addClass('hidden');
+    });
+    $('.disabledQuestions').text("Disable questions are now hidden.");
+  });
+
+  $('#hideAllDisabledStep2').click(function (e) {
+    e.preventDefault();
+    $('#wizard input:checked:disabled').not('.isUber').each(function() {
+      var questionId = this.id;
+      var $element = $('.checkbox#'+questionId);
+      $element.addClass('hidden');
+    });
+    $('.disabledQuestions').text("Disable questions are now hidden.");
+  });
+
+  $('#hideAllDisabledClauses').click(function (e) {
+    e.preventDefault();
+    $('#clauses input:not(:checked)').each(function () {
+      if (!$(this).prop('indeterminate')){
+        var $element = $(this).closest('.checkbox');
+        $element.addClass('hidden');
+      }
+    });
+    $('.disabledClauses').text("Disable clauses are now hidden.");
+  });
+}
+
 var selectNone = function () {
   $('#clauses input').prop('checked', false).prop('indeterminate', false);
   $('[role="treeitem"]').attr('aria-checked', false);
@@ -216,10 +284,9 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
 
 var uncheckedStep1ClauseIds = [];
 var checkedStep1QuestionsIds = [];
-var first = false
 
-//good version
 var step1SubsetsQuestionHandler = function () {
+  var wasDisabled = false;
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     var $questionStep1Checkbox = $(this);
@@ -230,6 +297,7 @@ var step1SubsetsQuestionHandler = function () {
       if ($questionStep1Checkbox.is(':disabled'))  {
         $element.removeAttr('aria-disabled');
         $element.removeAttr('tabindex');
+        $element.removeClass('hidden');
         $dialogLink.attr('tabindex',0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('disabled');
@@ -239,10 +307,10 @@ var step1SubsetsQuestionHandler = function () {
   });
 
   while (uncheckedStep1ClauseIds.length > 0) {
-    uncheckedStep1ClauseIds.pop(); // Remove the all element in array
+    uncheckedStep1ClauseIds.pop(); 
   }
   while (checkedStep1QuestionsIds.length > 0) {
-    checkedStep1QuestionsIds.pop(); // Remove the all element in array
+    checkedStep1QuestionsIds.pop();
   }
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
@@ -265,26 +333,19 @@ var step1SubsetsQuestionHandler = function () {
     var covered = true;
     var checkedParentinStep1 = true;
     
-    // Used to link the Step 1 question and subset Step 1 question
-    // Verifies if all the clauses unchecked of each uber question are found in the array 
-    // If it's not checkedParentinStep1 knows that it is not a covered question
     $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#'+this.innerHTML);
-      // only verifies unchecked informative endnode clauses
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        // if checkedParentinStep1 = false, it means the the subset uber questions was unchecked or that the question itself is not an uber
         if (!(uncheckedStep1ClauseIds.includes(clauseId))){
           checkedParentinStep1 = false
         }
       }
     });
 
-    // Verifies if all the clauses of the uber question are all unchecked, if they are covered = true
     $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
       $clause = $('#'+this.innerHTML);
       if (covered) {
-        // If clause is checked that means that uber question was not selected and question is not covered.
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
           covered = false;
         }
@@ -302,9 +363,17 @@ var step1SubsetsQuestionHandler = function () {
       $dialogLink.addClass('no-pointer-events');
       $questionStep1Checkbox.attr('disabled', true);
       $questionStep1Checkbox.prop('checked', true).prop('indeterminate', false);
+      wasDisabled = true;
+      $element.addClass('hidden');
+      // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
+      // setTimeout(function() {
+      //   // Delay 1 second
+      //   $element.addClass('hidden');
+      // }, 1000);
     }  else if ($questionStep1Checkbox.is(':disabled'))  {
       $element.removeAttr('aria-disabled');
       $element.removeAttr('tabindex');
+      $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
       $questionStep1Checkbox.removeAttr('disabled');
@@ -312,6 +381,11 @@ var step1SubsetsQuestionHandler = function () {
     }
   });
   updateWizard();
+  setTimeout(function() {
+      if (wasDisabled){
+        $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
+      }
+    }, 3000);
 }
 
 var uncheckedStep2ClauseIds = [];
@@ -342,7 +416,6 @@ var step2QuestionHandler = function () {
     
     // Used to link the Step 1 question and the Step 2 question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
-    // If it's not checkedinStep1 knows that it is not a covered question
     $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#'+this.innerHTML);
@@ -377,9 +450,16 @@ var step2QuestionHandler = function () {
       $dialogLink.addClass('no-pointer-events');
       $questionStep2Checkbox.attr('disabled', true);
       $questionStep2Checkbox.prop('checked', true).prop('indeterminate', false);
+      $element.addClass('hidden');
+      // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
+      // setTimeout(function() {
+      //   // Delay 1 second
+      //   $element.addClass('hidden');
+      // }, 1000);
     }  else if ($questionStep2Checkbox.is(':disabled'))  {
       $element.removeAttr('aria-disabled');
       $element.removeAttr('tabindex');
+      $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
       $questionStep2Checkbox.removeAttr('disabled');
@@ -392,18 +472,22 @@ var step2QuestionHandler = function () {
 var step3Handler = function () {
   $('#clauses input').each(function () {
     var $this = $(this);
+    var $checkboxContainer = $this.closest('.checkbox');
     if ($this.prop('indeterminate')) {
       // Checkbox is in indeterminate state
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', 'black');
+      $checkboxContainer.removeClass('hidden');
     } else if ($this.is(':checked')) {
       // Checkbox is checked
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', 'black');
+      $checkboxContainer.removeClass('hidden');
     } else {
       // Checkbox is not checked
       $this.siblings('span.remove-text').text('[remove]  ');
       $this.siblings('span').css('color', 'red');
+      $checkboxContainer.addClass('hidden');
     }
   });
 }
