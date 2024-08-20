@@ -72,7 +72,7 @@ section#wizard
                 +checkbox(question.name, question._id, question.onlyIf, question.description)
 
   //- Hidden data (for client-side javascript)
-  div(aria-live="polite")
+  div.wb-inv(aria-live="polite")
     p.disabledQuestions.hidden Nothing disabled
   .hidden#question-data
     each question in question_list

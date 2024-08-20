@@ -179,7 +179,9 @@ var showDisabled = function(){
       var $element = $('.checkbox#'+questionId);
       $element.removeClass('hidden');
     });
+    $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now shown.");
+    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
   $('#showAllDisabledStep2').click(function (e) {
@@ -189,7 +191,9 @@ var showDisabled = function(){
       var $element = $('.checkbox#'+questionId);
       $element.removeClass('hidden');
     });
+    $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now shown.");
+    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
   $('#showAllDisabledClauses').click(function (e) {
@@ -198,7 +202,9 @@ var showDisabled = function(){
       var $element = $(this).closest('.checkbox');
       $element.removeClass('hidden');
     });
-    $('.disabledClauses').text("Disable clauses are now shown.");
+    $('.disabledClauses').removeClass('hidden');
+    $('.disabledClauses').text("Disable clauses are now shown.")
+    setTimeout(function() {$('.disabledClauses').addClass('hidden');}, 500);
   });
 }
 
@@ -210,7 +216,9 @@ var hideDisabled = function(){
       var $element = $('.checkbox#'+questionId);
       $element.addClass('hidden');
     });
+    $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now hidden.");
+    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
   $('#hideAllDisabledStep2').click(function (e) {
@@ -220,7 +228,9 @@ var hideDisabled = function(){
       var $element = $('.checkbox#'+questionId);
       $element.addClass('hidden');
     });
+    $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now hidden.");
+    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
   $('#hideAllDisabledClauses').click(function (e) {
@@ -231,7 +241,9 @@ var hideDisabled = function(){
         $element.addClass('hidden');
       }
     });
+    $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now hidden.");
+    setTimeout(function() {$('.disabledClauses').addClass('hidden');}, 500);
   });
 }
 
@@ -382,10 +394,12 @@ var step1SubsetsQuestionHandler = function () {
   });
   updateWizard();
   setTimeout(function() {
-      if (wasDisabled){
-        $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
-      }
-    }, 3000);
+    if (wasDisabled){
+      $('.disabledQuestions').removeClass('hidden');
+      $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
+      setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    }
+  }, 3000);
 }
 
 var uncheckedStep2ClauseIds = [];

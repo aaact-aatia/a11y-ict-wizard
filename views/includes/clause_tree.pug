@@ -48,5 +48,5 @@ fieldset#clauses
   //- property rather than aria-selected (to express 'mixed' state)
   ul.clause-tree(role='tree' aria-selectable='false')
     +createTree(clause_tree)
-  div(aria-live="polite")
+  div.wb-inv(aria-live="polite")
     p.disabledClauses.hidden Nothing disabled
