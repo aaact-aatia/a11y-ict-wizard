@@ -19,6 +19,8 @@ $(document).on("wb-ready.wb", function (event) {
 
   hideDisabled();
 
+  undoHandler();
+
   // Replace <textarea> with rich text editor (CKEditor)
   // https://stackoverflow.com/questions/46559354/how-to-set-the-height-of-ckeditor-5-classic-editor/56550285#56550285
   function MinHeightPlugin(editor) {
@@ -306,6 +308,18 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
 
 var uncheckedStep1ClauseIds = [];
 var checkedStep1QuestionsIds = [];
+var previouscheckedStep1QuestionsIds = [];
+var undo = false;
+
+var undoHandler = function () {
+  $('#undoLastStep1').click(function (e) {
+    e.preventDefault();
+    undo = true;
+    checkedStep1QuestionsIds = previouscheckedStep1QuestionsIds.slice();
+    step1SubsetsQuestionHandler();
+    undo = false;
+  });
+}
 
 var step1SubsetsQuestionHandler = function () {
   var wasDisabled = false;
@@ -324,10 +338,20 @@ var step1SubsetsQuestionHandler = function () {
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('disabled');
         $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
-      }
+      } 
+      if (undo)  {
+        $element.removeAttr('aria-disabled');
+        $element.removeAttr('tabindex');
+        $element.removeClass('hidden');
+        $dialogLink.attr('tabindex',0);
+        $dialogLink.removeClass('no-pointer-events');
+        $questionStep1Checkbox.removeAttr('disabled');
+        $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+      } 
     }
   });
 
+  previouscheckedStep1QuestionsIds = checkedStep1QuestionsIds.slice();
   while (uncheckedStep1ClauseIds.length > 0) {
     uncheckedStep1ClauseIds.pop(); 
   }
@@ -655,7 +679,6 @@ var checkFile = function () {
       });
     }
   }
-
 }
 
 var sendFileToServer = function () {
