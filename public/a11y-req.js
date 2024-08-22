@@ -154,10 +154,6 @@ var setupWizardHandler = function () {
     if (activeTabHref === 'details-step1'){
       step1SubsetsQuestionHandler();
     }
-    if (activeTabHref === 'details-step2'){
-      step1QuestionHandler();
-      step2QuestionHandler();
-    }
   });
 
   // Focus highlighting
@@ -306,12 +302,8 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
       $(this).removeAttr('aria-disabled');
     })
   }
-  
-  if ($newPanel.attr('id') === 'details-step2'){
-    step1QuestionHandler();
-    step2QuestionHandler();
-  }
-
+  step1QuestionHandler();
+  step2QuestionHandler();
   step3Handler();
   if ($newPanel.attr('id') === 'details-step3'){
     $('#clauses input').each(function () {
@@ -333,31 +325,34 @@ var undoHandler = function () {
     console.log(previouscheckedStep1QuestionsIds);
     console.log('Undo checked');
     console.log(checkedStep1QuestionsIds);
-    // if checked is less than previous check it means that last action was an uncheck
+    // if checked is less than previous check it means that last action was an uncheck or a deselect all
     if (checkedStep1QuestionsIds.length < previouscheckedStep1QuestionsIds.length){
       undo = false;
-      var found = false;
       var count = 0 ;
       var lastInteractedQuestion;
       console.log("Before loop");
 
-      while ((!found) && (count < previouscheckedStep1QuestionsIds.length)) {
+      while ((count < previouscheckedStep1QuestionsIds.length)) {
         console.log(previouscheckedStep1QuestionsIds[count])
         if (!checkedStep1QuestionsIds.includes(previouscheckedStep1QuestionsIds[count])){
           lastInteractedQuestion = previouscheckedStep1QuestionsIds[count];
           console.log("Found last interacted checkbox: ", lastInteractedQuestion)
-          found = true
+          var $lastCheckbox = $('#wizard input.isUber#' + lastInteractedQuestion);
+          $lastCheckbox.prop('checked',true);
         }
         count++
       }
       console.log("After loop");
-      var $lastCheckbox = $('#wizard input.isUber#' + lastInteractedQuestion);
-      $lastCheckbox.prop('checked',true);
+      
     }
     checkedStep1QuestionsIds = previouscheckedStep1QuestionsIds.slice();
     console.log('Undo New checked After changing');
     console.log(checkedStep1QuestionsIds);
+    updateWizard();
     step1SubsetsQuestionHandler();
+    step1QuestionHandler();
+    step2QuestionHandler();
+    updateWizard();
     undo = false;
   });
 }
@@ -378,8 +373,9 @@ var step1SubsetsQuestionHandler = function () {
         $dialogLink.attr('tabindex',0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('disabled');
-        $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+        $questionStep1Checkbox.prop('checked',false);
       } 
+      // clears the aria-disabled subset questions on undo
       if (undo)  {
         $element.removeAttr('aria-disabled');
         $element.removeAttr('tabindex');
@@ -387,7 +383,7 @@ var step1SubsetsQuestionHandler = function () {
         $dialogLink.attr('tabindex',0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('disabled');
-        $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+        $questionStep1Checkbox.prop('checked',false);
       } 
     }
   });
@@ -410,7 +406,6 @@ var step1SubsetsQuestionHandler = function () {
       }
     });
   });
-
   $('#wizard input.isUber').each(function () {
     var questionId = this.id;
     if (checkedStep1QuestionsIds.includes(questionId)){
@@ -448,7 +443,7 @@ var step1SubsetsQuestionHandler = function () {
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
       $questionStep1Checkbox.attr('disabled', true);
-      $questionStep1Checkbox.prop('checked', true).prop('indeterminate', false);
+      $questionStep1Checkbox.prop('checked', true);
       wasDisabled = true;
       $element.addClass('hidden');
       // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
@@ -462,7 +457,7 @@ var step1SubsetsQuestionHandler = function () {
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
       $questionStep1Checkbox.removeAttr('disabled');
-      $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
+      $questionStep1Checkbox.prop('checked',false);
     }
   });
   updateWizard();
@@ -476,6 +471,8 @@ var step1SubsetsQuestionHandler = function () {
 }
 
 var uncheckedStep2ClauseIds = [];
+var previouscheckedStep2QuestionsIds = [];
+var checkedStep2QuestionsIds = [];
 
 // Adds all the clauses associated to the checked questions to the array uncheckedStep2ClauseIds
 var step1QuestionHandler = function () {
@@ -536,7 +533,7 @@ var step2QuestionHandler = function () {
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
       $questionStep2Checkbox.attr('disabled', true);
-      $questionStep2Checkbox.prop('checked', true).prop('indeterminate', false);
+      $questionStep2Checkbox.prop('checked', true);
       $element.addClass('hidden');
       // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
       // setTimeout(function() {
@@ -550,7 +547,7 @@ var step2QuestionHandler = function () {
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
       $questionStep2Checkbox.removeAttr('disabled');
-      $questionStep2Checkbox.prop('checked',false).prop('indeterminate', false);
+      $questionStep2Checkbox.prop('checked',false);
     }
   });
 }
