@@ -147,7 +147,17 @@ var setupWizardHandler = function () {
 
   $('#wizard input').on('change', function () {
     updateWizard();
-    step1SubsetsQuestionHandler();
+
+    var $activeTabLink = $('.wb-tabs .active a');
+    var activeTabHref = $activeTabLink.attr('href').replace('#', '');
+    
+    if (activeTabHref === 'details-step1'){
+      step1SubsetsQuestionHandler();
+    }
+    if (activeTabHref === 'details-step2'){
+      step1QuestionHandler();
+      step2QuestionHandler();
+    }
   });
 
   // Focus highlighting
@@ -296,8 +306,12 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
       $(this).removeAttr('aria-disabled');
     })
   }
-  step1QuestionHandler();
-  step2QuestionHandler();
+  
+  if ($newPanel.attr('id') === 'details-step2'){
+    step1QuestionHandler();
+    step2QuestionHandler();
+  }
+
   step3Handler();
   if ($newPanel.attr('id') === 'details-step3'){
     $('#clauses input').each(function () {
@@ -315,7 +329,34 @@ var undoHandler = function () {
   $('#undoLastStep1').click(function (e) {
     e.preventDefault();
     undo = true;
+    console.log('Undo Previous checked');
+    console.log(previouscheckedStep1QuestionsIds);
+    console.log('Undo checked');
+    console.log(checkedStep1QuestionsIds);
+    // if checked is less than previous check it means that last action was an uncheck
+    if (checkedStep1QuestionsIds.length < previouscheckedStep1QuestionsIds.length){
+      undo = false;
+      var found = false;
+      var count = 0 ;
+      var lastInteractedQuestion;
+      console.log("Before loop");
+
+      while ((!found) && (count < previouscheckedStep1QuestionsIds.length)) {
+        console.log(previouscheckedStep1QuestionsIds[count])
+        if (!checkedStep1QuestionsIds.includes(previouscheckedStep1QuestionsIds[count])){
+          lastInteractedQuestion = previouscheckedStep1QuestionsIds[count];
+          console.log("Found last interacted checkbox: ", lastInteractedQuestion)
+          found = true
+        }
+        count++
+      }
+      console.log("After loop");
+      var $lastCheckbox = $('#wizard input.isUber#' + lastInteractedQuestion);
+      $lastCheckbox.prop('checked',true);
+    }
     checkedStep1QuestionsIds = previouscheckedStep1QuestionsIds.slice();
+    console.log('Undo New checked After changing');
+    console.log(checkedStep1QuestionsIds);
     step1SubsetsQuestionHandler();
     undo = false;
   });
@@ -350,7 +391,6 @@ var step1SubsetsQuestionHandler = function () {
       } 
     }
   });
-
   previouscheckedStep1QuestionsIds = checkedStep1QuestionsIds.slice();
   while (uncheckedStep1ClauseIds.length > 0) {
     uncheckedStep1ClauseIds.pop(); 
@@ -413,7 +453,6 @@ var step1SubsetsQuestionHandler = function () {
       $element.addClass('hidden');
       // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
       // setTimeout(function() {
-      //   // Delay 1 second
       //   $element.addClass('hidden');
       // }, 1000);
     }  else if ($questionStep1Checkbox.is(':disabled'))  {
@@ -441,7 +480,7 @@ var uncheckedStep2ClauseIds = [];
 // Adds all the clauses associated to the checked questions to the array uncheckedStep2ClauseIds
 var step1QuestionHandler = function () {
   while (uncheckedStep2ClauseIds.length > 0) {
-    uncheckedStep2ClauseIds.pop(); // Remove the all element in array
+    uncheckedStep2ClauseIds.pop();
   }
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
@@ -461,7 +500,7 @@ var step2QuestionHandler = function () {
     var questionId = this.id;
     var covered = true;
     var checkedinStep1 = true;
-    
+
     // Used to link the Step 1 question and the Step 2 question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
     $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
