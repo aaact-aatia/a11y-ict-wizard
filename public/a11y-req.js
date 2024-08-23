@@ -325,7 +325,7 @@ var step1SubsetsQuestionHandler = function () {
 
     if (!checkedStep1QuestionsIds.includes(questionId)){
       if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
-
+        $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
         $dialogLink.attr('tabindex',0);
@@ -387,7 +387,7 @@ var step1SubsetsQuestionHandler = function () {
     var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
 
     if (covered && checkedParentinStep1) {
-      $element.attr('aria-disabled', true);
+      $element.css('color', '#AD0000');
       $element.attr('tabindex', 0);
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
@@ -401,6 +401,7 @@ var step1SubsetsQuestionHandler = function () {
       //   $element.addClass('hidden');
       // }, 1000);
     }  else if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
+      $element.css('color', '#333333');
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
@@ -475,7 +476,7 @@ var step2QuestionHandler = function () {
     var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
 
     if (covered && checkedinStep1) {
-      $element.attr('aria-disabled', true);
+      $element.css('color', '#AD0000');
       $element.attr('tabindex', 0);
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
@@ -488,6 +489,7 @@ var step2QuestionHandler = function () {
       //   $element.addClass('hidden');
       // }, 1000);
     }  else if ($questionStep2Checkbox.attr('aria-disabled') === 'true')  {
+      $element.css('color', '#333333');
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
@@ -506,12 +508,12 @@ var step3Handler = function () {
     if ($this.prop('indeterminate')) {
       // Checkbox is in indeterminate state
       $this.siblings('span.remove-text').text('');
-      $this.siblings('span').css('color', 'black');
+      $this.siblings('span').css('color', '333333');
       $checkboxContainer.removeClass('hidden');
     } else if ($this.is(':checked')) {
       // Checkbox is checked
       $this.siblings('span.remove-text').text('');
-      $this.siblings('span').css('color', 'black');
+      $this.siblings('span').css('color', '333333');
       $checkboxContainer.removeClass('hidden');
     } else {
       // Checkbox is not checked
