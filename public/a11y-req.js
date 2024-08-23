@@ -15,9 +15,9 @@ $(document).on("wb-ready.wb", function (event) {
 
   setupRestoreJSONHandler();
 
-  showDisabled();
+  showRemoved();
 
-  hideDisabled();
+  hideRemoved();
 
   // Replace <textarea> with rich text editor (CKEditor)
   // https://stackoverflow.com/questions/46559354/how-to-set-the-height-of-ckeditor-5-classic-editor/56550285#56550285
@@ -171,10 +171,12 @@ var selectClauses = function (clauses, select) {
   }
 }
 
-var showDisabled = function(){
-  $('#showAllDisabledStep1').click(function (e) {
+var showRemoved = function(){
+  $('#showAllRemovedStep1').click(function (e) {
     e.preventDefault();
-    $('#wizard input.isUber:checked:disabled').each(function() {
+    $('#wizard input.isUber:checked').filter(function() {
+      return $(this).attr('aria-disabled') === 'true';
+    }).each(function() {
       var questionId = this.id;
       var $element = $('.checkbox#'+questionId);
       $element.removeClass('hidden');
@@ -184,9 +186,11 @@ var showDisabled = function(){
     setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
-  $('#showAllDisabledStep2').click(function (e) {
+  $('#showAllRemovedStep2').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked:disabled').not('.isUber').each(function() {
+    $('#wizard input:checked').not('.isUber').filter(function() {
+      return $(this).attr('aria-disabled') === 'true';
+    }).each(function() {
       var questionId = this.id;
       var $element = $('.checkbox#'+questionId);
       $element.removeClass('hidden');
@@ -196,7 +200,7 @@ var showDisabled = function(){
     setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
-  $('#showAllDisabledClauses').click(function (e) {
+  $('#showAllRemovedClauses').click(function (e) {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
       var $element = $(this).closest('.checkbox');
@@ -208,10 +212,12 @@ var showDisabled = function(){
   });
 }
 
-var hideDisabled = function(){
-  $('#hideAllDisabledStep1').click(function (e) {
+var hideRemoved = function(){
+  $('#hideAllRemovedStep1').click(function (e) {
     e.preventDefault();
-    $('#wizard input.isUber:checked:disabled').each(function() {
+    $('#wizard input.isUber:checked').filter(function() {
+      return $(this).attr('aria-disabled') === 'true';
+    }).each(function() {
       var questionId = this.id;
       var $element = $('.checkbox#'+questionId);
       $element.addClass('hidden');
@@ -221,9 +227,11 @@ var hideDisabled = function(){
     setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
-  $('#hideAllDisabledStep2').click(function (e) {
+  $('#hideAllRemovedStep2').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked:disabled').not('.isUber').each(function() {
+    $('#wizard input:checked').not('.isUber').filter(function() {
+      return $(this).attr('aria-disabled') === 'true';
+    }).each(function() {
       var questionId = this.id;
       var $element = $('.checkbox#'+questionId);
       $element.addClass('hidden');
@@ -233,7 +241,7 @@ var hideDisabled = function(){
     setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
   });
 
-  $('#hideAllDisabledClauses').click(function (e) {
+  $('#hideAllRemovedClauses').click(function (e) {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
       if (!$(this).prop('indeterminate')){
@@ -308,7 +316,7 @@ var uncheckedStep1ClauseIds = [];
 var checkedStep1QuestionsIds = [];
 
 var step1SubsetsQuestionHandler = function () {
-  var wasDisabled = false;
+  var wasRemoved = false;
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     var $questionStep1Checkbox = $(this);
@@ -316,8 +324,8 @@ var step1SubsetsQuestionHandler = function () {
     var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
 
     if (!checkedStep1QuestionsIds.includes(questionId)){
-      if ($questionStep1Checkbox.is(':disabled'))  {
-        $element.removeAttr('aria-disabled');
+      if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
+
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
         $dialogLink.attr('tabindex',0);
@@ -383,28 +391,27 @@ var step1SubsetsQuestionHandler = function () {
       $element.attr('tabindex', 0);
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
-      $questionStep1Checkbox.attr('disabled', true);
+      $questionStep1Checkbox.attr('aria-disabled', true);
       $questionStep1Checkbox.prop('checked', true).prop('indeterminate', false);
-      wasDisabled = true;
+      wasRemoved = true;
       $element.addClass('hidden');
       // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
       // setTimeout(function() {
       //   // Delay 1 second
       //   $element.addClass('hidden');
       // }, 1000);
-    }  else if ($questionStep1Checkbox.is(':disabled'))  {
-      $element.removeAttr('aria-disabled');
+    }  else if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
-      $questionStep1Checkbox.removeAttr('disabled');
+      $questionStep1Checkbox.removeAttr('aria-disabled');
       $questionStep1Checkbox.prop('checked',false).prop('indeterminate', false);
     }
   });
   updateWizard();
   setTimeout(function() {
-    if (wasDisabled){
+    if (wasRemoved){
       $('.disabledQuestions').removeClass('hidden');
       $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
       setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
@@ -472,7 +479,7 @@ var step2QuestionHandler = function () {
       $element.attr('tabindex', 0);
       $dialogLink.attr('tabindex', -1);
       $dialogLink.addClass('no-pointer-events');
-      $questionStep2Checkbox.attr('disabled', true);
+      $questionStep2Checkbox.attr('aria-disabled', true);
       $questionStep2Checkbox.prop('checked', true).prop('indeterminate', false);
       $element.addClass('hidden');
       // Using delays would make the disabled classes appear for 1 second when other checkboxes are being checked
@@ -480,13 +487,12 @@ var step2QuestionHandler = function () {
       //   // Delay 1 second
       //   $element.addClass('hidden');
       // }, 1000);
-    }  else if ($questionStep2Checkbox.is(':disabled'))  {
-      $element.removeAttr('aria-disabled');
+    }  else if ($questionStep2Checkbox.attr('aria-disabled') === 'true')  {
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
       $dialogLink.attr('tabindex',0);
       $dialogLink.removeClass('no-pointer-events');
-      $questionStep2Checkbox.removeAttr('disabled');
+      $questionStep2Checkbox.removeAttr('aria-disabled');
       $questionStep2Checkbox.prop('checked',false).prop('indeterminate', false);
     }
   });
@@ -510,7 +516,7 @@ var step3Handler = function () {
     } else {
       // Checkbox is not checked
       $this.siblings('span.remove-text').text('[remove]  ');
-      $this.siblings('span').css('color', 'red');
+      $this.siblings('span').css('color', '#AD0000');
       $checkboxContainer.addClass('hidden');
     }
   });
