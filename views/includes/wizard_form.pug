@@ -7,6 +7,7 @@ mixin checkbox(label, name, onlyIf, description, isUber)
   .checkbox(id=name)
     label(for=name)
       input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false))
+      span.remove-disabled-text
       | !{label}
     a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Open a dialog with more info on ${label}` tabindex="0")
       svg(width="24.1" height="24.1" viewBox="-10 -10 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(0%, 10%)")
