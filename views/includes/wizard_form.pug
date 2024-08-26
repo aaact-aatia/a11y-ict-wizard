@@ -7,6 +7,7 @@ mixin checkbox(label, name, onlyIf, description, isUber)
   .checkbox(id=name)
     label(for=name)
       input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false))
+      span.remove-disabled-text
       | !{label}
     a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Open a dialog with more info on ${label}` tabindex="0")
       svg(width="24.1" height="24.1" viewBox="-10 -10 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(0%, 10%)")
@@ -44,8 +45,8 @@ section#wizard
         button#checkAll(class="btn btn-default") Select all
         button#uncheckAll(class="btn btn-default") Deselect all
       .btn-group(style="margin-left : 10px")
-        button#showAllDisabledStep1(class="btn btn-default") Show disabled
-        button#hideAllDisabledStep1(class="btn btn-default") Hide disabled
+        button#showAllRemovedStep1(class="btn btn-default") Show removed
+        button#hideAllRemovedStep1(class="btn btn-default")  Hide removed
       <br/>
       button#undoLastStep1(class="btn btn-default" style="margin-top:10px;") Undo
       div.wizard-questions
@@ -60,8 +61,8 @@ section#wizard
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber)
     else if step == 2
       .btn-group(style="margin-left : 10px")
-        button#showAllDisabledStep2(class="btn btn-default") Show disabled
-        button#hideAllDisabledStep2(class="btn btn-default")  Hide disabled
+        button#showAllRemovedStep2(class="btn btn-default") Show removed
+        button#hideAllRemovedStep2(class="btn btn-default")  Hide removed
       <br/>
       button#undoLastStep2(class="btn btn-default" style="margin-top:10px;") Undo
       div.wizard-questions
