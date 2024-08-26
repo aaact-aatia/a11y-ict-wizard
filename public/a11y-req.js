@@ -387,7 +387,8 @@ var step1SubsetsQuestionHandler = function () {
       } 
       // clears the aria-disabled subset questions on undo
       if (undo)  {
-        $element.removeAttr('aria-disabled');
+        $questionStep1Checkbox.siblings('span.remove-disabled-text').text('');
+        $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
         $dialogLink.attr('tabindex',0);
