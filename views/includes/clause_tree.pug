@@ -37,13 +37,16 @@ fieldset#clauses
   legend
     span#tree_label.field-name Required clauses 
   .btn-group
-    //- button.btn.btn-default#selectAll Select all 
-    //- button.btn.btn-default#selectNone Select none
     button.btn.btn-default#expandTree Expand tree
     button.btn.btn-default#expandAll Expand all
     button.btn.btn-default#collapseAll Collapse all
+  .btn-group(style="margin-left : 10px")
+    button.btn.btn-default#showAllDisabledClauses Show disabled
+    button.btn.btn-default#hideAllDisabledClauses Hide disabled
   //- aria-labelledby is not be necessary due to the fieldset legend
   //- aria-selectable='false' is not ideal, but the treeitems need aria-checked
   //- property rather than aria-selected (to express 'mixed' state)
   ul.clause-tree(role='tree' aria-selectable='false')
     +createTree(clause_tree)
+  div.wb-inv(aria-live="polite")
+    p.disabledClauses.hidden Nothing disabled
