@@ -8,7 +8,7 @@ mixin fpsCheckbox(clause, selected, endNode)
       i.expand
       i.collapse
     label(for=clause.id)
-      input(id=clause.id type='checkbox' name='clauses' data-number=clause.number value=clause.id class=clause.informative ? 'informative' : '' checked=selected tabindex='-1' aria-hidden='true')
+      input.read-only(id=clause.id type='checkbox' name='clauses' data-number=clause.number value=clause.id class=clause.informative ? 'informative' : '' checked=selected tabindex='-1' aria-hidden='true')
       span.remove-text
       span.number #{clause.number} 
       span.name #{clause.name}
@@ -41,8 +41,8 @@ fieldset#clauses
     button.btn.btn-default#expandAll Expand all
     button.btn.btn-default#collapseAll Collapse all
   .btn-group(style="margin-left : 10px")
-    button.btn.btn-default#showAllDisabledClauses Show disabled
-    button.btn.btn-default#hideAllDisabledClauses Hide disabled
+    button.btn.btn-default#showAllRemovedClauses Show removed
+    button.btn.btn-default#hideAllRemovedClauses Hide removed
   //- aria-labelledby is not be necessary due to the fieldset legend
   //- aria-selectable='false' is not ideal, but the treeitems need aria-checked
   //- property rather than aria-selected (to express 'mixed' state)
