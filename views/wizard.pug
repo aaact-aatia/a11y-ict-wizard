@@ -47,24 +47,37 @@ block content
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3', style='margin-bottom: 10px;') Next
 
           details#details-step3
-            summary Step 3: Review clause selection
+            summary Step 3: Further refine ICT functionality
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions: Step 3
+            - var step = 3
+            include includes/wizard_form
+            div(aria-live="polite")
+              p.clause-count
+                strong Total number of clause applicable: 0
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Previous
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step4', style='margin-bottom: 10px;') Next
+
+
+          details#details-step4
+            summary Step 4: Review clause selection
+            p.form-instructions-link
+              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
             include includes/clause_tree
             div(aria-live="polite")
               p.clause-count
                 strong Total number of clause applicable: 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
             div(style='margin-top: 8px;')
-              a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Previous
-              a.btn.btn-default.wb-tabs-ext.right(href='#details-step4', style='margin-bottom: 10px;') Next
+              a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Previous
+              a.btn.btn-default.wb-tabs-ext.right(href='#details-step5', style='margin-bottom: 10px;') Next
 
-          details#details-step4
-            summary Step 4: Generate requirements documents
+          details#details-step5
+            summary Step 5: Generate requirements documents
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
+              a.overlay-lnk.right(href='#instructionsStep5' aria-controls='instructionsStep5' role='button' title='Step 5 instructions') Instructions: Step 5
             include includes/download_chooser
-            a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px; margin-top: 8px;') Previous
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step4', style='margin-bottom: 10px; margin-top: 8px;') Previous
 
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1
     header.modal-header
@@ -91,9 +104,17 @@ block content
       p To be updated
       p When you are satisfied that your selection is correct, proceed to Step 3 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
 
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep2
     header.modal-header
       h2.modal-title Instructions: Step 3
+    .modal-body
+      p To be updated
+      p When you are satisfied that your selection is correct, proceed to Step 4 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
+
+
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+    header.modal-header
+      h2.modal-title Instructions: Step 4
     .modal-body
       p
         | Relevant requirements (clauses) have now been selected based on your answers in Step 1 and 2. Use the checkbox tree to inspect which clauses have been selected. Make sure that they apply to your procurement.
@@ -122,7 +143,7 @@ block content
       
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4
     header.modal-header
-      h2.modal-title Instructions: Step 4
+      h2.modal-title Instructions: Step 5
     .modal-body
       p Click the links to download requirements documents. For most procurements, "Requirements with informative sections" should be included. When conformance is being rated, also include an "Evaluation template".
       p You may wish to give the documents more descriptive filenames after downloading.

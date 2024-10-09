@@ -33,12 +33,14 @@ section#wizard
 
     - var uberQuestions_list = [];
     - var nonUberQuestions_list = [];
+    - var uniqueQuestions_list = [];
     
     each question in question_list
         if question.isUber
           - uberQuestions_list.push(question);
         if !(question.isUber)
           - nonUberQuestions_list.push(question);
+        
 
     if step == 1
       .btn-group

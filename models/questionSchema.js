@@ -9,7 +9,8 @@ const QuestionSchema = new Schema({
   clauses: [{ type: Schema.Types.ObjectId, ref: 'Clause' }],
   order: { type: Number },
   onlyIf: { type: Boolean },
-  isUber: { type: Boolean }
+  isUber: { type: Boolean },
+  isUnique: { type: Boolean }
 });
 
 QuestionSchema.virtual('url').get(function () {
