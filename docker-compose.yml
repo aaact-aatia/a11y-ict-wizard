@@ -5,16 +5,21 @@ services:
     a11y:
         build: .
         ports:
-            - 3000:80
+            - 3000:3000
         environment: 
-            - MONGODB_URI=mongodb://mongo/a11y-req
+            - MONGODB_URI=mongodb://mongo:27017/a11y-req
             - BASIC_AUTH_USERNAME=admin
             - BASIC_AUTH_PASSWORD=password
             - POPULATE_DB=$${POPULATE_DB}
             - WAIT_HOSTS=mongo:27017
             - WAIT_FOR_MONGO=true
+        depends_on:
+            - mongo
+
     mongo:
-        image: mongo:3.3
+        image: mongo:4.4
+        ports:
+            - "27017:27017"
         restart: always
     
     mongoexpress:
@@ -22,4 +27,6 @@ services:
         restart: always
         ports: 
             - 3005:8081
+        depends_on:
+            - mongo
 
