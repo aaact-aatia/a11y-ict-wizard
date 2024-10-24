@@ -1,4 +1,5 @@
-# not to be used in production
+# THIS IS NOT USED IN PRODUCTIOIN. 
+# IN PRODUCTION THE APP USES AZURE COSMOS DB and AZURE DEVOPS PIPELINE
 version: "3"
 
 services:
@@ -7,7 +8,7 @@ services:
         ports:
             - 3000:3000
         environment: 
-            - MONGODB_URI=mongodb://mongo:27017/a11y-req
+            - DB_URI=mongodb://mongo:27017/a11y-req
             - BASIC_AUTH_USERNAME=admin
             - BASIC_AUTH_PASSWORD=password
             - POPULATE_DB=$${POPULATE_DB}

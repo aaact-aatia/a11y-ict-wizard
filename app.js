@@ -14,8 +14,7 @@ app.locals.moment = require("moment");
 app.use(express.static(path.join(__dirname, "public")));
 
 try {
-	const mongoDB = process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/a11y-req";
-	//const mongoDB = 'mongodb://127.0.0.1:27017/a11y-req';
+	const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
 	mongoose.connect(mongoDB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
