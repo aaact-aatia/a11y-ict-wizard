@@ -3,7 +3,6 @@ if item_list.length > 0
     thead
       tr.active
         th.col-sm-6(scope='col') Clause de la norme EN 301 549
-        th.col-sm-4(scope='col') Relation avec les déclarations de performance fonctionnelle
     tbody
       each item in item_list
         tr
@@ -11,10 +10,11 @@ if item_list.length > 0
             p
               strong #{item.number} #{item.frName}
             | !{item.frDescription}
-          td(valign='top')
             if item.description.length > 0
               p
-                strong C.#{item.number} #{item.frName}
-              | !{item.frCompliance}
+                strong Relation avec les déclarations de performance fonctionnelle:
+                | !{item.frCompliance}
             else
+              p
+                strong Relation avec les déclarations de performance fonctionnelle:
               | Pas d'impact utilisateur associé
