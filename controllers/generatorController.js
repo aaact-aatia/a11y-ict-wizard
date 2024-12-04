@@ -132,28 +132,28 @@ exports.download = (req, res, next) => {
 				return next(err);
 			}
 
-				if (format == 'html') {
-					console.log("sending html file");
-								res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-								res.send(output);
-				}
-				else {
-					const options = {
-						orientation: req.body.orientation,
-						margins: {
-							top: 1304,
-							bottom: 1304,
-							left: 1134,
-							right: 1134
-						}
-					};
-					const docxBlob = htmlDocx.asBlob(output, options);
-					docxBlob.arrayBuffer().then((arrayBuffer) => {
-						const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));
-		res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
-      res.send(docxBuffer );
-});
-				}
+			if (format == 'html') {
+				console.log("sending html file");
+				res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+				res.send(output);
+			}
+			else {
+				const options = {
+					orientation: req.body.orientation,
+					margins: {
+						top: 1304,
+						bottom: 1304,
+						left: 1134,
+						right: 1134
+					}
+				};
+				const docxBlob = htmlDocx.asBlob(output, options);
+				docxBlob.arrayBuffer().then((arrayBuffer) => {
+					const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));
+					res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
+					res.send(docxBuffer);
+				});
+			}
 		});
 	});
 };
