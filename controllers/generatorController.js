@@ -54,18 +54,19 @@ exports.wizard_fr_get = (req, res, next) => {
 exports.download = (req, res, next) => {
 	console.log('Download request received');
 	let strings = { template: req.params.template };
+	const format = req.body.format;
 	if (req.params.template.slice(-2) === 'fr') {
-		strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.docx';
+		strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.' + format;
 		strings.title = 'Exigences en matière de TIC accessibles';
 	} else {
-		strings.filename = 'Annex X - ICT Accessibility Requirements.docx';
+		strings.filename = 'Annex X - ICT Accessibility Requirements.' + format;
 		strings.title = 'ICT Accessibility Requirements';
 	}
 	if (req.params.template.includes("evaluation")) {
 		if (req.params.template.slice(-2) === 'fr') {
-			strings.filename = "Annexe Y - Exigences testables selectés dans l'Annexe X.docx";
+			strings.filename = 'Annexe Y - Exigences testables selectés dans l\'Annexe X.' + format;
 		} else {
-			strings.filename = 'Annex Y - Testable requirements selected in Annex X.docx';
+			strings.filename = 'Annex Y - Testable requirements selected in Annex X.' + format;
 		}
 	}
 	// Edge case: < 2 clauses selected
@@ -130,19 +131,13 @@ exports.download = (req, res, next) => {
 				console.error('Error during HTML rendering:', err);
 				return next(err);
 			}
-			console.log('Rendered HTML template successfully');
 
-			// Write the rendered HTML to a temporary file for inspection
-			const tempHtmlPath = path.join(tmpDir, 'temp.html');
-			fs.writeFile(tempHtmlPath, output, 'utf8', (writeErr) => {
-				if (writeErr) {
-					console.error('Error writing HTML to temp file:', writeErr);
-					return next(writeErr);
+				if (format == 'html') {
+					console.log("sending html file");
+								res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+								res.send(output);
 				}
-				console.log('Temporary HTML file written successfully:', tempHtmlPath);
-
-				// Convert HTML to Word document using html-docx-js
-				try {
+				else {
 					const options = {
 						orientation: req.body.orientation,
 						margins: {
@@ -153,38 +148,12 @@ exports.download = (req, res, next) => {
 						}
 					};
 					const docxBlob = htmlDocx.asBlob(output, options);
-					console.log('Conversion to Word document successful');
-
-					// Convert Blob to Buffer
 					docxBlob.arrayBuffer().then((arrayBuffer) => {
 						const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));
-
-						const tempDocxPath = path.join(tmpDir, strings.filename);
-						fs.writeFile(tempDocxPath, docxBuffer, (writeErr) => {
-							if (writeErr) {
-								console.error('Error writing DOCX to temp file:', writeErr);
-								return next(writeErr);
-							}
-							console.log('Temporary DOCX file written successfully');
-							fs.readFile(tempDocxPath, (readErr, data) => {
-								if (readErr) {
-									console.error('Error reading generated DOCX file:', readErr);
-									return next(readErr);
-								}
-								console.log('Sending generated DOCX file to client');
-								res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-								res.send(data);
-							});
-						});
-					}).catch((convertErr) => {
-						console.error('Error during HTML to Word conversion:', convertErr);
-						return next(convertErr);
-					});
-				} catch (convertErr) {
-					console.error('Error during HTML to Word conversion:', convertErr);
-					return next(convertErr);
+		res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
+      res.send(docxBuffer );
+});
 				}
-			});
 		});
 	});
 };

@@ -28,3 +28,14 @@ fieldset.download-links
         label(for='orientation2')
           input(type='radio' name='orientation' value='landscape' id='orientation2')
           | Landscape
+    fieldset
+      legend
+        span.field-name Document format
+      .radio
+        label(for='docxformat')
+          input(type='radio' name='format' value='docx' id='docxformat' checked)
+          | Microsoft Word (.docx)
+      .radio
+        label(for='htmlformat')
+          input(type='radio' name='format' value='html' id='htmlformat')
+          | Downloadable HTML file (.html)
