@@ -64,7 +64,7 @@ exports.download = (req, res, next) => {
 	}
 	if (req.params.template.includes("evaluation")) {
 		if (req.params.template.slice(-2) === 'fr') {
-			strings.filename = 'Annexe Y - Exigences testables selectés dans l\'Annexe X.' + format;
+			strings.filename = 'Annexe Y - Exigences testables selectés dans l Annexe X.' + format;
 		} else {
 			strings.filename = 'Annex Y - Testable requirements selected in Annex X.' + format;
 		}
