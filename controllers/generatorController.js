@@ -2,7 +2,6 @@
 
 const async = require('async');
 const mongoose = require('mongoose');
-const fs = require('fs');
 const path = require('path');
 const htmlDocx = require('html-docx-js');
 
@@ -14,12 +13,6 @@ const toClauseTree = require('./clauseTree');
 const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
 		!clause.informative && clause.description.length > 0);
-
-// Ensure the tmp directory exists
-const tmpDir = path.join(__dirname, '../tmp');
-if (!fs.existsSync(tmpDir)) {
-	fs.mkdirSync(tmpDir);
-}
 
 // Select functional accessibility requirements or question
 exports.wizard_get = (req, res, next) => {
