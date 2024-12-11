@@ -46,6 +46,7 @@ exports.wizard_fr_get = (req, res, next) => {
 
 exports.download = (req, res, next) => {
 	console.log('Download request received');
+
 	let strings = { template: req.params.template };
 	const format = req.body.format;
 	if (req.params.template.slice(-2) === 'fr') {
@@ -75,9 +76,16 @@ exports.download = (req, res, next) => {
 	for (let id of req.body.clauses) {
 		clause_ids.push(mongoose.Types.ObjectId(id));
 	}
+	let question_ids = [];
+	for (let questionId of req.body.questions.split(',')) {
+		if (questionId.length > 0) {
+			question_ids.push(mongoose.Types.ObjectId(questionId));
+		}
+	}
 
 	async.parallel({
 		fps: (callback) => Clause.find({ '_id': { $in: clause_ids } }).exec(callback),
+		questionsSelected: (callback) => Question.find({ '_id': { $in: question_ids } }).exec(callback),
 		intro: (callback) => {
 			// Find sections with names NOT starting with "Annex"
 			Info.find({ name: /^(?!Annex).*/ })
@@ -100,7 +108,6 @@ exports.download = (req, res, next) => {
 			return res.redirect('/view/create');
 		}
 		results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-
 		// Remove Tables and Figures annex if not applicable
 		let figureClauses = ['5.1.4', '8.3.4.1', '8.3.4.2', '8.3.4.3.2', '8.3.4.3.3', '8.3.2.5', '8.3.2.6',
 			'8.3.2.1', '8.3.2.2', '8.3.2.3.2', '8.3.2.3.3', '8.3.3.1', '8.3.3.2',
@@ -115,6 +122,7 @@ exports.download = (req, res, next) => {
 
 		res.render(strings.template, {
 			title: strings.title,
+			question_list: results.questionsSelected,
 			item_list: results.fps,
 			test_list: getTestableClauses(results.fps),
 			intro: results.intro,
