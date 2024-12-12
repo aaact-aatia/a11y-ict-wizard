@@ -322,6 +322,12 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
       $(this).attr('aria-disabled', true);
     })
   }
+  //update selectedQuestions field
+  var selections = [];
+  $('#wizard input:checked').each(function () {
+    selections.push(this.id);
+  });
+  $('#selectedQuestions').val(selections.join());
 });
 
 var uncheckedStep1ClauseIds = [];

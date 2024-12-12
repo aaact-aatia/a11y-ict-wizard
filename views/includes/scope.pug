@@ -1,15 +1,15 @@
-if item_list.length === 1
-  p Clause #{item_list[0].number} has been deemed relevant to this ICT.
-else if item_list.length > 0
-  p
-    | Clauses 
-    each item, i in item_list
-      if i < item_list.length - 2
-        | #{item.number}, 
-      else if i == item_list.length - 2
-        | #{item.number} 
+if question_list.length === 1
+  ul
+    li #{question_list[0].name}
+else if question_list.length > 0
+  ul
+    each item, i in question_list
+      if i < question_list.length - 2
+        li #{item.name};
+      else if i == question_list.length - 2
+        li #{item.name} and
       else
-        | and #{item.number} have been deemed relevant to this ICT.
+        li #{item.name}
 else
   p
-    strong There are no functional accessibility requirements.
+    strong No provisions have been removed.
