@@ -1,11 +1,11 @@
 -var i = 0
 
-mixin checkbox(label, name, onlyIf, descri)
+mixin checkbox(label, name, onlyIf, descri, isUber)
   if name === undefined
     -name = 'checkbox' + i++
   .checkbox
       label(for=name)
-        input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false))
+        input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false))
         | !{label}
       a(href=`#morefrInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Ouvre un contennu suppersosé avec plus d'info sur ${label}` tabindex="0")
           svg(width="24" height="24" viewBox="-10 -10 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(20%, -1%)")
@@ -44,11 +44,11 @@ section#wizard
           .col-md-6
             each question, index in uberQuestions_list
               if index <= uberQuestions_list.length/2
-                +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
+                +checkbox(question.frName, question._id, question.onlyIf, question.frDescription, question.isUber)
           .col-md-6
             each question, index in uberQuestions_list
               if index > uberQuestions_list.length/2
-                +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
+                +checkbox(question.frName, question._id, question.onlyIf, question.frDescription, question.isUber)
     else if step == 2
       div.wizard-questions
         .row
@@ -62,6 +62,8 @@ section#wizard
                 +checkbox(question.frName, question._id, question.onlyIf, question.frDescription)
 
   //- Hidden data (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestions.hidden Nothing disabled
   .hidden#question-data
     each question in question_list
       ul.question(data-question-id=question._id)
@@ -70,12 +72,13 @@ section#wizard
   
   .hidden#uber-question-data
     each question in uberQuestions_list
-      ul.question(data-question-id=question._id)
+      //- p #{question._id}: #{question.name}
+      ul.question(uber-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
   
   .hidden#non-uber-question-data
     each question in nonUberQuestions_list
-      ul.question(data-question-id=question._id)
+      ul.question(non-uber-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
