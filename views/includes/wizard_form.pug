@@ -1,12 +1,12 @@
 -var i = 0
 
-mixin checkbox(label, name, onlyIf, description, isUber)
+mixin checkbox(label, name, onlyIf, description, isUber, isUnique)
   if name === undefined
     -name = 'checkbox' + i++
   - var descri = description
   .checkbox(id=name)
     label(for=name)
-      input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false))
+      input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false) class=(isUnique ? 'isUnique' : false))
       span.remove-disabled-text
       | !{label}
     a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Open a dialog with more info on ${label}` tabindex="0")
@@ -33,11 +33,14 @@ section#wizard
 
     - var uberQuestions_list = [];
     - var nonUberQuestions_list = [];
+    - var uniqueQuestions_list = [];
     
     each question in question_list
         if question.isUber
           - uberQuestions_list.push(question);
-        if !(question.isUber)
+        else if question.isUnique
+          - uniqueQuestions_list.push(question);
+        else
           - nonUberQuestions_list.push(question);
 
     if step == 1
@@ -54,11 +57,11 @@ section#wizard
           .col-md-6
             each question, index in uberQuestions_list
               if index < uberQuestions_list.length/2
-                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber)
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
           .col-md-6
             each question, index in uberQuestions_list
               if index >= uberQuestions_list.length/2
-                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber)
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
     else if step == 2
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep2(class="btn btn-default") Show removed
@@ -70,11 +73,27 @@ section#wizard
           .col-md-6
             each question, index in nonUberQuestions_list
               if index < nonUberQuestions_list.length/2
-                +checkbox(question.name, question._id, question.onlyIf, question.description)
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
           .col-md-6
             each question, index in nonUberQuestions_list
               if index >= nonUberQuestions_list.length/2
-                +checkbox(question.name, question._id, question.onlyIf, question.description)
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
+    else if step == 3
+      .btn-group(style="margin-left : 10px")
+        button#showAllRemovedStep3(class="btn btn-default") Show removed
+        button#hideAllRemovedStep3(class="btn btn-default")  Hide removed
+      <br/>
+      button#undoLastStep3(class="btn btn-default" style="margin-top:10px;") Undo
+      div.wizard-questions
+        .row
+          .col-md-6
+            each question, index in uniqueQuestions_list
+              if index < uniqueQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
+          .col-md-6
+            each question, index in uniqueQuestions_list
+              if index >= uniqueQuestions_list.length/2
+                +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
 
   //- Hidden data (for client-side javascript)
   div.wb-inv(aria-live="polite")
@@ -89,6 +108,12 @@ section#wizard
     each question in uberQuestions_list
       //- p #{question._id}: #{question.name}
       ul.question(uber-data-question-id=question._id)
+        each clause in question.clauses
+          li !{clause._id}
+  
+  .hidden#unique-question-data
+    each question in uniqueQuestions_list
+      ul.question(unique-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
   
