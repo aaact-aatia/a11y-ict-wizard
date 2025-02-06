@@ -7,7 +7,7 @@ $(document).on("wb-ready.wb", function (event) {
 
   setupWizardHandler();
 
-  setupClauseListHandler();
+  setupQuestionListHandler();
 
   updateWizard();
 
@@ -49,37 +49,51 @@ $(document).on("wb-ready.wb", function (event) {
 
 /* Manual clause list handling */
 
-var setupClauseListHandler = function () {
-  // #clauseList is the <textarea> element (see /views/wizard.pug)
-  $('#clauseList').change(function () { updateClauseSelections(); });
+var setupQuestionListHandler = function () {
+  // #questionList is the <textarea> element (see /views/wizard.pug)
+  $('#questionList').change(function () { updateQuestionSelections(); });
 };
 
-var updateClauseSelections = function () {
-  var clauseList = $('#clauseList').val();
-  // Uncheck all checkboxes
-  $('#clauses input').prop('checked', false);
-  // Clean up clause list text
-  clauseList = clauseList.replace(/[a-z]|,/gi, '');
-  var clauses = clauseList.split(' ');
-  // console.log(clauses);
-  for (var i = 0; i < clauses.length; i++) {
-    var clause = clauses[i];
-    if (clause.length < 1) {
-      continue;
-    }
-    if (clause[clause.length - 1] === '.') {
-      clause = clause.substr(0, clause.length - 1);
-    }
-    $('input[data-number="' + clause + '"]').prop('checked', true);
+var updateQuestionSelections = function () {
+  var questionList = $('#questionList').val();
+  if (questionList.trim().length === 0) {
+    //if the user left the edit field empty we do nothing.
+    return;
   }
-
-  $('[role="treeitem"]').each(function () {
-    updateAriaChecked($(this));
+  // Uncheck all checkboxes
+  const sections = document.querySelectorAll('#wizard');
+  sections.forEach((section) => {
+    section.querySelectorAll('.checkbox input[type="checkbox"]:checked').forEach((checkbox) => {
+      checkbox.checked = false;
+    });
   });
-
-  $('[role="treeitem"]').each(function () {
-    updateAriaChecked($(this));
+  // clean up the question text provided before attempting to find an select the checkboxes
+  questionList.split('\n').forEach((line) => {
+    var questionText = line.trim();
+    if (questionText.length == 0) {
+      return;
+    }
+    // strip out any leading or trailing characters from each line
+    if (questionText.substring(0, 2) == '•	') {
+      questionText = questionText.substring(2, questionText.length);
+    }
+    if (questionText.slice(-1) == ';') {
+      questionText = questionText.substring(0, questionText.length - 1);
+    }
+    if (questionText.slice(-4) == ' and' || questionText.slice(-3) == ' et') {
+      questionText = questionText.substring(0, questionText.length - 3).trim();
+    }
+    // search if the label exists, if it does check the checkbox related to it
+    var label = $("label:contains(" + questionText + ")");
+    if (label.length === 0) {
+      console.log(questionText + " was not found to match any checkboxes");
+    } else {
+      var checkbox = document.querySelector('.checkbox input[id="' + label.attr('for') + '"]');
+      checkbox.checked = true;
+    }
   });
+  updateWizard();
+  step1SubsetsQuestionHandler();
 };
 
 
@@ -154,7 +168,7 @@ var setupWizardHandler = function () {
     /*if (activeTabHref === 'details-step1'){
       step1SubsetsQuestionHandler();
     }
-    if (activeTabHref === 'details-step2'){
+    if (activeTabHref === 'details-step2') {
       step2QuestionHandler();
     }
     if (activeTabHref === 'details-step3'){
@@ -190,19 +204,19 @@ var selectClauses = function (clauses, select) {
   }
 }
 
-var showRemoved = function(){
+var showRemoved = function () {
   $('#showAllRemovedStep1').click(function (e) {
     e.preventDefault();
-    $('#wizard input.isUber:checked').filter(function() {
+    $('#wizard input.isUber:checked').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.removeClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now shown.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#showAllRemovedStep2').click(function (e) {
@@ -223,14 +237,14 @@ var showRemoved = function(){
     e.preventDefault();
     $('#wizard input:checked').filter('.isUnique').filter(function() {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.removeClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now shown.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#showAllRemovedClauses').click(function (e) {
@@ -241,23 +255,23 @@ var showRemoved = function(){
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now shown.")
-    setTimeout(function() {$('.disabledClauses').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
   });
 }
 
-var hideRemoved = function(){
+var hideRemoved = function () {
   $('#hideAllRemovedStep1').click(function (e) {
     e.preventDefault();
-    $('#wizard input.isUber:checked').filter(function() {
+    $('#wizard input.isUber:checked').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.addClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now hidden.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#hideAllRemovedStep2').click(function (e) {
@@ -278,27 +292,27 @@ var hideRemoved = function(){
     e.preventDefault();
     $('#wizard input:checked').filter('.isUnique').filter(function() {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.addClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now hidden.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#hideAllRemovedClauses').click(function (e) {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
-      if (!$(this).prop('indeterminate')){
+      if (!$(this).prop('indeterminate')) {
         var $element = $(this).closest('.checkbox');
         $element.addClass('hidden');
       }
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now hidden.");
-    setTimeout(function() {$('.disabledClauses').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
   });
 }
 
@@ -312,40 +326,42 @@ var selectAll = function () {
   $('[role="treeitem"]').attr('aria-checked', true);
 };
 
-var clauseCounter = function() {
+var clauseCounter = function () {
   // Just to count total number of clauses can be removed afterwards
   var totalClauses = 0
   $('#clauses input:checked').each(function () {
-    if ( ($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative')) ) {
+    if (($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative'))) {
       totalClauses++;
     }
   });
-  
+
   $('.clause-count').html("<strong>Total number of clause applicable: " + totalClauses + "</strong>");
 }
 
 var updateWizard = function () {
   if ($('#wizard').length > 0) {
     // Everything has to be selected by default for negative selection
-    selectAll();    
+    selectAll();
 
     // Select relevant Step 2 and 3 clauses based on Step 1 selections
     $('#wizard input:checked').each(function () {
       var questionId = this.id;
-      $('#question-data ul[data-question-id='+questionId+'] li').each(function () {
-        $clause = $('#'+this.innerHTML);
+      $('#question-data ul[data-question-id=' + questionId + '] li').each(function () {
+        $clause = $('#' + this.innerHTML);
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
           $clause.click();
         }
       });
     });
-    clauseCounter();  
+    clauseCounter();
   }
 };
 
 $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   // if attribute is not removed while in other tabs, clauses number does not update
+
   if (!($newPanel.attr('id') === 'details-step4')){
+
     $('#clauses input').each(function () {
       $(this).removeAttr('aria-disabled');
     })
@@ -359,6 +375,12 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
       $(this).attr('aria-disabled', true);
     })
   }
+  //update selectedQuestions field
+  var selections = [];
+  $('#wizard input:checked').each(function () {
+    selections.push(this.id);
+  });
+  $('#selectedQuestions').val(selections.join());
 });
 
 var uncheckedStep1ClauseIds = [];
@@ -375,16 +397,16 @@ var undoHandler = function () {
     // console.log('Undo checked');
     // console.log(checkedStep1QuestionsIds);
     // if checked is less than previous check it means that last action was an uncheck or a deselect all
-    if (checkedStep1QuestionsIds.length < previouscheckedStep1QuestionsIds.length){
+    if (checkedStep1QuestionsIds.length < previouscheckedStep1QuestionsIds.length) {
       undo = false;
-      var count = 0 ;
+      var count = 0;
       var lastInteractedQuestion;
 
       while ((count < previouscheckedStep1QuestionsIds.length)) {
-        if (!checkedStep1QuestionsIds.includes(previouscheckedStep1QuestionsIds[count])){
+        if (!checkedStep1QuestionsIds.includes(previouscheckedStep1QuestionsIds[count])) {
           lastInteractedQuestion = previouscheckedStep1QuestionsIds[count];
           var $lastCheckbox = $('#wizard input.isUber#' + lastInteractedQuestion);
-          $lastCheckbox.prop('checked',true);
+          $lastCheckbox.prop('checked', true);
         }
         count++
       }
@@ -403,18 +425,18 @@ var undoHandler = function () {
     undo = true;
 
     // if checked is less than previous check it means that last action was an uncheck or a deselect all
-    if (checkedStep2QuestionsIds.length < previouscheckedStep2QuestionsIds.length){
+    if (checkedStep2QuestionsIds.length < previouscheckedStep2QuestionsIds.length) {
       undo = false;
-      var count = 0 ;
+      var count = 0;
       var lastInteractedQuestion;
 
       while ((count < previouscheckedStep2QuestionsIds.length)) {
-        if (!checkedStep2QuestionsIds.includes(previouscheckedStep2QuestionsIds[count])){
+        if (!checkedStep2QuestionsIds.includes(previouscheckedStep2QuestionsIds[count])) {
           lastInteractedQuestion = previouscheckedStep2QuestionsIds[count];
           var $lastCheckbox = $('#wizard input#' + lastInteractedQuestion);
           var $checkboxes = $('#wizard input[type="checkbox"]').not('.isUber').not('.isUnique');
           var $lastCheckbox = $checkboxes.filter('#' + lastInteractedQuestion);
-          $lastCheckbox.prop('checked',true);
+          $lastCheckbox.prop('checked', true);
         }
         count++
       }
@@ -456,7 +478,7 @@ var undoHandler = function () {
     step3QuestionHandler();
     updateWizard();
 
-    undo=false;
+    undo = false;
   });
 
 
@@ -468,30 +490,30 @@ var step1SubsetsQuestionHandler = function () {
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     var $questionStep1Checkbox = $(this);
-    var $element = $('.checkbox#'+questionId);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+    var $element = $('.checkbox#' + questionId);
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
 
-    if (!checkedStep1QuestionsIds.includes(questionId)){
-      if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
+    if (!checkedStep1QuestionsIds.includes(questionId)) {
+      if ($questionStep1Checkbox.attr('aria-disabled') === 'true') {
         $questionStep1Checkbox.siblings('span.remove-disabled-text').text('');
         $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
-        $dialogLink.attr('tabindex',0);
+        $dialogLink.attr('tabindex', 0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('aria-disabled');
-        $questionStep1Checkbox.prop('checked',false);
-      } 
+        $questionStep1Checkbox.prop('checked', false);
+      }
       // clears the aria-disabled subset questions on undo
-      if (undo)  {
+      if (undo) {
         $questionStep1Checkbox.siblings('span.remove-disabled-text').text('');
         $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
-        $dialogLink.attr('tabindex',0);
+        $dialogLink.attr('tabindex', 0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep1Checkbox.removeAttr('aria-disabled');
-        $questionStep1Checkbox.prop('checked',false);
+        $questionStep1Checkbox.prop('checked', false);
       }
     }
   });
@@ -501,7 +523,7 @@ var step1SubsetsQuestionHandler = function () {
   // console.log("");
 
   while (uncheckedStep1ClauseIds.length > 0) {
-    uncheckedStep1ClauseIds.pop(); 
+    uncheckedStep1ClauseIds.pop();
   }
   while (checkedStep1QuestionsIds.length > 0) {
     checkedStep1QuestionsIds.pop();
@@ -509,10 +531,10 @@ var step1SubsetsQuestionHandler = function () {
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     checkedStep1QuestionsIds.push(questionId);
-    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#uber-question-data ul[uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!uncheckedStep1ClauseIds.includes(this.innerHTML.trim())){
+        if (!uncheckedStep1ClauseIds.includes(this.innerHTML.trim())) {
           uncheckedStep1ClauseIds.push(this.innerHTML.trim());
         }
       }
@@ -524,15 +546,15 @@ var step1SubsetsQuestionHandler = function () {
 
   $('#wizard input.isUber').each(function () {
     var questionId = this.id;
-    if (checkedStep1QuestionsIds.includes(questionId)){
+    if (checkedStep1QuestionsIds.includes(questionId)) {
       return true;
     }
     var covered = true;
     var checkedParentinStep1 = true;
-    
-    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
+
+    $('#uber-question-data ul[uber-data-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
-      $clause = $('#'+this.innerHTML);
+      $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!(uncheckedStep1ClauseIds.includes(clauseId))){
           checkedParentinStep1 = false;
@@ -540,8 +562,8 @@ var step1SubsetsQuestionHandler = function () {
       }
     });
 
-    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#uber-question-data ul[uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (covered) {
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
           covered = false;
@@ -549,9 +571,9 @@ var step1SubsetsQuestionHandler = function () {
       }
     });
 
-    var $element = $('.checkbox#'+questionId);
+    var $element = $('.checkbox#' + questionId);
     var $questionStep1Checkbox = $(this);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
 
     if (covered && checkedParentinStep1) {
       $questionStep1Checkbox.siblings('span.remove-disabled-text').text('[removed] ');
@@ -567,23 +589,23 @@ var step1SubsetsQuestionHandler = function () {
       // setTimeout(function() {
       //   $element.addClass('hidden');
       // }, 1000);
-    }  else if ($questionStep1Checkbox.attr('aria-disabled') === 'true')  {
+    } else if ($questionStep1Checkbox.attr('aria-disabled') === 'true') {
       $questionStep1Checkbox.siblings('span.remove-disabled-text').text('');
       $element.css('color', '#333333');
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
-      $dialogLink.attr('tabindex',0);
+      $dialogLink.attr('tabindex', 0);
       $dialogLink.removeClass('no-pointer-events');
-      $questionStep1Checkbox.prop('checked',false);
+      $questionStep1Checkbox.prop('checked', false);
       $questionStep1Checkbox.removeAttr('aria-disabled');
     }
   });
   updateWizard();
-  setTimeout(function() {
-    if (wasRemoved){
+  setTimeout(function () {
+    if (wasRemoved) {
       $('.disabledQuestions').removeClass('hidden');
       $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
-      setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+      setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
     }
   }, 3000);
 }
@@ -596,9 +618,9 @@ var step2QuestionHandler = function () {
   $('#wizard input:checked').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
     var $questionStep2Checkbox = $(this);
-    var $element = $('.checkbox#'+questionId);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
-  
+    var $element = $('.checkbox#' + questionId);
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
+
     if (!checkedStep2QuestionsIds.includes(questionId)) {
       // if ($questionStep2Checkbox.attr('aria-disabled') === 'true')  {
       //   $questionStep2Checkbox.siblings('span.remove-disabled-text').text('');
@@ -611,17 +633,17 @@ var step2QuestionHandler = function () {
       //   $questionStep2Checkbox.prop('checked',false);
       // }
       // clears the aria-disabled subset questions on undo
-      if (undo)  {
+      if (undo) {
         $questionStep2Checkbox.siblings('span.remove-disabled-text').text('');
         $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
-        $dialogLink.attr('tabindex',0);
+        $dialogLink.attr('tabindex', 0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep2Checkbox.removeAttr('aria-disabled');
-        $questionStep2Checkbox.prop('checked',false);
+        $questionStep2Checkbox.prop('checked', false);
         console.log(questionId, "removed")
-      } 
+      }
     }
   });
 
@@ -629,7 +651,7 @@ var step2QuestionHandler = function () {
 
   console.log('Step 2 Previous checked');
   console.log(previouscheckedStep2QuestionsIds);
-  
+
 
   // Adds all the questions and clauses associated to the checked questions to the array uncheckedStep2ClauseIds
   while (checkedStep2QuestionsIds.length > 0) {
@@ -641,10 +663,10 @@ var step2QuestionHandler = function () {
   }
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#uber-question-data ul[uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!uncheckedStep2ClauseIds.includes(this.innerHTML.trim())){
+        if (!uncheckedStep2ClauseIds.includes(this.innerHTML.trim())) {
           uncheckedStep2ClauseIds.push(this.innerHTML.trim());
         }
       }
@@ -653,34 +675,34 @@ var step2QuestionHandler = function () {
 
   $('#wizard input').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
-    if (checkedStep2QuestionsIds.includes(questionId)){
+    if (checkedStep2QuestionsIds.includes(questionId)) {
       return true;
     }
     var covered = true;
     var checkedinStep1 = true;
 
-    if ($(this).is(':checked')){
+    if ($(this).is(':checked')) {
       console.log('question pushed');
       checkedStep2QuestionsIds.push(questionId);
     }
-    
+
     // Used to link the Step 1 question and the Step 2 question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
-    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
+    $('#non-uber-question-data ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
-      $clause = $('#'+this.innerHTML);
+      $clause = $('#' + this.innerHTML);
       // only check unchecked non-informative endnode clauses
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         // if checkedinStep1 = false, it means the the subset uber questions was unchecked or that the question istself is not an uber
-        if (!(uncheckedStep2ClauseIds.includes(clauseId))){
+        if (!(uncheckedStep2ClauseIds.includes(clauseId))) {
           checkedinStep1 = false
         }
       }
     });
 
     // Verifies if all the clauses of the non-uber question are all unchecked, if they are covered = true
-    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#non-uber-question-data ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (covered) {
         // If clause is checked that means that uber question was not selected and question is not covered.
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
@@ -689,9 +711,9 @@ var step2QuestionHandler = function () {
       }
     });
 
-    var $element = $('.checkbox#'+questionId);
+    var $element = $('.checkbox#' + questionId);
     var $questionStep2Checkbox = $(this);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
 
     if (covered && checkedinStep1) {
       $questionStep2Checkbox.siblings('span.remove-disabled-text').text('[removed] ');
@@ -707,14 +729,14 @@ var step2QuestionHandler = function () {
       //   // Delay 1 second
       //   $element.addClass('hidden');
       // }, 1000);
-    }  else if ($questionStep2Checkbox.attr('aria-disabled') === 'true')  {
+    } else if ($questionStep2Checkbox.attr('aria-disabled') === 'true') {
       $questionStep2Checkbox.siblings('span.remove-disabled-text').text('');
       $element.css('color', '#333333');
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
-      $dialogLink.attr('tabindex',0);
+      $dialogLink.attr('tabindex', 0);
       $dialogLink.removeClass('no-pointer-events');
-      $questionStep2Checkbox.prop('checked',false);
+      $questionStep2Checkbox.prop('checked', false);
       $questionStep2Checkbox.removeAttr('aria-disabled');
     }
   });
@@ -897,7 +919,7 @@ var step4Handler = function () {
 }
 
 // Call the setup function to initialize the handler
-$(document).ready(function() {
+$(document).ready(function () {
   setupQuestionHandler();
 });
 
@@ -908,21 +930,21 @@ var setupQuestionHandler = function () {
     const section = document.querySelector('#wizard');
     const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
-      if (!checkbox.checked){
+      if (!checkbox.checked) {
         checkbox.checked = true;
       }
     });
     updateWizard();
     step1SubsetsQuestionHandler();
   });
-  
+
 
   $('#uncheckAll').click(function (e) {
     e.preventDefault();
     const section = document.querySelector('#wizard');
     const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
-      if (checkbox.checked){
+      if (checkbox.checked) {
         checkbox.checked = false;
       }
     });
@@ -935,12 +957,12 @@ var setupQuestionHandler = function () {
 };
 
 // Triggers the modal when the restore link is activated
-$(document).ready(function() {
-  $( "#centred-popup-modal" ).trigger( "open.wb-overlaylbx" );
+$(document).ready(function () {
+  $("#centred-popup-modal").trigger("open.wb-overlaylbx");
 });
 
 // Restore JSON files
-$(document).ready(function() {
+$(document).ready(function () {
   setupRestoreJSONHandler();
 });
 
@@ -955,12 +977,12 @@ var checkFile = function () {
     // Check if the event listener is already attached before adding it
     if (!fileInput.hasListener) {
       fileInput.hasListener = true; // Set a flag to prevent re-attaching
-      
+
       fileInput.addEventListener('change', async (event) => {
         const submitButton = document.getElementById("modal-submit-button");
-        
+
         const file = event.target.files[0];
-        if (!file){
+        if (!file) {
           alert('No file selected.');
           return;
         }
@@ -974,7 +996,7 @@ var checkFile = function () {
           });
         };
 
-        let type=""
+        let type = ""
 
         const currentURL = window.location.href;
         if (currentURL.includes("questions")) {
@@ -983,7 +1005,7 @@ var checkFile = function () {
           type = "clause"
         } else {
           type = "info"
-        } 
+        }
 
         try {
           const object = await parseJsonFile(file);
@@ -994,12 +1016,12 @@ var checkFile = function () {
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
-                if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
+                if (object[0].hasOwnProperty('clauses') && object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription')) {
                   submitButton.setAttribute("aria-disabled", "false");
                 } else {
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a question list JSON file. It seems that the file you uploaded does not have some of the attributes of a question object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
-                } 
+                }
               }
               break;
 
@@ -1007,8 +1029,8 @@ var checkFile = function () {
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
-                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number')  && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('weight')&& object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
-                  submitButton.setAttribute("aria-disabled", "false");                 
+                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('number') && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('description') && object[0].hasOwnProperty('frDescription') && object[0].hasOwnProperty('informative') && object[0].hasOwnProperty('weight') && object[0].hasOwnProperty('compliance') && object[0].hasOwnProperty('frCompliance')) {
+                  submitButton.setAttribute("aria-disabled", "false");
                 } else {
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not a clause list JSON file. It seems that the file you uploaded does not have some of the attributes of a clause object. Please verify that you uploaded the correct document. \nNote: Until you add the correct document the Submit button will be disabled.")
@@ -1020,8 +1042,8 @@ var checkFile = function () {
               if (object.length > 0 && typeof object[0] === 'object' && object[0] !== null) {
                 // `object[0]` exists and is not null or undefined
 
-                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name')  && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml')&& object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
-                  submitButton.setAttribute("aria-disabled", "false");                  
+                if (object[0].hasOwnProperty('_id') && object[0].hasOwnProperty('name') && object[0].hasOwnProperty('bodyHtml') && object[0].hasOwnProperty('frName') && object[0].hasOwnProperty('frBodyHtml') && object[0].hasOwnProperty('showHeading') && object[0].hasOwnProperty('order')) {
+                  submitButton.setAttribute("aria-disabled", "false");
                 } else {
                   submitButton.setAttribute("aria-disabled", "true");
                   alert("This is not an info list JSON file. It seems that the file you uploaded does not have some of the attributes of an info object. Please verify that you uploaded the correct document. \nNote that until you add the correct document the Submit button will be disabled.")
@@ -1043,22 +1065,22 @@ var sendFileToServer = function () {
   function readFileAsText(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
-      reader.onload = function(event) {
+      reader.onload = function (event) {
         resolve(event.target.result);
       };
-      reader.onerror = function(error) {
+      reader.onerror = function (error) {
         reject(error);
       };
       reader.readAsText(file);
     });
   }
-  
+
   const submitButton = document.getElementById("modal-submit-button");
-  if (submitButton){
+  if (submitButton) {
     if (!submitButton.hasListener) {
       submitButton.hasListener = true; // Set a flag to prevent re-attaching
-      
-      submitButton.addEventListener('click', async function(event) {
+
+      submitButton.addEventListener('click', async function (event) {
         event.preventDefault();
         const ariaDisabled = submitButton.getAttribute("aria-disabled");
         let updateSuccessful = false;
@@ -1084,35 +1106,35 @@ var sendFileToServer = function () {
           console.log("Invalid JSON file:", e);
         }
 
-        fetch(formComponent.action,{
-          method:'Post',
-          headers: {'Content-Type': 'application/json'},
+        fetch(formComponent.action, {
+          method: 'Post',
+          headers: { 'Content-Type': 'application/json' },
           body: jsonContent
         })
-        .then(response => response.json())
-        .then(data => {
-          const dialogText = document.getElementById('dialog-text');
-          dialogText.textContent = data.message;
-          closeButton.textContent = "Close"
-          formComponent.remove();
-          updateSuccessful = data.success
-        
-          if (updateSuccessful){
-            closeButton.classList.remove("popup-modal-dismiss")
-            closeButton.addEventListener('click', function() {
-              window.location.reload(); 
-            });
+          .then(response => response.json())
+          .then(data => {
+            const dialogText = document.getElementById('dialog-text');
+            dialogText.textContent = data.message;
+            closeButton.textContent = "Close"
+            formComponent.remove();
+            updateSuccessful = data.success
 
-          } else {
-            console.log('Data update failed');
-          }
-        })
-        .catch(error => {
-          console.log('Error:', error);
-          const dialogText = document.getElementById('dialog-text');
-          dialogText.textContent = 'An error occurred while uploading the file. Try again';
-          dialogText.textContent = data.message;
-        });
+            if (updateSuccessful) {
+              closeButton.classList.remove("popup-modal-dismiss")
+              closeButton.addEventListener('click', function () {
+                window.location.reload();
+              });
+
+            } else {
+              console.log('Data update failed');
+            }
+          })
+          .catch(error => {
+            console.log('Error:', error);
+            const dialogText = document.getElementById('dialog-text');
+            dialogText.textContent = 'An error occurred while uploading the file. Try again';
+            dialogText.textContent = data.message;
+          });
       });
     }
   }

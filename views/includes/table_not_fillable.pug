@@ -3,7 +3,6 @@ if item_list.length > 0
     thead
       tr.active
         th.col-sm-6(scope='col') EN 301 549 clause
-        th.col-sm-4(scope='col') Relationship to functional performance statements 
     tbody
       each item in item_list
         tr
@@ -11,10 +10,11 @@ if item_list.length > 0
             p
               strong #{item.number} #{item.name}
             | !{item.description}
-          td(valign='top')
             if item.description.length > 0
               p
-                strong C.#{item.number} #{item.name}
-              | !{item.compliance}
+                strong Relationship to functional performance statements:
+                | !{item.compliance}
             else
+              p
+                strong Relationship to functional performance statements:
               | No user impact mapping

@@ -75,6 +75,8 @@ section#wizard
               if index > uniqueQuestions_list.length/2
     
   //- Hidden data (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestions.hidden Nothing disabled
   .hidden#question-data
     each question in question_list
       ul.question(data-question-id=question._id)
@@ -83,7 +85,8 @@ section#wizard
   
   .hidden#uber-question-data
     each question in uberQuestions_list
-      ul.question(data-question-id=question._id)
+      //- p #{question._id}: #{question.name}
+      ul.question(uber-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
   
@@ -95,6 +98,6 @@ section#wizard
   
   .hidden#non-uber-question-data
     each question in nonUberQuestions_list
-      ul.question(data-question-id=question._id)
+      ul.question(non-uber-data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}

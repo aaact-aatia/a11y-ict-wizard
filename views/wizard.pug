@@ -20,6 +20,7 @@ block content
   hr
 
   form(novalidate='novalidate' method='POST' action='')
+    input(type="hidden" id="selectedQuestions" name="questions" value="")
     .row
       .wb-tabs
         .tabpanels
@@ -27,6 +28,7 @@ block content
             summary Step 1: Define ICT functionality
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep1' aria-controls='instructionsStep1' role='button' title='Step 1 instructions') Instructions: Step 1
+              a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title='Resume editing by pasting a previously generated requirements list') Restore Selections
             - var step = 1
             include includes/wizard_form
             div(aria-live="polite")
@@ -67,7 +69,6 @@ block content
             div(aria-live="polite")
               p.clause-count
                 strong Total number of clause applicable: 0
-            a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Enter clause list
             div(style='margin-top: 8px;')
               a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Previous
               a.btn.btn-default.wb-tabs-ext.right(href='#details-step5', style='margin-bottom: 10px;') Next
@@ -177,12 +178,14 @@ block content
                 li Abbreviations
               | Make sure that the notes (which are in French) are not set to English.
         li Save and close the document.
-
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#clauseListModal
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#restoreModal(role='dialog')
     header.modal-header
-      h2.modal-title Enter clause list
+      h2.modal-title Enter previous selections
     .modal-body
-      p Paste the clause list from a previously generated document to resume editing your selection.
-      p The clause list is a single sentence which looks something like this:
-      p "The offered solution should comply with clauses 5.1.2.1, 5.1.2.2, 5.1.3.1, 12.1.1 and 12.1.2."
-      textarea.no-editor#clauseList
+      p Paste the bulleted list of the selections made from annex X to resume editing .
+      p The previous selections can be found in the "scope" section of the output which precedes the table of clauses and should look something like:
+      ul
+        li Is not and does not include a web page;
+        li Is not and does not include a non-web document and
+        li Is not and does not include hardware
+      textarea.no-editor#questionList
