@@ -38,6 +38,10 @@ block form
       label(for='isUber')
         input#isUber(type='checkbox' name='isUber' checked=(itemExists ? item.isUber : false))
         | Select checkbox if and only if the question is an uber question
+    .checkbox
+      label(for='isUnique')
+        input#isUnique(type='checkbox' name='isUnique' checked=(itemExists ? item.isUnique : false))
+        | Select checkbox if and only if the question is a unique question, that is, the question is associated to one clause only
 
     include includes/clause_tree
       

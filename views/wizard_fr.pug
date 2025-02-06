@@ -33,25 +33,41 @@ block content
               p(style="display: inline-block; margin-right: 10px")
                 strong Nombre totale de clause applicable: 
               p.clause-count(style="display: inline-block") 0
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step1', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Suivant
 
           details#details-step3
-            summary Étape 3 : Vérifier la sélection de clause
+            summary Étape 3 : Préciser explicitement la fonctionnalité des TIC
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep2' role='button' title='Step 3 instructions') Instructions : Étape 3
+              a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions : Étape 3
+            - var step = 3
+            include includes/wizard_form_fr
+            div
+              p(style="display: inline-block; margin-right: 10px")
+                strong Nombre totale de clause applicable: 
+              p.clause-count(style="display: inline-block") 0
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Précédent 
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Suivant
+			
+          details#details-step4
+            summary Étape 4 : Vérifier la sélection de clause
+            p.form-instructions-link
+              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions : Étape 4
             include includes/clause_tree_fr
             div
               p(style="display: inline-block; margin-right: 10px")
                 strong Nombre totale de clause applicable: 
               p.clause-count(style="display: inline-block") 0
             a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Entrer la liste de clauses
-            a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Suivant
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Précédent
+            a.btn.btn-default.wb-tabs-ext.right(href='#details-step5') Suivant
           
-          details#details-step4
-            summary Étape 4 : Produire les documents des exigences
+          details#details-step5
+            summary Étape 5 : Produire les documents des exigences
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions : Étape 4
+              a.overlay-lnk.right(href='#instructionsStep5' aria-controls='instructionsStep5' role='button' title='Step 5 instructions') Instructions : Étape 5
             include includes/download_chooser_fr
+            a.btn.btn-default.wb-tabs-ext.left(href='#details-step4', style='margin-bottom: 10px;') Précédent
 
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1
     header.modal-header
@@ -82,6 +98,13 @@ block content
     header.modal-header
       h2.modal-title Instructions : Étape 3
     .modal-body
+      p To be updated
+      p Lorsque vous êtes satisfait de votre sélection, passez à l’étape 4 en utilisant les onglets de navigation ou le bouton « Prochain ». Des directives supplémentaires sont disponibles à chaque onglet.
+
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+    header.modal-header
+      h2.modal-title Instructions : Étape 4
+    .modal-body
       p
         | Les exigences (clauses) pertinentes ont maintenant été sélectionnées en fonction de vos réponses à l’étape 1 et 2. Utilisez l’arbre des cases à cocher pour vérifier quelles clauses ont été sélectionnées. Assurez-vous qu’elles s’appliquent à votre marché.
       h3 Quand devriez-vous désélectionner une clause?
@@ -107,9 +130,9 @@ block content
       p
         | Cliquez sur le bouton « Entrer la liste des clauses » situé après l’arbre des clauses. Copiez la liste des clauses de votre document précédemment généré et collez-la dans le champ du formulaire. Votre sélection de clauses précédente sera restaurée dans l’arbre des cases à cocher. Vous pouvez ensuite apporter toutes les modifications nécessaires à la sélection.
       
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep5
     header.modal-header
-      h2.modal-title Instructions : Étape 4
+      h2.modal-title Instructions : Étape 5
     .modal-body
       p Cliquez sur les liens pour télécharger les documents relatifs aux exigences. Pour la plupart des approvisionnements, le « Tableau des exigences avec des sections informatives » doit être inclus. Lorsque la conformité est évaluée, incluez également un « Modèle d'évaluation ».
       p Vous souhaiterez peut-être donner aux documents des noms de fichiers plus  descriptifs après le téléchargement.
