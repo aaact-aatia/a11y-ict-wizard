@@ -9,22 +9,21 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
+  # Container registry config
   dockerRegistryServiceConnection: 'proditcaccessibilityRegistry'
   imageRepository: '2025-ayreqgit'
   containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
-  _DBURI_: ''
-  _BASICAUTHUSERNAME_: ''
-  _BASICAUTHPASSWORD_: ''
-  _WAITFORMONGO_: ''
-  _WAITHOSTS_: ''
-  #tag: '$(Build.BuildId)'
-
-  # Agent VM image name
   vmImageName: 'ubuntu-latest'
+
+  # App variables (create these in the DevOps UI)
+  DBURI: ''
+  BASICAUTHUSERNAME: ''
+  BASICAUTHPASSWORD: ''
+  WAITFORMONGO: ''
+  WAITHOSTS: ''
 
 stages:
 - stage: Build
@@ -39,16 +38,16 @@ stages:
         echo "---- Starting PreBuild ----"
         cp tmp_Dockerfile Dockerfile
         echo "Substituting variables into Dockerfile..."
-        sed -i "s|_BASICAUTHUSERNAME_|$_BASICAUTHUSERNAME_|" Dockerfile
-        sed -i "s|_BASICAUTHPASSWORD_|$_BASICAUTHPASSWORD_|" Dockerfile
-        sed -i "s|_WAITFORMONGO_|$_WAITFORMONGO_|" Dockerfile
-        sed -i "s|_WAITHOSTS_|$_WAITHOSTS_|" Dockerfile
-        sed -i "s|_DBURI_|$_DBURI_|" Dockerfile
+        sed -i "s|_BASICAUTHUSERNAME_|$(BASICAUTHUSERNAME)|" Dockerfile
+        sed -i "s|_BASICAUTHPASSWORD_|$(BASICAUTHPASSWORD)|" Dockerfile
+        sed -i "s|_WAITFORMONGO_|$(WAITFORMONGO)|" Dockerfile
+        sed -i "s|_WAITHOSTS_|$(WAITHOSTS)|" Dockerfile
+        sed -i "s|_DBURI_|$(DBURI)|" Dockerfile
         echo "---- Variable Substitution Complete ----"
-        echo "_DBURI_: $_DBURI_"
-        echo "_BASICAUTHUSERNAME_: $_BASICAUTHUSERNAME_"
-        echo "_WAITFORMONGO_: $_WAITFORMONGO_"
-        echo "_WAITHOSTS_: $_WAITHOSTS_"
+        echo "DBURI: $(DBURI)"
+        echo "BASICAUTHUSERNAME: $(BASICAUTHUSERNAME)"
+        echo "WAITFORMONGO: $(WAITFORMONGO)"
+        echo "WAITHOSTS: $(WAITHOSTS)"
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild (2025)'
 
