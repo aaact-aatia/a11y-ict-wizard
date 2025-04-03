@@ -16,11 +16,11 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
-  DBURI: ''
-  BASICAUTHUSERNAME: ''
-  BASICAUTHPASSWORD: ''
-  WAITFORMONGO: ''
-  WAITHOSTS: ''
+  _DBURI_: ''
+  _BASICAUTHUSERNAME_: ''
+  _BASICAUTHPASSWORD_: ''
+  _WAITFORMONGO_: ''
+  _WAITHOSTS_: ''
   #tag: '$(Build.BuildId)'
 
   # Agent VM image name
