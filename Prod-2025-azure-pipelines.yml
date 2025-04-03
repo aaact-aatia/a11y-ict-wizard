@@ -18,13 +18,6 @@ variables:
   tag: 'Latest'
   vmImageName: 'ubuntu-latest'
 
-  # App variables (create these in the DevOps UI)
-  DBURI: ''
-  BASICAUTHUSERNAME: ''
-  BASICAUTHPASSWORD: ''
-  WAITFORMONGO: ''
-  WAITHOSTS: ''
-
 stages:
 - stage: Build
   displayName: Build and push stage
