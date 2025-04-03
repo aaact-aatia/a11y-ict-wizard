@@ -9,21 +9,13 @@ resources:
 - repo: self
 
 variables:
-  # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: 'proditcaccessibilityRegistry'
+  # Container registry config
+  dockerRegistryServiceConnection: 'proditcaccessibilityRegistry-sc'
   imageRepository: '2025-ayreqgit'
   containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
-  _DBURI_: ''
-  _BASICAUTHUSERNAME_: ''
-  _BASICAUTHPASSWORD_: ''
-  _WAITFORMONGO_: ''
-  _WAITHOSTS_: ''
-  #tag: '$(Build.BuildId)'
-
-  # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -51,6 +43,7 @@ stages:
         echo "WAITHOSTS: $(WAITHOSTS)"
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild (2025)'
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
