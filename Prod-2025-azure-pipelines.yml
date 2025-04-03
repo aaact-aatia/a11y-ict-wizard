@@ -10,7 +10,7 @@ resources:
 
 variables:
   # Container registry config
-  dockerRegistryServiceConnection: 'proditcaccessibilityRegistry'
+  dockerRegistryServiceConnection: 'proditcaccessibilityRegistry-sc'
   imageRepository: '2025-ayreqgit'
   containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
