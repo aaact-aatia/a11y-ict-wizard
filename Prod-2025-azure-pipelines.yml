@@ -53,3 +53,11 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+
+    # Create a downloadable artifact
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish source as artifact'
+      inputs:
+        PathtoPublish: '$(Build.SourcesDirectory)'
+        ArtifactName: '_Prod-2025-a11y-req.git'
+        publishLocation: 'Container'
