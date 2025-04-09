@@ -15,7 +15,7 @@ variables:
   containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
-  tag: 'Latest'
+  tag: '$(Build.BuildId)'
   vmImageName: 'ubuntu-latest'
 
 stages:
@@ -27,22 +27,15 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script: |
-        echo "---- Starting PreBuild ----"
-        cp tmp_Dockerfile Dockerfile
-        echo "Substituting variables into Dockerfile..."
-        sed -i "s|_BASICAUTHUSERNAME_|$(BASICAUTHUSERNAME)|" Dockerfile
-        sed -i "s|_BASICAUTHPASSWORD_|$(BASICAUTHPASSWORD)|" Dockerfile
-        sed -i "s|_WAITFORMONGO_|$(WAITFORMONGO)|" Dockerfile
-        sed -i "s|_WAITHOSTS_|$(WAITHOSTS)|" Dockerfile
-        sed -i "s|_DBURI_|$(DBURI)|" Dockerfile
-        echo "---- Variable Substitution Complete ----"
-        echo "DBURI: $(DBURI)"
-        echo "BASICAUTHUSERNAME: $(BASICAUTHUSERNAME)"
-        echo "WAITFORMONGO: $(WAITFORMONGO)"
-        echo "WAITHOSTS: $(WAITHOSTS)"
+    - script:  
+        cp tmp_Dockerfile Dockerfile;        
+        sed -i 's/_BASICAUTHUSERNAME_/$(_BASICAUTHUSERNAME_)/' Dockerfile;	
+        sed -i 's/_BASICAUTHPASSWORD_/$(_BASICAUTHPASSWORD_)/' Dockerfile;
+        sed -i 's/_WAITFORMONGO_/$(_WAITFORMONGO_)/' Dockerfile;
+        sed -i 's/_WAITHOSTS_/$(_WAITHOSTS_)/' Dockerfile;
+        sed -i 's/_DBURI_/$(_DBURI_)/' Dockerfile;        
       workingDirectory: $(rootFolder)
-      displayName: 'PreBuild (2025)'
+      displayName: 'PreBuild'
 
     - task: Docker@2
       displayName: Build and push an image to container registry
