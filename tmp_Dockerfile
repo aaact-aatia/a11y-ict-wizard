@@ -58,8 +58,16 @@ RUN dos2unix ./nginx/nginx.conf && \
 RUN dos2unix ./nginx/mongodb.conf && \
 	mv ./nginx/mongodb.conf /etc/mongodb.conf
 
+# Sanity check: show working dir before copy
+RUN echo "Current WORKDIR is $(pwd)"
+
 # copy over application files 
 COPY . .
+
+# DEBUG: Show files copied into /home/app
+RUN echo "Verifying contents of /home/app..." && \
+	ls -al /home/app && \
+	find /home/app -type f
 
 # install dependencies 
 RUN npm install
