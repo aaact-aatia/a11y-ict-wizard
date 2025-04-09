@@ -53,6 +53,7 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+        buildContext: $(Build.SourcesDirectory)
 
     # Create a downloadable artifact
     - task: PublishBuildArtifacts@1
