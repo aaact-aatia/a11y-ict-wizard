@@ -45,9 +45,9 @@ stages:
       displayName: 'PreBuild (2025)'
 
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build image for Azure App Service (linux/amd64)
       inputs:
-        command: buildAndPush
+        command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
@@ -56,7 +56,16 @@ stages:
         buildContext: $(Build.SourcesDirectory)
         addPipelineData: false
         enableBuildKit: true
-        arguments: --platform linux/amd64
+        arguments: '--platform linux/amd64'
+
+    - task: Docker@2
+      displayName: Push image to container registry
+      inputs:
+        command: push
+        repository: $(imageRepository)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
 
     # Create a downloadable artifact
     - task: PublishBuildArtifacts@1
