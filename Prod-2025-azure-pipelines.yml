@@ -54,6 +54,8 @@ stages:
         tags: |
           $(tag)
         buildContext: $(Build.SourcesDirectory)
+        addPipelineData: false
+        arguments: --platform linux/amd64
 
     # Create a downloadable artifact
     - task: PublishBuildArtifacts@1
