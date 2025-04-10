@@ -15,7 +15,8 @@ variables:
   containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
-  tag: '$(Build.BuildId)'
+  name: 20250410.$(Rev:r)
+  tag: '$(Build.BuildNumber)'
   vmImageName: 'ubuntu-latest'
 
 stages:
