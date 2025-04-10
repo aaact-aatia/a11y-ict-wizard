@@ -56,6 +56,7 @@ stages:
         buildContext: $(Build.SourcesDirectory)
         addPipelineData: false
         enableBuildKit: true
+        arguments: --platform linux/amd64
 
     # Create a downloadable artifact
     - task: PublishBuildArtifacts@1
