@@ -15,11 +15,13 @@ var http = require('http');
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+console.log('Node sees PORT as:', process.env.PORT);  // Add this for visibility
+
+// Before calling app.listen, check if we're already listening (PM2 edge case)
 app.listen(port, () => {
 	console.log(`Server running on port ${port}`);
 });
 
-console.log(`Listening on port ${port}`);  // Log the port usage
 
 /**
  * Create HTTP server.
