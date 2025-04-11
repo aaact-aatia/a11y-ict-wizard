@@ -14,9 +14,13 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
-app.listen(port, () => console.log(`Server running on port ${port}`));
-// var port = normalizePort('3000');
-console.error(port + ' is port using');
+
+app.listen(port, () => {
+	console.log(`Server running on port ${port}`);
+});
+
+console.log(`Listening on port ${port}`);  // Log the port usage
+
 /**
  * Create HTTP server.
  */

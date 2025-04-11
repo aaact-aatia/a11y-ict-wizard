@@ -83,6 +83,11 @@ RUN dos2unix ./scripts/start.sh
 # make startup script executable 
 RUN chmod 777 ./scripts/start.sh 
 
-# make the script to be the entrypoint
+# Expose environment port if available (defaults to 443 if not provided)
+EXPOSE ${PORT:-443}
+
+# Run as root to manage npm and pm2
+USER root
+
+# The final entrypoint to start the app using pm2
 ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
-EXPOSE 443 2222

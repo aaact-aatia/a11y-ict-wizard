@@ -15,6 +15,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 try {
 	const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
+	console.log(`Connecting to MongoDB at: ${mongoDB}`);
 	//const mongoDB = 'mongodb://127.0.0.1:27017/a11y-req';
 	mongoose.connect(mongoDB, {
 		useNewUrlParser: true,
@@ -34,8 +35,6 @@ app.use(logger("dev"));
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: false }));
 app.use(cookieParser());
-
-app.use(express.static(path.join(__dirname, "public")));
 
 // Simple authorization for edit routes
 const BASIC_AUTH_USERNAME = process.env.BASIC_AUTH_USERNAME || "admin";
