@@ -24,11 +24,6 @@ echo "Mongo DB started, starting application"
 #    echo "Populating false"
 #fi
 
-# starting NGINX service 
-echo "Starting NGINX service"
-service nginx start
-echo "Started NGINX service"
-
 echo "Starting sshd service"
 /usr/sbin/sshd
 echo "Started sshd service"
