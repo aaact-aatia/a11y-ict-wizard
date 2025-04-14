@@ -28,6 +28,6 @@ echo "Starting sshd service"
 /usr/sbin/sshd
 echo "Started sshd service"
 
-echo "Strating application with pm2 process manager"
-pm2-runtime ./bin/www
-echo "Started pm2 process manager service"
+echo "Strating application with node"
+node ./bin/www
+echo "Started node service"

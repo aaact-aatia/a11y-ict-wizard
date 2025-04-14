@@ -24,9 +24,7 @@ RUN wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | apt-key add -
 RUN apt-get install -y dos2unix
 RUN mkdir /home/app
 
-# install node process manager pm2
-RUN npm install -g pm2
-
+# Set the working directory
 WORKDIR /home/app
 SHELL ["/bin/bash", "-c"]
 
@@ -67,8 +65,8 @@ RUN chmod 777 ./scripts/start.sh
 # Expose environment port if available (defaults to 443 if not provided)
 EXPOSE 3000
 
-# Run as root to manage npm and pm2
+# Run as root to manage npm
 USER root
 
-# The final entrypoint to start the app using pm2
+# The final entrypoint to start the app using node
 ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
