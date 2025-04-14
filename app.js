@@ -13,20 +13,21 @@ app.locals.moment = require("moment");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-try {
-	const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
-	console.log(`Connecting to MongoDB at: ${mongoDB}`);
-	//const mongoDB = 'mongodb://127.0.0.1:27017/a11y-req';
-	mongoose.connect(mongoDB, {
+const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
+console.log(`Connecting to MongoDB at: ${mongoDB}`);
+
+mongoose
+	.connect(mongoDB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
+	})
+	.then(() => {
+		const db = mongoose.connection;
+		console.log(`✅ Connected to MongoDB database: ${db.name}`);
+	})
+	.catch((error) => {
+		console.error("❌ MongoDB connection error:", error.message);
 	});
-	const db = mongoose.connection;
-	db.on("error", console.error.bind(console, "MongoDB connection error:"));
-	console.log(`MongoDB Connected: ${mongoose.connection.host}`);
-} catch (error) {
-	console.error(`Error: ${error.message}`);
-}
 
 // Express server configuration (see also /bin/www)
 app.set("views", path.join(__dirname, "views"));
