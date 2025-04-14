@@ -7,7 +7,6 @@ ENV POPULATE_DB "true"
 ENV DB_URI "_DBURI_"
 ENV BASIC_AUTH_USERNAME "_BASICAUTHUSERNAME_"
 ENV BASIC_AUTH_PASSWORD "_BASICAUTHPASSWORD_"
-ENV WAIT_FOR_MONGO "_WAITFORMONGO_"
 ENV WAIT_HOSTS "_WAITHOSTS_"
 
 RUN apt-get update && apt-get install -y net-tools
@@ -34,8 +33,6 @@ RUN wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-
 	chmod 777 ./mongotools/bin/mongorestore 
 
 RUN apt-get install -y netcat
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait ./wait
-RUN chmod +x ./wait
 
 # Sanity check: show working dir before copy
 RUN echo "Current WORKDIR is $(pwd)"

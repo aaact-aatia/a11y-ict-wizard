@@ -34,13 +34,11 @@ stages:
         echo "Substituting variables into Dockerfile..."
         sed -i "s|_BASICAUTHUSERNAME_|$(BASICAUTHUSERNAME)|" Dockerfile
         sed -i "s|_BASICAUTHPASSWORD_|$(BASICAUTHPASSWORD)|" Dockerfile
-        sed -i "s|_WAITFORMONGO_|$(WAITFORMONGO)|" Dockerfile
         sed -i "s|_WAITHOSTS_|$(WAITHOSTS)|" Dockerfile
         sed -i "s|_DBURI_|$(DBURI)|" Dockerfile
         echo "---- Variable Substitution Complete ----"
         echo "DBURI: $(DBURI)"
         echo "BASICAUTHUSERNAME: $(BASICAUTHUSERNAME)"
-        echo "WAITFORMONGO: $(WAITFORMONGO)"
         echo "WAITHOSTS: $(WAITHOSTS)"
       workingDirectory: $(rootFolder)
       displayName: 'PreBuild (2025)'

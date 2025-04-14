@@ -1,5 +1,4 @@
 #!/bin/bash
-./wait
 echo "Starting application in ${NODE_ENV} environment"
 
 echo "Starting mongodb service"
