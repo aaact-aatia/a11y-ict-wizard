@@ -9,16 +9,6 @@ ENV BASIC_AUTH_USERNAME "_BASICAUTHUSERNAME_"
 ENV BASIC_AUTH_PASSWORD "_BASICAUTHPASSWORD_"
 ENV WAIT_HOSTS "_WAITHOSTS_"
 
-RUN apt-get update && apt-get install -y net-tools
-
-# Add the MongoDB repository and install the latest MongoDB
-RUN wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | apt-key add - && \
-	echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/debian bullseye/mongodb-org/6.0 main" | tee /etc/apt/sources.list.d/mongodb-org-6.0.list && \
-	echo "deb http://deb.debian.org/debian bullseye main" > /etc/apt/sources.list.d/bullseye.list && \
-	apt-get update && \
-	apt-get install -y libssl1.1 && \
-	apt-get install -y mongodb-org
-
 # dos2unix used to convert scripts written on windows systems to unix formats
 RUN apt-get install -y dos2unix
 RUN mkdir /home/app
@@ -27,12 +17,9 @@ RUN mkdir /home/app
 WORKDIR /home/app
 SHELL ["/bin/bash", "-c"]
 
-RUN wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-debian92-x86_64-100.0.2.tgz && \
-	tar -xzf mongodb-database-tools-debian92-x86_64-100.0.2.tgz && \
-	mv mongodb-database-tools-debian92-x86_64-100.0.2 mongotools && \
-	chmod 777 ./mongotools/bin/mongorestore 
+# Used with the ./wait script to wait for the DB to be available
+RUN apt-get update && apt-get install -y netcat-openbsd
 
-RUN apt-get install -y netcat
 
 # Sanity check: show working dir before copy
 RUN echo "Current WORKDIR is $(pwd)"
