@@ -1,56 +1,49 @@
 FROM node:22
 
-ENV NODE_ENV "production"
-ENV POPULATE_DB "true"
+# Environment variables
+ENV NODE_ENV=production \
+	POPULATE_DB=true \
+	DB_URI="_DBURI_" \
+	BASIC_AUTH_USERNAME="_BASICAUTHUSERNAME_" \
+	BASIC_AUTH_PASSWORD="_BASICAUTHPASSWORD_" \
+	WAIT_HOSTS="_WAITHOSTS_"
 
-# Change me in production
-ENV DB_URI "_DBURI_"
-ENV BASIC_AUTH_USERNAME "_BASICAUTHUSERNAME_"
-ENV BASIC_AUTH_PASSWORD "_BASICAUTHPASSWORD_"
-ENV WAIT_HOSTS "_WAITHOSTS_"
+# Install system dependencies and clean up
+RUN apt-get update && apt-get install -y \
+	dos2unix \
+	netcat-openbsd \
+	openssh-server \
+	vim \
+	&& rm -rf /var/lib/apt/lists/*
 
-# dos2unix used to convert scripts written on windows systems to unix formats
-RUN apt-get install -y dos2unix
-RUN mkdir /home/app
-
-# Set the working directory
+# Set up app directory
+RUN mkdir -p /home/app /run/sshd
 WORKDIR /home/app
 SHELL ["/bin/bash", "-c"]
 
-# Used with the ./wait script to wait for the DB to be available
-RUN apt-get update && apt-get install -y netcat-openbsd
+# Copy SSH config
+COPY sshd_config /etc/ssh/
 
-
-# Sanity check: show working dir before copy
-RUN echo "Current WORKDIR is $(pwd)"
-
-# copy over application files 
+# Copy app source
 COPY . .
 
-# DEBUG: Show files copied into /home/app
-RUN echo "Verifying contents of /home/app..." && \
+# Convert scripts and make them executable
+RUN dos2unix ./scripts/start.sh && \
+	chmod +x ./scripts/start.sh
+
+# Debugging: show copied files
+RUN echo "Contents of /home/app:" && \
 	ls -al /home/app && \
 	find /home/app -type f
 
-# install dependencies 
+# Install Node.js dependencies
 RUN npm install
 
-RUN apt-get update && apt-get install -y vim
-RUN apt-get update && apt-get install -y ssh
+# Set root password for SSH
 RUN echo "root:Docker!" | chpasswd
-RUN mkdir /run/sshd
-COPY sshd_config /etc/ssh/
 
-RUN dos2unix ./scripts/start.sh
-
-# make startup script executable 
-RUN chmod 777 ./scripts/start.sh 
-
-# Expose environment port if available (defaults to 443 if not provided)
+# Expose port
 EXPOSE 3000
 
-# Run as root to manage npm
-USER root
-
-# The final entrypoint to start the app using node
-ENTRYPOINT [ "/bin/bash", "scripts/start.sh" ]
+# Start the app
+ENTRYPOINT ["/bin/bash", "scripts/start.sh"]
