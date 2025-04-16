@@ -2,11 +2,7 @@ FROM node:22
 
 # Environment variables
 ENV NODE_ENV=production \
-	POPULATE_DB=true \
-	DB_URI="_DBURI_" \
-	BASIC_AUTH_USERNAME="_BASICAUTHUSERNAME_" \
-	BASIC_AUTH_PASSWORD="_BASICAUTHPASSWORD_" \
-	WAIT_HOSTS="_WAITHOSTS_"
+	POPULATE_DB=true
 
 # Install system dependencies and clean up
 RUN apt-get update && apt-get install -y \
