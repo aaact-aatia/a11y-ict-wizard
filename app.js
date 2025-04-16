@@ -13,7 +13,7 @@ app.locals.moment = require("moment");
 
 app.use(express.static(path.join(__dirname, "public")));
 
-const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
+const mongoDB = process.env.DBURI || "mongodb://127.0.0.1:27017/a11y-req";
 console.log(`Connecting to MongoDB at: ${mongoDB}`);
 
 mongoose
