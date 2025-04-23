@@ -23,6 +23,10 @@ COPY sshd_config /etc/ssh/
 # Copy app source
 COPY . .
 
+# Add wait-for-it script for DB availability check
+ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
+RUN chmod +x /wait
+
 # Convert scripts and make them executable
 RUN dos2unix ./scripts/start.sh && \
 	chmod +x ./scripts/start.sh
