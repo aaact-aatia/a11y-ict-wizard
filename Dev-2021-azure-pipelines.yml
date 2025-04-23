@@ -3,7 +3,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- 2025
+- dev-2021
 
 resources:
 - repo: self
