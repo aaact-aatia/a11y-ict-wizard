@@ -20,44 +20,52 @@ example_tree = {
 */
 
 module.exports = (clauses) => {
+	clauses = clauses.sort((a, b) =>
+		a.number.localeCompare(b.number, undefined, { numeric: true })
+	);
 
-  clauses = clauses.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
-  let clauseTree = {};
+	const clauseMap = {};
+	const rootTree = {};
 
-  for (clause of clauses) {
-    let ancestry = clause.number.split(".");
-    let ancestors = [];
+	// Build a flat map first
+	for (const clause of clauses) {
+		clauseMap[clause.number] = {
+			clause,
+			children: {},
+		};
+	}
 
-    while (ancestry.length > 0) {
-      ancestors.push(ancestry.join('.'));
-      ancestry.pop();
-    }
+	// Now build the hierarchy
+	for (const clause of clauses) {
+		const number = clause.number;
+		const parts = number.split('.');
+		const parentNumber = parts.slice(0, -1).join('.');
 
-    ancestors.reverse();
-    let treeIndex = '["' + ancestors.join('"]["children"]["') + '"]';
-    let eString = `clauseTree` + treeIndex + ` = {
-      'clause': clause,
-      'children': {}
-    }`;
-    eval(eString);
-  }
+		if (parts.length === 1) {
+			// Top-level clause
+			rootTree[number] = clauseMap[number];
+		} else {
+			const parent = clauseMap[parentNumber];
+			if (parent) {
+				parent.children[number] = clauseMap[number];
+			} else {
+				console.warn(`Missing parent clause: ${parentNumber} for ${number}`);
+				// Optionally add to root if orphaned
+				rootTree[number] = clauseMap[number];
+			}
+		}
+	}
 
-  // Convert children objects to sorted arrays
-  // No need for keys as they are duplicated in clause.number
-  const sortChildren = (tree) => {
-    // Base case
-    if (Object.keys(tree).length === 0 && tree.constructor === Object) {
-      return [];
-    }
-    // Convert top level of tree to array and sort
-    tree = Object.values(tree);
-    tree.sort((a, b) => a.clause.number.localeCompare(b.clause.number, undefined, { numeric: true }));
-    // Recurse on children of top level nodes
-    for (node of tree) {
-      node.children = sortChildren(node.children);
-    }
-    return tree;
-  }
+	// Convert children objects to sorted arrays recursively
+	const sortChildren = (tree) => {
+		const sorted = Object.values(tree).sort((a, b) =>
+			a.clause.number.localeCompare(b.clause.number, undefined, { numeric: true })
+		);
+		for (const node of sorted) {
+			node.children = sortChildren(node.children);
+		}
+		return sorted;
+	};
 
-  return sortChildren(clauseTree);
+	return sortChildren(rootTree);
 };
