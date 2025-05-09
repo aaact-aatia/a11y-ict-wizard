@@ -34,7 +34,7 @@ stages:
         echo "---- Starting PreBuild ----"
         cp tmp_Dockerfile Dockerfile
       workingDirectory: $(rootFolder)
-      displayName: 'PreBuild (2025)'
+      displayName: 'PreBuild (Dev 2021)'
 
     - task: Docker@2
       displayName: Build image for Azure App Service (linux/amd64)
