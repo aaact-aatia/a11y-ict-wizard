@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'proditcaccessibilityRegistry-sc'
   imageRepository: 'dev-2025-ictaccessibility'
-  containerRegistry: 'itcaccessibilityregistry.azurecr.io'
+  containerRegistry: 'proditcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
   tag: 'Latest'
