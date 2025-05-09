@@ -3,15 +3,15 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/docker
 
 trigger:
-- 2018
+- dev-2025
 
 resources:
 - repo: self
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '72a5bad4-7f3b-4c91-b2bd-394da10c427d'
-  imageRepository: 'ayreqgit'
+  dockerRegistryServiceConnection: 'proditcaccessibilityRegistry-sc'
+  imageRepository: 'dev-2025-ictaccessibility'
   containerRegistry: 'itcaccessibilityregistry.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   rootFolder: $(System.DefaultWorkingDirectory)
@@ -30,22 +30,36 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    - script:  
-        cp tmp_Dockerfile Dockerfile;        
-        sed -i 's/_BASICAUTHUSERNAME_/$(_BASICAUTHUSERNAME_)/' Dockerfile;	
-        sed -i 's/_BASICAUTHPASSWORD_/$(_BASICAUTHPASSWORD_)/' Dockerfile;
-        sed -i 's/_WAITFORMONGO_/$(_WAITFORMONGO_)/' Dockerfile;
-        sed -i 's/_WAITHOSTS_/$(_WAITHOSTS_)/' Dockerfile;
-        sed -i 's/_DBURI_/$(_DBURI_)/' Dockerfile;        
+    - script: |
+        echo "---- Starting PreBuild ----"
+        cp tmp_Dockerfile Dockerfile
       workingDirectory: $(rootFolder)
-      displayName: 'PreBuild'
+      displayName: 'PreBuild (2025)'
 
     - task: Docker@2
-      displayName: Build and push an image to container registry
+      displayName: Build image for Azure App Service (linux/amd64)
       inputs:
-        command: buildAndPush
+        command: build
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
+        buildContext: $(Build.SourcesDirectory)
+        addPipelineData: false
+        enableBuildKit: true
+        arguments: '--platform linux/amd64'
+      env:
+        DBURI: $(DBURI)
+        BASICAUTHUSERNAME: $(BASICAUTHUSERNAME)
+        BASICAUTHPASSWORD: $(BASICAUTHPASSWORD)
+        WAITHOSTS: $(WAITHOSTS)
+
+    - task: Docker@2
+      displayName: Push image to container registry
+      inputs:
+        command: push
+        repository: $(imageRepository)
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
