@@ -5,20 +5,27 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 const auth = require("http-auth");
+require("dotenv").config();
 
 const app = express();
 app.locals.moment = require("moment");
 
 try {
-	const mongoDB = process.env.DB_URI || "mongodb://127.0.0.1:27017/a11y-req";
-	//const mongoDB = 'mongodb://127.0.0.1:27017/a11y-req';
+	const mongoDB = process.env.DBURI || "mongodb://127.0.0.1:27017/a11y-req";
 	mongoose.connect(mongoDB, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 	});
+	console.log("MongoDB URI:", mongoDB);
+
 	const db = mongoose.connection;
 	db.on("error", console.error.bind(console, "MongoDB connection error:"));
-	console.log(`MongoDB Connected: ${mongoose.connection.host}`);
+
+	db.once("open", () => {
+		console.log("✅ MongoDB connection established");
+		console.log(`🔗 DB name: ${db.name}`);
+		console.log(`🌍 DB host: ${db.host}`);
+	});
 } catch (error) {
 	console.error(`Error: ${error.message}`);
 }
