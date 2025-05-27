@@ -3,18 +3,22 @@
 mixin checkbox(label, name, onlyIf, descri, isUber, isUnique)
   if name === undefined
     -name = 'checkbox' + i++
-  .checkbox
-      label(for=name)
-        input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false) class=(isUnique ? 'isUnique' : false))
+  - var descri = description
+  .checkbox(id=name)
+    label(for=name)
+      input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false) class=(isUnique ? 'isUnique' : false))
+      span.remove-disabled-text
         | !{label}
-      a(href=`#morefrInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Ouvre un contennu suppersosé avec plus d'info sur ${label}` tabindex="0")
-          svg(width="24" height="24" viewBox="-10 -10 70 70" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(20%, -1%)")
-            path(d="M24 16V24M24 32H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2239ab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round")
+    a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Ouvre un contennu suppersosé avec plus d'info sur ${label}` tabindex="0")
+      svg(width="24.1" height="24.1" viewBox="-10 -10 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(0%, 10%)")
+        path(d="M24 16V24M24 32H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2239ab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round")
 
-
-  section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`morefrInfo${name}`)
+  section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`moreInfo${name}`)
     header.modal-header
-      h2.modal-title Plus d'information sur '!{label}'
+      h2.modal-title
+        | Plus d'informations sur:
+        br
+        | '!{label}'
     div.modal-body#dialog
       p Description:
       | !{descri}
@@ -40,8 +44,14 @@ section#wizard
           - nonUberQuestions_list.push(question);
 
     if step == 1
-      button#checkAll(class="btn btn-default") Tout sélectionner
-      button#uncheckAll(class="btn btn-default" style="margin-left : 1%") Tout désélectionner
+      .btn-group
+        button#checkAll1(class="btn btn-default") Tout sélectionner
+        button#uncheckAll1(class="btn btn-default") Tout désélectionner
+      .btn-group(style="margin-left : 10px")
+        button#showAllRemovedStep1(class="btn btn-default") Afficher supprimé
+        button#hideAllRemovedStep1(class="btn btn-default") Masquer supprimé
+      <br/>
+      button#undoLastStep1(class="btn btn-default" style="margin-top:10px;") Défaire
       div.wizard-questions
         .row
           .col-md-6
@@ -53,6 +63,14 @@ section#wizard
               if index > uberQuestions_list.length/2
                 +checkbox(question.frName, question._id, question.onlyIf, question.frDescription, question.isUber, question.isUnique)
     else if step == 2
+      .btn-group
+        button#checkAll2(class="btn btn-default") Tout sélectionner
+        button#uncheckAll2(class="btn btn-default") Tout désélectionner
+      .btn-group(style="margin-left : 10px")
+        button#showAllRemovedStep2(class="btn btn-default") Afficher supprimé
+        button#hideAllRemovedStep2(class="btn btn-default") Masquer supprimé
+      <br/>
+      button#undoLastStep2(class="btn btn-default" style="margin-top:10px;") Défaire
       div.wizard-questions
         .row
           .col-md-6
@@ -64,6 +82,14 @@ section#wizard
               if index > nonUberQuestions_list.length/2
                 +checkbox(question.frName, question._id, question.onlyIf, question.frDescription, question.isUber, question.isUnique)
     else if step == 3
+      .btn-group
+        button#checkAll3(class="btn btn-default") Tout sélectionner
+        button#uncheckAll3(class="btn btn-default") Tout désélectionner
+      .btn-group(style="margin-left : 10px")
+        button#showAllRemovedStep3(class="btn btn-default") Afficher supprimé
+        button#hideAllRemovedStep3(class="btn btn-default") Masquer supprimé
+      <br/>
+      button#undoLastStep3(class="btn btn-default" style="margin-top:10px;") Défaire
       div.wizard-questions
         .row
           .col-md-6
