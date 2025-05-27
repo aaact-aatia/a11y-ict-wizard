@@ -45,8 +45,8 @@ section#wizard
 
     if step == 1
       .btn-group
-        button#checkAll(class="btn btn-default") Select all
-        button#uncheckAll(class="btn btn-default") Deselect all
+        button#checkAll1(class="btn btn-default") Select all
+        button#uncheckAll1(class="btn btn-default") Deselect all
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep1(class="btn btn-default") Show removed
         button#hideAllRemovedStep1(class="btn btn-default")  Hide removed
@@ -63,6 +63,9 @@ section#wizard
               if index >= uberQuestions_list.length/2
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
     else if step == 2
+      .btn-group
+        button#checkAll2(class="btn btn-default") Select all
+        button#uncheckAll2(class="btn btn-default") Deselect all
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep2(class="btn btn-default") Show removed
         button#hideAllRemovedStep2(class="btn btn-default")  Hide removed
@@ -79,6 +82,9 @@ section#wizard
               if index >= nonUberQuestions_list.length/2
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
     else if step == 3
+      .btn-group
+        button#checkAll3(class="btn btn-default") Select all
+        button#uncheckAll3(class="btn btn-default") Deselect all
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep3(class="btn btn-default") Show removed
         button#hideAllRemovedStep3(class="btn btn-default")  Hide removed
