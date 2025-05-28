@@ -164,7 +164,7 @@ var setupWizardHandler = function () {
 
     var $activeTabLink = $('.wb-tabs .active a');
     var activeTabHref = $activeTabLink.attr('href').replace('#', '');
-    
+
     /*if (activeTabHref === 'details-step1'){
       step1SubsetsQuestionHandler();
     }
@@ -221,21 +221,21 @@ var showRemoved = function () {
 
   $('#showAllRemovedStep2').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked').not('.isUber').not('.isUnique').filter(function() {
+    $('#wizard input:checked').not('.isUber').not('.isUnique').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.removeClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now shown.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#showAllRemovedStep3').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked').filter('.isUnique').filter(function() {
+    $('#wizard input:checked').filter('.isUnique').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
     }).each(function () {
       var questionId = this.id;
@@ -276,21 +276,21 @@ var hideRemoved = function () {
 
   $('#hideAllRemovedStep2').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked').not('.isUber').not('.isUnique').filter(function() {
+    $('#wizard input:checked').not('.isUber').not('.isUnique').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
-    }).each(function() {
+    }).each(function () {
       var questionId = this.id;
-      var $element = $('.checkbox#'+questionId);
+      var $element = $('.checkbox#' + questionId);
       $element.addClass('hidden');
     });
     $('.disabledQuestions').removeClass('hidden');
     $('.disabledQuestions').text("Disable questions are now hidden.");
-    setTimeout(function() {$('.disabledQuestions').addClass('hidden');}, 500);
+    setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
   });
 
   $('#hideAllRemovedStep3').click(function (e) {
     e.preventDefault();
-    $('#wizard input:checked').filter('.isUnique').filter(function() {
+    $('#wizard input:checked').filter('.isUnique').filter(function () {
       return $(this).attr('aria-disabled') === 'true';
     }).each(function () {
       var questionId = this.id;
@@ -360,7 +360,7 @@ var updateWizard = function () {
 $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   // if attribute is not removed while in other tabs, clauses number does not update
 
-  if (!($newPanel.attr('id') === 'details-step4')){
+  if (!($newPanel.attr('id') === 'details-step4')) {
 
     $('#clauses input').each(function () {
       $(this).removeAttr('aria-disabled');
@@ -370,7 +370,7 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   step3QuestionHandler();
   //updateWizard();
   step4Handler();
-  if ($newPanel.attr('id') === 'details-step4'){
+  if ($newPanel.attr('id') === 'details-step4') {
     $('#clauses input').each(function () {
       $(this).attr('aria-disabled', true);
     })
@@ -448,25 +448,25 @@ var undoHandler = function () {
     step3QuestionHandler();
     updateWizard();
 
-    undo=false;
+    undo = false;
   });
   $('#undoLastStep3').click(function (e) {
     e.preventDefault();
     undo = true;
 
     // if checked is less than previous check it means that last action was an uncheck or a deselect all
-    if (checkedStep3QuestionsIds.length < previouscheckedStep3QuestionsIds.length){
+    if (checkedStep3QuestionsIds.length < previouscheckedStep3QuestionsIds.length) {
       undo = false;
-      var count = 0 ;
+      var count = 0;
       var lastInteractedQuestion;
 
       while ((count < previouscheckedStep3QuestionsIds.length)) {
-        if (!checkedStep3QuestionsIds.includes(previouscheckedStep3QuestionsIds[count])){
+        if (!checkedStep3QuestionsIds.includes(previouscheckedStep3QuestionsIds[count])) {
           lastInteractedQuestion = previouscheckedStep3QuestionsIds[count];
           var $lastCheckbox = $('#wizard input#' + lastInteractedQuestion);
           var $checkboxes = $('#wizard input[type="checkbox"]').filter('.isUnique');
           var $lastCheckbox = $checkboxes.filter('#' + lastInteractedQuestion);
-          $lastCheckbox.prop('checked',true);
+          $lastCheckbox.prop('checked', true);
         }
         count++
       }
@@ -556,7 +556,7 @@ var step1SubsetsQuestionHandler = function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!(uncheckedStep1ClauseIds.includes(clauseId))){
+        if (!(uncheckedStep1ClauseIds.includes(clauseId))) {
           checkedParentinStep1 = false;
         }
       }
@@ -753,9 +753,9 @@ var step3QuestionHandler = function () {
     var questionId = this.id;
     console.log(questionId, "question ID in Step 3");//debugging issue with step 3 questions dissapearing
     var $questionStep3Checkbox = $(this);
-    var $element = $('.checkbox#'+questionId);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
-  
+    var $element = $('.checkbox#' + questionId);
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
+
     if (!checkedStep3QuestionsIds.includes(questionId)) {
       // if ($questionStep3Checkbox.attr('aria-disabled') === 'true')  {
       //   $questionStep3Checkbox.siblings('span.remove-disabled-text').text('');
@@ -769,17 +769,17 @@ var step3QuestionHandler = function () {
       // }
       // clears the aria-disabled subset questions on undo
       console.log(checkedStep3QuestionsIds.includes(questionId), "to whether question ID included in checkedStep3QuestionsIds");//debugging issue with step 3 questions dissapearing
-      if (undo)  {
+      if (undo) {
         $questionStep3Checkbox.siblings('span.remove-disabled-text').text('');
         $element.css('color', '#333333');
         $element.removeAttr('tabindex');
         $element.removeClass('hidden');
-        $dialogLink.attr('tabindex',0);
+        $dialogLink.attr('tabindex', 0);
         $dialogLink.removeClass('no-pointer-events');
         $questionStep3Checkbox.removeAttr('aria-disabled');
-        $questionStep3Checkbox.prop('checked',false);
+        $questionStep3Checkbox.prop('checked', false);
         console.log(questionId, "removed")
-      } 
+      }
     }
   });
 
@@ -787,7 +787,7 @@ var step3QuestionHandler = function () {
 
   console.log('Step 3 Previous checked');
   console.log(previouscheckedStep3QuestionsIds);
-  
+
 
   // Adds all the questions and clauses associated to the checked questions to the array uncheckedStep3ClauseIds
   while (checkedStep3QuestionsIds.length > 0) {
@@ -799,10 +799,10 @@ var step3QuestionHandler = function () {
   }
   $('#wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('#uber-question-data ul[uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#uber-question-data ul[uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())){
+        if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())) {
           uncheckedStep3ClauseIds.push(this.innerHTML.trim());
         }
       }
@@ -811,10 +811,10 @@ var step3QuestionHandler = function () {
   //let's try again
   $('#wizard input:checked').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
-    $('#non-uber-question-data ul[non-uber-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#non-uber-question-data ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
-        if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())){
+        if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())) {
           uncheckedStep3ClauseIds.push(this.innerHTML.trim());
         }
       }
@@ -823,34 +823,34 @@ var step3QuestionHandler = function () {
 
   $('#wizard input').filter('.isUnique').each(function () {
     var questionId = this.id;
-    if (checkedStep3QuestionsIds.includes(questionId)){
+    if (checkedStep3QuestionsIds.includes(questionId)) {
       return true;
     }
     var covered = true;
     var checkedinStep1 = true;
 
-    if ($(this).is(':checked')){
+    if ($(this).is(':checked')) {
       console.log('question pushed');
       checkedStep3QuestionsIds.push(questionId);
     }
-    
+
     // Used to link the Step 1 question and the Step 3? question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
-    $('#unique-question-data ul[unique-data-question-id='+questionId+'] li').each(function () {
+    $('#unique-question-data ul[unique-data-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
-      $clause = $('#'+this.innerHTML);
+      $clause = $('#' + this.innerHTML);
       // only check unchecked non-informative endnode clauses
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         // if checkedinStep1 = false, it means the the subset uber questions was unchecked or that the question istself is not an uber
-        if (!(uncheckedStep3ClauseIds.includes(clauseId))){
+        if (!(uncheckedStep3ClauseIds.includes(clauseId))) {
           checkedinStep1 = false;
         }
       }
     });
 
     // Verifies if all the clauses of the unique question are all unchecked, if they are covered = true
-    $('#unique-question-data ul[unique-data-question-id='+questionId+'] li').each(function () {
-      $clause = $('#'+this.innerHTML);
+    $('#unique-question-data ul[unique-data-question-id=' + questionId + '] li').each(function () {
+      $clause = $('#' + this.innerHTML);
       if (covered) {
         // If clause is checked that means that uber question was not selected and question is not covered.
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
@@ -860,9 +860,9 @@ var step3QuestionHandler = function () {
       }
     });
 
-    var $element = $('.checkbox#'+questionId);
+    var $element = $('.checkbox#' + questionId);
     var $questionStep3Checkbox = $(this);
-    var $dialogLink = $('a[href="#moreInfo'+questionId+'"]');
+    var $dialogLink = $('a[href="#moreInfo' + questionId + '"]');
 
     if (covered && checkedinStep1) {
       $questionStep3Checkbox.siblings('span.remove-disabled-text').text('[removed] ');
@@ -878,14 +878,14 @@ var step3QuestionHandler = function () {
       //   // Delay 1 second
       //   $element.addClass('hidden');
       // }, 1000);
-    }  else if ($questionStep3Checkbox.attr('aria-disabled') === 'true')  {
+    } else if ($questionStep3Checkbox.attr('aria-disabled') === 'true') {
       $questionStep3Checkbox.siblings('span.remove-disabled-text').text('');
       $element.css('color', '#333333');
       $element.removeAttr('tabindex');
       $element.removeClass('hidden');
-      $dialogLink.attr('tabindex',0);
+      $dialogLink.attr('tabindex', 0);
       $dialogLink.removeClass('no-pointer-events');
-      $questionStep3Checkbox.prop('checked',false);
+      $questionStep3Checkbox.prop('checked', false);
       $questionStep3Checkbox.removeAttr('aria-disabled');
     }
   });
@@ -925,32 +925,46 @@ $(document).ready(function () {
 
 var setupQuestionHandler = function () {
   // Bind events for checkAll and uncheckAll buttons
-  $('#checkAll').click(function (e) {
+  // check all for step 1
+  $('#checkAll1').click(function (e) {
     e.preventDefault();
-    const section = document.querySelector('#wizard');
-    const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      if (!checkbox.checked) {
-        checkbox.checked = true;
-      }
-    });
+    $('#wizard input.isUber').not(':checked').prop('checked', true);
     updateWizard();
     step1SubsetsQuestionHandler();
   });
-
-
-  $('#uncheckAll').click(function (e) {
+  // step 2 check all
+  $('#checkAll2').click(function (e) {
     e.preventDefault();
-    const section = document.querySelector('#wizard');
-    const checkboxes = section.querySelectorAll('.checkbox input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
-      if (checkbox.checked) {
-        checkbox.checked = false;
-      }
-    });
-    step1SubsetsQuestionHandler();
-
+    $('#wizard input').not(':checked').not('.isUber').not('.isUnique').prop('checked', true);
+    updateWizard();
     step2QuestionHandler();
+  });
+  // step 3 checkAll
+  $('#checkAll3').click(function (e) {
+    e.preventDefault();
+    $('#wizard input.isUnique').not(':checked').prop('checked', true);
+    updateWizard();
+    step3QuestionHandler();
+  });
+
+  $('#uncheckAll1').click(function (e) {
+    e.preventDefault();
+    $('#wizard input:checked.isUber').prop('checked', false);
+    step1SubsetsQuestionHandler();
+    step2QuestionHandler();
+    step3QuestionHandler();
+    updateWizard();
+  });
+  $('#uncheckAll2').click(function (e) {
+    e.preventDefault();
+    $('#wizard input:checked').not('.isUber').not('.isUnique').prop('checked', false);
+    step2QuestionHandler();
+    step3QuestionHandler();
+    updateWizard();
+  });
+  $('#uncheckAll3').click(function (e) {
+    e.preventDefault();
+    $('#wizard input:checked.isUnique').prop('checked', false);
     step3QuestionHandler();
     updateWizard();
   });
