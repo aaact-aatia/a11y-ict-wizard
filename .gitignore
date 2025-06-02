@@ -63,10 +63,6 @@ typings/
 # Credentials for heroku instance
 server_info.txt
 
-# Compiled CSS files
-public/stylesheets/style.css
-public/stylesheets/style.css.map
-
 ### macOS ###
 # General
 .DS_Store
