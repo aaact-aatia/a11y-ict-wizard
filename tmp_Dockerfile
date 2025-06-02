@@ -12,7 +12,7 @@ ENV WAIT_HOSTS="_WAITHOSTS_"
 
 # Install essential packages
 RUN apt update && \
-    apt install -y nginx net-tools dos2unix netcat vim ssh && \
+	apt install -y nginx net-tools dos2unix netcat-openbsd vim ssh && \
     rm /etc/nginx/sites-available/default && \
     rm /etc/nginx/sites-enabled/default
 
