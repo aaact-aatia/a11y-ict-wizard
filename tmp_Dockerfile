@@ -1,4 +1,4 @@
-FROM node:12-buster
+FROM node:16-buster
 
 ENV NODE_ENV "production"
 ENV POPULATE_DB "true"
