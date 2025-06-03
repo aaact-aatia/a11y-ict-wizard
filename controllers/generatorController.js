@@ -47,7 +47,6 @@ exports.wizard_fr_get = (req, res, next) => {
 // Word Document Download
 exports.download = (req, res, next) => {
 	let strings = { template: req.params.template };
-
 	if (req.params.template.slice(-2) === 'fr') {
 		strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.docx';
 		strings.title = 'Exigences en matière de TIC accessibles';
@@ -55,11 +54,14 @@ exports.download = (req, res, next) => {
 		strings.filename = 'Annex X - ICT Accessibility Requirements.docx';
 		strings.title = 'ICT Accessibility Requirements';
 	}
-
-	if (req.params.template.includes('evaluation')) {
-		strings.filename = req.params.template.slice(-2) === 'fr'
-			? "Annexe Y - Évaluation de l'accessibilité des TIC.docx"
-			: 'Annex Y - ICT Accessibility Evaluation.docx';
+	if (req.params.template.includes("evaluation")) {
+		if (req.params.template.slice(-2) === 'fr') {
+			strings.filename = 'Annexe Y - Évaluation de l\u2019accessibilité des TIC.docx';
+			strings.title = 'Évaluation de l\u2019accessibilité des TIC.docx';
+		} else {
+			strings.filename = 'Annex Y - ICT Accessibility Evaluation.docx';
+			strings.title = 'ICT Accessibility Evaluation.docx';
+		}
 	}
 
 	// Normalize clause input to array
@@ -121,8 +123,7 @@ exports.download = (req, res, next) => {
 			}).arrayBuffer().then((arrayBuffer) => {
 				const buffer = Buffer.from(arrayBuffer);
 
-				res.setHeader('Content-Type', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document');
-				res.setHeader('Content-Disposition', `attachment; filename="${strings.filename}"`);
+				res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
 				res.send(buffer);
 			}).catch((error) => {
 				console.error("Failed to generate Word doc:", error);
