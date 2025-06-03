@@ -3,20 +3,8 @@ extends layout
 block content
   h1#wb-cont(property='name')= title
   //- h3 About
-  p Use this tool to generate requirements documents specific to the Information Communication Technology (ICT) you are procuring. Requirements are based on the  EN 301 549 (2025).
-  //- h3 Instructions
-  //- ol
-  //-   li Answer questions under 'Does the ICT include:' in the order they are listed.
-  //-   ul
-  //-     li Based on your responses, relevant requirements from the EN 301 549 will automatically be selected.
-  //-   li If necessary, fine tune the requirements by manually selecting 'Required clauses'.
-  //-   li Click the 'Generate requirements' button.
-  //-   ul
-  //-     li Documents will be generated which include only the required clauses.
-  //-   li On the next page, download the generated ICT accessibility requirements documents.
-  //-   li Give the requirements documents unique names and append them to your RFx.
-
-  -// Wizard logic is contained in a11y-req.js
+  p This tool allows users to answer a series of questions relating to what their procurement or solution does #[strong not] contain, and then create a customized partial version of the EN standard in both official languages, English or Canadian French. Selecting the checkboxes for these questions in steps 1, 2, and 3 removes their associated provisions from the documents in step 5. Each step provides increasingly more precise levels of refinement for the provisions to be included, based on the previous steps’ selections. This allows the user to create a focused and more actively relevant set of Information and Communications Technology (ICT) accessibility requirements for their project or procurement.
+  p For Business Owners/ Technical Authorities with the Government of Canada, this tool can be used to narrow down the requirements to be specific to the solution and/or service you are looking to purchase or build. The wizard output should be provided to your bidders as part of the solicitation process.
   hr
 
   form(novalidate='novalidate' method='POST' action='')
