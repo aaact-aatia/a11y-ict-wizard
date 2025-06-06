@@ -68,104 +68,79 @@ block content
             include includes/download_chooser
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step4', style='margin-bottom: 10px; margin-top: 8px;') Previous
 
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1(role='dialog')
     header.modal-header
       h2.modal-title Instructions: Step 1
     .modal-body
-      p Select all checkboxes which does not apply to the ICT being procured, even those which appear redundant.
-      p
-        | Note that the procured product / service must itself 
-        strong not provide
-        |  the component or feature. For example, consider the case of procuring e-learning services:
-      ol
-        li
-          p The statement of work specifies that the supplier must use a certain video-conferencing platform.
-          p "Two-way communication" and "Two-way video communication" requirements should be selected (since these functions are not provided by the supplier as part of this procurement).
-        li
-          p The statement of work includes a learning management system with content-editing abilities, to be chosen or developed by the supplier.
-          p "Authoring tools" should not be selected (since the supplier is providing content authoring functionality as part of this procurement).
-      p When you are satisfied that your selection is correct, proceed to Step 2 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
-
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep2
+      p This wizard uses negative selection to remove the types of Information Communication Technology (ICT) that do not apply to a solicitation or ICT solution. This means that the wizard has all provisions selected to start with, and checking boxes will remove the associated selections. 
+      p Step 1 lists the major categories of ICT and it is recommended that you  carefully review your selections as these selections will eliminate large numbers of provisions from the EN 301 549 and will also remove checkboxes in Steps 2 and 3 which no longer apply.
+      p There are optional buttons which can be selected before the checkboxes:
+      ul
+        li Select all/Deselect all buttons to uncheck or check all checkboxes in this step. This works the same way as manually checking or unchecking the checkboxes and will impact the options in Steps 2 and 3 in the same way
+        li Show removed/Hide remove buttons will show or hide hidden checkboxes. This allows you to see what the tool has automatically hidden because of previous selections
+        li Undo will revert the last check/uncheck or selecting Select all/Deselect all
+      p If you would like to resume editing from a previously created annex, you can use the “Resume editing” button to open a dialog to copy and paste the list of the previous selections which will clear any selections you have made and reapply them.
+      p Once you have finished making your selections select “next” to move to the next step, but you can return here if needed to adjust your selections.
+      p Note 1: It is important to consider what could be included in the project or procurement, and to only remove items which you are sure do not apply. Many of these categories will be obvious such as removing hardware from a software-based solution. When it is less obvious consider using the help dialog located next to each item to get some additional context before making your selection.
+      p Note 2: it is a common mistake to assume that a web-based solution means you select all the checkboxes (other than for websites). This is rarely appropriate as most web-based solutions apply to many of the other categories such as authoring tools, product documentation, support services or the audio video provisions.
+      p Note 3: The “resume editing” feature uses an exact string match to locate the appropriate selections, so it is important to copy them exactly.
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep2(role='dialog')
     header.modal-header
       h2.modal-title Instructions: Step 2
     .modal-body
-      p To be updated
-      p When you are satisfied that your selection is correct, proceed to Step 3 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
-
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3
+      p Step 2 presents the remaining categories of ICT which have 2 or more provisions associated with them. Carefully review your selections as the selections will eliminate multiple provisions and will also remove checkboxes in Step 3 which no longer apply.
+      p You can find the same options from Step 1 before the checkboxes as follows:
+      ul
+        li Select all/Deselect all buttons to uncheck or check all checkboxes in this step. This works the same way as manually checking or unchecking the checkboxes and will impact the options in step 3 in the same way.
+        li Show removed/Hide remove buttons will show or hide hidden checkboxes. This allows you to see what the tool has automatically hidden because of previous selections.
+        li Undo will revert the last check/uncheck or selecting Select all/Deselect all.
+      p Once you have finished making your selections select “next” to move to the next step, or “previous” if you need to adjust your selections in the previous step.
+      p Note: It is important to consider what could be included in the project or procurement, and to only remove items which you are sure do not apply. Many of these categories will be obvious such as removing hardware from a software-based solution. When it is less obvious consider using the help dialog located next to each item to get some additional context before making your selection.
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3(role='dialog')
     header.modal-header
       h2.modal-title Instructions: Step 3
     .modal-body
-      p To be updated
-      p When you are satisfied that your selection is correct, proceed to Step 4 by using the navigation tabs or the "Next" button. Further instructions are available within each tab.
-
-
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4
+      p Step 3 presents the remaining categories of ICT which only have a single provision associated with them. If you feel like something is missing from the displayed options consider using the “Show removed” option as many of the options may have been hidden based on your selections in Steps 1 and 2.
+      p You can find the same options from Steps 1 and 2 before the checkboxes as follows:
+      ul
+        li Select all/Deselect all buttons to uncheck or check all checkboxes in this step. This works the same way as manually checking or unchecking the checkboxes. 
+        li Show removed/Hide remove buttons will show or hide hidden checkboxes. This allows you to see what the tool has automatically hidden because of previous selections.
+        li Undo will revert the last check/uncheck or selecting Select all/Deselect all.
+      p Once you have finished making your selections select “next” to move to the review step, or “previous” if you need to adjust your selections in the previous step.
+      p Note: It is important to consider what could be included in the project or procurement, and to only remove items which you are sure do not apply. Many of these categories will be obvious such as removing hardware from a software-based solution. When it is less obvious consider using the help dialog located next to each item to get some additional context.
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4(role='dialog')
     header.modal-header
       h2.modal-title Instructions: Step 4
     .modal-body
-      p
-        | Relevant requirements (clauses) have now been selected based on your answers in Step 1 and 2. Use the checkbox tree to inspect which clauses have been selected. Make sure that they apply to your procurement.
-      h3 When should you deselect a clause?
-      p
-        | Only deselect the clauses that you are certain will not be part of the procured product / service. Err on the side of including any requirement that may be necessary. Individual clauses can be marked "not applicable" by suppliers, so it isn't a problem to include an inapplicable clause.
-      p
-        | For example, consider procuring a web application. Web content may include video or audio. Even if the statement of work does not require multimedia content, some suppliers may use multimedia for instructions on how to use the application. In this case, do not deselect clause 9.1.2 "Time based media".
-      p
-        | In general, include all requirements in clause 9 or 10 rather than selecting only a portion of them.
-      h3 Using the clause tree
+      p Step 4 is a review step which shows which selections will be included in the documents you download in Step 5 in a tree view. If you notice that there are any errors, go back to Steps 1, 2, or 3 to adjust your selections before proceeding to Step 5.
+      p Tips for using the clause tree:
       ul
         li To expand or collapse parts of the tree with the mouse, click the arrow next to the clause you wish to expand. Or, click in the blank space next to the clause name.
         li To expand or collapse with the keyboard, use the arrow keys. The up and down arrows will move between clauses, while the right and left arrows will expand and collapse clauses.
-        li Clauses with no children are the only ones that contain actual requirement text (for example, clause 5.2). These can be expanded to reveal the text in the same manner as the parent clauses.
-        li To select or deselect a clause, click the checkbox or press the spacebar. When a parent clause is selected (for example, clause 5), all of its children will be selected.
-      h3 Making changes to previously generated requirements
-      p
-        | Each generated document includes a succinct "clause list", which is a single sentence listing all clauses included in that document. It looks something like this:
-      p
-        | "The offered solution should comply with clauses 5.1.2.1, 5.1.2.2, 5.1.3.1, 12.1.1 and 12.1.2."
-      p
-        | You may have spent considerable time refining your clause selection. After generating documents, you closed this web page. The next day, you realize that modifications are required. A function is provided to do this easily.
-      p
-        | Activate the "Enter clause list" button located after the clause tree. Copy the clause list from your previously generated document and paste it in the form field. Your previous clause selection will be restored in the checkbox tree. You can then make any required modifications to the selection.
-      
-  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep5
+        li Clauses which have no “children are the actual provisions from the standard and can be opened using a mouse or keyboard in the same way as the parent clauses.
+  section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep5(role='dialog')
     header.modal-header
       h2.modal-title Instructions: Step 5
     .modal-body
-      p Click the links to download requirements documents. For most procurements, "Requirements with informative sections" should be included. When conformance is being rated, also include an "Evaluation template".
-      p You may wish to give the documents more descriptive filenames after downloading.
-      h3 Necessary modifications to Word documents
-      p
-        | Due to 
-        a(href='https://github.com/aaact-aatia/a11y-ict-wizard#user-content-known-issues') limitations of the tool
-        |  you should perform the following steps after downloading the documents.
-      h4 English document
-      ol
-        li Open the generated English document in Microsoft Word.
-        li Under File &gt; Info, click Convert.
-        li For the "Requirements with informative sections" document only:
-        | Insert page breaks before each Annex. If applicable, insert page breaks to keep figures with their corresponding captions.
-        li Save and close the document.
-      h4 French document
-      ol
-        li Open the generated French document in Microsoft Word.
-        li Under File &gt; Info, click Convert.
-        li Select all and set the language to French. To set the language, either click the language in the status bar, or follow these steps:
-          ol(type='a')
-            li In the ribbon, select the Review tab.
-            li Select Language &gt; Set Proofing Language.
-            li Select the desired language.
-        li For the "Requirements with informative sections" document only:
-          ol(type='a')
-            li Insert page breaks before each Annex. If applicable, insert page breaks to keep figures with their corresponding captions.
-            li The French document contains some English text, which should remain in English. Select the following English sections (found in the Annexes) and set the language to English:
-              ul
-                li References
-                li Abbreviations
-              | Make sure that the notes (which are in French) are not set to English.
-        li Save and close the document.
+      p Step 5 offers options to download two documents in both English and Canadian French as follows:
+      ul
+        li Requirements with informative sections (Annex X) – which is the selections made in Steps 1, 2, and 3 including all informative clauses as well as some additional information such as definitions and tables and figures
+        li List of testable clauses (Annex Y) which, based on the ICT identified in Annex X, lists  the provisions which have testable criteria in them.
+      p Note: Renaming the downloaded documents to more appropriate names is encouraged.
+      h3 Microsoft Word document formatting
+      p This tool currently has some limitations on how well it can format the resulting Word documents due to the underlying technology used and it is recommended that you consider manually updating:
+      h4 For all downloads
+      p Convert to the latest Microsoft Word document format by navigating to File > Info and selecting “convert”
+      h4 Annex X
+      ul
+        li Insert page breaks at the start of the annexes
+        li Insert/adjust page breaks to ensure that the captions associated to the annex with the “tables and figures” remain on the same page
+      h4 For the French documents
+      p The French documents will normally default the language to French and depending on which version of Word you are using may correctly identify some of the English words in the document and set their proofing language correctly. Review the below sections to ensure any English is marked up correctly. You can set the proofing language by clicking the language in the status bar, or by navigating to Review > Language > Set Proofing Language. If Word doesn’t seem to have done a good job auto detecting language consider selecting all and setting the document to be 100% French, and then check the below sections to mark the English text as English:
+      ul
+        li References
+        li Abbreviations
+      p Note: Make sure that the notes (which are in French) are not set to English
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#restoreModal(role='dialog')
     header.modal-header
       h2.modal-title Enter previous selections
