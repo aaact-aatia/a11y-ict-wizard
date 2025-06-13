@@ -1,6 +1,6 @@
 body {
   font-family: 'Arial', sans-serif;
-  font-size: 10pt;
+  font-size: 12pt;
 }
 
 table {
@@ -48,8 +48,16 @@ th p {
   margin-bottom: 0;
 }
 
+ul li {
+  padding-left: 6pt; 
+}
+
 figure {
   display: table;
+}
+
+table.table.table-bordered.evaluation th.col-sm-6 {
+  width: 50%;
 }
 
 figcaption {
@@ -58,9 +66,6 @@ figcaption {
   font-weight: bold;
 }
 
-table.table.table-bordered.evaluation th.col-sm-6 {
-  width: 50%;
-}
 
 /* MS Word specific CSS to force landscape orientation, correct styles, etc */
 
