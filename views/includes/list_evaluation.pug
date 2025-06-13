@@ -1,0 +1,8 @@
+if item_list.length > 0
+  - var count = 0
+  p Below is the list of the requirements selected in Annex X which can be evaluated for conformance and can be used to help guide the creation of an Accessibility Conformance Report (ACR, or to understand if an ACR is reporting conformance to all applicable requirements. The criteria listed are expected to have a level of conformance declared in the ACR, or an indication why it was not evaluated.
+  ul
+    each item in test_list 
+      li #{item.number} #{item.name}
+      - count = count + 1
+  p Total count of testable requirements: <strong>#{count}</strong>
