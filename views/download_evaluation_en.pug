@@ -10,6 +10,9 @@ html(lang='en')
     .WordSection1
       p Template generated #{moment().format('YYYY-MM-DD')}
       include includes/evaluation_intro.html
+      h2 Scope
+      p The requirements listed in the next section are applicable to the ICT based on the selections from the ICT Requirements Generator. The removed requirements are deemed to have been met as the ICT is not applicable to them based on their preconditions. The following selections were made when creating this document:
+      include includes/scope
       h2 Testable requirements from the EN 301 549 (2025)
       include includes/list_evaluation
 
