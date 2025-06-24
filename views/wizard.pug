@@ -19,9 +19,9 @@ block content
               a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title='Resume editing by pasting a previously generated requirements list') Restore Selections
             - var step = 1
             include includes/wizard_form
-            div(aria-live="polite")
+            div(aria-atomic="true" aria-live="polite")
               p.clause-count
-                strong Total number of clause applicable: 0
+                strong Total number of clauses applicable: <span id='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2', style='margin-bottom: 10px;') Next
 
           details#details-step2
