@@ -61,4 +61,5 @@ jobs:
           app-name: 'a11y-ict-wizard-2025'
           slot-name: 'Production'
           package: .
+          clean: true   # this forces a clean deployment
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F2EFC4331734448DB12288F8D2C68FFB }}
