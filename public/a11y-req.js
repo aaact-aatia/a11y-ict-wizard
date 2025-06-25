@@ -327,15 +327,13 @@ var selectAll = function () {
 };
 
 var clauseCounter = function () {
-  // Just to count total number of clauses can be removed afterwards
   var totalClauses = 0
   $('#clauses input:checked').each(function () {
     if (($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative'))) {
       totalClauses++;
     }
   });
-
-  $('.clause-count').html("<strong>Total number of clause applicable: " + totalClauses + "</strong>");
+  $('#clauseCount').text(totalClauses);
 }
 
 var updateWizard = function () {

@@ -18,10 +18,9 @@ block content
               a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title="Reprendre l'édition en collant une liste d’exigences précédemment générée") Restaurer les sélections
             - var step = 1
             include includes/wizard_form_fr
-            div
-              p(style="display: inline-block; margin-right: 10px")
-                strong Nombre totale de clause applicable: 
-              p.clause-count(style="display: inline-block") 0
+            div(aria-atomic="true" aria-live="polite")
+              p.clause-count
+                strong Nombre total de clauses applicables: <span id='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Suivant
           
           details#details-step2

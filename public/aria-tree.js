@@ -731,9 +731,10 @@ var updateAriaChecked = function ($node) {
   }
   $node[0].setAttribute('aria-checked', checked);
   // Application specific: Parent node might have an informative child
-  if ($node.is('.parentNode')) {
-    selectInformative($node);
-  }
+// this has been disabled to support negative selection. the data currently doesn't require logic like this in step 4, but if we find a bug or need it in the future consider adapting the below to make it work.
+//  if ($node.is('.parentNode')) {
+//    selectInformative($node);
+//  }
 };
 
 // Application specific: Select child informative clauses automatically
