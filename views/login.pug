@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1 Admin Login
+
+  if error
+    p(style="color: red") #{error}
+
+  form(method="POST", action="/login")
+    div
+      label(for="username") Username:
+      input(type="text", name="username", id="username", required)
+
+    div
+      label(for="password") Password:
+      input(type="password", name="password", id="password", required)
+
+    div
+      button(type="submit") Log In
