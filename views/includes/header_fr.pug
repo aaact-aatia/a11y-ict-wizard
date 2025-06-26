@@ -3,7 +3,8 @@
     h2.wb-inv Language selection
     ul.list-inline.margin-bottom-none
       li
-        a(href='/', lang='en') English
+        - const loginToggle = req.originalUrl === '/fr/login'
+        a(href=loginToggle ? '/login' : '/', lang='en') English
   .row
     .brand.col-xs-5.col-md-4
       a(href='https://www.canada.ca/en.html')

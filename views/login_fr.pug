@@ -1,0 +1,51 @@
+extends layout_fr
+
+block content
+  h1 Connexion à l’interface d’administration
+
+  if error
+    // Résumé des erreurs
+    #login-error-summary.alert.alert-danger(role="alert" tabindex="-1")
+      h2 Le formulaire n’a pas pu être soumis en raison d’une erreur.
+      ul
+        li
+          a(href="#username")
+            span.prefix Erreur :
+            |  #{error}
+
+  form(method="POST", action="/fr/login")
+    .form-group(class=error ? "has-error" : "")
+      label(for="username" class="required")
+        span.field-name Nom d’utilisateur
+        strong.required.mrgn-lft-sm(aria-hidden="true") (obligatoire)
+        if error
+          strong#username-error.error
+            span.label.label-danger.mrgn-lft-sm
+              span.prefix Erreur :
+              |  #{error}
+      input#username.form-control(
+        type="text",
+        name="username",
+        aria-describedby=error ? "username-error" : null,
+        required,
+        class=error ? "error" : ""
+      )
+
+    .form-group(class=error ? "has-error" : "")
+      label(for="password" class="required")
+        span.field-name Mot de passe
+        strong.required.mrgn-lft-sm(aria-hidden="true") (obligatoire)
+        if error
+          strong#password-error.error
+            span.label.label-danger.mrgn-lft-sm
+              span.prefix Erreur :
+              |  #{error}
+      input#password.form-control(
+        type="password",
+        name="password",
+        aria-describedby=error ? "password-error" : null,
+        required,
+        class=error ? "error" : ""
+      )
+
+    button.btn.btn-primary.btn-lg.mrgn-tp-lg(type="submit") Connexion
