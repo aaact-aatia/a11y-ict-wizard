@@ -43,6 +43,7 @@ block form
         input#isUnique(type='checkbox' name='isUnique' checked=(itemExists ? item.isUnique : false))
         | Select checkbox if and only if the question is a unique question, that is, the question is associated to one clause only
 
+    - var tree_name = "Linked clauses"
     include includes/clause_tree
       
     button.btn.btn-primary(type='submit') Submit

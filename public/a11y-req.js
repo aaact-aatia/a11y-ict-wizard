@@ -333,7 +333,7 @@ var clauseCounter = function () {
       totalClauses++;
     }
   });
-  $('#clauseCount').text(totalClauses);
+  $('.clauseCount').text(totalClauses);
 }
 
 var updateWizard = function () {
