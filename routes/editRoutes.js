@@ -1,5 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const checkLogin = require('../middleware/checkLogin');
+
+// Middleware to check if user is logged in
+router.use(checkLogin);
 
 // Require controller modules.
 const clause_controller = require('../controllers/clauseController');
@@ -8,6 +12,11 @@ const question_controller = require('../controllers/questionController');
 
 // GET edit (admin) page
 router.get('/', info_controller.edit_list);
+
+// GET edit page for admin
+router.get('/', (req, res) => {
+	res.render('edit'); // or whatever your edit view is
+});
 
 //GET JSON file on download
 router.get('/questionsdownload', question_controller.question_json_get);
