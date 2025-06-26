@@ -18,6 +18,7 @@ router.post('/login', (req, res) => {
 	const { username, password } = req.body;
 	if (username === USERNAME && password === PASSWORD) {
 		req.session.loggedIn = true;
+		req.session.username = username;
 		res.redirect('/edit');
 	} else {
 		res.render('login', { error: 'Invalid username or password.' });
@@ -29,6 +30,7 @@ router.post('/fr/login', (req, res) => {
 	const { username, password } = req.body;
 	if (username === USERNAME && password === PASSWORD) {
 		req.session.loggedIn = true;
+		req.session.username = username;
 		res.redirect('/edit'); // adjust later if there's a /fr/edit
 	} else {
 		res.render('login_fr', { error: 'Nom d’utilisateur ou mot de passe invalide.' });

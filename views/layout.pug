@@ -24,7 +24,7 @@ html(lang='en')
 
     div(class="container")
       if req.session && req.session.loggedIn
-          p You are logged in as #{req.session.username || 'admin'}.
+          p You are logged in as #{req.session.username}.
           form(method="GET", action="/logout", class="d-inline")
               button.btn.btn-primary(type="submit") Logout
 

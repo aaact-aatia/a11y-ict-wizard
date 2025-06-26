@@ -24,7 +24,7 @@ html(lang='fr')
 
     div(class="container")
       if req.session && req.session.loggedIn
-        p Vous êtes connecté en tant que #{req.session.username || 'administrateur'}.
+        p Vous êtes connecté en tant que #{req.session.username}.
         form(method="GET", action="/logout", class="d-inline")
           button.btn.btn-primary(type="submit") Déconnexion
 
