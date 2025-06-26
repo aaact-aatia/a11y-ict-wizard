@@ -53,14 +53,14 @@ exports.download = (req, res, next) => {
 		strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.' + format;
 		strings.title = 'Exigences en matière de TIC accessibles';
 	} else {
-		strings.filename = 'Annex X - ICT Accessibility Requirements.' + format;
-		strings.title = 'ICT Accessibility Requirements';
+		strings.filename = 'ICT accessibility requirements with informative sections.' + format;
+		strings.title = 'ICT accessibility requirements with informative sections';
 	}
 	if (req.params.template.includes("evaluation")) {
 		if (req.params.template.slice(-2) === 'fr') {
 			strings.filename = 'Annexe Y - Exigences testables selectés dans l Annexe X.' + format;
 		} else {
-			strings.filename = 'Annex Y - Testable requirements selected in Annex X.' + format;
+			strings.filename = 'List of testable ICT accessibility requirements.' + format;
 		}
 	}
 	// Edge case: < 2 clauses selected
