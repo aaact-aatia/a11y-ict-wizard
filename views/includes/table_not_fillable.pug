@@ -1,5 +1,5 @@
 if item_list.length > 0
-  table.table.table-bordered(alt='Table of EN 301 549 requirements and tests')
+  table.table.table-bordered(alt='Table of EN 301 549 requirements')
     thead
       tr.active
         th.col-sm-6(scope='col') EN 301 549 clause
@@ -12,9 +12,9 @@ if item_list.length > 0
             | !{item.description}
             if item.description.length > 0
               p
-                strong Relationship to functional performance statements:
+                strong Relationship to Functional Performance Criteria:
                 | !{item.compliance}
             else
               p
-                strong Relationship to functional performance statements:
-              | No user impact mapping
+                strong Relationship to Functional Performance Criteria:
+              | Not mapped to Functional Performance Criteria
