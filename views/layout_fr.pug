@@ -5,7 +5,7 @@ html(lang='fr')
 
     meta(charset='utf-8')
     meta(content='width=device-width, initial-scale=1' name='viewport')
-    
+
     link(href='/GCWeb/assets/favicon.ico' rel='icon' type='image/x-icon')
     link(rel='stylesheet' href='/GCWeb/css/theme.min.css')
     link(rel='stylesheet' href='/stylesheets/style.css')
@@ -22,6 +22,12 @@ html(lang='fr')
       div(class= "container" class="alert alert-warning")
         p Veuillez noter que ceci est le serveur de développement du projet 2025 et il n'est pas terminé.
 
+    div(class="container")
+      if req.session && req.session.loggedIn
+        p Vous êtes connecté en tant que #{req.session.username || 'administrateur'}.
+        form(method="GET", action="/logout", class="d-inline")
+          button.btn.btn-primary(type="submit") Déconnexion
+
     main(property="mainContentOfPage" class="container")
       block content
 
@@ -32,13 +38,13 @@ html(lang='fr')
             nav.col-md-9.col-lg-10.ftr-urlt-lnk
               h2.wb-inv À propos de ce site
               p translation to come in future
-              p Cet outil est un prototype et présente un certain nombre de 
+              p Cet outil est un prototype et présente un certain nombre de
                 a(href='https://github.com/aaact-aatia/a11y-ict-wizard#known-issues') problèmes connus (en anglais seulement)
-                | . Si vous rencontrez d’autres problèmes, veuillez 
+                | . Si vous rencontrez d’autres problèmes, veuillez
                 a(href='https://github.com/aaact-aatia/a11y-ict-wizard/issues') signaler le problème sur GitHub.
             .col-xs-6.visible-sm.visible-xs.tofpg
               a(href='#wb-cont')
-                | Top of Page 
+                | Top of Page
                 span.glyphicon.glyphicon-chevron-up
             .col-xs-6.col-md-3.col-lg-2.text-right
               img(src='/GCWeb/assets/wmms-blk.svg', alt='Symbole du gouvernement du Canada')

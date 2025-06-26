@@ -5,7 +5,7 @@ html(lang='en')
 
     meta(charset='utf-8')
     meta(content='width=device-width, initial-scale=1' name='viewport')
-    
+
     link(href='/GCWeb/assets/favicon.ico' rel='icon' type='image/x-icon')
     link(rel='stylesheet' href='/GCWeb/css/theme.min.css')
     link(rel='stylesheet' href='/stylesheets/style.css')
@@ -22,6 +22,12 @@ html(lang='en')
       div(class= "container" class="alert alert-warning")
         p Please note that this is the 2025 development server the project and is not complete.
 
+    div(class="container")
+      if req.session && req.session.loggedIn
+          p You are logged in as #{req.session.username || 'admin'}.
+          form(method="GET", action="/logout", class="d-inline")
+              button.btn.btn-primary(type="submit") Logout
+
     main(property="mainContentOfPage" class="container")
       block content
 
@@ -32,17 +38,16 @@ html(lang='en')
             nav.col-md-9.col-lg-10.ftr-urlt-lnk
               h2.wb-inv About this site
               p This wizard was created by Shared Services Canada with participation from a small international working group who helped define what was needed to help meet the needs of other countries adopting the EN 301 549 (v4.1.1) (or EN standard). This tool uses negative selection to identify which sections of the EN standard do not apply. Earlier tools created by Shared Services Canada used positive selection to identify which sections of the EN standard do apply.
-              p This tool is a prototype and has a number of 
+              p This tool is a prototype and has a number of
                 a(href='https://github.com/aaact-aatia/a11y-ict-wizard#known-issues') known issues
-                | . If you encounter further problems, please 
+                | . If you encounter further problems, please
                 a(href='https://github.com/aaact-aatia/a11y-ict-wizard/issues') open an issue on GitHub.
             .col-xs-6.visible-sm.visible-xs.tofpg
               a(href='#wb-cont')
-                | Top of Page 
+                | Top of Page
                 span.glyphicon.glyphicon-chevron-up
             .col-xs-6.col-md-3.col-lg-2.text-right
               img(src='/GCWeb/assets/wmms-blk.svg', alt='Symbol of the Government of Canada')
-
 
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.js")
     script(src="/wet-boew/js/wet-boew.min.js")
