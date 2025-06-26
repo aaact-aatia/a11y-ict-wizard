@@ -30,6 +30,10 @@ mongoose
 		console.error("❌ MongoDB connection error:", error.message);
 	});
 
+app.use((req, res, next) => {
+	res.locals.req = req;
+	next();
+});
 
 // Express server configuration (see also /bin/www)
 app.set("views", path.join(__dirname, "views"));
