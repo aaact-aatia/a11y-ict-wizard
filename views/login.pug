@@ -1,19 +1,51 @@
 extends layout
 
 block content
+  h1 Admin Login
 
-	h1 Admin Login
+  if error
+    // Error summary (above the form)
+    #login-error-summary.alert.alert-danger(role="alert" tabindex="-1")
+      h2 The form could not be submitted an error was found.
+      ul
+        li
+          a(href="#username")
+            span.prefix Error:
+            |  #{error}
 
-	if error
-		.alert.alert-danger #{error}
+  form(method="POST", action="/login")
+    .form-group(class=error ? "has-error" : "")
+      label(for="username" class="required")
+        span.field-name Username
+        strong.required.mrgn-lft-sm(aria-hidden="true") (required)
+        if error
+          strong#username-error.error
+            span.label.label-danger.mrgn-lft-sm
+              span.prefix Error:
+              |  #{error}
+      input#username.form-control(
+        type="text",
+        name="username",
+        aria-describedby=error ? "username-error" : null,
+        required,
+        class=error ? "error" : ""
+      )
 
-	form(method="POST", action="/login")
-		.form-group
-		label(for="username") Username
-		input#username.form-control(type="text", name="username", required)
+    .form-group(class=error ? "has-error" : "")
+      label(for="password" class="required")
+        span.field-name Password
+        strong.required.mrgn-lft-sm(aria-hidden="true") (required)
+        if error
+          strong#password-error.error
+            span.label.label-danger.mrgn-lft-sm
+              span.prefix Error:
+              |  #{error}
+      input#password.form-control(
+        type="password",
+        name="password",
+        aria-describedby=error ? "password-error" : null,
+        required,
+        class=error ? "error" : ""
+      )
 
-		.form-group
-		label(for="password") Password
-		input#password.form-control(type="password", name="password", required)
-
-		button.btn.btn-primary.btn-lg.mrgn-tp-lg(type="submit") Log In
+    button.btn.btn-primary.btn-lg.mrgn-tp-lg(type="submit") Log In
