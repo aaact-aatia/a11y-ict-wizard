@@ -250,8 +250,8 @@ var showRemoved = function () {
   $('#showAllRemovedClauses').click(function (e) {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
-      var $element = $(this).closest('.checkbox');
-      $element.removeClass('hidden');
+      var $element = $(this).closest('[role="treeitem"]');
+      $element.removeClass('hidden').removeAttr('aria-hidden');
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now shown.")
@@ -306,8 +306,8 @@ var hideRemoved = function () {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
       if (!$(this).prop('indeterminate')) {
-        var $element = $(this).closest('.checkbox');
-        $element.addClass('hidden');
+        var $element = $(this).closest('[role="treeitem"]');
+        $element.addClass('hidden').attr('aria-hidden', 'true');
       }
     });
     $('.disabledClauses').removeClass('hidden');
@@ -896,22 +896,22 @@ var step3QuestionHandler = function () {
 var step4Handler = function () {
   $('#clauses input').each(function () {
     var $this = $(this);
-    var $checkboxContainer = $this.closest('.checkbox');
+    var $checkboxContainer = $this.closest('[role="treeitem"]');
     if ($this.prop('indeterminate')) {
       // Checkbox is in indeterminate state
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', '#333333');
-      $checkboxContainer.removeClass('hidden');
+      $checkboxContainer.removeClass('hidden').removeAttr('aria-hidden');
     } else if ($this.is(':checked')) {
       // Checkbox is checked
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', '#333333');
-      $checkboxContainer.removeClass('hidden');
+      $checkboxContainer.removeClass('hidden').removeAttr('aria-hidden');
     } else {
       // Checkbox is not checked
       $this.siblings('span.remove-text').text('[removed]  ');
       $this.siblings('span').css('color', '#AD0000');
-      $checkboxContainer.addClass('hidden');
+      $checkboxContainer.addClass('hidden').attr('aria-hidden', 'true');
     }
   });
 }
