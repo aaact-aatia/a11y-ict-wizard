@@ -31,10 +31,14 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
 $(document).on("wb-ready.wb", function (event) {
 
   var trees = document.querySelectorAll('[role="tree"]');
+  
+  // Store trees globally so other code can update visibility
+  window.trees = [];
 
   for (var i = 0; i < trees.length; i++) {
     var t = new Tree(trees[i]);
     t.init();
+    window.trees.push(t);
   }
 
 });
@@ -223,6 +227,11 @@ Tree.prototype.updateVisibvarreeitems = function () {
     var parent = ti.domNode.parentNode;
 
     ti.isVisible = true;
+
+    // Check if this treeitem is hidden with the 'hidden' class
+    if (ti.domNode.classList.contains('hidden')) {
+      ti.isVisible = false;
+    }
 
     while (parent && (parent !== this.domNode)) {
 

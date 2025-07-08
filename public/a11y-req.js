@@ -251,11 +251,18 @@ var showRemoved = function () {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
       var $element = $(this).closest('[role="treeitem"]');
-      $element.removeClass('hidden').removeAttr('aria-hidden');
+      $element.removeClass('hidden');
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now shown.")
     setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    
+    // Update the ARIA tree visibility after showing items
+    if (window.trees && window.trees.length > 0) {
+      for (var i = 0; i < window.trees.length; i++) {
+        window.trees[i].updateVisibvarreeitems();
+      }
+    }
   });
 }
 
@@ -307,12 +314,19 @@ var hideRemoved = function () {
     $('#clauses input:not(:checked)').each(function () {
       if (!$(this).prop('indeterminate')) {
         var $element = $(this).closest('[role="treeitem"]');
-        $element.addClass('hidden').attr('aria-hidden', 'true');
+        $element.addClass('hidden');
       }
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now hidden.");
     setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    
+    // Update the ARIA tree visibility after hiding items
+    if (window.trees && window.trees.length > 0) {
+      for (var i = 0; i < window.trees.length; i++) {
+        window.trees[i].updateVisibvarreeitems();
+      }
+    }
   });
 }
 
@@ -901,19 +915,26 @@ var step4Handler = function () {
       // Checkbox is in indeterminate state
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', '#333333');
-      $checkboxContainer.removeClass('hidden').removeAttr('aria-hidden');
+      $checkboxContainer.removeClass('hidden');
     } else if ($this.is(':checked')) {
       // Checkbox is checked
       $this.siblings('span.remove-text').text('');
       $this.siblings('span').css('color', '#333333');
-      $checkboxContainer.removeClass('hidden').removeAttr('aria-hidden');
+      $checkboxContainer.removeClass('hidden');
     } else {
       // Checkbox is not checked
       $this.siblings('span.remove-text').text('[removed]  ');
       $this.siblings('span').css('color', '#AD0000');
-      $checkboxContainer.addClass('hidden').attr('aria-hidden', 'true');
+      $checkboxContainer.addClass('hidden');
     }
   });
+  
+  // Update the ARIA tree visibility after hiding/showing items
+  if (window.trees && window.trees.length > 0) {
+    for (var i = 0; i < window.trees.length; i++) {
+      window.trees[i].updateVisibvarreeitems();
+    }
+  }
 }
 
 // Call the setup function to initialize the handler
