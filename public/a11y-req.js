@@ -250,12 +250,19 @@ var showRemoved = function () {
   $('#showAllRemovedClauses').click(function (e) {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
-      var $element = $(this).closest('.checkbox');
+      var $element = $(this).closest('[role="treeitem"]');
       $element.removeClass('hidden');
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now shown.")
     setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    
+    // Update the ARIA tree visibility after showing items
+    if (window.trees && window.trees.length > 0) {
+      for (var i = 0; i < window.trees.length; i++) {
+        window.trees[i].updateVisibvarreeitems();
+      }
+    }
   });
 }
 
@@ -306,13 +313,20 @@ var hideRemoved = function () {
     e.preventDefault();
     $('#clauses input:not(:checked)').each(function () {
       if (!$(this).prop('indeterminate')) {
-        var $element = $(this).closest('.checkbox');
+        var $element = $(this).closest('[role="treeitem"]');
         $element.addClass('hidden');
       }
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now hidden.");
     setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    
+    // Update the ARIA tree visibility after hiding items
+    if (window.trees && window.trees.length > 0) {
+      for (var i = 0; i < window.trees.length; i++) {
+        window.trees[i].updateVisibvarreeitems();
+      }
+    }
   });
 }
 
@@ -896,7 +910,7 @@ var step3QuestionHandler = function () {
 var step4Handler = function () {
   $('#clauses input').each(function () {
     var $this = $(this);
-    var $checkboxContainer = $this.closest('.checkbox');
+    var $checkboxContainer = $this.closest('[role="treeitem"]');
     if ($this.prop('indeterminate')) {
       // Checkbox is in indeterminate state
       $this.siblings('span.remove-text').text('');
@@ -914,6 +928,13 @@ var step4Handler = function () {
       $checkboxContainer.addClass('hidden');
     }
   });
+  
+  // Update the ARIA tree visibility after hiding/showing items
+  if (window.trees && window.trees.length > 0) {
+    for (var i = 0; i < window.trees.length; i++) {
+      window.trees[i].updateVisibvarreeitems();
+    }
+  }
 }
 
 // Call the setup function to initialize the handler
