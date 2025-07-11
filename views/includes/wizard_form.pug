@@ -113,18 +113,18 @@ section.wizard
   .hidden(id=`uber-question-data-step${step}`)
     each question in uberQuestions_list
       //- p #{question._id}: #{question.name}
-      ul.question(uber-data-question-id=question._id)
+      ul.question(data-uber-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
   
   .hidden(id=`unique-question-data-step${step}`)
     each question in uniqueQuestions_list
-      ul.question(unique-data-question-id=question._id)
+      ul.question(data-unique-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
   
   .hidden(id=`non-uber-question-data-step${step}`)
     each question in nonUberQuestions_list
-      ul.question(non-uber-data-question-id=question._id)
+      ul.question(data-non-uber-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}

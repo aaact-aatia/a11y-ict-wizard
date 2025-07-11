@@ -543,7 +543,7 @@ var step1SubsetsQuestionHandler = function () {
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     checkedStep1QuestionsIds.push(questionId);
-    $('[id^="uber-question-data-step"] ul[uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep1ClauseIds.includes(this.innerHTML.trim())) {
@@ -564,7 +564,7 @@ var step1SubsetsQuestionHandler = function () {
     var covered = true;
     var checkedParentinStep1 = true;
 
-    $('[id^="uber-question-data-step"] ul[uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
@@ -574,7 +574,7 @@ var step1SubsetsQuestionHandler = function () {
       }
     });
 
-    $('[id^="uber-question-data-step"] ul[uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (covered) {
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
@@ -675,7 +675,7 @@ var step2QuestionHandler = function () {
   }
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('[id^="uber-question-data-step"] ul[uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep2ClauseIds.includes(this.innerHTML.trim())) {
@@ -700,7 +700,7 @@ var step2QuestionHandler = function () {
 
     // Used to link the Step 1 question and the Step 2 question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
-    $('[id^="non-uber-question-data-step"] ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#' + this.innerHTML);
       // only check unchecked non-informative endnode clauses
@@ -713,7 +713,7 @@ var step2QuestionHandler = function () {
     });
 
     // Verifies if all the clauses of the non-uber question are all unchecked, if they are covered = true
-    $('[id^="non-uber-question-data-step"] ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (covered) {
         // If clause is checked that means that uber question was not selected and question is not covered.
@@ -811,7 +811,7 @@ var step3QuestionHandler = function () {
   }
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('[id^="uber-question-data-step"] ul[uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())) {
@@ -823,7 +823,7 @@ var step3QuestionHandler = function () {
   //let's try again
   $('.wizard input:checked').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
-    $('[id^="non-uber-question-data-step"] ul[non-uber-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep3ClauseIds.includes(this.innerHTML.trim())) {
@@ -848,7 +848,7 @@ var step3QuestionHandler = function () {
 
     // Used to link the Step 1 question and the Step 3? question
     // Verifies if all the clauses unchecked from the non-uber question are found in the array 
-    $('[id^="unique-question-data-step"] ul[unique-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="unique-question-data-step"] ul[data-unique-question-id=' + questionId + '] li').each(function () {
       var clauseId = this.innerHTML.trim();
       $clause = $('#' + this.innerHTML);
       // only check unchecked non-informative endnode clauses
@@ -861,7 +861,7 @@ var step3QuestionHandler = function () {
     });
 
     // Verifies if all the clauses of the unique question are all unchecked, if they are covered = true
-    $('[id^="unique-question-data-step"] ul[unique-data-question-id=' + questionId + '] li').each(function () {
+    $('[id^="unique-question-data-step"] ul[data-unique-question-id=' + questionId + '] li').each(function () {
       $clause = $('#' + this.innerHTML);
       if (covered) {
         // If clause is checked that means that uber question was not selected and question is not covered.
