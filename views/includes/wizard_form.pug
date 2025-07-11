@@ -9,7 +9,7 @@ mixin checkbox(label, name, onlyIf, description, isUber, isUnique)
       input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false) class=(isUnique ? 'isUnique' : false))
       span.remove-disabled-text
       | !{label}
-    a(href=`#moreInfo${name}` aria-controls="moreInfo" class="wb-lbx lbx-modal" aria-label=`Open a dialog with more info on ${label}` tabindex="0")
+    a(href=`#moreInfo${name}` aria-controls=`moreInfo${name}` class="wb-lbx lbx-modal" aria-label=`Open a dialog with more info on ${label}` tabindex="0")
       svg(width="24.1" height="24.1" viewBox="-10 -10 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(0%, 10%)")
         path(d="M24 16V24M24 32H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2239ab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round")
 
