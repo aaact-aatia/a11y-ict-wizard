@@ -6,7 +6,7 @@ block content
   p French to be updated in future
   hr
 
-  form(novalidate='novalidate' method='POST' action='')
+  form(novalidate='novalidate' method='POST')
     input(type="hidden" id="selectedQuestions" name="questions" value="")
     .row
       .wb-tabs
@@ -56,7 +56,7 @@ block content
             div(aria-atomic="true" aria-live="polite")
               p.clause-count
                 strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
-            a.btn.btn-default.overlay-lnk(href='#clauseListModal' aria-controls='clauseListModal' role='button' title='Resume editing by pasting a previously generated requirements list') Entrer la liste de clauses
+			a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title='Reprendre l\'édition en collant une liste d\'exigences précédemment générée') Entrer la liste des clauses
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step5') Suivant
           

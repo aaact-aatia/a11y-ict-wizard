@@ -738,7 +738,10 @@ var updateAriaChecked = function ($node) {
     parentNode.prop('indeterminate', false);
     parentNode.prop('checked', false);
   }
-  $node[0].setAttribute('aria-checked', checked);
+  // Only set aria-checked on actual tree items, not content list items
+  if ($node[0].getAttribute('role') === 'treeitem') {
+    $node[0].setAttribute('aria-checked', checked);
+  }
   // Application specific: Parent node might have an informative child
 // this has been disabled to support negative selection. the data currently doesn't require logic like this in step 4, but if we find a bug or need it in the future consider adapting the below to make it work.
 //  if ($node.is('.parentNode')) {
@@ -753,7 +756,11 @@ var selectInformative = function ($node) {
     var checked = (getState($node) !== 'false');
     $informative.prop('checked', checked);
     $informative.each(function () {
-      $(this).closest('li')[0].setAttribute('aria-checked', checked);
+      var li = $(this).closest('li')[0];
+      // Only set aria-checked on actual tree items, not content list items
+      if (li.getAttribute('role') === 'treeitem') {
+        li.setAttribute('aria-checked', checked);
+      }
     });
   }
 }

@@ -44,9 +44,9 @@ fieldset#clauses
     button.btn.btn-default#showAllRemovedClauses Show removed
     button.btn.btn-default#hideAllRemovedClauses Hide removed
   //- aria-labelledby is not be necessary due to the fieldset legend
-  //- aria-selectable='false' is not ideal, but the treeitems need aria-checked
-  //- property rather than aria-selected (to express 'mixed' state)
-  ul.clause-tree(role='tree' aria-selectable='false')
+  //- aria-multiselectable='false' indicates this is a single-selection tree
+  //- treeitems use aria-checked property rather than aria-selected (to express 'mixed' state)
+  ul.clause-tree(role='tree' aria-multiselectable='false')
     +createTree(clause_tree)
   div.wb-inv(aria-live="polite")
     p.disabledClauses.hidden Nothing disabled

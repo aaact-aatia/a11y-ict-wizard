@@ -9,6 +9,7 @@ mixin fpsCheckbox(clause, selected, endNode)
       i.collapse
     label(for=clause.id)
       input.read-only(id=clause.id type='checkbox' name='clauses' data-number=clause.number value=clause.id class=clause.informative ? 'informative' : '' checked=selected tabindex='-1' aria-hidden='true')
+      span.remove-text
       span.number #{clause.number} 
       span.name #{clause.frName}
     if endNode
@@ -41,8 +42,13 @@ fieldset#clauses
     button.btn.btn-default#expandTree Arboriser
     button.btn.btn-default#expandAll Développer tout
     button.btn.btn-default#collapseAll Réduire tout
+  .btn-group(style="margin-left : 10px")
+    button.btn.btn-default#showAllRemovedClauses Afficher supprimés
+    button.btn.btn-default#hideAllRemovedClauses Masquer supprimés
   //- aria-labelledby is not be necessary due to the fieldset legend
-  //- aria-selectable='false' is not ideal, but the treeitems need aria-checked
-  //- property rather than aria-selected (to express 'mixed' state)
-  ul.clause-tree(role='tree' aria-selectable='false')
+  //- aria-multiselectable='false' indicates this is a single-selection tree
+  //- treeitems use aria-checked property rather than aria-selected (to express 'mixed' state)
+  ul.clause-tree(role='tree' aria-multiselectable='false')
     +createTree(clause_tree)
+  div.wb-inv(aria-live="polite")
+    p.disabledClauses.hidden Rien de désactivé
