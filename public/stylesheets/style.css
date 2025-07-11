@@ -261,17 +261,17 @@ i.info {
   padding-right: 14px;
 }
 
-#wizard label {
+.wizard label {
   padding: 2px 5px 2px 25px;
   display: inline;
 }
 
-#wizard .checkbox.focus,
-#wizard .checkbox:focus {
+.wizard .checkbox.focus,
+.wizard .checkbox:focus {
   background-color: #eee;
 }
 
-#wizard input:focus {
+.wizard input:focus {
   background-color: none;
 }
 
