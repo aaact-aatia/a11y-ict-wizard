@@ -6,7 +6,6 @@ block content
   p This tool allows users to answer a series of questions relating to what their procurement or solution does #[strong not] contain, and then create a customized partial version of the EN standard in both official languages, English or Canadian French. Selecting the checkboxes for these questions in steps 1, 2, and 3 removes their associated provisions from the documents in step 5. Each step provides increasingly more precise levels of refinement for the provisions to be included, based on the previous steps’ selections. This allows the user to create a focused and more actively relevant set of Information and Communications Technology (ICT) accessibility requirements for their project or procurement.
   p For Business Owners/ Technical Authorities with the Government of Canada, this tool can be used to narrow down the requirements to be specific to the solution and/or service you are looking to purchase or build. The wizard output should be provided to your bidders as part of the solicitation process.
   hr
-
   form(novalidate='novalidate' method='POST')
     input(type="hidden" id="selectedQuestions" name="questions" value="")
     .row
@@ -19,45 +18,40 @@ block content
               a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title='Resume editing by pasting a previously generated requirements list') Restore Selections
             - var step = 1
             include includes/wizard_form
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Total number of clauses applicable: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Total Clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2', style='margin-bottom: 10px;') Next
 
           details#details-step2
             summary Step 2: Refine ICT functionality
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button' title='Step 2 instructions') Instructions: Step 2
+              a.overlay-lnk.right(href='#instructionsStep2' aria-controls='#instructionsStep2' role='button' title='Step 2 instructions') Instructions: Step 2
             - var step = 2
             include includes/wizard_form
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Total number of clauses applicable: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Total Clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step1', style='margin-bottom: 10px;') Previous
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3', style='margin-bottom: 10px;') Next
 
           details#details-step3
             summary Step 3: Further refine ICT functionality
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions: Step 3
+              a.overlay-lnk.right(href='#instructionsStep3' aria-controls='#instructionsStep3' role='button' title='Step 3 instructions') Instructions: Step 3
             - var step = 3
             include includes/wizard_form
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Total number of clauses applicable: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Total Clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Previous
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step4', style='margin-bottom: 10px;') Next
-
 
           details#details-step4
             summary Step 4: Review clause selection
             p.form-instructions-link
-              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
+              a.overlay-lnk.right(href='#instructionsStep4' aria-controls='#instructionsStep4' role='button' title='Step 4 instructions') Instructions: Step 4
             - var tree_name = "These are the remaining clauses:"
             include includes/clause_tree
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Total number of clauses applicable: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Total Clauses: <span class='clauseCount'>0</span>
             div(style='margin-top: 8px;')
               a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Previous
               a.btn.btn-default.wb-tabs-ext.right(href='#details-step5', style='margin-bottom: 10px;') Next

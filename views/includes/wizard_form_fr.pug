@@ -50,8 +50,12 @@ section.wizard
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep1(class="btn btn-default") Afficher supprimé
         button#hideAllRemovedStep1(class="btn btn-default") Masquer supprimé
+        .btn-group(style="margin-left : 10px")
+          button#undoLastStep1(class="btn btn-default") Défaire    
       <br/>
-      button#undoLastStep1(class="btn btn-default" style="margin-top:10px;") Défaire
+      div(aria-atomic="true" aria-live="polite")
+        p.clause-count
+          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
@@ -69,8 +73,12 @@ section.wizard
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep2(class="btn btn-default") Afficher supprimé
         button#hideAllRemovedStep2(class="btn btn-default") Masquer supprimé
-      <br/>
-      button#undoLastStep2(class="btn btn-default" style="margin-top:10px;") Défaire
+        .btn-group(style="margin-left : 10px")
+          button#undoLastStep2(class="btn btn-default") Défaire
+            <br/>
+      div(aria-atomic="true" aria-live="polite")
+        p.clause-count
+          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
@@ -88,8 +96,12 @@ section.wizard
       .btn-group(style="margin-left : 10px")
         button#showAllRemovedStep3(class="btn btn-default") Afficher supprimé
         button#hideAllRemovedStep3(class="btn btn-default") Masquer supprimé
-      <br/>
-      button#undoLastStep3(class="btn btn-default" style="margin-top:10px;") Défaire
+        .btn-group(style="margin-left : 10px")
+          button#undoLastStep3(class="btn btn-default") Défaire
+            <br/>
+      div(aria-atomic="true" aria-live="polite")
+        p.clause-count
+          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
