@@ -1,16 +1,14 @@
 doctype html
 html(lang='en')
   head
-    title Information and Communications Technology (ICT) Accessibility Conformance Report (EN 301 549 v3.2.1)
+    title Information and Communications Technology (ICT) List of Testable elements selected in Annex X
     meta(charset='utf-8')
     style
       include download.css
 
   body(vocab='http://schema.org/' typeof='WebPage')
     .WordSection1
-      p Template generated #{moment().format('YYYY-MM-DD')}
+      p Generated #{moment().format('YYYY-MM-DD')}
       include includes/evaluation_intro.html
-      h2 Scope of testing
-      include includes/scope_evaluation
-      h2 Testing results
-      include includes/table_evaluation
+      h2 Testable requirements from the EN 301 549 (2021-03)
+      include includes/list_evaluation

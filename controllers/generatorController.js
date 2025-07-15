@@ -56,11 +56,11 @@ exports.download = (req, res, next) => {
 	}
 	if (req.params.template.includes("evaluation")) {
 		if (req.params.template.slice(-2) === 'fr') {
-			strings.filename = 'Annexe Y - Évaluation de l\u2019accessibilité des TIC.docx';
-			strings.title = 'Évaluation de l\u2019accessibilité des TIC.docx';
+			strings.filename = 'Annexe Y - Liste des éléments testables.docx';
+			strings.title = 'Liste des éléments testables.docx';
 		} else {
-			strings.filename = 'Annex Y - ICT Accessibility Evaluation.docx';
-			strings.title = 'ICT Accessibility Evaluation.docx';
+			strings.filename = 'Annex Y - List of Testable Elements.docx';
+			strings.title = 'List of Testable Elements.docx';
 		}
 	}
 
