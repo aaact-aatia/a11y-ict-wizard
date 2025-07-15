@@ -18,9 +18,8 @@ block content
               a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title="Reprendre l'édition en collant une liste d’exigences précédemment générée") Restaurer les sélections
             - var step = 1
             include includes/wizard_form_fr
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Suivant
           
           details#details-step2
@@ -29,9 +28,8 @@ block content
               a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button' title='Step 2 instructions') Instructions : Étape 2
             - var step = 2
             include includes/wizard_form_fr
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step1', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Suivant
 
@@ -41,9 +39,8 @@ block content
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button' title='Step 3 instructions') Instructions : Étape 3
             - var step = 3
             include includes/wizard_form_fr
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Précédent 
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Suivant
 			
@@ -53,9 +50,8 @@ block content
               a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button' title='Step 4 instructions') Instructions : Étape 4
             - var tree_name = "These are the remaining clauses:"
             include includes/clause_tree_fr
-            div(aria-atomic="true" aria-live="polite")
-              p.clause-count
-                strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+            p.clause-count
+              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
 			a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title='Reprendre l\'édition en collant une liste d\'exigences précédemment générée') Entrer la liste des clauses
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step5') Suivant
