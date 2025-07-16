@@ -10,11 +10,7 @@ if item_list.length > 0
             p
               strong #{item.number} #{item.name}
             | !{item.description}
-            if item.description.length > 0
+            if item.compliance.length > 0
               p
                 strong Relationship to Functional Performance Criteria:
                 | !{item.compliance}
-            else
-              p
-                strong Relationship to Functional Performance Criteria:
-              | Not mapped to Functional Performance Criteria

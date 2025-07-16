@@ -10,11 +10,7 @@ if item_list.length > 0
             p
               strong #{item.number} #{item.frName}
             | !{item.frDescription}
-            if item.description.length > 0
+            if item.frCompliance.length > 0
               p
                 strong Relation avec les déclarations de performance French to be updated:
                 | !{item.frCompliance}
-            else
-              p
-                strong Relation avec les déclarations de performance French to be updated:
-              | Not mapped to Functional Performance Criteria
