@@ -3,26 +3,19 @@ html(lang='fr')
   head
     title= title
     meta(charset='utf-8')
-    style
-      include download.css
+    if format == 'docx'
+      style
+        include download_docx.css
+    else
+      style
+        include download_html.css
 
   body(vocab='http://schema.org/' typeof='WebPage')
     .WordSection1
       p Généré le #{moment().format('YYYY-MM-DD')}
       h1= title
       include includes/intro_fr
-      //- intro has to be changed in the info database
-      //- About this document and Copyright Notice - last 2 para are deleted
-      //- Sources used to compile this document - only first link is kept
-      //- Part B - Functional accessibility requirements - to be changed completely
       include includes/scope_fr
-      //- scope is unchanged
       include includes/table_not_fillable_fr
-      //- clauses' "Determination of conformance (French)" have to be changed in the clause database
-      //- "Détermination de la conformité" is replaced by "Relation avec les déclarations de performance fonctionnelle"
       include includes/annex_fr
-      //- remove Annex - Chapter 14 Conformance
-      //- remove Annex - References (from EN 301 549)
-      //- remove Annex - Definition of terms, symbols and abbreviations (from EN 301 549)
-      //- remove Annex - Practical guidance for accessible non-web documentation
-      //- add Customizable information section
+      

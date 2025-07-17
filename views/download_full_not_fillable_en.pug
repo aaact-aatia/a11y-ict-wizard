@@ -3,27 +3,19 @@ html(lang='en')
   head
     title= title
     meta(charset='utf-8')
-    style
-      include download.css
+    if format == 'docx'
+      style
+        include download_docx.css
+    else
+      style
+        include download_html.css
 
   body(vocab='http://schema.org/' typeof='WebPage')
     .WordSection1
       p Generated #{moment().format('YYYY-MM-DD')}
       h1= title
       include includes/intro
-      //- intro has to be changed in the info database
-      //- About this document and Copyright Notice - last 2 para are deleted
-      //- Sources used to compile this document - only first link is kept
-      //- Part B - Functional accessibility requirements - to be changed completely
       include includes/scope
-      //- scope is unchanged
       include includes/table_not_fillable
-      //- clauses' "Determination of conformance (English)" have to be changed in the clause database
-      //- "Determination of conformance" is replaced by "Relationship to functional performance statements"
       include includes/annex
-      //- remove Annex - Chapter 14 Conformance
-      //- remove Annex - References (from EN 301 549)
-      //- remove Annex - Definition of terms, symbols and abbreviations (from EN 301 549)
-      //- remove Annex - Practical guidance for accessible non-web documentation
-      //- add Customizable information section
       

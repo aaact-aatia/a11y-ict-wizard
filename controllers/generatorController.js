@@ -122,6 +122,7 @@ exports.download = (req, res, next) => {
 
 		res.render(strings.template, {
 			title: strings.title,
+			format: format,
 			question_list: results.questionsSelected,
 			item_list: results.fps,
 			test_list: getTestableClauses(results.fps),
