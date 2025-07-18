@@ -409,6 +409,12 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
 var uncheckedStep1ClauseIds = [];
 var checkedStep1QuestionsIds = [];
 var previouscheckedStep1QuestionsIds = [];
+var uncheckedStep2ClauseIds = [];
+var checkedStep2QuestionsIds = [];
+var previouscheckedStep2QuestionsIds = [];
+var uncheckedStep3ClauseIds = [];
+var checkedStep3QuestionsIds = [];
+var previouscheckedStep3QuestionsIds = [];
 var undo = false;
 
 var undoHandler = function () {
