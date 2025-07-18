@@ -37,14 +37,12 @@ fieldset#clauses
   legend
     span#tree_label.field-name #{tree_name}
   .btn-group
-    //- button.btn.btn-default#selectAll Select all 
-    //- button.btn.btn-default#selectNone Select none
     button.btn.btn-default#expandTree Arboriser
-    button.btn.btn-default#expandAll Développer tout
-    button.btn.btn-default#collapseAll Réduire tout
+    button.btn.btn-default#expandAll(style="margin-left : 3px") Développer tout
+    button.btn.btn-default#collapseAll(style="margin-left : 3px") Réduire tout
   .btn-group(style="margin-left : 10px")
     button.btn.btn-default#showAllRemovedClauses Afficher supprimés
-    button.btn.btn-default#hideAllRemovedClauses Masquer supprimés
+    button.btn.btn-default#hideAllRemovedClauses(style="margin-left : 3px") Masquer supprimés
   //- aria-labelledby is not be necessary due to the fieldset legend
   //- aria-multiselectable='false' indicates this is a single-selection tree
   //- treeitems use aria-checked property rather than aria-selected (to express 'mixed' state)

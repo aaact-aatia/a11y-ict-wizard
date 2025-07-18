@@ -38,11 +38,11 @@ fieldset#clauses
     span#tree_label.field-name #{tree_name}
   .btn-group
     button.btn.btn-default#expandTree Expand tree
-    button.btn.btn-default#expandAll Expand all
-    button.btn.btn-default#collapseAll Collapse all
+    button.btn.btn-default#expandAll(style="margin-left : 3px") Expand all
+    button.btn.btn-default#collapseAll(style="margin-left : 3px") Collapse all
   .btn-group(style="margin-left : 10px")
     button.btn.btn-default#showAllRemovedClauses Show removed
-    button.btn.btn-default#hideAllRemovedClauses Hide removed
+    button.btn.btn-default#hideAllRemovedClauses(style="margin-left : 3px") Hide removed
   //- aria-labelledby is not be necessary due to the fieldset legend
   //- aria-multiselectable='false' indicates this is a single-selection tree
   //- treeitems use aria-checked property rather than aria-selected (to express 'mixed' state)
