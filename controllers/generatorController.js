@@ -1,4 +1,6 @@
 // NOTE: "clause" == "fps" (functional performance statement)
+require('dotenv').config();
+const enVersion = process.env.EN_VERSION;
 
 const async = require('async');
 const mongoose = require('mongoose');
@@ -21,7 +23,7 @@ exports.wizard_get = (req, res, next) => {
   }, (err, results) => {
     if (err) { return next(err); }
     res.render('wizard', {
-      title: 'ICT accessibility requirements wizard',
+	  title: `ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`,
       clause_tree: toClauseTree(results.clauses),
       preset_list: results.presets
     });
@@ -36,7 +38,7 @@ exports.wizard_fr_get = (req, res, next) => {
   }, (err, results) => {
     if (err) { return next(err); }
     res.render('wizard_fr', {
-      title: 'Assistant des exigences d\'accessibilité des TIC',
+	  title: `Assistant des exigences d\'accessibilité des TIC - ${enVersion || 'EN 301 549'}`,
       clause_tree: toClauseTree(results.clauses),
       preset_list: results.presets
     });
