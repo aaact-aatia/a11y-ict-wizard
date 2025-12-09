@@ -21,29 +21,18 @@ $(document).on("wb-ready.wb", function (event) {
 
   undoHandler();
 
-  // Replace <textarea> with rich text editor (CKEditor)
-  // https://stackoverflow.com/questions/46559354/how-to-set-the-height-of-ckeditor-5-classic-editor/56550285#56550285
-  function MinHeightPlugin(editor) {
-    this.editor = editor;
-  };
-
-  MinHeightPlugin.prototype.init = function () {
-    this.editor.ui.view.editable.extendTemplate({
-      attributes: {
-        style: {
-          maxHeight: '400px'
-        }
+  // Replace <textarea> with rich text editor (TinyMCE)
+  // Initialize TinyMCE for all textareas that don't have 'no-editor' class
+  if (typeof tinymce !== 'undefined') {
+    console.log('TinyMCE loaded, initializing editors...');
+    $('textarea').each(function () {
+      if (!$(this).hasClass('no-editor')) {
+        initEditor(this, $(this).attr('lang') === 'fr' ? 'fr_FR' : 'en_US');
       }
     });
-  };
-
-  ClassicEditor.builtinPlugins.push(MinHeightPlugin);
-
-  $('textarea').each(function () {
-    if (!$(this).hasClass('no-editor')) {
-      initCK(this, $(this).attr('lang') === 'fr' ? 'fr' : 'en');
-    }
-  });
+  } else {
+    console.error('TinyMCE not available. Check that TinyMCE CDN loaded correctly.');
+  }
 });
 
 
@@ -133,27 +122,7 @@ var setupTreeHandler = function () {
   });
 };
 
-/* CKEditor */
-
-var initCK = function (element, lang) {
-  ClassicEditor
-    .create(element, {
-      language: {
-        ui: 'en',
-        content: lang
-      },
-      removePlugins: [],
-      // plugins: [ 'Base64UploadAdapter' ],
-      toolbar: ['heading', 'bold', 'italic', 'bulletedList', 'numberedList', 'link', 'undo', 'redo', 'imageUpload', 'imageTextAlternative', 'insertTable']
-    })
-    .then(function (editor) {
-      // console.log(editor);
-      // console.log(Array.from(editor.ui.componentFactory.names()));
-    })
-    .catch(function (error) { console.error(error); });
-
-  // console.log(ClassicEditor.builtinPlugins.map(plugin => plugin.pluginName));
-};
+/* TinyMCE - configuration in tinymce-init.js */
 
 /* Wizard questions */
 

@@ -13,6 +13,8 @@ const app = express();
 app.locals.moment = require("moment");
 
 app.use(express.static(path.join(__dirname, "public")));
+// Serve TinyMCE from node_modules (self-hosted, GPL license)
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 const mongoDB = process.env.DBURI || "mongodb://127.0.0.1:27017/a11y-req";
 console.log(`Connecting to MongoDB at: ${mongoDB}`);

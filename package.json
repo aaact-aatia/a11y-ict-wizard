@@ -10,8 +10,6 @@
     "node": "22.x"
   },
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^42.0.1",
-    "@ckeditor/ckeditor5-upload": "^42.0.1",
     "async": "^3.x.x",
     "cookie-parser": "~1.4.4",
     "debug": "^4.3.5",
@@ -29,7 +27,8 @@
     "mongoose": "^6.13.0",
     "morgan": "~1.10.0",
     "multer": "^2.0.2",
-    "pug": "^3.0.3"
+    "pug": "^3.0.3",
+    "tinymce": "^7.9.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
