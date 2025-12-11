@@ -332,3 +332,4 @@ button.toggle-switch[aria-checked="true"]::before {
 button.toggle-switch[aria-checked="false"]::before {
   right: 6px;
 }
+

@@ -2,6 +2,11 @@
   section#wb-lng.text-right
     h2.wb-inv Language selection
     ul.list-inline.margin-bottom-none
+      if user
+        li
+          a.btn.btn-sm.btn-primary.mrgn-rght-md(href='/edit', title='Système de gestion de contenu')
+            span.glyphicon.glyphicon-cog(aria-hidden='true')
+            |  Admin
       li
         a(href='/', lang='en') English
   .row

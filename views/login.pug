@@ -1,0 +1,47 @@
+extends layout
+
+block content
+  h1#wb-cont(property="name")= title
+  
+  if error
+    .alert.alert-danger(role="alert")
+      h2.h3 Error
+      p= error
+  
+  form.form-horizontal(method="POST" action="/edit/login")
+    fieldset
+      legend Access the Content Management System
+      
+      .form-group
+        label.col-sm-3.control-label(for="username")
+          | Username
+          span.required(aria-hidden="true")  (required)
+        .col-sm-9
+          input#username.form-control(
+            type="text" 
+            name="username" 
+            required
+            aria-required="true"
+            autocomplete="username"
+          )
+      
+      .form-group
+        label.col-sm-3.control-label(for="password")
+          | Password
+          span.required(aria-hidden="true")  (required)
+        .col-sm-9
+          input#password.form-control(
+            type="password" 
+            name="password" 
+            required
+            aria-required="true"
+            autocomplete="current-password"
+          )
+      
+      .form-group
+        .col-sm-offset-3.col-sm-9
+          button.btn.btn-primary(type="submit")
+            | Login
+          |  
+  p
+    a(href="/") Return to wizard

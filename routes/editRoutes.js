@@ -8,6 +8,100 @@ const clause_controller = require('../controllers/clauseController');
 const info_controller = require('../controllers/infoController');
 const question_controller = require('../controllers/questionController');
 
+// Authentication credentials
+const ADMIN_USERNAME = process.env.BASICAUTHUSERNAME || "admin";
+const ADMIN_PASSWORD = process.env.BASICAUTHPASSWORD || "admin";
+
+// Authentication middleware
+const requireAuth = (req, res, next) => {
+	if (req.session && req.session.user) {
+		return next();
+	}
+	// Store the original URL to redirect after login
+	req.session.returnTo = req.originalUrl;
+	res.redirect('/edit/login');
+};
+
+// Login routes (public - no auth required)
+router.get('/login', (req, res) => {
+	// If already logged in, redirect to edit home
+	if (req.session && req.session.user) {
+		return res.redirect('/edit');
+	}
+	const enVersion = process.env.EN_VERSION;
+	res.render('login', { 
+		title: `Admin login - ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`, 
+		error: null 
+	});
+});
+
+// French login page
+router.get('/fr/login', (req, res) => {
+	// If already logged in, redirect to edit home
+	if (req.session && req.session.user) {
+		return res.redirect('/edit');
+	}
+	const enVersion = process.env.EN_VERSION;
+	res.render('login_fr', { 
+		title: `Admin login - ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`, 
+		error: null 
+	});
+});
+
+router.post('/login', (req, res) => {
+	const { username, password } = req.body;
+	
+	if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+		// Set session
+		req.session.user = { username };
+		
+		// Redirect to the original URL or default to /edit
+		const returnTo = req.session.returnTo || '/edit';
+		delete req.session.returnTo;
+		res.redirect(returnTo);
+	} else {
+		const enVersion = process.env.EN_VERSION;
+		res.render('login', { 
+			title: `Admin login - ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`, 
+			error: 'Invalid username or password' 
+		});
+	}
+});
+
+// French login POST
+router.post('/fr/login', (req, res) => {
+	const { username, password } = req.body;
+	
+	if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+		// Set session
+		req.session.user = { username };
+		
+		// Redirect to the original URL or default to /edit
+		const returnTo = req.session.returnTo || '/edit';
+		delete req.session.returnTo;
+		res.redirect(returnTo);
+	} else {
+		const enVersion = process.env.EN_VERSION;
+		res.render('login_fr', { 
+			title: `Admin login - ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`, 
+			error: 'Nom d\'utilisateur ou mot de passe invalide' 
+		});
+	}
+});
+
+// Logout route
+router.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		if (err) {
+			console.error('Error destroying session:', err);
+		}
+		res.redirect('/');
+	});
+});
+
+// Apply authentication to all other routes
+router.use(requireAuth);
+
 // GET edit (admin) page
 router.get('/', info_controller.edit_list);
 
