@@ -1,0 +1,4924 @@
+[
+  {
+    "_id": {
+      "$oid": "67650b065212c09bb429c172"
+    },
+    "name": "Has no and uses no keys, tickets or fare cards, where the orientation of the keys, tickets or fare cards is important for further use",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f42"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f47"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "681e1b00d3f322e1c86e8615"
+    },
+    "name": "NO functionality is closed to keyboards or keyboard interfaces",
+    "frName": "to be updated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eef"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef0"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "681e35a8d3f322e1c86e877a"
+    },
+    "name": "Is not, and does not include, RTT send and receive capabilities",
+    "frName": "to be updated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f03"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f05"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682f9c4d52e10d5e3bea5bdc"
+    },
+    "name": "Does not provide any functionality that allows real-time bidirectional voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efe"
+      },
+      {
+        "$oid": "6823825b3f223e244c46b9f4"
+      },
+      {
+        "$oid": "682383163f223e244c46ba00"
+      },
+      {
+        "$oid": "682386203f223e244c46ba27"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f00"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f01"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f06"
+      },
+      {
+        "$oid": "67e41ba0a98cfb839999fbd3"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "6823887c3f223e244c46ba59"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68300b8052e10d5e3bea60a2"
+    },
+    "name": "Is not required to provide, or otherwise provides, emergency communications,",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2fc8a5b61d491473bce3e"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6833f9ef52e10d5e3bea88f5"
+    },
+    "name": "Is not, and does not include, a communication client that supports real-time bidirectional voice communication with another compatible communication system, visits and connects to the communication system",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2fb935b61d491473bce3a"
+      },
+      {
+        "$oid": "67e308f45b61d491473bce46"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "69289d46bab179228961c362"
+    },
+    "name": "No side reach is unobstructed or obstructed by an element with a depth of up to 255 mm (maximum) and a height of less than 380 mm that is an integral part of the ICT (this is called unobstructed side reach), ",
+    "frName": "french to be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      },
+      {
+        "$oid": "69289b67bab179228961c34c"
+      },
+      {
+        "$oid": "69289b93bab179228961c350"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "69289d94bab179228961c367"
+    },
+    "name": "No obstruction higher than 380 mm that is an integral part of the ICT (this is called obstructed side reach",
+    "frName": "french to be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      },
+      {
+        "$oid": "69289bc8bab179228961c354"
+      },
+      {
+        "$oid": "69289bf6bab179228961c35a"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "69289ef2bab179228961c36e"
+    },
+    "name": "is not, or does not includes an Electronic Programme Guide (EPG",
+    "frName": "french to be translated ",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa464604b"
+      },
+      {
+        "$oid": "69287246bab179228961c1fb"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "69289f49bab179228961c373"
+    },
+    "name": "does not displays an Electronic Programme Guide (EPG) presenting media item(s), and information about the availability of subtitles, audio description, spoken subtitles, or sign language interpretation for the media item(s) is available",
+    "frName": "french to be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa464604b"
+      },
+      {
+        "$oid": "6928729abab179228961c1ff"
+      }
+    ],
+    "order": null,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3aa5316556bbd545bac7a"
+    },
+    "name": "Is not, and does not include, a webpage or webapp",
+    "frName": "N'est pas et n'inclut pas une page web",
+    "description": "<p>Web pages are the pages/applications which can be accessed through a web browser. These criteria apply to all web pages or applications regardless of their complexity.</p><p>EN definitions:</p><ul><li><strong>web page: </strong>non-embedded resource obtained from a single&nbsp;URI using&nbsp;HTTP plus any other resources that are used in the rendering or intended to be rendered together with it by a user agent (after&nbsp;WCAG 2.2 [5])</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f49"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f4f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f50"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f51"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f52"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f53"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f54"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f55"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f56"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f57"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f58"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f59"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f5f"
+      },
+      {
+        "$oid": "68126d94e7b28fc2056777cc"
+      },
+      {
+        "$oid": "68126dc4e7b28fc2056777d2"
+      },
+      {
+        "$oid": "68126de6e7b28fc2056777d8"
+      },
+      {
+        "$oid": "68126dfbe7b28fc2056777de"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f60"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f61"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f62"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f63"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f64"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f65"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f66"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f67"
+      },
+      {
+        "$oid": "68126e74e7b28fc2056777e6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f68"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f69"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f6f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f70"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f71"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f72"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f73"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f74"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f75"
+      },
+      {
+        "$oid": "68126e91e7b28fc2056777ec"
+      },
+      {
+        "$oid": "68126ea3e7b28fc2056777f0"
+      },
+      {
+        "$oid": "68126eb7e7b28fc2056777f4"
+      },
+      {
+        "$oid": "68123627e7b28fc205677514"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f76"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f77"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f78"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f79"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7a"
+      },
+      {
+        "$oid": "68126ee6e7b28fc2056777fa"
+      },
+      {
+        "$oid": "68126ef8e7b28fc2056777fe"
+      },
+      {
+        "$oid": "68123aa8e7b28fc20567755b"
+      },
+      {
+        "$oid": "68123b98e7b28fc20567756b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f7f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f80"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f81"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f82"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f83"
+      },
+      {
+        "$oid": "68126f17e7b28fc205677804"
+      },
+      {
+        "$oid": "68123faee7b28fc2056775ba"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f84"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f85"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f86"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f87"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f88"
+      },
+      {
+        "$oid": "68126f37e7b28fc20567780a"
+      },
+      {
+        "$oid": "68126f4fe7b28fc205677810"
+      },
+      {
+        "$oid": "6812410fe7b28fc2056775e1"
+      },
+      {
+        "$oid": "68124179e7b28fc2056775eb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f89"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f8a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f8b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f8c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f8d"
+      },
+      {
+        "$oid": "6812563de7b28fc2056776d5"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f8e"
+      },
+      {
+        "$oid": "6823a5d53f223e244c46bc19"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3ae5016556bbd545bac8e"
+    },
+    "name": "Is not, and does not include, a document (that is not a web page)",
+    "frName": "N'est pas et n'inclut pas un document non-web",
+    "description": "<p>Non-web documents are some of the most common types of ICT. The most common formats are Microsoft office suite files such as Word, Excel, PowerPoint, PDF, as well as stand-alone audio/video files, but many other formats exist.</p><p>EN definitions:</p><ul><li><strong>non-web document:</strong> document that is not a web page, not embedded in web pages nor used in the rendering or functioning of the page</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f8f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f90"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f91"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f92"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f93"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f94"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f95"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f96"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f97"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f98"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f99"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f9f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa5"
+      },
+      {
+        "$oid": "682e2a65c9e68b7f3b33863f"
+      },
+      {
+        "$oid": "680a830d4394f982da494132"
+      },
+      {
+        "$oid": "680a83484394f982da494138"
+      },
+      {
+        "$oid": "680a837d4394f982da494140"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa7"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645faa"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fab"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fac"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fad"
+      },
+      {
+        "$oid": "680a88764394f982da49419e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fae"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645faf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb4"
+      },
+      {
+        "$oid": "680a8a854394f982da4941cc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb5"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb7"
+      },
+      {
+        "$oid": "680ba46cd7fb107f1a5d6b48"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fb9"
+      },
+      {
+        "$oid": "680ba881d7fb107f1a5d6b7e"
+      },
+      {
+        "$oid": "680ba897d7fb107f1a5d6b82"
+      },
+      {
+        "$oid": "680ba8b2d7fb107f1a5d6b86"
+      },
+      {
+        "$oid": "680ba952d7fb107f1a5d6b92"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fba"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbe"
+      },
+      {
+        "$oid": "680f8bf8e7b28fc2056756ee"
+      },
+      {
+        "$oid": "680f8c12e7b28fc2056756f4"
+      },
+      {
+        "$oid": "680f8c81e7b28fc2056756fc"
+      },
+      {
+        "$oid": "680f8ceae7b28fc205675702"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc5"
+      },
+      {
+        "$oid": "680f91bde7b28fc205675752"
+      },
+      {
+        "$oid": "680f9269e7b28fc20567575c"
+      },
+      {
+        "$oid": "680f92d7e7b28fc205675764"
+      },
+      {
+        "$oid": "680f932fe7b28fc20567576c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc7"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fca"
+      },
+      {
+        "$oid": "680f9538e7b28fc205675796"
+      },
+      {
+        "$oid": "680f9549e7b28fc20567579a"
+      },
+      {
+        "$oid": "680f95b7e7b28fc2056757a2"
+      },
+      {
+        "$oid": "680f9645e7b28fc2056757aa"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fcb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fcc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fcd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fce"
+      },
+      {
+        "$oid": "626187b348076c00455642fe"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fcf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd0"
+      },
+      {
+        "$oid": "6824f1333f223e244c46c97d"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3adc016556bbd545bac7f"
+    },
+    "name": "Is not, and does not include, any software (even software that is part of a device) (web apps are not included here)",
+    "frName": "N'est pas et n'inclut pas un logiciel non web qui fournit une interface utilisateur",
+    "description": "<p>The provisions removed by selecting this option are specific to all non-web applications such as, but not limited to native desktop and mobile applications installed on a device.</p><p>EN definitions:</p><ul><li><strong>non-web software: </strong>software that is not a web page, not embedded in web pages nor used in the rendering or functioning of the page</li><li><strong>open functionality:</strong>functionality that supports access by assistive technology</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fda"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fde"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645feb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fec"
+      },
+      {
+        "$oid": "6261997448076c0045564313"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fef"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff6"
+      },
+      {
+        "$oid": "6807a8cec1f74a597dba21ff"
+      },
+      {
+        "$oid": "6807a8f2c1f74a597dba2203"
+      },
+      {
+        "$oid": "6807a91bc1f74a597dba2207"
+      },
+      {
+        "$oid": "6807a93dc1f74a597dba220b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffe"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646001"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646003"
+      },
+      {
+        "$oid": "6807ac0ac1f74a597dba2228"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646005"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646007"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646008"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646009"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600c"
+      },
+      {
+        "$oid": "6807b89ac1f74a597dba2240"
+      },
+      {
+        "$oid": "6807b8e4c1f74a597dba2244"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600e"
+      },
+      {
+        "$oid": "6807bb6cc1f74a597dba2251"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646010"
+      },
+      {
+        "$oid": "6807bc60c1f74a597dba225d"
+      },
+      {
+        "$oid": "6807bc70c1f74a597dba2261"
+      },
+      {
+        "$oid": "6807bc7ec1f74a597dba2265"
+      },
+      {
+        "$oid": "6807bd09c1f74a597dba2269"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646011"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646012"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646013"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646014"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646015"
+      },
+      {
+        "$oid": "6807bef5c1f74a597dba227d"
+      },
+      {
+        "$oid": "6807bf1ac1f74a597dba2281"
+      },
+      {
+        "$oid": "6807bf8cc1f74a597dba2285"
+      },
+      {
+        "$oid": "6807bffbc1f74a597dba2289"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646016"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646017"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646019"
+      },
+      {
+        "$oid": "6807c60bc1f74a597dba2291"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464601b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464601c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464601d"
+      },
+      {
+        "$oid": "6807c730c1f74a597dba229d"
+      },
+      {
+        "$oid": "6807c7b8c1f74a597dba22a1"
+      },
+      {
+        "$oid": "6807c7e2c1f74a597dba22a5"
+      },
+      {
+        "$oid": "6807c81dc1f74a597dba22a9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464601e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646020"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646022"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646023"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646024"
+      },
+      {
+        "$oid": "6807d176c1f74a597dba22bd"
+      },
+      {
+        "$oid": "6807d194c1f74a597dba22c1"
+      },
+      {
+        "$oid": "6807d1f4c1f74a597dba22c5"
+      },
+      {
+        "$oid": "6807d2d7c1f74a597dba22c9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646025"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646026"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646028"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602b"
+      },
+      {
+        "$oid": "6262ac9248076c0045564343"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646031"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646032"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646034"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646035"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646036"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646037"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646038"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646039"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464603f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646040"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646041"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646043"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646044"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3b05116556bbd545baca4"
+    },
+    "name": "Is not, and does not include, any hardware (of any type) (This will also eliminate \"stationary hardware\" just below)",
+    "frName": "N'est pas et n'inclut pas de matériel",
+    "description": "<p>This option includes all physical hardware requirements from the EN 301 549 and only should be selected if you are sure that no physical hardware is going to be included in the project. Step 2 offers additional questions to consider to narrow down this category.</p><p>For example, hardware can include&nbsp; buttons, keyboards, controls, wired/wireless phones, computers, access cards, kiosks, or other physical controls included in the ICT.</p>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f20"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f21"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f22"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f23"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f24"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f25"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f27"
+      },
+      {
+        "$oid": "625ee6f848076c0045564233"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f32"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f33"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f3a"
+      },
+      {
+        "$oid": "625ef9ed48076c0045564236"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2c"
+      },
+      {
+        "$oid": "692891debab179228961c2d7"
+      },
+      {
+        "$oid": "692894d7bab179228961c2fa"
+      },
+      {
+        "$oid": "6928964dbab179228961c313"
+      },
+      {
+        "$oid": "692896b0bab179228961c317"
+      },
+      {
+        "$oid": "692896ebbab179228961c31b"
+      },
+      {
+        "$oid": "6928971fbab179228961c31f"
+      },
+      {
+        "$oid": "6928975cbab179228961c325"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      },
+      {
+        "$oid": "69289b67bab179228961c34c"
+      },
+      {
+        "$oid": "69289b93bab179228961c350"
+      },
+      {
+        "$oid": "69289bc8bab179228961c354"
+      },
+      {
+        "$oid": "69289bf6bab179228961c35a"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "6809393b4394f982da493137"
+      },
+      {
+        "$oid": "68093f6e4394f982da493187"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "692e0699826ff10c31370125"
+      },
+      {
+        "$oid": "6809444f4394f982da493209"
+      },
+      {
+        "$oid": "680940884394f982da49319f"
+      },
+      {
+        "$oid": "680940e04394f982da4931a9"
+      },
+      {
+        "$oid": "6928b1d8bab179228961c5ac"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2e"
+      },
+      {
+        "$oid": "6928b225bab179228961c5b2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f41"
+      },
+      {
+        "$oid": "6928b278bab179228961c5b6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f42"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f43"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f44"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f45"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f46"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f47"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f48"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1e"
+      },
+      {
+        "$oid": "6823a4463f223e244c46bbfc"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3b1aa16556bbd545bacae"
+    },
+    "name": "Is not, and does not include, any stationary hardware (i.e., no harware that stands on floor, the ICT does not contain its own booth, etc.)",
+    "frName": "N'est pas et n'inclut pas matériel stationnaire",
+    "description": "<p>This option is specific to hardware that is built into the environment. Examples can include, but not limited to, kiosks, terminals, physical controls such as buttons or knobs, photocopiers, printers, etc.</p><p>EN definitions:</p><ul><li><strong>terminal:</strong> combination of hardware and/or software with which the end user directly interacts and that provides the user interface</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f27"
+      },
+      {
+        "$oid": "625ee6f848076c0045564233"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f32"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f33"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f3a"
+      },
+      {
+        "$oid": "625ef9ed48076c0045564236"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2c"
+      },
+      {
+        "$oid": "692891debab179228961c2d7"
+      },
+      {
+        "$oid": "692894d7bab179228961c2fa"
+      },
+      {
+        "$oid": "6928964dbab179228961c313"
+      },
+      {
+        "$oid": "692896b0bab179228961c317"
+      },
+      {
+        "$oid": "692896ebbab179228961c31b"
+      },
+      {
+        "$oid": "6928971fbab179228961c31f"
+      },
+      {
+        "$oid": "6928975cbab179228961c325"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      },
+      {
+        "$oid": "69289b67bab179228961c34c"
+      },
+      {
+        "$oid": "69289b93bab179228961c350"
+      },
+      {
+        "$oid": "69289bc8bab179228961c354"
+      },
+      {
+        "$oid": "69289bf6bab179228961c35a"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "6809393b4394f982da493137"
+      },
+      {
+        "$oid": "68093f6e4394f982da493187"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "692e0699826ff10c31370125"
+      },
+      {
+        "$oid": "6809444f4394f982da493209"
+      },
+      {
+        "$oid": "680940884394f982da49319f"
+      },
+      {
+        "$oid": "680940e04394f982da4931a9"
+      },
+      {
+        "$oid": "6928b1d8bab179228961c5ac"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2e"
+      },
+      {
+        "$oid": "6928b225bab179228961c5b2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f41"
+      },
+      {
+        "$oid": "6928b278bab179228961c5b6"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3b31716556bbd545bacbc"
+    },
+    "name": "Does not include any closed functionality  (i.e., all functionality is accessible to assistive technologies)",
+    "frName": "Ne contient ou n'inclut aucune fonctionnalité fermée",
+    "description": "<p>This applies to ICT with functionality which does not allow access to assistive technology. This could be applicable to the whole ICT (Like in a kiosk/terminal ), or in secure systems which require programmatic access be restricted for specific features.</p><p>EN definitions:</p><ul><li><strong>closed functionality:</strong> functionality that is limited by characteristics that prevent a user from attaching, installing or using assistive technology</li><li><strong>terminal:</strong> combination of hardware and/or software with which the end user directly interacts and that provides the user interface</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ece"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed5"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed7"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eda"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ede"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ee0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ee1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eed"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eef"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef0"
+      },
+      {
+        "$oid": "6258516b48076c0045564208"
+      },
+      {
+        "$oid": "626199f148076c0045564314"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602e"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b453ed16556bbd545bad1a"
+    },
+    "name": "Does not display any video with synchronized audio",
+    "frName": "N'affiche aucune vidéo avec audio synchronisé",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f10"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f11"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f12"
+      },
+      {
+        "$oid": "625ebb4e48076c0045564221"
+      },
+      {
+        "$oid": "625ebcb448076c0045564222"
+      },
+      {
+        "$oid": "69287057bab179228961c1ec"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f15"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f16"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f17"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f19"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3afb516556bbd545bac95"
+    },
+    "name": "some or all parts ARE closed to programmatic access of information by assistive technologies",
+    "frName": "N'est pas et n'inclut pas un logiciel non web qui fournit une interface utilisateur qui n'est pas fermée à l'accès programmatique aux informations par les technologies d'assistance",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fda"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fe9"
+      },
+      {
+        "$oid": "6261997448076c0045564313"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff6"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffe"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646011"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646014"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646016"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646017"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646019"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464601e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646020"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646025"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646026"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602b"
+      },
+      {
+        "$oid": "6262ac9248076c0045564343"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b4652216556bbd545bae09"
+    },
+    "name": "Is not, and does not include a relay service NOR a relay service invocation system",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4646054"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646055"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646056"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646057"
+      },
+      {
+        "$oid": "6809121bc1f74a597dba23cd"
+      },
+      {
+        "$oid": "680912f6c1f74a597dba23d7"
+      },
+      {
+        "$oid": "6809135dc1f74a597dba23db"
+      },
+      {
+        "$oid": "680913ddc1f74a597dba23df"
+      },
+      {
+        "$oid": "6809143dc1f74a597dba23e3"
+      },
+      {
+        "$oid": "680914c6c1f74a597dba23e7"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646058"
+      },
+      {
+        "$oid": "68091595c1f74a597dba23ef"
+      },
+      {
+        "$oid": "68091604c1f74a597dba23f3"
+      },
+      {
+        "$oid": "6809167dc1f74a597dba23f7"
+      },
+      {
+        "$oid": "680918aec1f74a597dba23fb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464605c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464605d"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682f82f952e10d5e3bea5ab4"
+    },
+    "name": "Does not provide or support any real-time bidirectional voice communication (of any type)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f0af5b61d491473bce2a"
+      },
+      {
+        "$oid": "67e2f31d5b61d491473bce2e"
+      },
+      {
+        "$oid": "67e2f4785b61d491473bce32"
+      },
+      {
+        "$oid": "67e2f79a5b61d491473bce36"
+      },
+      {
+        "$oid": "67e2fb935b61d491473bce3a"
+      },
+      {
+        "$oid": "67e2fc8a5b61d491473bce3e"
+      },
+      {
+        "$oid": "67e2fe405b61d491473bce42"
+      },
+      {
+        "$oid": "67e308f45b61d491473bce46"
+      },
+      {
+        "$oid": "67e311d05b61d491473bce4a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efe"
+      },
+      {
+        "$oid": "6823825b3f223e244c46b9f4"
+      },
+      {
+        "$oid": "682383163f223e244c46ba00"
+      },
+      {
+        "$oid": "682386203f223e244c46ba27"
+      },
+      {
+        "$oid": "682386743f223e244c46ba2f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f00"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f01"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f02"
+      },
+      {
+        "$oid": "67e319d45b61d491473bce5b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f03"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f04"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f05"
+      },
+      {
+        "$oid": "625ab06e48076c0045564213"
+      },
+      {
+        "$oid": "625ab2e048076c0045564214"
+      },
+      {
+        "$oid": "67e328095b61d491473bce7e"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f06"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f07"
+      },
+      {
+        "$oid": "67e414d15b61d491473bce91"
+      },
+      {
+        "$oid": "67e415585b61d491473bce95"
+      },
+      {
+        "$oid": "67e4160c5b61d491473bce99"
+      },
+      {
+        "$oid": "67e4172c5b61d491473bce9d"
+      },
+      {
+        "$oid": "67e417cba98cfb839999fbcf"
+      },
+      {
+        "$oid": "67e41ba0a98cfb839999fbd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0e"
+      },
+      {
+        "$oid": "6260280e48076c004556425e"
+      },
+      {
+        "$oid": "62602a5b48076c004556425f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0f"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "67e45337a98cfb839999fc16"
+      },
+      {
+        "$oid": "6823887c3f223e244c46ba59"
+      }
+    ],
+    "order": 1,
+    "onlyIf": false,
+    "isUber": true,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "681e34b0d3f322e1c86e876d"
+    },
+    "name": "does not include RTT presentation capabilities",
+    "frName": "to be updated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f03"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f04"
+      },
+      {
+        "$oid": "625ab2e048076c0045564214"
+      },
+      {
+        "$oid": "67e328095b61d491473bce7e"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "681e3835d3f322e1c86e87aa"
+    },
+    "name": "Is not, and does not include, a communication client",
+    "frName": "to be updated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f31d5b61d491473bce2e"
+      },
+      {
+        "$oid": "67e2fb935b61d491473bce3a"
+      },
+      {
+        "$oid": "67e2fc8a5b61d491473bce3e"
+      },
+      {
+        "$oid": "67e308f45b61d491473bce46"
+      },
+      {
+        "$oid": "67e311d05b61d491473bce4a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f06"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f07"
+      },
+      {
+        "$oid": "67e4172c5b61d491473bce9d"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "681e3f8ed3f322e1c86e87fe"
+    },
+    "name": "Is not, and does not include, a communication system that supports real-time bidirectional voice communication",
+    "frName": "to be updated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f31d5b61d491473bce2e"
+      },
+      {
+        "$oid": "67e2f4785b61d491473bce32"
+      },
+      {
+        "$oid": "67e2f79a5b61d491473bce36"
+      },
+      {
+        "$oid": "67e2fb935b61d491473bce3a"
+      },
+      {
+        "$oid": "67e2fe405b61d491473bce42"
+      },
+      {
+        "$oid": "67e308f45b61d491473bce46"
+      },
+      {
+        "$oid": "67e311d05b61d491473bce4a"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b4542116556bbd545bad1f"
+    },
+    "name": "Is not, and does not include, any authoring tool functionality",
+    "frName": "N'est pas et n'inclut pas de fonctionalité d'outils-auteurs",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646045"
+      },
+      {
+        "$oid": "6807f648c1f74a597dba2391"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646046"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646047"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646048"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646049"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464604a"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b45b3f16556bbd545bad77"
+    },
+    "name": "Is not, and does not include, any platform software (operating system, browser, something under web or software)",
+    "frName": "N'est pas et n'inclut pas de logiciel de plateforme",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646030"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646031"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646041"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646042"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b6625ab490abc9d8a489b2"
+    },
+    "name": "Does not support RTT (this is different from providing, and applies to services etc. that support)",
+    "frName": "Aucunes capabilités de TTR",
+    "description": "<p>RTT text capabilities are most commonly associated with bi-directional communications where the messages being sent/received appear to be nearly instantaneous.</p><p>EN definitions:</p><ul><li><strong>Real-Time Text (RTT):</strong> a&nbsp;form of a text conversation in point-to-point situations or in multipoint conferencing where the text being entered is sent in such a way that the communication is perceived by the user as being continuous on a character-by-character basis</li></ul>",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f00"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f02"
+      },
+      {
+        "$oid": "67e319d45b61d491473bce5b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f03"
+      },
+      {
+        "$oid": "625ab06e48076c0045564213"
+      },
+      {
+        "$oid": "625ab2e048076c0045564214"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f07"
+      },
+      {
+        "$oid": "67e414d15b61d491473bce91"
+      },
+      {
+        "$oid": "67e4172c5b61d491473bce9d"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3b5cd16556bbd545bacc4"
+    },
+    "name": "Does NOT provide auditory output as non-visual access to closed functionality",
+    "frName": "Aucune sortie auditive est fournie sous forme d'accès non visuel à une fonctionnalité fermée",
+    "description": "",
+    "frDescription": "<p>To be translated</p>",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eda"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edc"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edd"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b3d2f816556bbd545bad03"
+    },
+    "name": "Does NOT provide speech output as non-visual access to closed functionality",
+    "frName": "Aucune sortie de parole est fournie sous forme d'accès non visuel à une fonctionnalité fermée",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed5"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ede"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edf"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b4604416556bbd545badac"
+    },
+    "name": "Does not have any locking or toggle control",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef7"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef9"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b465af16556bbd545bae16"
+    },
+    "name": "Does NOT transmit, convert, or record video with synchronized audio",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f10"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f11"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f14"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f15"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f18"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6764facc5212c09bb429c0eb"
+    },
+    "name": "Is not intended for public shared use",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f48"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "676502e85212c09bb429c11b"
+    },
+    "name": "Does NOT provide a keyboard NOR accept input from a keyboard or keyboard interface",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffe"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646001"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646003"
+      },
+      {
+        "$oid": "6807ac0ac1f74a597dba2228"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646005"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464600d"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682791a4c9e68b7f3b33416d"
+    },
+    "name": "(Is Stationary Hardware &) Has no operating area that is inside a space bounded on 3 sides within the ICT  (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "680940e04394f982da4931a9"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2e"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682ec167c9e68b7f3b338cb6"
+    },
+    "name": "Does not include RTT capabilities",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "67e414d15b61d491473bce91"
+      },
+      {
+        "$oid": "67e415585b61d491473bce95"
+      },
+      {
+        "$oid": "67e4160c5b61d491473bce99"
+      },
+      {
+        "$oid": "67e417cba98cfb839999fbcf"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682f768e52e10d5e3bea5a2a"
+    },
+    "name": "Is not and does not include a relay service invocation system",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4646054"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646055"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646057"
+      },
+      {
+        "$oid": "6809121bc1f74a597dba23cd"
+      },
+      {
+        "$oid": "680912f6c1f74a597dba23d7"
+      },
+      {
+        "$oid": "6809135dc1f74a597dba23db"
+      },
+      {
+        "$oid": "680913ddc1f74a597dba23df"
+      },
+      {
+        "$oid": "6809143dc1f74a597dba23e3"
+      },
+      {
+        "$oid": "680914c6c1f74a597dba23e7"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682f94c252e10d5e3bea5b87"
+    },
+    "name": "does NOT provide a pointing mechanism NOR accepts input from pointing devices",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffe"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646011"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646012"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646013"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682f9dd852e10d5e3bea5bef"
+    },
+    "name": "Does not include any real-time bidirectional video communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0c"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0e"
+      },
+      {
+        "$oid": "6260280e48076c004556425e"
+      },
+      {
+        "$oid": "62602a5b48076c004556425f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0f"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682ff65052e10d5e3bea5f82"
+    },
+    "name": "Does NOT provide speech output",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f20"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f21"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f22"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f23"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f24"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f25"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682ff7ff52e10d5e3bea5f9f"
+    },
+    "name": "(Is Stationary &) does not have an obstruction that is an integral part of the ICT  (Stationary Hardware only)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f32"
+      },
+      {
+        "$oid": "625ef9ed48076c0045564236"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2c"
+      },
+      {
+        "$oid": "692891debab179228961c2d7"
+      },
+      {
+        "$oid": "692894d7bab179228961c2fa"
+      },
+      {
+        "$oid": "6928964dbab179228961c313"
+      },
+      {
+        "$oid": "692896b0bab179228961c317"
+      },
+      {
+        "$oid": "692896ebbab179228961c31b"
+      },
+      {
+        "$oid": "6928971fbab179228961c31f"
+      },
+      {
+        "$oid": "6928975cbab179228961c325"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682ffde052e10d5e3bea5fe0"
+    },
+    "name": "Is not, and does not include, a device that is typically held to the ear",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f20"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f21"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f22"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f23"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f24"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f25"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6833dd6452e10d5e3bea87c8"
+    },
+    "name": "Is not, and does not include, a communication system that supports real-time bidirectional voice communication in emergency communications with PSAPs",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2fe405b61d491473bce42"
+      },
+      {
+        "$oid": "67e308f45b61d491473bce46"
+      },
+      {
+        "$oid": "67e311d05b61d491473bce4a"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834056e52e10d5e3bea899e"
+    },
+    "name": "does not connect to another provider’s ICT that allows real-time bidirectional voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efe"
+      },
+      {
+        "$oid": "6823825b3f223e244c46b9f4"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "67e41ba0a98cfb839999fbd3"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "6823887c3f223e244c46ba59"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68340e0b52e10d5e3bea8a3d"
+    },
+    "name": "Is not, and does not include, a non-web document within a set of non-web documents",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f8f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fbf"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fc3"
+      },
+      {
+        "$oid": "680f91bde7b28fc205675752"
+      },
+      {
+        "$oid": "680f9269e7b28fc20567575c"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834137352e10d5e3bea8a9d"
+    },
+    "name": "Has no closed functionality where auditory output is provided as non-visual access to closed functionality",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed2"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed8"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eda"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edc"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683f5127de6c8c946cc712ea"
+    },
+    "name": "Is not and does not include a relay service",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4646054"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646055"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646058"
+      },
+      {
+        "$oid": "68091595c1f74a597dba23ef"
+      },
+      {
+        "$oid": "68091604c1f74a597dba23f3"
+      },
+      {
+        "$oid": "6809167dc1f74a597dba23f7"
+      },
+      {
+        "$oid": "680918aec1f74a597dba23fb"
+      }
+    ],
+    "order": 2,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b45f8016556bbd545bada2"
+    },
+    "name": "Is not, and does not include, a keyboard or keypad",
+    "frName": "N'est pas et n'inclut pas un clavier ou un pavé numérique",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efb"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6757c856034b5a95a3ab7689"
+    },
+    "name": "Provides no speech that is needed to operate closed functionality of the ICT",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "6258516b48076c0045564208"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6757c936034b5a95a3ab7693"
+    },
+    "name": "Provides no pre-recorded video content that is needed to enable the use of closed functionality of the ICT",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed7"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6757c9f0034b5a95a3ab769b"
+    },
+    "name": "Does not include any output contains data that is considered to be private according to applicable privacy policy",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed9"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6760f90074bb284c56d2587b"
+    },
+    "name": "no speech is delivered through speakers on the ICT",
+    "frName": "To be Translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edc"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6763ac931c102ea6cdd9b5d4"
+    },
+    "name": "No volume control is incremental",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f20"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f22"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6763add41c102ea6cdd9b5d9"
+    },
+    "name": "No auditory output is delivered through a mechanism for private listening",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edb"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6763af851c102ea6cdd9b5de"
+    },
+    "name": "No characters displayed are masking characters",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed8"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6763b0ef1c102ea6cdd9b5e3"
+    },
+    "name": "No visual information is needed to enable the use of the closed functionality of the ICT",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed1"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6763b1c91c102ea6cdd9b5e8"
+    },
+    "name": "Does not provide physical receipts, tickets or other outputs as a result of a self-service transaction",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ee0"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6764f99f5212c09bb429c0e4"
+    },
+    "name": "Is not and does not include assistive technology",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646033"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6764fbd05212c09bb429c0f0"
+    },
+    "name": "No speech output is available",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f48"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6764fd035212c09bb429c0f5"
+    },
+    "name": "Has no input focus that can be moved to a user interface element",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef0"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "676504fe5212c09bb429c12c"
+    },
+    "name": "No colour is used on the hardware to convey information",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1e"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "676508715212c09bb429c168"
+    },
+    "name": "Has no control that requires a force greater than 22,2 N to operate it",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f42"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f44"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f46"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67650b815212c09bb429c177"
+    },
+    "name": "Has no physical numeric keys arranged in a rectangular keypad layout",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f42"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f43"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": false,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6768f3af233455296d067bb6"
+    },
+    "name": "Does not provide input or output device connection points",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f1d"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6768f835233455296d067bea"
+    },
+    "name": "Is not, and does not include, a (non-web) document that contains synchronized media with audio description",
+    "frName": "N'est pas et n'inclut pas de document non-web contenant des médias synchronisés ayant des (To be translated)",
+    "description": "<p>Was suggested to rename to \"does not contain synchronized media with audio description\" (discuss if this wording applying to web content poses a problem)</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f8f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd0"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6768f931233455296d067bf3"
+    },
+    "name": "Is not, and does not include, answering machine, auto attendant or interactive response functionality",
+    "frName": "To be translated",
+    "description": "<p>6.6 needed to be made non-informative so it could be negatively selected by itself</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6769001e233455296d067c04"
+    },
+    "name": "Does not provide speaker identification for voice users",
+    "frName": "To be translated",
+    "description": "<p>(Discuss whether \"6.2.2.3 Speaker identification\" would also be removed by this)</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f0a"
+      },
+      {
+        "$oid": "62602a5b48076c004556425f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b45ce916556bbd545bad84"
+    },
+    "name": "Is not, and does not include, a (non-web) document that contains synchronized media with subtitles",
+    "frName": "N'est pas et n'inclut pas de document non-web contenant des médias synchronisés ayant des sous-titres",
+    "description": "<p>Was suggested to rename to \"does not contain synchronized media with audio captions\" (discuss if this wording applying to web content poses a problem)</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f8f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fcf"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b45e1916556bbd545bad89"
+    },
+    "name": "Does not convert information or communication ",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef3"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6769015c233455296d067c0b"
+    },
+    "name": "Does not provide caller identification or other identification functions",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f08"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67690332233455296d067c10"
+    },
+    "name": "Does not provide speaker indication for voice",
+    "frName": "To be translated",
+    "description": "<p>Was changed to \"6.2.2.2 Active communicator indication\" in new version (this is a mistake, they currently have 2 clauses number 6.2.2.2) (May have been fixed with May update v15)</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f03"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f05"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "676904fb233455296d067c17"
+    },
+    "name": "Is not, and does not include, provide voice mail, auto-attendant, or interactive voice response facilities",
+    "frName": "To be translated",
+    "description": "<p>question is very similar to and thereby overlaps with 6.4</p>",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f09"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b45efc16556bbd545bad8e"
+    },
+    "name": "Has no key repeat function, OR all key repeat functions can be turned off, OR all key repeat functions do not result in generation of multiple entries of the same alphanumeric data into input fields or into documents",
+    "frName": "N'inclut pas de fonction de répétition de touches qui ne peut pas être désactivée",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efa"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b4608116556bbd545badb1"
+    },
+    "name": "Does not include any mechanism to play audio description",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f10"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f15"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f17"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b460bf16556bbd545badb6"
+    },
+    "name": "Does not include a mode of operation requiring simultaneous user actions for its operation",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efc"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b460e816556bbd545badbb"
+    },
+    "name": "Does not include documented accessibility features",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef1"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b462cf16556bbd545badd2"
+    },
+    "name": "Has no operable parts that require grasping, pinching, or twisting of the wrist to operate",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f42"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f44"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f45"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b4638016556bbd545bade1"
+    },
+    "name": "Does not support services provide documentation",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602d"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464602f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646039"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "66b465e316556bbd545bae20"
+    },
+    "name": "Does not use biological characteristics",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef2"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "673c16f94dadbc49815514c3"
+    },
+    "name": "(Is Stationary Hardware &) has no floor within it (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "6809393b4394f982da493137"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "673c18cf4dadbc49815514cd"
+    },
+    "name": "(Is Stationary Hardware &) Has no access space within it (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "680940884394f982da49319f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674554c6a991a6d147d32182"
+    },
+    "name": "(Is Stationary Hardware &) Has no operating area within it (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "68093f6e4394f982da493187"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67455595a991a6d147d32187"
+    },
+    "name": "(Is Stationary Hardware &) Has no operating area that is inside a space bounded on 3 sides within the ICT, and the space is deeper than 250 mm, and where a parallel approach is possible (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2e"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674555cda991a6d147d32191"
+    },
+    "name": "(Is Stationary Hardware &) Has no operating area that is inside a space bounded on 3 sides within the ICT, and the space is deeper than 250 mm, and where a forward approach is necessary (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "680937e4898850512a39747f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2b"
+      },
+      {
+        "$oid": "680940e04394f982da4931a9"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674e9e7305910b8e4f6a7cf8"
+    },
+    "name": "(Is Stationary Hardware &) No obstruction hinders access to any type of operable part (Stationary Hardware only)",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "625ee6f848076c0045564233"
+      },
+      {
+        "$oid": "625ef9ed48076c0045564236"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2c"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674ea24905910b8e4f6a7d0d"
+    },
+    "name": "Does not provide one or more display screens",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "6809444f4394f982da493209"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674ea3e705910b8e4f6a7d19"
+    },
+    "name": "Does not have any functionality of ICT that is closed to the text enlargement features of platform or assistive technology",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ee1"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "674fd62d31aee6b3bac0abda"
+    },
+    "name": "No speech output is provided as non-visual access to closed functionality, where an input error is automatically detected",
+    "frName": "To be translated",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edf"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682c040ec9e68b7f3b336f06"
+    },
+    "name": "(Is Stationary Hardware &) No space under obstacle is part of access space (Stationary Hardware only)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682c0760c9e68b7f3b336f32"
+    },
+    "name": "(Is Stationary Hardware &) Does not have an obstacle that is an integral part of the ICT (Stationary Hardware only)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f2f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682c106cc9e68b7f3b336f9b"
+    },
+    "name": "(Is Stationary hardware &) Side reach is obstructed but not obstructed by an element that is an integral part of the ICT  (Stationary Hardware)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f1a"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f26"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f32"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f33"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682cca4cc9e68b7f3b337731"
+    },
+    "name": "Has no functionality that requires manual operation and control",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ef4"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682cddb8c9e68b7f3b33780d"
+    },
+    "name": "Does not include any closed functionality where input errors are automatically detected, and the error is indicated visually via text and/or other visual means",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645edf"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682dd5b2c9e68b7f3b338238"
+    },
+    "name": "Does not present non-text content",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed6"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682dda9fc9e68b7f3b33826f"
+    },
+    "name": "There is no any visual presentation of the additional content caused by a hover or focus is not controlled by the user agent or platform software, and is not modified by the author",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffd"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682de6cbc9e68b7f3b3382fa"
+    },
+    "name": "Is not designed to be isolated from its platform (e.g. like ATM software and many kiosk software programs)",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646044"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682de734c9e68b7f3b338305"
+    },
+    "name": "Does not have control over the presentation of subtitles and audio description",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f10"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f19"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "682fff3752e10d5e3bea5ffd"
+    },
+    "name": "No auditory output is needed to enable the use of closed functionality of the ICT",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eed"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6830011f52e10d5e3bea6023"
+    },
+    "name": "No auditory output is provided by that ICT as non-visual access to closed functionality, and that output contains data that is considered to be private according to the applicable privacy policy",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed9"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6830083a52e10d5e3bea6078"
+    },
+    "name": "Is not, and does not include, real-time bidirectional video functionality",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "67e45337a98cfb839999fc16"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683009c552e10d5e3bea608d"
+    },
+    "name": "Is not, and does not include, a communication client of the ICT that supports real-time bidirectional voice communication, visits another country than the home country",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e311d05b61d491473bce4a"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6833fa7152e10d5e3bea8903"
+    },
+    "name": "Is not, and does not include, a communication client that supports real-time bidirectional voice communication with or within a communication system that supports real-time bidirectional voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f31d5b61d491473bce2e"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6833fba452e10d5e3bea8914"
+    },
+    "name": "Is not, and does not include, a communication system that supports real-time bidirectional voice communication with communication clients of the system",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f4785b61d491473bce32"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834015f52e10d5e3bea8955"
+    },
+    "name": "Is not, and does not include, a communication system that supports real-time bidirectional voice communication with one or more other communication systems that support real-time bidirectional voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2f79a5b61d491473bce36"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834028052e10d5e3bea8967"
+    },
+    "name": "Is not, and does not include, a communication client that supports real-time bidirectional voice communication with or within a communication system that supports real-time bidirectional voice emergency communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "67e2ede75b61d491473bce25"
+      },
+      {
+        "$oid": "67e2fc8a5b61d491473bce3e"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834035c52e10d5e3bea8974"
+    },
+    "name": "Is not, and does not include, an interface for external presentation of voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efe"
+      },
+      {
+        "$oid": "682386203f223e244c46ba27"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683403d552e10d5e3bea897d"
+    },
+    "name": "does not support multiparty communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "67e415585b61d491473bce95"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834041952e10d5e3bea8986"
+    },
+    "name": "does not provides subtitles for real-time bidirectional voice communication",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645efe"
+      },
+      {
+        "$oid": "682386743f223e244c46ba2f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683404c252e10d5e3bea8991"
+    },
+    "name": "does not support RTT user input",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "67e414d15b61d491473bce91"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834066152e10d5e3bea89ab"
+    },
+    "name": "Does not connect to another provider’s ICT that allows real-time bidirectional voice communication, including real-time bidirectional video functionality",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "6823887c3f223e244c46ba59"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683406f252e10d5e3bea89b8"
+    },
+    "name": "Does not support the generation and transmission of touch-tone signals on voice calls",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645eff"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f06"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834076352e10d5e3bea89c3"
+    },
+    "name": "Is not, and does not include, information about a product, made available in a digital form",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa464604b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464604c"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834082652e10d5e3bea89d0"
+    },
+    "name": "Is not, and does not include, product information, whether provided separately or integrated within the ICT",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa464604b"
+      },
+      {
+        "$oid": "68250d633f223e244c46cb39"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834091752e10d5e3bea89e2"
+    },
+    "name": "Is not, and does not include, information about a service, made available in a digital form",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa464604b"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464604f"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68340a1152e10d5e3bea89f1"
+    },
+    "name": "Is not, and does not include, an authoring tool that provides templates",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646045"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa464604a"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68340b0b52e10d5e3bea8a03"
+    },
+    "name": "Is not, and does not include, provide any restructuring transformations or re-coding transformations",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646045"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646048"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68340c3552e10d5e3bea8a14"
+    },
+    "name": "Is not capable of detecting that content does not meet a requirement of clauses 9 (Web) or 10 (Non-web documents) as applicable",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646045"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4646049"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "68340fa352e10d5e3bea8a52"
+    },
+    "name": "Is not, and does not include, non-web document, that is implemented using markup languages that allow users to modify text spacing properties",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f8f"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f91"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fa8"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834113952e10d5e3bea8a69"
+    },
+    "name": "Is not, and does not include, non-web software that provides a user interface, that is implemented using markup languages that allow users to modify text spacing properties",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ffc"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834118b52e10d5e3bea8a70"
+    },
+    "name": "Does not have control over the presentation of its subtitles",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645f10"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645f11"
+      },
+      {
+        "$oid": "625ebb4e48076c0045564221"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834122652e10d5e3bea8a79"
+    },
+    "name": "Is not closed to enlargement",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645fd1"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fd3"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645fee"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ff3"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "6834128152e10d5e3bea8a84"
+    },
+    "name": "Does not provide functionality that allows real-time bidirectional VOICE communication, including real-time bidirectional VIDEO functionality",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645efd"
+      },
+      {
+        "$oid": "682387d53f223e244c46ba4f"
+      },
+      {
+        "$oid": "6823887c3f223e244c46ba59"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683412b552e10d5e3bea8a8b"
+    },
+    "name": "No input field(s) for collecting information about the user are needed to enable the use of the closed functionality of the ICT",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "626199f148076c0045564314"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "683412e752e10d5e3bea8a92"
+    },
+    "name": "Has no closed functionality that presents non-text content other than video",
+    "frName": "French translation to come in future",
+    "description": "",
+    "frDescription": "",
+    "clauses": [
+      {
+        "$oid": "5d94c4763a40e40aa4645eca"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ecb"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed0"
+      },
+      {
+        "$oid": "5d94c4763a40e40aa4645ed6"
+      }
+    ],
+    "order": 3,
+    "onlyIf": false,
+    "isUber": false,
+    "isUnique": true,
+    "__v": 0
+  }
+]
