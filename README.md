@@ -52,10 +52,32 @@ Other [issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11
 
 ## Setup
 
-### Running Natively
+### Option 1: Running with Docker Compose (Recommended)
+Docker Compose provides the easiest setup with MongoDB included. No local MongoDB installation required.
+
+**Prerequisites:**
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop/) (includes Docker Compose)
+
+**Steps:**
+1. Clone this repository: `git clone https://github.com/aaact-aatia/a11y-ict-wizard`
+2. Navigate to the directory: `cd a11y-ict-wizard`
+3. Copy environment template: `cp .env.sample .env`
+4. Start the application: `docker compose up`
+
+The application will:
+- Start MongoDB automatically
+- Auto-populate the database from JSON files
+- Be available at [localhost:3001](http://localhost:3001)
+- Provide MongoDB admin UI at [localhost:8081](http://localhost:8081) (username: admin, password: admin)
+
+For detailed Docker instructions, see [README-DOCKER.md](README-DOCKER.md).
+
+### Option 2: Running Natively
 - Install node.js, npm, and MongoDB
 - Clone this repository: `git clone https://github.com/aaact-aatia/a11y-ict-wizard`
 - In the created directory, run `npm install`
+- Copy environment template: `cp .env.sample .env`
+- Edit `.env` to configure for local MongoDB (uncomment the 127.0.0.1 section)
 
 ### Using Docker 
 
@@ -63,6 +85,23 @@ A production ready container has been created for your convenience complete with
 
 
 ## Usage
+
+### Running with Docker Compose
+```bash
+# Start all services (MongoDB + app)
+docker compose up
+
+# Stop services
+docker compose down
+
+# Stop and remove all data (fresh start)
+docker compose down -v
+```
+
+Visit [localhost:3001](http://localhost:3001) for the application.  
+Visit [localhost:8081](http://localhost:8081) for MongoDB admin interface.
+
+To edit content via the CMS, visit [localhost:3001/edit](http://localhost:3001/edit) (username: admin, password: admin)
 
 ### Running Natively 
 - Run `mongod` to start the database server
