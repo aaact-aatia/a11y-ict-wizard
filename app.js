@@ -8,6 +8,9 @@ const session = require("express-session");
 
 const mongoose = require("mongoose");
 
+// Suppress Mongoose deprecation warnings
+mongoose.set('strictQuery', false);
+
 const app = express();
 app.locals.moment = require("moment");
 
@@ -18,18 +21,47 @@ app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce
 const mongoDB = process.env.DBURI || "mongodb://127.0.0.1:27017/a11y-req";
 console.log(`Connecting to MongoDB at: ${mongoDB}`);
 
-mongoose
-	.connect(mongoDB, {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
-	.then(() => {
+/**
+ * Connect to MongoDB with retry logic for Docker container startup
+ * @param {number} retries - Number of connection attempts remaining
+ * @param {number} delay - Delay in milliseconds between attempts
+ */
+async function connectWithRetry(retries = 10, delay = 3000) {
+	try {
+		await mongoose.connect(mongoDB, {
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		});
+		
 		const db = mongoose.connection;
 		console.log(`✅ Connected to MongoDB database: ${db.name}`);
-	})
-	.catch((error) => {
-		console.error("❌ MongoDB connection error:", error.message);
-	});
+		
+		// Initialize database from JSON files if empty
+		try {
+			const initializeDatabase = require('./scripts/init-db');
+			await initializeDatabase();
+		} catch (initError) {
+			console.error('⚠️  Database initialization warning:', initError.message);
+			// Don't fail the app if initialization fails - database might already be populated
+		}
+		
+		return true;
+	} catch (error) {
+		if (retries > 0) {
+			console.log(`⏳ MongoDB connection failed. Retrying in ${delay/1000}s... (${retries} attempts remaining)`);
+			await new Promise(resolve => setTimeout(resolve, delay));
+			return connectWithRetry(retries - 1, delay);
+		} else {
+			console.error("❌ MongoDB connection error after all retries:", error.message);
+			throw error;
+		}
+	}
+}
+
+// Start connection with retry logic
+connectWithRetry().catch(error => {
+	console.error("❌ Failed to connect to MongoDB. Application may not function correctly.");
+});
 
 // Express server configuration (see also /bin/www)
 app.set("views", path.join(__dirname, "views"));
