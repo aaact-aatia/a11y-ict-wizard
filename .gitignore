@@ -61,6 +61,9 @@ typings/
 # dotenv environment variables file
 .env
 
+# Docker volumes and data
+mongo-data/
+
 # next.js build output
 .next
 
