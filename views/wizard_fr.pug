@@ -2,8 +2,8 @@ extends layout_fr
 
 block content
   h1#wb-cont(property='name')= title
-  p French to be updated in future
-  p French to be updated in future
+  p Cet outil permet aux utilisateurs de baliser une série d'énoncés relatifs à ce qui n'est #[strong pas] vrai au sujet d'un produit ou d'un service, puis de télécharger une version partielle filtrée de la norme EN en fonction de votre sélection. L'outil et les rapports sont fournis dans les deux langues officielles, l'anglais et le français canadien. Le fait de cocher les cases correspondant à ces questions aux étapes 1, 2 et 3 supprime les dispositions associées des téléchargements à l'étape 5. Chaque étape permet d'affiner de plus en plus précisément les dispositions à inclure, en fonction des sélections effectuées aux étapes précédentes. Par exemple, le fait de cocher une case à l'étape 1 supprimera de nombreuses dispositions, tandis que cocher une case à l'étape 3 n'en supprimera qu'une seule.
+  p Pour les propriétaires fonctionnels et les responsables techniques du gouvernement du Canada, cet outil peut être utilisé pour préciser les exigences propres à la solution ou au service que vous souhaitez acquérir ou développer. Les résultats de l'assistant devraient être fournis à vos soumissionnaires dans le cadre du processus de demande de soumissions. Il est important de ne cocher que les cases qui, selon vous, ne s'appliquent pas à la solution potentielle de vos soumissionnaires. Par exemple, si une solution Web et une solution logicielle non destinée au Web sont toutes deux possibles, ne cochez aucune des cases correspondantes.
   hr
 
   form(novalidate='novalidate' method='POST')
@@ -12,54 +12,54 @@ block content
       .wb-tabs
         .tabpanels
           details#details-step1
-            summary Étape 1 : Définir la fonctionnalité des TIC
+            summary Étape 1 : Définir les fonctionnalités des TIC
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep1' aria-controls='instructionsStep1' role='button') Instructions : Étape 1
-              a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button' title="Reprendre l'édition en collant une liste d’exigences précédemment générée") TB translated
+              a.btn.btn-default.overlay-lnk(href='#restoreModal' aria-controls='restoreModal' role='button') Charger les sélections du résultat précédent
             - var step = 1
             include includes/wizard_form_fr
             p.clause-count
-              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+              strong Nombre total de clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step2') Suivant
           
           details#details-step2
-            summary Étape 2 : Préciser la fonctionnalité des TIC
+            summary Étape 2 : Affiner les fonctionnalités des TIC
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep2' aria-controls='instructionsStep2' role='button') Instructions : Étape 2
             - var step = 2
             include includes/wizard_form_fr
             p.clause-count
-              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+              strong Nombre total de clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step1', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step3') Suivant
 
           details#details-step3
-            summary Étape 3 : Préciser explicitement la fonctionnalité des TIC
+            summary Étape 3 : Affiner davantage les fonctionnalités des TIC
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep3' aria-controls='instructionsStep3' role='button') Instructions : Étape 3
             - var step = 3
             include includes/wizard_form_fr
             p.clause-count
-              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+              strong Nombre total de clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step2', style='margin-bottom: 10px;') Précédent 
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step4') Suivant
 			
           details#details-step4
-            summary Étape 4 : Vérifier la sélection de clause
+            summary Étape 4 : Vérification de la sélection des clauses
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep4' aria-controls='instructionsStep4' role='button') Instructions : Étape 4
-            - var tree_name = "These are the remaining clauses:"
+            - var tree_name = "Voici les clauses restantes:"
             include includes/clause_tree_fr
-                        p The below are the selections which you made in steps 1, 2, and 3 which resulted in the remaining clauses shown above:
+                        p Vous trouverez ci-dessous les sélections que vous avez effectuées aux étapes 1, 2 et 3, qui ont abouti aux clauses restantes indiquées ci-dessus :
             ul(id='selectionSummary')
             ul(id='defaultSelectionSummary')
-              li No selections made
+              li Aucune sélection effectuée
             p.clause-count
-              strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+              strong Nombre total de clauses: <span class='clauseCount'>0</span>
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step3', style='margin-bottom: 10px;') Précédent
             a.btn.btn-default.wb-tabs-ext.right(href='#details-step5') Suivant
           details#details-step5
-            summary Étape 5 : Produire les documents des exigences
+            summary Étape 5 : Générer les documents relatifs aux exigences
             p.form-instructions-link
               a.overlay-lnk.right(href='#instructionsStep5' aria-controls='instructionsStep5' role='button') Instructions : Étape 5
             include includes/download_chooser_fr
@@ -69,110 +69,83 @@ block content
     header.modal-header
       h2.modal-title Instructions : Étape 1
     .modal-body
-      p This needs to be copied and translated from English instructions
-      p Cochez toutes les cases qui ne s’appliquent pas aux TIC que vous achetez, même celles qui semblent redondantes.
-      p
-        | Prenez note que le produit / service acheté ne doit lui-même 
-        strong pas fournir
-        |  le composant ou la caractéristique. Par exemple, prenez en considération le cas de l’acquisition de service d’apprentissage en ligne :
-      ol
-        li
-          p L’énoncé des travaux précise que le fournisseur doit utiliser une certaine plate-forme de vidéoconférence.
-          p Les exigences de « communication bidirectionnelle » et de « communication vidéo bidirectionnelle » devraient être sélectionnées (puisque ces fonctions ne sont pas fournies par le fournisseur dans le cadre de ce marché).
-        li
-          p L’énoncé des travaux comprend un système de gestion de l’apprentissage avec des capacités de mise en forme du contenu, qui doit être choisi ou élaboré par le fournisseur.
-          p Les « systèmes auteurs » ne devraient pas être sélectionnés (puisque le fournisseur fournit les fonctions de création de contenu dans le cadre de ce marché).
-      p Lorsque vous êtes satisfait de votre sélection, passez à l’étape 2 en utilisant les onglets de navigation ou le bouton « Prochain ». Des directives supplémentaires sont disponibles à chaque onglet.
-
+      p Cet assistant utilise la sélection négative pour supprimer les types de technologies de l'information et des communications (TIC) qui ne s'appliquent pas à une demande de soumissions ou à une solution TIC particulière. Cela signifie que l'assistant a sélectionné toutes les dispositions au départ, et que le fait de cocher les énoncés qui ne sont pas vrais concernant le produit/la solution supprimera les exigences EN 301 549 dont les conditions préalables indiquent qu'elles ne s'appliquent pas à ce type de TIC.
+      p L'étape 1 répertorie les énoncés basés sur les conditions préalables de la norme EN 301 549 qui s'appliquent à un grand nombre d'exigences. Il est recommandé d'examiner attentivement ces énoncés, car la plupart des exigences ont plus d'une condition préalable. Ainsi, le fait de les cocher cochera automatiquement les énoncés des étapes 2 et 3 qui ne s'appliquent plus. Ces énoncés sont automatiquement masqués par défaut, mais vous pouvez choisir de les afficher (voir ci-dessous).
+      p Au-dessus de la liste des énoncés avec cases à cocher, vous trouverez 4 commandes:
+      ul
+        li Sélectionner tout : coche toutes les cases d'une étape. Cette fonction n'est généralement utile que pour les tests.
+        li Désélectionner tout : cette option désélectionne toutes les cases de l'étape en cours et vous permet de recommencer cette étape. Pour tout recommencer, actualisez la page afin d'effacer toutes les sélections de toutes les étapes.
+        li a La fonction Annuler permet d'annuler la dernière action de sélection/désélection ou de sélectionner/désélectionner tout.
+        li Le bouton "Afficher les options masquées automatiquement" permet d'afficher ou de masquer automatiquement les cases à cocher que le système a désignées comme étant non applicables en fonction de vos sélections précédentes. Cela vous permet de voir ce qui a été masqué et d'apporter des modifications si nécessaire.
+      p Si vous souhaitez reprendre l'édition d'une annexe créée précédemment, vous pouvez utiliser le bouton « Charger les sélections du résultat précédent » pour ouvrir une boîte de dialogue permettant de copier et coller la liste des sélections précédentes, ce qui effacera toutes les sélections que vous avez effectuées et les réappliquera.
+      p Une fois vos sélections effectuées, cliquez sur « Suivant » pour passer à l'étape suivante, mais vous pouvez revenir ici si nécessaire pour modifier vos sélections.
+      p Remarque 1 : Il est important de réfléchir à ce qui pourrait être inclus dans le projet ou l'approvisionnement, et de ne supprimer que les éléments dont vous êtes sûr qu'ils ne s'appliquent pas. Bon nombre de ces catégories seront évidentes, comme la suppression du matériel d'une solution logicielle. Lorsque cela est moins évident, pensez à utiliser la boîte de dialogue d'aide située à côté de chaque élément pour obtenir des informations supplémentaires avant de faire votre choix.3
+      p Remarque 2 : Une erreur courante consiste à supposer qu'une solution Web implique de cocher toutes les cases (à l'exception des sites Web). Cela est rarement approprié, car la plupart des solutions Web s'appliquent à de nombreuses autres catégories, telles que les outils-auteurs, la documentation du produit, les services de soutien ou les dispositions audio-vidéo.
+      p Remarque 3 : La fonction « Charger les sélections du résultat précédent » utilise une correspondance exacte de chaîne pour localiser les sélections appropriées. Il est donc important de les copier exactement.
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep2(role='dialog')
     header.modal-header
       h2.modal-title Instructions : Étape 2
     .modal-body
-      p To be copied and translated from English Instructions
-      p Lorsque vous êtes satisfait de votre sélection, passez à l’étape 3 en utilisant les onglets de navigation ou le bouton « Prochain ». Des directives supplémentaires sont disponibles à chaque onglet.
-      
+      p L'étape 2 répertorie les énoncés basés sur les conditions préalables de la norme EN 301 549 qui s'appliquent à deux exigences ou plus. Il est recommandé d'examiner attentivement ces énoncés, car la plupart des exigences ont plus d'une condition préalable. Ainsi, le fait de les cocher cochera automatiquement les énoncés de l'étape 3 qui ne s'appliquent plus. Ces énoncés sont automatiquement masqués par défaut, mais vous pouvez choisir de les afficher (voir ci-dessous).
+      ul
+        li Sélectionner tout : coche toutes les cases d'une étape. Cette fonction n'est généralement utile que pour les tests.
+        li Désélectionner tout : cette option désélectionne toutes les cases de l'étape en cours et vous permet de recommencer cette étape. Pour tout recommencer, actualisez la page afin d'effacer toutes les sélections de toutes les étapes.
+        li a La fonction Annuler permet d'annuler la dernière action de sélection/désélection ou de sélectionner/désélectionner tout.
+        li Le bouton "Afficher les options masquées automatiquement" permet d'afficher ou de masquer automatiquement les cases à cocher que le système a désignées comme étant non applicables en fonction de vos sélections précédentes. Cela vous permet de voir ce qui a été masqué et d'apporter des modifications si nécessaire.
+      p Une fois vos sélections effectuées, cliquez sur « Suivant » pour passer à l'étape suivante, ou sur « Précédent » si vous devez modifier vos sélections dans l'étape précédente.
+      p Remarque : Il est important de réfléchir à ce qui pourrait être inclus dans le projet ou l'approvisionnement, et de ne supprimer que les éléments dont vous êtes sûr qu'ils ne s'appliquent pas. Bon nombre de ces catégories seront évidentes, comme la suppression du matériel d'une solution logicielle. Lorsque cela est moins évident, pensez à utiliser la boîte de dialogue d'aide située à côté de chaque élément pour obtenir des informations supplémentaires avant de faire votre choix.
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep3(role='dialog')
     header.modal-header
-      h2.modal-title Instructions : Étape 3
-    .modal-body
-      p to be copied from English instructions and translated
-      p Lorsque vous êtes satisfait de votre sélection, passez à l’étape 4 en utilisant les onglets de navigation ou le bouton « Prochain ». Des directives supplémentaires sont disponibles à chaque onglet.
-
+      h2.modal-title Instructions : Étape 3.modal-body
+      p L'étape 3 répertorie les énoncés basés sur les conditions préalables de la norme EN 301 549 qui s'appliquent à une seule exigence. Étant donné que la plupart des exigences ont plusieurs conditions préalables, bon nombre des énoncés peuvent être automatiquement masqués par défaut, mais vous pouvez choisir de les afficher (voir ci-dessous).
+      ul
+        li Sélectionner tout : coche toutes les cases d'une étape. Cette fonction n'est généralement utile que pour les tests.
+        li Désélectionner tout : cette option désélectionne toutes les cases de l'étape en cours et vous permet de recommencer cette étape. Pour tout recommencer, actualisez la page afin d'effacer toutes les sélections de toutes les étapes.
+        li a La fonction Annuler permet d'annuler la dernière action de sélection/désélection ou de sélectionner/désélectionner tout.
+        li Le bouton "Afficher les options masquées automatiquement" permet d'afficher ou de masquer automatiquement les cases à cocher que le système a désignées comme étant non applicables en fonction de vos sélections précédentes. Cela vous permet de voir ce qui a été masqué et d'apporter des modifications si nécessaire.
+      p Une fois vos sélections effectuées, cliquez sur « Suivant » pour passer à l'étape de révision, ou sur « Précédent » si vous devez modifier vos sélections à l'étape précédente.
+      p Remarque : Il est important de réfléchir à ce qui pourrait être inclus dans le projet ou l'approvisionnement, et de ne supprimer que les éléments dont vous êtes sûr qu'ils ne s'appliquent pas. Bon nombre de ces catégories seront évidentes, comme la suppression du matériel d'une solution logicielle. Lorsque cela est moins évident, pensez à utiliser la boîte de dialogue d'aide située à côté de chaque élément pour obtenir des informations supplémentaires avant de faire votre choix.
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep4(role='dialog')
     header.modal-header
       h2.modal-title Instructions : Étape 4
     .modal-body
-      p to be copied from English and translated
-      p
-        | Les exigences (clauses) pertinentes ont maintenant été sélectionnées en fonction de vos réponses à l’étape 1 et 2. Utilisez l’arbre des cases à cocher pour vérifier quelles clauses ont été sélectionnées. Assurez-vous qu’elles s’appliquent à votre marché.
-      h3 Quand devriez-vous désélectionner une clause?
-      p
-        | Ne désélectionnez que les clauses dont vous êtes certain qu’elles ne font pas partie du produit / service acheté. Vous pouvez inclure toute exigence qui pourrait être nécessaire. Les clauses individuelles peuvent être marquées « sans objet » par les fournisseurs; ce n’est donc pas un problème que d’inclure une clause non applicable.
-      p
-        | Par exemple, si vous considérez l’achat d’une application Web. Le contenu Web peut inclure de la vidéo ou de l’audio. Même si l’énoncé des travaux n’exige pas de contenu multimédia, certains fournisseurs peuvent utiliser les multimédias pour les directives d’utilisation de l’application. Gardez la clause 9.1.2 « Médias en fonction du temps » sélectionnée.
-      p
-        | En général, vous devriez inclure toutes les exigences dans la clause 9 ou 10 plutôt que d’en sélectionner seulement une partie.
-      h3 Utilisation de l’arbre à clauses
+      p L'étape 4 est une étape de révision qui montre quelles sélections seront incluses dans les documents que vous téléchargerez à l'étape 5 et qui est présentée sous forme d'arborescence. Si vous remarquez des erreurs, revenez aux étapes 1, 2 ou 3 pour ajuster vos sélections avant de passer à l'étape 5.
+      p Conseils d'utilisation de l'arborescence des clauses :
       ul
-        li Pour développer ou réduire des parties de l’arbre à l’aide de la souris, cliquez sur la flèche à côté de la clause que vous souhaitez développer. Ou cliquez dans l’espace vide à côté du nom de la clause.
-        li Pour développer ou réduire une partie à l’aide du clavier, utilisez les touches fléchées. Les flèches haut et bas permettent de passer d’une clause à l’autre, tandis que les flèches droite et gauche permettent de développer et de réduire les clauses.
-        li Les clauses sans clause subordonnée sont les seules qui contiennent le texte de l’exigence réelle (par exemple, la clause 5.2). Elles peuvent être développées pour faire apparaître le texte de la même manière que les clauses principales.
-        li Pour sélectionner ou désélectionner une clause, cliquez sur la case à cocher ou appuyez sur la barre. Lorsqu’une clause principale est sélectionnée (par exemple, la clause 5), toutes ses clauses subordonnées seront sélectionnées.
-      h3 Apporter des modifications aux exigences générées précédemment
-      p
-        | Chaque document généré comprend une « liste de clauses » succincte, c’est-à-dire une seule phrase énumérant toutes les clauses incluses dans ce document. Voici à quoi cela ressemble :
-      p
-        | « La solution proposée devrait être conforme aux clauses 5.1.2.1, 5.1.2.2, 5.1.3.1, 12.1.1 et 12.1.2. »
-      p
-        | Vous avez peut-être passé un temps considérable à affiner votre sélection de clauses. Après avoir généré des documents, vous avez fermé la page Web. Le lendemain, vous vous rendez compte que des modifications sont nécessaires. Une fonction vous permet de le faire facilement.
-      p
-        | Cliquez sur le bouton « Entrer la liste des clauses » situé après l’arbre des clauses. Copiez la liste des clauses de votre document précédemment généré et collez-la dans le champ du formulaire. Votre sélection de clauses précédente sera restaurée dans l’arbre des cases à cocher. Vous pouvez ensuite apporter toutes les modifications nécessaires à la sélection.
-      
+        li Pour développer ou réduire certaines parties de l'arborescence à l'aide de la souris, cliquez sur la flèche à côté de la clause que vous souhaitez développer. Vous pouvez également cliquer dans l'espace vide à côté du nom de la clause.
+        li Pour développer ou réduire à l'aide du clavier, utilisez les touches fléchées. Les flèches haut et bas permettent de se déplacer entre les clauses, tandis que les flèches droite et gauche permettent de développer et de réduire les clauses.
+        li Les clauses qui n'ont pas d'« enfants » sont les dispositions réelles de la norme et peuvent être ouvertes à l'aide de la souris ou du clavier de la même manière que les clauses parentes.
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep5(role='dialog')
     header.modal-header
       h2.modal-title Instructions : Étape 5
     .modal-body
-      p to be copied from English and translated
-      p Cliquez sur les liens pour télécharger les documents relatifs aux exigences. Pour la plupart des approvisionnements, le « Tableau des exigences avec des sections informatives » doit être inclus. Lorsque la conformité est évaluée, incluez également un « Modèle d'évaluation ».
-      p Vous souhaiterez peut-être donner aux documents des noms de fichiers plus  descriptifs après le téléchargement.
-      h3 Modifications nécessaires aux documents Word
-      p
-        | En raison des 
-        a(href='https://github.com/aaact-aatia/a11y-ict-wizard#user-content-known-issues') limitations de l’outil (en anglais seulement)
-        | , vous devez effectuer chacune des étapes suivantes après avoir téléchargé les documents.
-      h4 Document anglais
-      ol
-        li Ouvrez le document anglais généré dans Microsoft Word.
-        li Sous Fichier  &gt; Informations, cliquez sur Convertir.
-        li Pour le document « Exigences avec des sections informatives » uniquement :
-        | Insérez des sauts de page avant chaque annexe. Le cas échéant, insérez les sauts de page pour conserver les chiffres avec leurs légendes correspondantes.
-        li Enregistrez et fermez le document.
-      h4 Document français
-      ol
-        li Ouvrez le document français généré dans Microsoft Word.
-        li Sous Fichier &gt; Informations, cliquez sur Convertir.
-        li Sélectionnez tout et définissez la langue en français. Pour définir la langue, cliquez sur la langue dans la barre d’état, ou suivez ces étapes :
-          ol(type='a')
-            li Dans le ruban, sélectionnez l’onglet Révision.
-            li Sélectionnez Langue &gt; Définir la langue de révision.
-            li Sélectionnez la langue souhaitée.
-        li Pour le document « Exigences avec des sections informatives » uniquement :
-          ol(type='a')
-            li Insérez les sauts de page avant chaque annexe. Le cas échéant, insérez les sauts de page pour conserver les chiffres avec leurs légendes correspondantes.
-            li Le document français contient un peu de texte anglais, qui devrait rester en anglais. Sélectionnez les sections anglaises suivantes (qui se trouvent dans les annexes) et définissez la langue en anglais :
-              ul
-                li Références
-                li Abréviations
-            | Assurez-vous que les notes (qui sont en français) ne sont pas définies en anglais.
-        li Enregistrez et fermez le document.
+      p L'étape 5 propose des options pour télécharger deux documents en anglais et en français canadien, comme suit :
+      ul
+        li Exigences en matière d'accessibilité des TIC avec sections informatives – il s'agit des dispositions restantes après suppression des sélections effectuées aux étapes 1, 2 et 3. Ce document comprend toutes les clauses informatives ainsi que des informations supplémentaires telles que des définitions et des relations avec les critères de rendement fonctionnel.
+        li Liste des exigences en matière d'accessibilité des TIC pouvant être testées – Ne répertorie que les dispositions dont la conformité peut être évaluée sur la base des sélections.
+      p Remarque : Il est recommandé de renommer les documents téléchargés afin de leur donner des noms plus appropriés.
+      h3 Formatage des documents Microsoft Word
+      p Cet outil présente actuellement certaines limites quant à la qualité du formatage des documents Word résultants en raison de la technologie sous-jacente utilisée. Il est donc recommandé d'envisager une mise à jour manuelle :
+      h4 Pour tous les téléchargements
+      p Convertissez au dernier format de document Microsoft Word en allant dans Fichier > Informations et en sélectionnant « Convertir ».
+      h4 Exigences en matière d'accessibilité des TIC avec sections informatives 
+      ul
+        li Insérer des sauts de page au début des annexes
+        li Insérer/ajuster les sauts de page pour que les légendes associées à l'annexe « tableaux et figures » restent sur la même page
+      h4 Pour les documents en français
+      p Les documents français auront généralement le français comme langue par défaut et, selon la version de Word que vous utilisez, certains mots anglais du document pourront être correctement détectés et leur langue de correction bien définie. Consultez les sections ci-dessous pour vous assurer que tous les mots anglais sont correctement balisés. Vous pouvez définir la langue de correction en cliquant sur la langue dans la barre d'état ou en allant dans Révision > Langue > Définir la langue de correction. Si Word ne semble pas avoir bien détecté la langue automatiquement, pensez à tout sélectionner et à définir le document comme étant 100 % français, puis consultez les sections ci-dessous pour baliser le texte anglais comme étant en anglais :
+      ul
+        li Références
+        li Abréviations
+      p Remarque : Assurez-vous que les remarques (qui sont en français) ne sont pas définies en anglais.
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#restoreModal(role='dialog')
     header.modal-header
-      h2.modal-title Entrez les sélections précédentes
+      h2.modal-title Charger les sélections du résultat précédent
     .modal-body
-      p Collez la liste à puces des sélections faites à partir de l'annexe X pour reprendre l'édition. 
-      p Les sélections précédentes peuvent être trouvées dans la section "portée" de la sortie qui précède la table des clauses et devrait ressembler à quelque chose comme : 
+      p Collez la liste à puces des sélections effectuées pour reprendre l'édition.
+      p Les sélections précédentes se trouvent dans la section « liste filtrée » du résultat et devraient ressembler à ceci:
       ul
-        li N'est pas et ne comprend pas une page Web ;
-        li N'est pas et ne comprend pas un document non destiné au Web et
-        li N'est pas et ne comprend pas du matériel
+        li N'est pas et n'inclut pas une page Web ;
+        li N'est pas et n'inclut pas un document non destiné au Web et
+        li N'est pas et n'inclut pas de matériel informatique
       textarea.no-editor#questionList

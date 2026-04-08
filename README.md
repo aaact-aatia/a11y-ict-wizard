@@ -37,18 +37,9 @@ This application should be considered a prototype. While the documents generated
 - Styling of Word document is less than ideal
 - MHT format is proprietary to Word. Generated documents should be converted to standard docx format before release
 
-### Web applicaton
-- Language of French content within rich text editors is tagged as English (despite setting CKEditor 5 content language to French).
-- Alphabetical list styles are not visible in the rich text editor, though present in the HTML of the clauses (which was generated outside of CKEditor).
-- CKEditor 5 is incompatible with Internet Explorer 11. Content remains editable as raw HTML in IE11.
-- CKEditor 5 has keyboard accessibility issues when working with tables and images.
-
-### Resolving issues
-The above issues are primarily due to the requirement of generating Word documents and the limitations of the html-docx-js and CKEditor 5 libraries. Returning to using HTML as the output format would resolve some of these issues. Alternately, modifying the html-docx-js library could improve the generation of Word documents. Other issues can be resolved by switching to CKEditor 4 and using the Language and List-styles plugins. (An inelegant workaround is simply editing the HTML manually in IE11, bypassing rich text editor issues.) Styling issues in the Word document can be resolved by modifying `download.css` (see "Editing the code" below) or simply by editing the generated Word documents.
-
 Instructions for editing the generated documents are available within the app (Step 3 instructions).
 
-Other [issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11y-ict-wizard/issues).
+[Issues documented in this GitHub Repo](https://github.com/aaact-aatia/a11y-ict-wizard/issues).
 
 ## Setup
 
@@ -79,11 +70,6 @@ For detailed Docker instructions, see [README-DOCKER.md](README-DOCKER.md).
 - Copy environment template: `cp .env.sample .env`
 - Edit `.env` to configure for local MongoDB (uncomment the 127.0.0.1 section)
 
-### Using Docker 
-
-A production ready container has been created for your convenience complete with the PM2 process manager and a NGINX reverse proxy. 
-
-
 ## Usage
 
 ### Running with Docker Compose
@@ -111,23 +97,6 @@ To edit content via the CMS, visit [localhost:3001/edit](http://localhost:3001/e
 - To edit content via the CMS, visit [localhost:3000/edit](http://localhost:3000/edit)
 - use "admin" for both username and password in dev
 
-### Using Docker 
-
-To specify that the container should populate the database on start set the environment variable ```POPULATE_DB``` to be ```true```. This variable is found in `Dockerfile`.
-The container will detect this and run mongorestore on booting. 
-
-To run the application.
-
-```sh
-$ docker-compose up
-```
-
-To rebuild the container 
-
-```sh
-$ docker-compose up --build
-```
-
 ## Understanding the code
 This is a CRUD application using Node, Express, MongoDB backend and Web Experience Toolkit frontend. The barebones implementation has its own repo: [wet-mongoose](https://github.com/juleskuehn/wet-mongoose).
 
@@ -138,7 +107,7 @@ The code is based on:
 It also depends on the following libraries:
 - [GCWeb Theme for WET](https://wet-boew.github.io/themes-dist/GCWeb/gcweb-theme/release/v5.0-en.html) (Government of Canada design system based on Bootstrap)
 - [html-docx-js](https://github.com/evidenceprime/html-docx-js) (for generating Word documents)
-- [CKEditor 5](https://ckeditor.com/ckeditor-5/) (rich text editor)
+- [TinyMCE](https://www.tiny.cloud/) (rich text editor)
 
 Images are stored in the database inline (base64 encoded).
 
@@ -177,5 +146,3 @@ CSS for Word documents. Unfortunately, editing this is a matter of trial and err
 
 Options for generating documents, common to all `download_*` views.
 
-## Support
-Open an issue in this repository (preferred), or email AAACT-AATIA)(mailto:aaact-aatia@ssc-spc.gc.ca).

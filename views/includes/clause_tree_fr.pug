@@ -37,16 +37,16 @@ fieldset#clauses
   legend
     span#tree_label.field-name #{tree_name}
   .btn-group
-    button.btn.btn-default#expandTree Arboriser
-    button.btn.btn-default#expandAll(style="margin-left : 3px") Développer tout
-    button.btn.btn-default#collapseAll(style="margin-left : 3px") Réduire tout
+    button.btn.btn-default#expandTree Développer l'arborescence
+    button.btn.btn-default#expandAll(style="margin-left : 3px") Tout développer
+    button.btn.btn-default#collapseAll(style="margin-left : 3px") Tout réduire
   .btn-group(style="margin-left : 10px")
-    button.btn.btn-default#showAllRemovedClauses Afficher supprimés
-    button.btn.btn-default#hideAllRemovedClauses(style="margin-left : 3px") Masquer supprimés
+    button.btn.btn-default#showAllRemovedClauses Afficher supprimé
+    button.btn.btn-default#hideAllRemovedClauses(style="margin-left : 3px") Masquer supprimé
   //- aria-labelledby is not be necessary due to the fieldset legend
   //- aria-multiselectable='false' indicates this is a single-selection tree
   //- treeitems use aria-checked property rather than aria-selected (to express 'mixed' state)
   ul.clause-tree(role='tree' aria-multiselectable='false')
     +createTree(clause_tree)
   div.wb-inv(aria-live="polite")
-    p.disabledClauses.hidden Rien de désactivé
+    p.disabledClauses.hidden Rien n'est désactivé

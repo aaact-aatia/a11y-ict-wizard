@@ -440,6 +440,8 @@ var step1SubsetsQuestionHandler = function () {
   uncheckedStep1ClauseIds.length = 0;
   checkedStep1QuestionsIds.length = 0;
 
+  // reload checkboxes as they might have been changed by the undo action or by the reactivation of hidden elements and we want to make sure to get the right list of checked checkboxes
+  $checkboxes = $('.wizard input.isUber:checked');
   $checkboxes.each(function () {
     var questionId = this.id;
     checkedStep1QuestionsIds.push(questionId);

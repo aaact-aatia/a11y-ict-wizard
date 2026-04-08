@@ -7,16 +7,16 @@ mixin checkbox(label, name, onlyIf, descri, isUber, isUnique)
   .checkbox(class=`checkbox-${name}`)
     label(for=name)
       input(id=name type='checkbox' name=name class=(onlyIf ? 'onlyIf' : false) class=(isUber ? 'isUber' : false) class=(isUnique ? 'isUnique' : false))
-      span.remove-disabled-text.hidden [Removed by other selection]!{' '}
+      span.remove-disabled-text.hidden [Supprimé par une autre sélection]!{' '}
       | !{label}
-    a(href=`#moreInfo${name}` aria-controls=`moreInfo${name}` class="wb-lbx lbx-modal" aria-label=`Ouvre un contennu suppersosé avec plus d'info sur ${label}` tabindex="0")
+    a(href=`#moreInfo${name}` aria-controls=`moreInfo${name}` class="wb-lbx lbx-modal" aria-label=`Ouvrir un dialogue avec plus d'information sur ${label}` tabindex="0")
       svg(width="24.1" height="24.1" viewBox="-10 -10 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" style="position: absolute; transform: translate(0%, 10%)")
         path(d="M24 16V24M24 32H24.02M44 24C44 35.0457 35.0457 44 24 44C12.9543 44 4 35.0457 4 24C4 12.9543 12.9543 4 24 4C35.0457 4 44 12.9543 44 24Z" stroke="#2239ab" stroke-width="4" stroke-linecap="round" stroke-linejoin="round")
 
-  section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`moreInfo${name}`)
+  section.mfp-hide.modal-dialog.modal-content.overlay-def(id=`moreInfo${name}` role='dialog')
     header.modal-header
       h2.modal-title
-        | Plus d'informations sur:
+        | Plus d'information sur:
         br
         | '!{label}'
     div.modal-body(id=`dialog-${name}`)
@@ -27,7 +27,7 @@ section.wizard
   
   fieldset
     legend
-      span.field-name L’approvisionnement en <abbr title="Technologies de l'information et de la communication">TIC</abbr> French to be updated in future:
+      span.field-name Les solutions et/ou services des <abbr title="technologies de l'information et des communications">TIC</abbr>:
     
     - var uberQuestions_list = [];
     - var nonUberQuestions_list = [];
@@ -46,7 +46,7 @@ section.wizard
         button#checkAll1(class="btn btn-default") Tout sélectionner
         button#uncheckAll1(class="btn btn-default" style="margin-left : 3px") Tout désélectionner
       .btn-group(style="margin-left : 15px")
-        button#undoLastStep1(class="btn btn-default") Défaire    
+        button#undoLastStep1(class="btn btn-default") Annuler
       .btn-group(style="margin-left : 15px")
       button#toggleAutoHiddenOptionsStep1.toggle-switch(
         type="button"
@@ -58,7 +58,7 @@ section.wizard
       <br/>
       div(aria-atomic="true" aria-live="polite")
         p.clause-count
-          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+          strong Nombre total de clauses: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
@@ -74,7 +74,7 @@ section.wizard
         button#checkAll2(class="btn btn-default") Tout sélectionner
         button#uncheckAll2(class="btn btn-default" style="margin-left : 3px") Tout désélectionner
       .btn-group(style="margin-left : 15px")
-        button#undoLastStep2(class="btn btn-default") Défaire
+        button#undoLastStep2(class="btn btn-default") Annuler
       .btn-group(style="margin-left : 15px")
       button#toggleAutoHiddenOptionsStep2.toggle-switch(
         type="button"
@@ -86,7 +86,7 @@ section.wizard
       <br/>
       div(aria-atomic="true" aria-live="polite")
         p.clause-count
-          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+          strong Nombre total de clauses: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
@@ -102,7 +102,7 @@ section.wizard
         button#checkAll3(class="btn btn-default") Tout sélectionner
         button#uncheckAll3(class="btn btn-default" style="margin-left : 3px") Tout désélectionner
       .btn-group(style="margin-left : 15px")
-        button#undoLastStep3(class="btn btn-default") Défaire
+        button#undoLastStep3(class="btn btn-default") Annuler
       .btn-group(style="margin-left : 15px")
       button#toggleAutoHiddenOptionsStep3.toggle-switch(
         type="button"
@@ -114,7 +114,7 @@ section.wizard
       <br/>
       div(aria-atomic="true" aria-live="polite")
         p.clause-count
-          strong Nombre total de clauses applicables: <span class='clauseCount'>0</span>
+          strong Nombre total de clauses: <span class='clauseCount'>0</span>
       div.wizard-questions
         .row
           .col-md-6
@@ -128,8 +128,8 @@ section.wizard
     
   //- Hidden data (for client-side javascript)
   div.wb-inv(aria-live="polite")
-    p.disabledQuestionsHidden.hidden French TBD BD disabled questions are now hidden
-    p.disabledQuestionsShown.hidden FrenchTBD disabled questions are now shown
+    p.disabledQuestionsHidden.hidden Les questions désactivées sont maintenant masquées.
+    p.disabledQuestionsShown.hidden Les questions désactivées sont maintenant affichées.
   .hidden(id=`question-data-step${step}`)
     each question in question_list
       ul.question(data-question-id=question._id)

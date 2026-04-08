@@ -53,7 +53,7 @@ exports.download = (req, res, next) => {
 	let strings = { template: req.params.template };
 	const format = req.body.format;
 	if (req.params.template.slice(-2) === 'fr') {
-		strings.filename = 'Annexe X - Exigences en matière de TIC accessibles.' + format;
+		strings.filename = 'les exigences en matière daccessibilité des TIC avec sections informatives.' + format;
 		strings.title = 'Exigences en matière de TIC accessibles';
 	} else {
 		strings.filename = 'ICT accessibility requirements with informative sections.' + format;
@@ -61,7 +61,7 @@ exports.download = (req, res, next) => {
 	}
 	if (req.params.template.includes("evaluation")) {
 		if (req.params.template.slice(-2) === 'fr') {
-			strings.filename = 'Annexe Y - Exigences testables selectés dans l Annexe X.' + format;
+			strings.filename = 'la liste des exigences en matière daccessibilité des TIC pouvant être testées.' + format;
 		} else {
 			strings.filename = 'List of testable ICT accessibility requirements.' + format;
 		}
