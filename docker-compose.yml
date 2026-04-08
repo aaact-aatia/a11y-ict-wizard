@@ -1,0 +1,94 @@
+# ==============================================================================
+# A11y ICT Wizard - Docker Compose Configuration
+# ==============================================================================
+# Local development environment with MongoDB and admin UI
+#
+# Usage:
+#   docker compose up        Start all services
+#   docker compose down      Stop all services
+#   docker compose down -v   Stop and remove volumes (fresh start)
+#
+# Services:
+#   - mongo:         MongoDB 6.x database
+#   - mongo-express: Web-based MongoDB admin interface (http://localhost:8081)
+#   - app:           Node.js application (http://localhost:3001)
+# ==============================================================================
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:6.0
+    container_name: a11y-ict-wizard-mongo
+    restart: unless-stopped
+    command: --quiet --logpath /dev/null
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_DATABASE: a11y-req-dev-2025
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - a11y-network
+
+  # MongoDB Web Admin Interface
+  mongo-express:
+    image: mongo-express:latest
+    container_name: a11y-ict-wizard-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_URL: mongodb://mongo:27017
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: admin
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - a11y-network
+
+  # Node.js Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: a11y-ict-wizard-app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    volumes:
+      # Bind mount for hot-reload development
+      - ./:/app
+      - /app/node_modules  # Prevent overwriting node_modules
+    env_file:
+      - .env
+    environment:
+      # Override DBURI to use Docker service name
+      DBURI: mongodb://mongo:27017/a11y-req-dev-2025
+      NODE_ENV: development
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - a11y-network
+
+volumes:
+  mongo-data:
+    name: a11y-ict-wizard-mongo-data
+
+networks:
+  a11y-network:
+    name: a11y-ict-wizard-network
+    driver: bridge
