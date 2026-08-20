@@ -5,7 +5,7 @@
 # For production deployments, use the Azure-specific container configuration
 # ==============================================================================
 
-FROM node:26-alpine
+FROM node:24-alpine
 
 # Set working directory
 WORKDIR /app

@@ -7,7 +7,7 @@
     "devstart": "nodemon ./bin/www"
   },
   "engines": {
-    "node": "26.x"
+    "node": "24.x"
   },
   "dependencies": {
     "async": "^3.x.x",
