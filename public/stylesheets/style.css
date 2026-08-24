@@ -167,22 +167,21 @@ i.info {
   color: inherit;
 }
 
-[role="treeitem"].endNode > .checkbox > i.info {
+[role="treeitem"].endNode > .checkbox > .info-icon {
   position: absolute;
-  left: 0px;
+  right: 0;
   top: 6px;
-  height: 18px;
 }
 
 [role="treeitem"].endNode label {
-  /* Prevent overlapping with "info" icon */
+  /* Prevent overlapping with the info icon. */
   padding-right: 25px;
 }
 
-[role="treeitem"].endNode.hover > .checkbox > i.info,
-[role="treeitem"].endNode > .checkbox:hover > i.info,
-[role="treeitem"].endNode.focus > .checkbox > i.info,
-[role="treeitem"].endNode > .checkbox:focus > i.info {
+[role="treeitem"].endNode.hover > .checkbox > .info-icon,
+[role="treeitem"].endNode > .checkbox:hover > .info-icon,
+[role="treeitem"].endNode.focus > .checkbox > .info-icon,
+[role="treeitem"].endNode > .checkbox:focus > .info-icon {
   display: inline-block;
 }
 
