@@ -245,6 +245,11 @@ i.info {
   padding-left: auto !important;
 }
 
+.clause-tree .checkbox .number,
+.clause-tree .checkbox .name {
+  cursor: pointer;
+}
+
 /* Wizard styling*/
 
 :root {

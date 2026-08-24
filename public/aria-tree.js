@@ -617,6 +617,16 @@ $(document).on("wb-ready.wb", function (event) {
       event.stopImmediatePropagation();
       return;
     }
+
+    // Clicking the number/name text should expand/collapse (or show info for
+    // endNodes) just like clicking the icon, rather than toggling selection.
+    // Block the native label->checkbox toggle, but let the click bubble up
+    // to the treeitem's own click handler so it behaves like an icon click.
+    if ($(event.target).closest('.number, .name').length) {
+      event.preventDefault();
+      return;
+    }
+
     event.preventDefault();
     $node = $(this).closest('li');
     cycleSelect($node);
