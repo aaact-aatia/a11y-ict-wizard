@@ -533,15 +533,13 @@ Treeitem.prototype.handleClick = function (event) {
   }
 
   /* Edit to ARIA code: expand or collapse text of clauses */
-  if ($(document.activeElement).is('.endNode[aria-expanded="true"]')) {
-    if (!$(event.target).is('.checkbox') && !$(event.target).is('i')) {
+  var $treeitem = $(event.currentTarget);
+  if ($treeitem.is('.endNode')) {
+    if (!$(event.target).is('.checkbox') && !$(event.target).closest('.info-icon, .number, .name').length) {
       return;
     }
-    toggleClauseText($(document.activeElement), false);
-    event.stopPropagation();
-  }
-  else if ($(document.activeElement).is('.endNode[aria-expanded="false"]')) {
-    toggleClauseText($(document.activeElement), true);
+    this.tree.setFocusToItem(this);
+    toggleClauseText($treeitem, $treeitem.attr('aria-expanded') !== 'true');
     event.stopPropagation();
   }
   else if (this.isExpandable) {

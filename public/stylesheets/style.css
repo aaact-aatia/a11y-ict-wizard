@@ -168,9 +168,11 @@ i.info {
 }
 
 [role="treeitem"].endNode > .checkbox > .info-icon {
+  display: none;
   position: absolute;
   right: 0;
   top: 6px;
+  cursor: pointer;
 }
 
 [role="treeitem"].endNode label {
@@ -180,6 +182,7 @@ i.info {
 
 [role="treeitem"].endNode.hover > .checkbox > .info-icon,
 [role="treeitem"].endNode > .checkbox:hover > .info-icon,
+[role="treeitem"].endNode:focus > .checkbox > .info-icon,
 [role="treeitem"].endNode.focus > .checkbox > .info-icon,
 [role="treeitem"].endNode > .checkbox:focus > .info-icon {
   display: inline-block;
