@@ -168,24 +168,10 @@ i.info {
 }
 
 [role="treeitem"].endNode > .checkbox > .info-icon {
-  display: none;
-  position: absolute;
-  right: 0;
-  top: 6px;
-  cursor: pointer;
-}
-
-[role="treeitem"].endNode label {
-  /* Prevent overlapping with the info icon. */
-  padding-right: 25px;
-}
-
-[role="treeitem"].endNode.hover > .checkbox > .info-icon,
-[role="treeitem"].endNode > .checkbox:hover > .info-icon,
-[role="treeitem"].endNode:focus > .checkbox > .info-icon,
-[role="treeitem"].endNode.focus > .checkbox > .info-icon,
-[role="treeitem"].endNode > .checkbox:focus > .info-icon {
   display: inline-block;
+  margin-left: 4px;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 [role="treeitem"][aria-expanded="false"] > div.checkbox > i.expand,
