@@ -167,23 +167,11 @@ i.info {
   color: inherit;
 }
 
-[role="treeitem"].endNode > .checkbox > i.info {
-  position: absolute;
-  left: 0px;
-  top: 6px;
-  height: 18px;
-}
-
-[role="treeitem"].endNode label {
-  /* Prevent overlapping with "info" icon */
-  padding-right: 25px;
-}
-
-[role="treeitem"].endNode.hover > .checkbox > i.info,
-[role="treeitem"].endNode > .checkbox:hover > i.info,
-[role="treeitem"].endNode.focus > .checkbox > i.info,
-[role="treeitem"].endNode > .checkbox:focus > i.info {
+[role="treeitem"].endNode > .checkbox > .info-icon {
   display: inline-block;
+  margin-left: 4px;
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 [role="treeitem"][aria-expanded="false"] > div.checkbox > i.expand,
@@ -243,6 +231,11 @@ i.info {
 
 .clause-tree .checkbox .detail-inner * {
   padding-left: auto !important;
+}
+
+.clause-tree .checkbox .number,
+.clause-tree .checkbox .name {
+  cursor: pointer;
 }
 
 /* Wizard styling*/

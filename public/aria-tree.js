@@ -533,15 +533,13 @@ Treeitem.prototype.handleClick = function (event) {
   }
 
   /* Edit to ARIA code: expand or collapse text of clauses */
-  if ($(document.activeElement).is('.endNode[aria-expanded="true"]')) {
-    if (!$(event.target).is('.checkbox') && !$(event.target).is('i')) {
+  var $treeitem = $(event.currentTarget);
+  if ($treeitem.is('.endNode')) {
+    if (!$(event.target).is('.checkbox') && !$(event.target).closest('.info-icon, .number, .name').length) {
       return;
     }
-    toggleClauseText($(document.activeElement), false);
-    event.stopPropagation();
-  }
-  else if ($(document.activeElement).is('.endNode[aria-expanded="false"]')) {
-    toggleClauseText($(document.activeElement), true);
+    this.tree.setFocusToItem(this);
+    toggleClauseText($treeitem, $treeitem.attr('aria-expanded') !== 'true');
     event.stopPropagation();
   }
   else if (this.isExpandable) {
@@ -617,6 +615,16 @@ $(document).on("wb-ready.wb", function (event) {
       event.stopImmediatePropagation();
       return;
     }
+
+    // Clicking the number/name text should expand/collapse (or show info for
+    // endNodes) just like clicking the icon, rather than toggling selection.
+    // Block the native label->checkbox toggle, but let the click bubble up
+    // to the treeitem's own click handler so it behaves like an icon click.
+    if ($(event.target).closest('.number, .name').length) {
+      event.preventDefault();
+      return;
+    }
+
     event.preventDefault();
     $node = $(this).closest('li');
     cycleSelect($node);
