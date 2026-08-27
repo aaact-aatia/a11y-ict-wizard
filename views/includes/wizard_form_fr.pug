@@ -22,6 +22,9 @@ mixin checkbox(label, name, onlyIf, descri, isUber, isUnique)
     div.modal-body(id=`dialog-${name}`)
       p Description:
       | !{descri}
+      br
+      p Le document EN 301 549 contient des hyperliens internes dans le PDF qui ne peuvent être reproduits dans cette boîte de dialogue. Cette boîte de dialogue souligne le texte des hyperliens et ajoute un astérisque* après le texte pour indiquer que le terme est défini ou comporte une référence interne.
+
 
 section.wizard
   
