@@ -99,6 +99,21 @@ const requireAuth = (req, res, next) => {
 	res.redirect('/edit/login');
 };
 
+app.use((req, res, next) => {
+	const redirectFromHost = process.env.REDIRECT_FROM_HOST;
+	const redirectToHost = process.env.REDIRECT_TO_HOST;
+	const configuredRedirectStatus = Number.parseInt(process.env.REDIRECT_STATUS, 10);
+	const redirectStatus = [301, 302].includes(configuredRedirectStatus)
+		? configuredRedirectStatus
+		: 302;
+
+	if (redirectFromHost && redirectToHost && req.hostname === redirectFromHost) {
+		return res.redirect(redirectStatus, `https://${redirectToHost}${req.originalUrl}`);
+	}
+
+	next();
+});
+
 // THE IMPORTANT PART
 // Associate routes
 app.use("/", require("./routes/generatorRoutes"));

@@ -142,8 +142,10 @@ To connect to a remote database instead of Docker:
 
 ### Environment Variables Reference
 
+The following environment variables configure the application and its supporting services.
+
 | Variable | Purpose | Docker Default |
-|----------|---------|----------------|
+| ---------- | ------- | -------------- |
 | `PORT` | Application port | `3001` |
 | `DBURI` | MongoDB connection string | `mongodb://mongo:27017/a11y-req-dev-2025` |
 | `EN_VERSION` | Standard version displayed | `"EN 301 549 V4.1.1 (2025) - Development"` |
@@ -152,8 +154,33 @@ To connect to a remote database instead of Docker:
 | `SESSION_SECRET` | Express session encryption | Auto-generated |
 | `GITHUB_CLIENT_ID` | GitHub OAuth (optional) | Empty |
 | `GITHUB_CLIENT_SECRET` | GitHub OAuth (optional) | Empty |
+| `REDIRECT_FROM_HOST` | Hostname that should redirect to the replacement deployment | Empty |
+| `REDIRECT_TO_HOST` | Destination hostname for the permanent redirect | Empty |
+| `REDIRECT_STATUS` | Redirect HTTP status; supported values are `301` and `302` | `302` when unset |
 
 **Note**: `docker-compose.yml` overrides `DBURI` to ensure the app uses the Docker MongoDB service name.
+
+### Hostname Redirects
+
+Set both redirect host variables when an existing deployment hostname should redirect to a replacement hostname. Matching requests receive the configured HTTP redirect status, and the original path and query string are preserved. `REDIRECT_STATUS` supports `301` (permanent) and `302` (temporary), and defaults to `302` when unset or invalid.
+
+Production example:
+
+```dotenv
+REDIRECT_FROM_HOST=2025-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca
+REDIRECT_TO_HOST=2026-prod.ict-cio.ssc-spc.cloud-nuage.canada.ca
+```
+
+Development example:
+
+```dotenv
+REDIRECT_FROM_HOST=2025-dev.ict-cio.ssc-spc.cloud-nuage.canada.ca
+REDIRECT_TO_HOST=2026-dev.ict-cio.ssc-spc.cloud-nuage.canada.ca
+```
+
+Both values are optional. If either value is empty or missing, no hostname redirect occurs. Local development therefore continues normally without a localhost fallback.
+
+For testing, set `REDIRECT_STATUS=302`. Change it to `REDIRECT_STATUS=301` when the redirect is ready to be permanent. No code change is required.
 
 ## Database Management
 
