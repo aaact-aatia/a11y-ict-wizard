@@ -292,6 +292,10 @@ exports.clause_loader_get = (req, res, next) => {
 };
 
 
+function addNoteIndents(description) {
+  return description;
+}
+
 
 async function updateFromWordFiles(englishFile, frenchFile) {
   // If either file is missing, skip processing for that language
@@ -335,6 +339,7 @@ async function updateFromWordFiles(englishFile, frenchFile) {
         }
       }
 
+description = addNoteIndents(description);
       return { number, name, description, compliance };
     }).filter(Boolean);
   }
