@@ -293,7 +293,24 @@ exports.clause_loader_get = (req, res, next) => {
 
 
 function addNoteIndents(description) {
-  return description;
+  if (!description) return description;
+
+  const dom = new JSDOM(`<div>${description}</div>`);
+  const container = dom.window.document.querySelector('div');
+  const notePattern = /^NOTE(?: [1-9])?:/;
+
+  Array.from(container.querySelectorAll('p')).forEach((paragraph) => {
+    // the NOTE: and NOTE #: case
+    if (!notePattern.test(paragraph.textContent.trimStart())) return;
+
+    paragraph.setAttribute('style', 'margin-left: 5.75em; text-indent: -4.25em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+  });
+
+  return container.innerHTML;
 }
 
 
@@ -339,7 +356,7 @@ async function updateFromWordFiles(englishFile, frenchFile) {
         }
       }
 
-description = addNoteIndents(description);
+      description = addNoteIndents(description);
       return { number, name, description, compliance };
     }).filter(Boolean);
   }
