@@ -302,7 +302,8 @@ function addNoteIndents(description) {
   const notePatternFR = /^REMARQUE\s*:/;
   const notePatternSingleFR = /^REMARQUE\s+[1-9]\s*[\u00A0 ]:/;
   const notePatternDoubleFR = /^REMARQUE\s+[1-9][0-9]\s*[\u00A0 ]:/;
-
+const examplePattern = /^EXAMPLE:/;
+const examplePatternFR = /^EXEMPLE[\u00A0 ]:/;
 
   Array.from(container.querySelectorAll('p')).forEach((paragraph) => {
     // the NOTE: and NOTE #: case
@@ -344,9 +345,22 @@ else if (notePatternDoubleFR.test(paragraph.textContent.trimStart())) {
     paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
       + '<span style="mso-tab-count: 1;"> </span>'
       + paragraph.innerHTML.substring(colonIndex + 2);
-    console.log(paragraph.outerHTML)
     }
-    
+else if (examplePattern.test(paragraph.textContent.trimStart())) {
+    paragraph.setAttribute('style', 'margin-left: 8.66em; text-indent: -8.16em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+    }
+    else if (examplePatternFR.test(paragraph.textContent.trimStart())) {
+    paragraph.setAttribute('style', 'margin-left: 8.88em; text-indent: -8.16em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+      console.log(paragraph.outerHTML);
+    }
   });
   return container.innerHTML;
 }
