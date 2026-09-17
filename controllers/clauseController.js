@@ -292,6 +292,58 @@ exports.clause_loader_get = (req, res, next) => {
 };
 
 
+function addNoteIndents(description) {
+  if (!description) return description;
+
+  const dom = new JSDOM(`<div>${description}</div>`);
+  const container = dom.window.document.querySelector('div');
+  const notePattern = /^NOTE(?: [1-9])?:/;
+  const notePatternDouble = /^NOTE [1-9][0-9]:/;
+  const notePatternFR = /^REMARQUE\s*:/;
+  const notePatternSingleFR = /^REMARQUE\s+[1-9]\s*[\u00A0 ]:/;
+  const notePatternDoubleFR = /^REMARQUE\s+[1-9][0-9]\s*[\u00A0 ]:/;
+const examplePattern = /^EXAMPLE:/;
+const examplePatternFR = /^EXEMPLE[\u00A0 ]:/;
+
+    function applyIndent(paragraph, marginLeft, textIndent) {
+      paragraph.setAttribute('style', `margin-left: ${marginLeft}em; text-indent: ${textIndent}em;`);
+      const colonIndex = paragraph.innerHTML.indexOf(':');
+      paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+        + '<span style="mso-tab-count: 1;"> </span>'
+        + paragraph.innerHTML.substring(colonIndex + 2);
+    }
+
+  Array.from(container.querySelectorAll('p')).forEach((paragraph) => {
+    // the NOTE: and NOTE #: case
+    if (notePattern.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 5.75, -4.25);
+    }
+    // the NOTE##: case
+    else if (notePatternDouble.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 6.24, -4.74);
+    }
+    // the REMARQUE : case
+    else if (notePatternFR.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 8.16, -6.66);
+    }
+    // REMARQUE # : case 
+      else if (notePatternSingleFR.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 8.88, -7.38);
+    }
+      // REMARQUE ## : case 
+      else if (notePatternDoubleFR.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 9.66, -8.16);
+    }
+      else if (examplePattern.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 7.02, -5.52);
+    }
+    else if (examplePatternFR.test(paragraph.textContent.trimStart())) {
+        applyIndent(paragraph, 7.02, -5.52);
+    }
+  });
+  return container.innerHTML;
+}
+
 
 async function updateFromWordFiles(englishFile, frenchFile) {
   // If either file is missing, skip processing for that language
@@ -335,6 +387,7 @@ async function updateFromWordFiles(englishFile, frenchFile) {
         }
       }
 
+      description = addNoteIndents(description);
       return { number, name, description, compliance };
     }).filter(Boolean);
   }
