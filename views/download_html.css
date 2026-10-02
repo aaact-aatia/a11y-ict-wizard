@@ -52,6 +52,10 @@ ul li {
   padding-left: 6pt; 
 }
 
+li {
+  margin-bottom: 6pt;
+}
+
 figure {
   display: table;
 }
