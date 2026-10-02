@@ -182,7 +182,7 @@ var showRemoved = function () {
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now shown.")
-    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 250);
 
     // Update the ARIA tree visibility after showing items
     if (window.trees && window.trees.length > 0) {
@@ -204,7 +204,7 @@ var hideRemoved = function () {
     });
     $('.disabledClauses').removeClass('hidden');
     $('.disabledClauses').text("Disable clauses are now hidden.");
-    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 500);
+    setTimeout(function () { $('.disabledClauses').addClass('hidden'); }, 250);
 
     // Update the ARIA tree visibility after hiding items
     if (window.trees && window.trees.length > 0) {
@@ -423,7 +423,7 @@ function disableQuestion($checkbox, $element, $dialogLink, toggleBtnSelector) {
   }
   $('.autoCheckedAnnounce').removeClass('hidden');
   $('.autoUncheckedAnnounce').addClass('hidden');
-  setTimeout(function () { $('.autoCheckedAnnounce').addClass('hidden'); }, 500);
+  setTimeout(function () { $('.autoCheckedAnnounce').addClass('hidden'); }, 250);
 }
 
 function enableQuestion($checkbox, $element, $dialogLink) {
@@ -437,7 +437,7 @@ function enableQuestion($checkbox, $element, $dialogLink) {
   $checkbox.removeAttr('aria-disabled');
   $('.autoUncheckedAnnounce').removeClass('hidden');
   $('.autoCheckedAnnounce').addClass('hidden');
-  setTimeout(function () { $('.autoUncheckedAnnounce').addClass('hidden'); }, 500);
+  setTimeout(function () { $('.autoUncheckedAnnounce').addClass('hidden'); }, 250);
 }
 
 var step1SubsetsQuestionHandler = function () {
@@ -524,9 +524,9 @@ var step1SubsetsQuestionHandler = function () {
     if (wasRemoved) {
       $('.disabledQuestions').removeClass('hidden');
       $('.disabledQuestions').text("Questions whose clauses are covered by checked question are now hidden.");
-      setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
+      setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 250);
     }
-  }, 3000);
+  }, 500);
 }
 
 var step2QuestionHandler = function () {
@@ -1048,7 +1048,7 @@ function showCheckboxes(checkboxes) {
   $('.disabledQuestionsShown').removeClass('hidden');
   $('.disabledQuestionsHidden').addClass('hidden');
 
-  setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
+  setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 250);
 
 }
 function hideCheckboxes(checkboxes) {
@@ -1062,7 +1062,7 @@ function hideCheckboxes(checkboxes) {
   $('.disabledQuestionsHidden').removeClass('hidden');
   $('.disabledQuestionsShown').addClass('hidden');
 
-  setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 500);
+  setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 250);
 }
 // Clause loader modal handler
 $(function () {
