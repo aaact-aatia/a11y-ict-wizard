@@ -282,6 +282,12 @@ i.info {
   outline: none; 
 }
 
+/*More info dialog button focus indicator*/
+svg a:focus {
+    outline: 5px solid -webkit-focus-ring-color;
+    outline-offset: 2px;
+}
+
 /* WET-BOEW Tab Fixes */
 .csstransitions .wb-tabs details.out {
     position: absolute;
