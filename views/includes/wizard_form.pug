@@ -30,17 +30,9 @@ section.wizard
     legend
       span.field-name The <abbr title="Information Communication Technology">ICT</abbr> solution and/or service:
 
-    - var uberQuestions_list = [];
-    - var nonUberQuestions_list = [];
-    - var uniqueQuestions_list = [];
-    
-    each question in question_list
-        if question.isUber
-          - uberQuestions_list.push(question);
-        else if question.isUnique
-          - uniqueQuestions_list.push(question);
-        else
-          - nonUberQuestions_list.push(question);
+    - var uberQuestions_list = question_list.step1;
+    - var nonUberQuestions_list = question_list.step2;
+    - var uniqueQuestions_list = question_list.step3;
 
     if step == 1
       .btn-group
@@ -134,7 +126,7 @@ section.wizard
     p.autoCheckedAnnounce.hidden Statements have been automatically checked
     p.autoUncheckedAnnounce.hidden Statements have been automatically unchecked
   .hidden(id=`question-data-step${step}`)
-    each question in question_list
+    each question in Array.from(new Set([...uberQuestions_list, ...nonUberQuestions_list, ...uniqueQuestions_list]))
       ul.question(data-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}

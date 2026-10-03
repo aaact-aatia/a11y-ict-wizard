@@ -17,6 +17,12 @@ const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
 		!clause.informative && clause.description.length > 0);
 
+const groupQuestionsByStep = (questions) => ({
+	step1: questions.filter((question) => question.isUber),
+	step2: questions.filter((question) => !question.isUber && !question.isUnique),
+	step3: questions.filter((question) => question.isUnique)
+});
+
 // Select functional accessibility requirements or question
 exports.wizard_get = (req, res, next) => {
 	async.parallel({
@@ -27,7 +33,7 @@ exports.wizard_get = (req, res, next) => {
 		res.render('wizard', {
 			title: `ICT accessibility requirements wizard - ${enVersion || 'EN 301 549'}`,
 			clause_tree: toClauseTree(results.clauses),
-			question_list: results.questions
+			question_list: groupQuestionsByStep(results.questions)
 		});
 	});
 };
@@ -42,7 +48,7 @@ exports.wizard_fr_get = (req, res, next) => {
 		res.render('wizard_fr', {
 			title: `Assistant des exigences d\'accessibilité des TIC - ${enVersion || 'EN 301 549'}`,
 			clause_tree: toClauseTree(results.clauses),
-			question_list: results.questions
+			question_list: groupQuestionsByStep(results.questions)
 		});
 	});
 };
