@@ -149,3 +149,7 @@ section.wizard
       ul.question(data-non-uber-question-id=question._id)
         each clause in question.clauses
           li !{clause._id}
+
+  if step == 1
+    .hidden#question-map= JSON.stringify(question_map)
+  
