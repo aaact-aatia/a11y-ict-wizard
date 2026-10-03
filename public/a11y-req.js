@@ -1,7 +1,15 @@
 // Client side scripts for a11y-req
 // NOT FOR WET OVERRIDES
 
+var questionMap = {};
+
 $(document).on("wb-ready.wb", function (event) {
+
+  var questionMapElement = document.getElementById('question-map');
+  if (questionMapElement) {
+    questionMap = JSON.parse(questionMapElement.textContent);
+    console.log('questionMap:', questionMap);
+  }
 
   setupTreeHandler();
 
