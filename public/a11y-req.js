@@ -8,7 +8,6 @@ $(document).on("wb-ready.wb", function (event) {
   var questionMapElement = document.getElementById('question-map');
   if (questionMapElement) {
     questionMap = JSON.parse(questionMapElement.textContent);
-    console.log('questionMap:', questionMap);
   }
 
   setupTreeHandler();
@@ -255,12 +254,12 @@ var updateWizard = function () {
     var $clauseInputs = $clauses.find('input');
     var $clauseInputsChecked = $clauseInputs.filter(':checked');
     var $clauseLis = $clauses.find('li.endNode');
+    var mergedQuestionMap = Object.assign({}, questionMap.step1, questionMap.step2, questionMap.step3);
 
     // Select relevant Step 2 and 3 clauses based on Step 1 selections
     $wizardInputsChecked.each(function () {
       var questionId = this.id;
-      $('[id^="question-data-step"] ul[data-question-id=' + questionId + '] li').each(function () {
-        var clauseId = this.innerHTML;
+      mergedQuestionMap[questionId].forEach(function (clauseId) {
         var $clause = $('#' + clauseId);
         // Only click if checked and is endNode
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
@@ -476,8 +475,7 @@ var step1SubsetsQuestionHandler = function () {
   $checkboxes.each(function () {
     var questionId = this.id;
     checkedStep1QuestionsIds.push(questionId);
-    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step1[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep1ClauseIds.includes(clauseId)) {
@@ -495,8 +493,7 @@ var step1SubsetsQuestionHandler = function () {
     var covered = true;
     var checkedParentinStep1 = true;
 
-    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step1[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!(uncheckedStep1ClauseIds.includes(clauseId))) {
@@ -505,8 +502,7 @@ var step1SubsetsQuestionHandler = function () {
       }
     });
 
-    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step1[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (covered) {
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
@@ -561,8 +557,7 @@ var step2QuestionHandler = function () {
 
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step1[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep2ClauseIds.includes(clauseId)) {
@@ -584,8 +579,7 @@ var step2QuestionHandler = function () {
       checkedStep2QuestionsIds.push(questionId);
     }
 
-    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step2[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!(uncheckedStep2ClauseIds.includes(clauseId))) {
@@ -594,8 +588,7 @@ var step2QuestionHandler = function () {
       }
     });
 
-    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step2[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (covered) {
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
@@ -640,8 +633,7 @@ var step3QuestionHandler = function () {
 
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
-    $('[id^="uber-question-data-step"] ul[data-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step1[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep3ClauseIds.includes(clauseId)) {
@@ -653,8 +645,7 @@ var step3QuestionHandler = function () {
 
   $('.wizard input:checked').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
-    $('[id^="non-uber-question-data-step"] ul[data-non-uber-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step2[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!uncheckedStep3ClauseIds.includes(clauseId)) {
@@ -676,8 +667,7 @@ var step3QuestionHandler = function () {
       checkedStep3QuestionsIds.push(questionId);
     }
 
-    $('[id^="unique-question-data-step"] ul[data-unique-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step3[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
         if (!(uncheckedStep3ClauseIds.includes(clauseId))) {
@@ -686,8 +676,7 @@ var step3QuestionHandler = function () {
       }
     });
 
-    $('[id^="unique-question-data-step"] ul[data-unique-question-id=' + questionId + '] li').each(function () {
-      var clauseId = this.innerHTML.trim();
+    questionMap.step3[questionId].forEach(function (clauseId) {
       var $clause = $('#' + clauseId);
       if (covered) {
         if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
