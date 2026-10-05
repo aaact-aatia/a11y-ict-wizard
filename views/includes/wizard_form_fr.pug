@@ -121,3 +121,9 @@ section.wizard
               if index > uniqueQuestions_list.length/2
                 +checkbox(question.frName, question._id, question.onlyIf, question.frDescription, question.isUber, question.isUnique)
     
+  //- Hidden elements (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestionsHidden.hidden Les énoncés désactivées sont maintenant masquées.
+    p.disabledQuestionsShown.hidden Les énoncés désactivées sont maintenant affichées.
+    p.autoCheckedAnnounce.hidden Des énoncés ont été cochés automatiquement
+    p.autoUncheckedAnnounce.hidden Des énoncés ont été décochés automatiquement
