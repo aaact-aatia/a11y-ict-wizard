@@ -149,9 +149,4 @@ block content
         li N'est pas et n'inclut pas de matériel informatique
       textarea.no-editor#questionList
   //- Hidden elements (for client-side javascript)
-  div.wb-inv(aria-live="polite")
-    p.disabledQuestionsHidden.hidden Les énoncés désactivées sont maintenant masquées.
-    p.disabledQuestionsShown.hidden Les énoncés désactivées sont maintenant affichées.
-    p.autoCheckedAnnounce.hidden Des énoncés ont été cochés automatiquement
-    p.autoUncheckedAnnounce.hidden Des énoncés ont été décochés automatiquement
   .hidden#question-map= JSON.stringify(question_map)
