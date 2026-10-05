@@ -297,6 +297,7 @@ function addNoteIndents(description) {
 
   const dom = new JSDOM(`<div>${description}</div>`);
   const container = dom.window.document.querySelector('div');
+<<<<<<< Updated upstream
   const notePattern = /^NOTE(?: [1-9])?:/;
   const notePatternDouble = /^NOTE [1-9][0-9]:/;
   const notePatternFR = /^REMARQUE\s*:/;
@@ -341,6 +342,49 @@ const examplePatternFR = /^EXEMPLE[\u00A0 ]:/;
         applyIndent(paragraph, 7.02, -5.52);
     }
   });
+=======
+  const notePatterSsingle = /^NOTE(?: [1-9])?:/;
+  const notePatternDouble = /^NOTE [1-9][0-9]:/;
+  const notePatternSingleFR = /^REMARQUE (?: [1-9])? :/;
+  const notePatternDoubleFR = /^REMARQUE [1-9][0-9] :/;
+
+  Array.from(container.querySelectorAll('p')).forEach((paragraph) => {
+    const paragraphText = paragraph.textContent.trimStart();
+    // NOTE: and NOTE#: cases 
+    if (notePatternSingle.test(paragraphText)) {
+    paragraph.setAttribute('style', 'margin-left: 5.75em; text-indent: -4.25em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+}
+// NOTE ##: case
+else if (notePatternDouble.test(paragraphText)) {
+    paragraph.setAttribute('style', 'margin-left: 6.75em; text-indent: -5.25em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+}
+// REMARQUE  : or REMARQUE  # :      case
+else if (notePatternSingleFR.test(paragraphText)) {
+    paragraph.setAttribute('style', 'margin-left: 7.75em; text-indent: -6.25em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+}
+// REMARQUE ## case
+else if (notePatterndoubleFR.test(paragraphText)) {
+    paragraph.setAttribute('style', 'margin-left: 7.75em; text-indent: -6.25em;');
+    const colonIndex = paragraph.innerHTML.indexOf(':');
+    paragraph.innerHTML = paragraph.innerHTML.substring(0, colonIndex + 1)
+      + '<span style="mso-tab-count: 1;"> </span>'
+      + paragraph.innerHTML.substring(colonIndex + 2);
+}
+  });
+console.log(container.innerHTML)
+>>>>>>> Stashed changes
   return container.innerHTML;
 }
 

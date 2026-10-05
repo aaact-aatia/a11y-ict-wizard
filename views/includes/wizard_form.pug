@@ -119,37 +119,4 @@ section.wizard
               if index >= uniqueQuestions_list.length/2
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
 
-  //- Hidden data (for client-side javascript)
-  div.wb-inv(aria-live="polite")
-    p.disabledQuestionsHidden.hidden Disabled statements are now hidden
-    p.disabledQuestionsShown.hidden Disabled statements are now shown
-    p.autoCheckedAnnounce.hidden Statements have been automatically checked
-    p.autoUncheckedAnnounce.hidden Statements have been automatically unchecked
-  .hidden(id=`question-data-step${step}`)
-    each question in Array.from(new Set([...uberQuestions_list, ...nonUberQuestions_list, ...uniqueQuestions_list]))
-      ul.question(data-question-id=question._id)
-        each clause in question.clauses
-          li !{clause._id}
-  
-  .hidden(id=`uber-question-data-step${step}`)
-    each question in uberQuestions_list
-      //- p #{question._id}: #{question.name}
-      ul.question(data-uber-question-id=question._id)
-        each clause in question.clauses
-          li !{clause._id}
-  
-  .hidden(id=`unique-question-data-step${step}`)
-    each question in uniqueQuestions_list
-      ul.question(data-unique-question-id=question._id)
-        each clause in question.clauses
-          li !{clause._id}
-  
-  .hidden(id=`non-uber-question-data-step${step}`)
-    each question in nonUberQuestions_list
-      ul.question(data-non-uber-question-id=question._id)
-        each clause in question.clauses
-          li !{clause._id}
-
-  if step == 1
-    .hidden#question-map= JSON.stringify(question_map)
   

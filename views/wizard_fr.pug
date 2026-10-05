@@ -64,7 +64,6 @@ block content
               a.overlay-lnk.right(href='#instructionsStep5' aria-controls='instructionsStep5' role='button') Instructions : Étape 5
             include includes/download_chooser_fr
             a.btn.btn-default.wb-tabs-ext.left(href='#details-step4', style='margin-bottom: 10px;') Précédent
-
   section.wb-overlay.modal-content.overlay-def.wb-popup-mid#instructionsStep1(role='dialog')
     header.modal-header
       h2.modal-title Instructions : Étape 1
@@ -149,3 +148,10 @@ block content
         li N'est pas et n'inclut pas un document non destiné au Web et
         li N'est pas et n'inclut pas de matériel informatique
       textarea.no-editor#questionList
+  //- Hidden elements (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestionsHidden.hidden Les énoncés désactivées sont maintenant masquées.
+    p.disabledQuestionsShown.hidden Les énoncés désactivées sont maintenant affichées.
+    p.autoCheckedAnnounce.hidden Des énoncés ont été cochés automatiquement
+    p.autoUncheckedAnnounce.hidden Des énoncés ont été décochés automatiquement
+  .hidden#question-map= JSON.stringify(question_map)
