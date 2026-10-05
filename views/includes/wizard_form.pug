@@ -119,4 +119,9 @@ section.wizard
               if index >= uniqueQuestions_list.length/2
                 +checkbox(question.name, question._id, question.onlyIf, question.description, question.isUber, question.isUnique)
 
-  
+  //- Hidden elements (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestionsHidden.hidden Disabled statements are now hidden
+    p.disabledQuestionsShown.hidden Disabled statements are now shown
+    p.autoCheckedAnnounce.hidden Statements have been automatically checked
+    p.autoUncheckedAnnounce.hidden Statements have been automatically unchecked  
