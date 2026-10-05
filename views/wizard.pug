@@ -154,3 +154,10 @@ block content
         li Is not and does not include a non-web document and
         li Is not and does not include hardware
       textarea.no-editor#questionList
+  //- Hidden elements (for client-side javascript)
+  div.wb-inv(aria-live="polite")
+    p.disabledQuestionsHidden.hidden Disabled statements are now hidden
+    p.disabledQuestionsShown.hidden Disabled statements are now shown
+    p.autoCheckedAnnounce.hidden Statements have been automatically checked
+    p.autoUncheckedAnnounce.hidden Statements have been automatically unchecked
+  .hidden#question-map= JSON.stringify(question_map)
