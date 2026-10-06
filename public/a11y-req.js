@@ -127,6 +127,7 @@ var setupWizardHandler = function () {
     step1SubsetsQuestionHandler();
     step2QuestionHandler();
     step3QuestionHandler();
+    updateWizard();
 
   });
 };
