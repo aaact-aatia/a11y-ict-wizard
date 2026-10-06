@@ -51,4 +51,7 @@ html(lang='fr')
     script(src="/aria-tree.js")
     script(src="/mappings.js")
     script(src="/wet-boew-fixes.js")
-    script(src="/a11y-req.js")
+    if isEditView
+      script(src="/edit.js")
+    else
+      script(src="/a11y-req.js")
