@@ -2,13 +2,18 @@
 // NOT FOR WET OVERRIDES
 
 var questionMap = {};
-
+// { clauseId: { input, li, informative, ancestors } } for every end node in #clauses
+var endNodeClauses = {};
+var clauseTreeInputs = [];
+var clauseTreeItems = [];
 $(document).on("wb-ready.wb", function (event) {
 
   var questionMapElement = document.getElementById('question-map');
   if (questionMapElement) {
     questionMap = JSON.parse(questionMapElement.textContent);
   }
+
+  setupEndNodeClauses();
 
   setupTreeHandler();
 
@@ -197,19 +202,60 @@ var selectNone = function () {
 };
 
 var selectAll = function () {
-  $('#clauses input').prop('checked', true).prop('indeterminate', false);
-  $('[role="treeitem"]').attr('aria-checked', true);
+  clauseTreeInputs.forEach(function (input) {
+    input.checked = true;
+    input.indeterminate = false;
+  });
+  clauseTreeItems.forEach(function (item) {
+    item.setAttribute('aria-checked', 'true');
+  });
 };
 
 var clauseCounter = function () {
-  var totalClauses = 0
-  $('#clauses input:checked').each(function () {
-    if (($(this).closest('li').hasClass('endNode')) && !($(this).closest('li').hasClass('informative'))) {
+  var totalClauses = 0;
+  for (var clauseId in endNodeClauses) {
+    var clause = endNodeClauses[clauseId];
+    if (clause.input.checked && !clause.informative) {
       totalClauses++;
     }
-  });
+  }
   $('.clauseCount').text(totalClauses);
 }
+
+var setupEndNodeClauses = function () {
+  var clausesRoot = document.getElementById('clauses');
+  endNodeClauses = {};
+  clauseTreeInputs = $('#clauses input').toArray();
+  clauseTreeItems = $('[role="treeitem"]').toArray();
+  if (!clausesRoot) {
+    return;
+  }
+  $(clausesRoot).find('li.endNode').each(function () {
+    var input = this.querySelector('input[type="checkbox"]');
+    if (!input) {
+      return;
+    }
+    // Nearest ancestor first
+    var ancestors = [];
+    var node = this.parentElement.closest('li[role="treeitem"]');
+    while (node && clausesRoot.contains(node)) {
+      ancestors.push(node);
+      node = node.parentElement.closest('li[role="treeitem"]');
+    }
+    endNodeClauses[input.id] = {
+      input: input,
+      li: this,
+      informative: this.classList.contains('informative'),
+      ancestors: ancestors
+    };
+  });
+};
+
+// Returns the cached end node for a clause id if it is normative, otherwise undefined
+var getNormativeEndNode = function (clauseId) {
+  var clause = endNodeClauses[clauseId];
+  return clause && !clause.informative ? clause : undefined;
+};
 
 var updateWizard = function () {
   var $wizard = $('.wizard');
@@ -217,25 +263,29 @@ var updateWizard = function () {
     // Everything has to be selected by default for negative selection
     selectAll();
 
-    // Cache selectors for performance
-    var $wizardInputsChecked = $wizard.find('input:checked');
-    var $clauses = $('#clauses');
-    var $clauseInputs = $clauses.find('input');
-    var $clauseInputsChecked = $clauseInputs.filter(':checked');
-    var $clauseLis = $clauses.find('li.endNode');
     var mergedQuestionMap = Object.assign({}, questionMap.step1, questionMap.step2, questionMap.step3);
+    // Ancestor treeitem -> depth, so parents can be refreshed once each, deepest first
+    var ancestorDepths = new Map();
 
-    // Select relevant Step 2 and 3 clauses based on Step 1 selections
-    $wizardInputsChecked.each(function () {
-      var questionId = this.id;
-      mergedQuestionMap[questionId].forEach(function (clauseId) {
-        var $clause = $('#' + clauseId);
-        // Only click if checked and is endNode
-        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode')) {
-          $clause.click();
+    $wizard.find('input:checked').each(function () {
+      mergedQuestionMap[this.id].forEach(function (clauseId) {
+        var clause = endNodeClauses[clauseId];
+        // aria-disabled checkboxes ignore clicks in aria-tree.js, so leave them untouched
+        if (!clause || !clause.input.checked || clause.input.getAttribute('aria-disabled') === 'true') {
+          return;
         }
+        clause.input.checked = false;
+        clause.li.setAttribute('aria-checked', 'false');
+        var depth = clause.ancestors.length;
+        clause.ancestors.forEach(function (ancestor, i) {
+          ancestorDepths.set(ancestor, depth - i);
+        });
       });
     });
+
+    Array.from(ancestorDepths.keys())
+      .sort(function (a, b) { return ancestorDepths.get(b) - ancestorDepths.get(a); })
+      .forEach(function (ancestor) { updateAriaChecked($(ancestor)); });
 
     clauseCounter();
   }
@@ -444,8 +494,8 @@ var step1SubsetsQuestionHandler = function () {
     var questionId = this.id;
     checkedStep1QuestionsIds.push(questionId);
     questionMap.step1[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!uncheckedStep1ClauseIds.includes(clauseId)) {
           uncheckedStep1ClauseIds.push(clauseId);
         }
@@ -462,8 +512,8 @@ var step1SubsetsQuestionHandler = function () {
     var checkedParentinStep1 = true;
 
     questionMap.step1[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!(uncheckedStep1ClauseIds.includes(clauseId))) {
           checkedParentinStep1 = false;
         }
@@ -471,9 +521,9 @@ var step1SubsetsQuestionHandler = function () {
     });
 
     questionMap.step1[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
+      var clause = getNormativeEndNode(clauseId);
       if (covered) {
-        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedParentinStep1) {
+        if (clause && clause.input.checked && checkedParentinStep1) {
           covered = false;
         }
       }
@@ -526,8 +576,8 @@ var step2QuestionHandler = function () {
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     questionMap.step1[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!uncheckedStep2ClauseIds.includes(clauseId)) {
           uncheckedStep2ClauseIds.push(clauseId);
         }
@@ -548,8 +598,8 @@ var step2QuestionHandler = function () {
     }
 
     questionMap.step2[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!(uncheckedStep2ClauseIds.includes(clauseId))) {
           checkedinStep1 = false;
         }
@@ -557,9 +607,9 @@ var step2QuestionHandler = function () {
     });
 
     questionMap.step2[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
+      var clause = getNormativeEndNode(clauseId);
       if (covered) {
-        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
+        if (clause && clause.input.checked && checkedinStep1) {
           covered = false;
         }
       }
@@ -602,8 +652,8 @@ var step3QuestionHandler = function () {
   $('.wizard input.isUber:checked').each(function () {
     var questionId = this.id;
     questionMap.step1[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!uncheckedStep3ClauseIds.includes(clauseId)) {
           uncheckedStep3ClauseIds.push(clauseId);
         }
@@ -614,8 +664,8 @@ var step3QuestionHandler = function () {
   $('.wizard input:checked').not('.isUber').not('.isUnique').each(function () {
     var questionId = this.id;
     questionMap.step2[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!uncheckedStep3ClauseIds.includes(clauseId)) {
           uncheckedStep3ClauseIds.push(clauseId);
         }
@@ -636,8 +686,8 @@ var step3QuestionHandler = function () {
     }
 
     questionMap.step3[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
-      if (!$clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative')) {
+      var clause = getNormativeEndNode(clauseId);
+      if (clause && !clause.input.checked) {
         if (!(uncheckedStep3ClauseIds.includes(clauseId))) {
           checkedinStep1 = false;
         }
@@ -645,9 +695,9 @@ var step3QuestionHandler = function () {
     });
 
     questionMap.step3[questionId].forEach(function (clauseId) {
-      var $clause = $('#' + clauseId);
+      var clause = getNormativeEndNode(clauseId);
       if (covered) {
-        if ($clause.is(':checked') && $clause.closest('li').hasClass('endNode') && !$clause.closest('li').hasClass('informative') && checkedinStep1) {
+        if (clause && clause.input.checked && checkedinStep1) {
           covered = false;
         }
       }
