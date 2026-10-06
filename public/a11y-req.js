@@ -124,29 +124,11 @@ var setupWizardHandler = function () {
 
   $('.wizard input').on('change', function () {
     updateWizard();
-
-    var $activeTabLink = $('.wb-tabs .active a');
-    var activeTabHref = $activeTabLink.attr('href').replace('#', '');
-
-    /*if (activeTabHref === 'details-step1'){
-      step1SubsetsQuestionHandler();
-    }
-    if (activeTabHref === 'details-step2') {
-      step2QuestionHandler();
-    }
-    if (activeTabHref === 'details-step3'){
-      step3QuestionHandler();
-    }*/
     step1SubsetsQuestionHandler();
     step2QuestionHandler();
     step3QuestionHandler();
-    updateWizard();
 
   });
-
-  // Focus highlighting
-  // $('.wizard input').focus(function () { $(this).closest('.checkbox').addClass('focus'); });
-  // $('.wizard input').blur(function () { $(this).closest('.checkbox').removeClass('focus'); });
 };
 
 var selectClauses = function (clauses, select) {
@@ -270,7 +252,6 @@ $(document).on("wb-updated.wb-tabs", ".wb-tabs", function (event, $newPanel) {
   }
   step2QuestionHandler();
   step3QuestionHandler();
-  //updateWizard();
   step4Handler();
   if ($newPanel.attr('id') === 'details-step4') {
     $('#clauses input').each(function () {
