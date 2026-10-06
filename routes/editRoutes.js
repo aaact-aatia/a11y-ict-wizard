@@ -8,6 +8,11 @@ const clause_controller = require('../controllers/clauseController');
 const info_controller = require('../controllers/infoController');
 const question_controller = require('../controllers/questionController');
 
+router.use((req, res, next) => {
+	res.locals.isEditView = true;
+	next();
+});
+
 // Authentication credentials
 const ADMIN_USERNAME = process.env.BASICAUTHUSERNAME || "admin";
 const ADMIN_PASSWORD = process.env.BASICAUTHPASSWORD || "admin";
