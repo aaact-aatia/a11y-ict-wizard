@@ -37,7 +37,7 @@ const buildQuestionMap = (questions) => Object.fromEntries(
 exports.wizard_get = (req, res, next) => {
 	async.parallel({
 		clauses: (callback) => Clause.find().exec(callback),
-		questions: (callback) => Question.find().exec(callback)
+		questions: (callback) => Question.find().sort([['order', 'ascending']]).exec(callback)
 	}, (err, results) => {
 		if (err) { return next(err); }
 		res.render('wizard', {
@@ -53,7 +53,7 @@ exports.wizard_get = (req, res, next) => {
 exports.wizard_fr_get = (req, res, next) => {
 	async.parallel({
 		clauses: (callback) => Clause.find().exec(callback),
-		questions: (callback) => Question.find().exec(callback)
+		questions: (callback) => Question.find().sort([['order', 'ascending']]).exec(callback)
 	}, (err, results) => {
 		if (err) { return next(err); }
 		res.render('wizard_fr', {
