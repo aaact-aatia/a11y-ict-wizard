@@ -300,7 +300,7 @@ a:focus svg {
 }
 /* Addendum to WET-BOEW Tab Fixes*/
 .wb-tabs [role=tabpanel] {
-    z-index: 2 !important;
+    z-index: auto !important;
 }
 
 /* Toggle switch visual */
