@@ -829,10 +829,10 @@ function setupShowHideHandler() {
       var pressed = $btn.attr('aria-checked') === 'true';
       var $checkboxes = $('.wizard input.isUber:checked');
       if (!pressed) {
-        showCheckboxes($checkboxes);
+        showCheckboxes($checkboxes, 1);
         $btn.attr('aria-checked', 'true').addClass('active');
       } else {
-        hideCheckboxes($checkboxes);
+        hideCheckboxes($checkboxes, 1);
         $btn.attr('aria-checked', 'false').removeClass('active');
       }
     });
@@ -844,10 +844,10 @@ function setupShowHideHandler() {
       var pressed = $btn.attr('aria-checked') === 'true';
       var $checkboxes = $('.wizard input:checked').not('.isUber').not('.isUnique');
       if (!pressed) {
-        showCheckboxes($checkboxes);
+        showCheckboxes($checkboxes, 2);
         $btn.attr('aria-checked', 'true').addClass('active');
       } else {
-        hideCheckboxes($checkboxes);
+        hideCheckboxes($checkboxes, 2);
         $btn.attr('aria-checked', 'false').removeClass('active');
       }
     });
@@ -859,16 +859,16 @@ function setupShowHideHandler() {
       var pressed = $btn.attr('aria-checked') === 'true';
       var $checkboxes = $('.wizard input:checked').filter('.isUnique');
       if (!pressed) {
-        showCheckboxes($checkboxes);
+        showCheckboxes($checkboxes, 3);
         $btn.attr('aria-checked', 'true').addClass('active');
       } else {
-        hideCheckboxes($checkboxes);
+        hideCheckboxes($checkboxes, 3);
         $btn.attr('aria-checked', 'false').removeClass('active');
       }
     });
   });
 }
-function showCheckboxes(checkboxes) {
+function showCheckboxes(checkboxes, stepNum) {
   checkboxes.filter(function () {
     return $(this).attr('aria-disabled') === 'true';
   }).each(function () {
@@ -876,13 +876,13 @@ function showCheckboxes(checkboxes) {
     var $element = $('.checkbox-' + questionId);
     $element.removeClass('hidden');
   });
-  $('.disabledQuestionsShown').removeClass('hidden');
-  $('.disabledQuestionsHidden').addClass('hidden');
+  $('.disabledQuestionsShown' + stepNum).removeClass('hidden');
+  $('.disabledQuestionsHidden' + stepNum).addClass('hidden');
 
   setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 250);
 
 }
-function hideCheckboxes(checkboxes) {
+function hideCheckboxes(checkboxes, stepNum) {
   checkboxes.filter(function () {
     return $(this).attr('aria-disabled') === 'true';
   }).each(function () {
@@ -890,8 +890,8 @@ function hideCheckboxes(checkboxes) {
     var $element = $('.checkbox-' + questionId);
     $element.addClass('hidden');
   });
-  $('.disabledQuestionsHidden').removeClass('hidden');
-  $('.disabledQuestionsShown').addClass('hidden');
+  $('.disabledQuestionsHidden' + stepNum).removeClass('hidden');
+  $('.disabledQuestionsShown'  + stepNum).addClass('hidden');
 
   setTimeout(function () { $('.disabledQuestions').addClass('hidden'); }, 250);
 }
