@@ -123,7 +123,7 @@ section.wizard
     
   //- Hidden elements (for client-side javascript)
   div.wb-inv(aria-live="polite")
-    p.disabledQuestionsHidden.hidden Les énoncés désactivées sont maintenant masquées.
-    p.disabledQuestionsShown.hidden Les énoncés désactivées sont maintenant affichées.
+    p.hidden(class=`disabledQuestionsHidden${step}`) Les énoncés désactivées sont maintenant masquées.
+    p.hidden(class=`disabledQuestionsShown${step}`) Les énoncés désactivées sont maintenant affichées.
     p.autoCheckedAnnounce.hidden Des énoncés ont été cochés automatiquement
     p.autoUncheckedAnnounce.hidden Des énoncés ont été décochés automatiquement
