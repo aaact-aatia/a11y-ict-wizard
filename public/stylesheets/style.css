@@ -298,6 +298,10 @@ a:focus svg {
     width: 100%;
     z-index: 0;
 }
+/* Addendum to WET-BOEW Tab Fixes*/
+.wb-tabs [role=tabpanel] {
+    z-index: 2 !important;
+}
 
 /* Toggle switch visual */
 button.toggle-switch {
