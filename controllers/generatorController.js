@@ -13,6 +13,7 @@ const Question = require('../models/questionSchema');
 const Info = require('../models/infoSchema');
 const toClauseTree = require('./clauseTree');
 const linkDefinitions = require('./definitionLinks');
+const linkReferences = require('./referenceLinks');
 const formatDocument = require('./documentFormatting');
 
 const getTestableClauses = (clauses) =>
@@ -153,6 +154,18 @@ exports.download = (req, res, next) => {
 			results.intro = linked.intro;
 			if (linked.unresolved.length) {
 				console.warn('Unresolved definition references:', linked.unresolved);
+			}
+			const linkedReferences = linkReferences({
+				clauses: results.fps,
+				annex: results.annex,
+				intro: results.intro,
+				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+			});
+			results.fps = linkedReferences.clauses;
+			results.annex = linkedReferences.annex;
+			results.intro = linkedReferences.intro;
+			if (linkedReferences.unresolved.length) {
+				console.warn('Unresolved document references:', linkedReferences.unresolved);
 			}
 		}
 
