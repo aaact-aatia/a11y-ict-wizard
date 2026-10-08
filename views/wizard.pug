@@ -153,6 +153,8 @@ block content
         li Is not and does not include a web page;
         li Is not and does not include a non-web document and
         li Is not and does not include hardware
+      label(for='questionList')
+        span.field-name Selections list
       textarea.no-editor#questionList
   //- Hidden elements (for client-side javascript)
   .hidden#question-map= JSON.stringify(question_map)
