@@ -15,6 +15,7 @@ const toClauseTree = require('./clauseTree');
 const linkDefinitions = require('./definitionLinks');
 const linkReferences = require('./referenceLinks');
 const linkClauses = require('./clauseLinks');
+const linkTableFigures = require('./tableFigureLinks');
 const formatDocument = require('./documentFormatting');
 
 const getTestableClauses = (clauses) =>
@@ -133,7 +134,11 @@ exports.download = (req, res, next) => {
 		}
 		results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
 		// Remove Tables and Figures annex if not applicable
-		let figureClauses = ['5.1.4', '8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5'];
+		let figureClauses = [
+			'5.1.4', '8.3.3.1', '8.3.3.3.1', '8.3.3.3.3', '8.3.3.3.4', '8.3.3.3.5',
+			'8.3.4.1', '8.3.4.3', '8.3.5.1', '8.3.5.3', '8.3.6.2', '8.3.6.4', '8.3.7',
+			'8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5', '13.1.1'
+		];
 		results.annex = results.annex.filter(function (el) {
 			return !el.name.includes('figures') ||
 				results.fps.some(e => figureClauses.includes(e.number));
@@ -180,6 +185,15 @@ exports.download = (req, res, next) => {
 			if (linkedClauses.unresolved.length) {
 				console.warn('Unresolved clause references:', linkedClauses.unresolved);
 			}
+			const linkedTableFigures = linkTableFigures({
+				clauses: results.fps,
+				annex: results.annex,
+				intro: results.intro,
+				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+			});
+			results.fps = linkedTableFigures.clauses;
+			results.annex = linkedTableFigures.annex;
+			results.intro = linkedTableFigures.intro;
 		}
 
 		// Set the correct headers for the attachment
