@@ -28,7 +28,7 @@ h2 {
   font-size: 18pt;
 }
 
-a {
+a[href] {
   color: rgb(5, 99, 193);
 }
 
