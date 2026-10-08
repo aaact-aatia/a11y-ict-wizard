@@ -12,6 +12,8 @@ const Clause = require('../models/clauseSchema');
 const Question = require('../models/questionSchema');
 const Info = require('../models/infoSchema');
 const toClauseTree = require('./clauseTree');
+const linkDefinitions = require('./definitionLinks');
+const formatDocument = require('./documentFormatting');
 
 const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
@@ -134,6 +136,25 @@ exports.download = (req, res, next) => {
 			return !el.name.includes('figures') ||
 				results.fps.some(e => figureClauses.includes(e.number));
 		});
+		if (['download_full_not_fillable_en', 'download_full_not_fillable_fr'].includes(strings.template)) {
+			let linked;
+			try {
+				linked = linkDefinitions({
+					clauses: results.fps,
+					annex: results.annex,
+					intro: results.intro,
+					language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+				});
+			} catch (error) {
+				return next(error);
+			}
+			results.fps = linked.clauses;
+			results.annex = linked.annex;
+			results.intro = linked.intro;
+			if (linked.unresolved.length) {
+				console.warn('Unresolved definition references:', linked.unresolved);
+			}
+		}
 
 		// Set the correct headers for the attachment
 		res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
@@ -167,6 +188,13 @@ exports.download = (req, res, next) => {
 						right: 1134
 					}
 				};
+				if (['download_full_not_fillable_en', 'download_full_not_fillable_fr'].includes(strings.template)) {
+					try {
+						output = formatDocument(output, options);
+					} catch (error) {
+						return next(error);
+					}
+				}
 				const docxBlob = htmlDocx.asBlob(output, options);
 				docxBlob.arrayBuffer().then((arrayBuffer) => {
 					const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));

@@ -1,0 +1,533 @@
+{
+  "schemaVersion": 1,
+  "en": {
+    "accessibility": {
+      "aliases": []
+    },
+    "applicable (accessibility) requirement": {
+      "aliases": [
+        "applicable requirement",
+        "applicable requirements",
+        "applicable accessibility requirements"
+      ]
+    },
+    "applicable scenario": {
+      "aliases": [
+        "applicable scenarios"
+      ]
+    },
+    "Assistive Listening Devices (ALDs)": {
+      "aliases": [
+        "Assistive Listening Devices"
+      ]
+    },
+    "Assistive Technology (AT)": {
+      "aliases": [
+        "assistive technology"
+      ]
+    },
+    "audio description": {
+      "aliases": [
+        "Audio descriptions"
+      ]
+    },
+    "authoring tool": {
+      "aliases": [
+        "authoring tools"
+      ]
+    },
+    "closed functionality": {
+      "aliases": []
+    },
+    "closed subtitles": {
+      "aliases": []
+    },
+    "communication client": {
+      "aliases": [
+        "communication clients"
+      ]
+    },
+    "communication system": {
+      "aliases": [
+        "communication systems"
+      ]
+    },
+    "compatible communication system": {
+      "aliases": []
+    },
+    "content": {
+      "aliases": []
+    },
+    "context of use": {
+      "aliases": [
+        "Context of use"
+      ]
+    },
+    "conversational gain": {
+      "aliases": []
+    },
+    "document (non-web document)": {
+      "aliases": [
+        "document",
+        "documents"
+      ]
+    },
+    "documented accessibility feature": {
+      "aliases": [
+        "documented accessibility features"
+      ]
+    },
+    "documented platform accessibility feature": {
+      "aliases": [
+        "documented platform accessibility features"
+      ]
+    },
+    "documented platform accessibility service": {
+      "aliases": [
+        "documented platform accessibility services"
+      ]
+    },
+    "documented platform service": {
+      "aliases": [
+        "documented platform services"
+      ]
+    },
+    "embedded": {
+      "aliases": []
+    },
+    "height in CSSpx": {
+      "aliases": [
+        "height in CSSPx",
+        "height (in CSSpx)"
+      ]
+    },
+    "ICT network": {
+      "aliases": []
+    },
+    "Information and Communication Technology (ICT)": {
+      "aliases": [
+        "Information and Communication Technology"
+      ]
+    },
+    "interlingual subtitles": {
+      "aliases": []
+    },
+    "lipspeaking": {
+      "aliases": []
+    },
+    "manual operation and control": {
+      "aliases": []
+    },
+    "mechanism for private listening": {
+      "aliases": []
+    },
+    "media": {
+      "aliases": []
+    },
+    "menu": {
+      "aliases": [
+        "menus"
+      ]
+    },
+    "non-text content": {
+      "aliases": []
+    },
+    "non-web document": {
+      "aliases": [
+        "Non-web document",
+        "non-web documents"
+      ]
+    },
+    "non-web software": {
+      "aliases": []
+    },
+    "open subtitles": {
+      "aliases": []
+    },
+    "operable part": {
+      "aliases": [
+        "operable parts"
+      ]
+    },
+    "physical height": {
+      "aliases": []
+    },
+    "platform software (platform)": {
+      "aliases": [
+        "platform",
+        "platform software"
+      ]
+    },
+    "primary user (of relay service)": {
+      "aliases": [
+        "primary user",
+        "primary users"
+      ]
+    },
+    "programmatically determinable": {
+      "aliases": []
+    },
+    "Real-Time Text (RTT)": {
+      "aliases": [
+        "real-time text",
+        "RTT"
+      ]
+    },
+    "relay service": {
+      "aliases": [
+        "relay services"
+      ]
+    },
+    "secondary user (of relay service)": {
+      "aliases": [
+        "secondary user",
+        "secondary users"
+      ]
+    },
+    "set of non-web documents": {
+      "aliases": [
+        "set of documents"
+      ]
+    },
+    "single user operation": {
+      "aliases": [
+        "single user operations"
+      ]
+    },
+    "Sound Pressure Level (SPL)": {
+      "aliases": [
+        "SPL"
+      ]
+    },
+    "speech output": {
+      "aliases": []
+    },
+    "spoken subtitles": {
+      "aliases": [
+        "Spoken subtitles"
+      ]
+    },
+    "stationary ICT": {
+      "aliases": []
+    },
+    "subtitles": {
+      "aliases": [
+        "subtitle"
+      ]
+    },
+    "tactilely discernible operable part": {
+      "aliases": [
+        "tactilely discernible operable parts"
+      ]
+    },
+    "text handling capabilities": {
+      "aliases": []
+    },
+    "Uniform Resource Identifier (URI)": {
+      "aliases": [
+        "Uniform Resource Identifier",
+        "URI"
+      ]
+    },
+    "user agent": {
+      "aliases": [
+        "User agents"
+      ]
+    },
+    "user interface": {
+      "aliases": []
+    },
+    "user interface element": {
+      "aliases": [
+        "user interface elements"
+      ]
+    },
+    "visiting communication client": {
+      "aliases": []
+    },
+    "web page": {
+      "aliases": [
+        "web pages",
+        "a web page"
+      ]
+    },
+    "x-height": {
+      "aliases": []
+    }
+  },
+  "fr": {
+    "accessibilité": {
+      "aliases": []
+    },
+    "agent utilisateur": {
+      "aliases": []
+    },
+    "aide de suppléance à l’audition (ASA)": {
+      "aliases": [
+        "aides de suppléance à l’audition"
+      ]
+    },
+    "audiodescription": {
+      "aliases": [
+        "audio-description",
+        "audio-descriptions"
+      ]
+    },
+    "capacités de traitement de texte": {
+      "aliases": []
+    },
+    "caractéristique d’accessibilité de plateforme documentée": {
+      "aliases": [
+        "caractéristiques d’accessibilité de la plateforme documentées",
+        "fonctions d’accessibilité de la plateforme qui sont documentées"
+      ]
+    },
+    "caractéristique d’accessibilité documentée": {
+      "aliases": [
+        "caractéristiques d’accessibilité documentées"
+      ]
+    },
+    "Communication Client": {
+      "aliases": [
+        "client de communication",
+        "clients de communication",
+        "logiciel Communication Client",
+        "un client de communication"
+      ]
+    },
+    "Communication client de visite": {
+      "aliases": [
+        "client de communication en visite"
+      ]
+    },
+    "contenu": {
+      "aliases": []
+    },
+    "contenu non textuel": {
+      "aliases": []
+    },
+    "contexte d’utilisation": {
+      "aliases": []
+    },
+    "déterminé par un programme informatique": {
+      "aliases": [
+        "déterminables par un programme informatique"
+      ]
+    },
+    "document (document non Web)": {
+      "aliases": [
+        "document",
+        "documents"
+      ]
+    },
+    "document non Web": {
+      "aliases": [
+        "documents non Web",
+        "un document non Web"
+      ]
+    },
+    "élément d’interface utilisateur": {
+      "aliases": [
+        "éléments d’interface utilisateur"
+      ]
+    },
+    "ensemble de documents non Web": {
+      "aliases": [
+        "Ensemble de documents non Web",
+        "l’ensemble de documents non Web"
+      ]
+    },
+    "exigence applicable (accessibilité)": {
+      "aliases": [
+        "exigences applicables",
+        "exigences d’accessibilité applicables"
+      ]
+    },
+    "fonction restreinte": {
+      "aliases": [
+        "fonctions restreintes"
+      ]
+    },
+    "gain conversationnel": {
+      "aliases": []
+    },
+    "hauteur en pixel CSS": {
+      "aliases": [
+        "hauteur (en pixels CSS)"
+      ]
+    },
+    "hauteur physique": {
+      "aliases": []
+    },
+    "hauteur x": {
+      "aliases": []
+    },
+    "identifiant uniforme de ressource (URI)": {
+      "aliases": [
+        "Identifiant uniforme de ressource",
+        "URI"
+      ]
+    },
+    "intégré": {
+      "aliases": [
+        "intégrés",
+        "non intégrée"
+      ]
+    },
+    "interface utilisateur": {
+      "aliases": []
+    },
+    "lecture labiale": {
+      "aliases": [
+        "langage labial"
+      ]
+    },
+    "logiciel de plateforme (plateforme)": {
+      "aliases": [
+        "logiciel de plateforme",
+        "logiciels de plateforme",
+        "logiciels de plateformes",
+        "plateforme"
+      ]
+    },
+    "logiciel non Web": {
+      "aliases": [
+        "logiciels non Web"
+      ]
+    },
+    "mécanisme d’écoute privée": {
+      "aliases": []
+    },
+    "média": {
+      "aliases": [
+        "médias"
+      ]
+    },
+    "menu": {
+      "aliases": [
+        "menus"
+      ]
+    },
+    "niveau de pression acoustique (NSA)": {
+      "aliases": [
+        "NPA"
+      ]
+    },
+    "opération mono-utilisateur": {
+      "aliases": [
+        "opérations mono-utilisateur"
+      ]
+    },
+    "outil-auteur": {
+      "aliases": [
+        "outils-auteurs"
+      ]
+    },
+    "page Web": {
+      "aliases": [
+        "pages Web"
+      ]
+    },
+    "pièce manœuvrable": {
+      "aliases": [
+        "pièces manœuvrables"
+      ]
+    },
+    "pièces manœuvrables perceptibles au toucher": {
+      "aliases": [
+        "pièce manœuvrable perceptible au toucher"
+      ]
+    },
+    "réseau de TIC": {
+      "aliases": []
+    },
+    "scénario applicable": {
+      "aliases": [
+        "scénarios pertinents"
+      ]
+    },
+    "service d’accessibilité de plateforme documenté": {
+      "aliases": [
+        "services d’accessibilité de plateforme documentés",
+        "services documentés d’accessibilité de plateforme"
+      ]
+    },
+    "service de plateforme documenté": {
+      "aliases": [
+        "services de plateforme documentés"
+      ]
+    },
+    "service de relais": {
+      "aliases": [
+        "services de relais"
+      ]
+    },
+    "sortie vocale": {
+      "aliases": []
+    },
+    "sous-titres": {
+      "aliases": [
+        "sous-titrage"
+      ]
+    },
+    "sous-titres codés": {
+      "aliases": []
+    },
+    "sous-titres interlinguistiques": {
+      "aliases": []
+    },
+    "sous-titres visibles": {
+      "aliases": []
+    },
+    "sous-titres vocaux": {
+      "aliases": []
+    },
+    "système de communication": {
+      "aliases": [
+        "systèmes de communication"
+      ]
+    },
+    "système de communication compatible": {
+      "aliases": []
+    },
+    "technologie d’assistance (TA)": {
+      "aliases": [
+        "technologie d’assistance",
+        "technologies d’assistance"
+      ]
+    },
+    "technologie de l’information et des communications (TIC)": {
+      "aliases": [
+        "Technologies de l’information et des communications (TIC)"
+      ]
+    },
+    "texte en temps réel (TTR)": {
+      "aliases": [
+        "texte en temps réel",
+        "TTR"
+      ]
+    },
+    "TIC fixes": {
+      "aliases": [
+        "fixes"
+      ]
+    },
+    "utilisation et contrôle manuels": {
+      "aliases": [
+        "une utilisation et un contrôle manuels"
+      ]
+    },
+    "utilisateur principal (des services de relais)": {
+      "aliases": [
+        "utilisateur principal",
+        "utilisateurs principaux"
+      ]
+    },
+    "utilisateur secondaire (d’un service de relais)": {
+      "aliases": [
+        "utilisateur secondaire",
+        "utilisateurs secondaires"
+      ]
+    }
+  }
+}
