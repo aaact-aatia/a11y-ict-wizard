@@ -43,6 +43,17 @@ function clauseId(number, reserved) {
 	return id;
 }
 
+// Word only creates bookmarks from named anchors, not from id attributes.
+function namedAnchor(document, id, children) {
+	const anchor = document.createElement('a');
+	anchor.id = id;
+	anchor.setAttribute('name', id);
+	anchor.setAttribute('tabindex', '-1');
+	anchor.setAttribute('style', 'color: black; text-decoration: none;');
+	anchor.append(...children);
+	return anchor;
+}
+
 function addPerformanceCriterionTargets(intro, bodyField, reserved, index) {
 	for (const item of intro) {
 		if (!/^(?:Part A|Partie A)\b.*4\.2\b/iu.test(item.name || item.frName || '')) continue;
@@ -54,8 +65,14 @@ function addPerformanceCriterionTargets(intro, bodyField, reserved, index) {
 			if (!match) continue;
 			const key = normalize(match[1]);
 			if (index.has(key)) continue;
+			const existing = heading.querySelector('a[id][name]');
+			if (existing) {
+				index.set(key, { id: existing.id });
+				continue;
+			}
 			const id = heading.id || clauseId(match[1], reserved);
-			heading.id = id;
+			heading.removeAttribute('id');
+			heading.prepend(namedAnchor(fragment.ownerDocument, id, [...heading.childNodes]));
 			index.set(key, { id });
 			changed = true;
 		}

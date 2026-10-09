@@ -8,7 +8,11 @@ if item_list.length > 0
         tr
           td(valign='top')
             p
-              strong(id=item.clauseLinkId) #{item.number} #{item.frName}
+              strong
+                if item.clauseLinkId
+                  a(id=item.clauseLinkId name=item.clauseLinkId tabindex='-1' style='color: black; text-decoration: none;') #{item.number} #{item.frName}
+                else
+                  | #{item.number} #{item.frName}
             | !{item.frDescription}
             if item.frCompliance.length > 0
               p

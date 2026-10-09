@@ -34,12 +34,15 @@ test('links figure and table citations to exact included captions without mutati
 	assert.equal(JSON.stringify(input), original);
 	assert.deepEqual(links.map((link) => link.textContent), ['Figure 8.1', 'Table 10.2']);
 	assert.equal(clause.querySelector('p strong')?.getAttribute('id'), null);
-	const tableCaption = clause.querySelector('p:nth-of-type(2)');
-	assert.equal(tableCaption.id, 'table_10_2');
-	assert.equal(tableCaption.getAttribute('tabindex'), '-1');
+	const tableTarget = clause.querySelector('#table_10_2');
+	assert.equal(tableTarget.tagName, 'A');
+	assert.equal(tableTarget.getAttribute('name'), 'table_10_2');
+	assert.equal(tableTarget.textContent, 'Table 10.2');
+	assert.equal(tableTarget.closest('p').textContent, 'Table 10.2: Reflow');
 	const annex = new JSDOM(result.annex[0].bodyHtml).window.document;
-	assert.equal(annex.querySelector('#figure_8_1')?.textContent, 'Figure 8.1: Unobstructed forward reach');
-	assert.equal(annex.querySelector('#figure_8_10')?.textContent, 'Figure 8.10: Separate figure');
+	assert.equal(annex.querySelector('a[name="figure_8_1"]')?.textContent, 'Figure 8.1');
+	assert.equal(annex.querySelector('#figure_8_1').closest('p').textContent, 'Figure 8.1: Unobstructed forward reach');
+	assert.equal(annex.querySelector('a[name="figure_8_10"]')?.textContent, 'Figure 8.10');
 });
 
 test('links French figure and table labels and leaves absent targets unchanged', () => {
@@ -108,5 +111,6 @@ test('full-document downloads link figure references and render their annex dest
 		const document = new JSDOM(output).window.document;
 		assert.equal(document.querySelector('a[href="#figure_8_1"]')?.textContent, language === 'fr' ? 'figure 8.1' : 'Figure 8.1');
 		assert.equal(document.querySelectorAll('#figure_8_1').length, 1);
+		assert.equal(document.querySelector('a[name="figure_8_1"]')?.id, 'figure_8_1');
 	}
 });

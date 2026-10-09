@@ -39,6 +39,15 @@ test('definition destinations are black and bold while clickable references rema
 	}
 });
 
+test('download stylesheets colour links with a plain selector that Word applies', () => {
+	const fs = require('node:fs');
+	const path = require('node:path');
+	for (const format of ['html', 'docx']) {
+		const css = fs.readFileSync(path.resolve(__dirname, '..', 'views', `download_${format}.css`), 'utf8');
+		assert.match(css, /(^|\n)a\s*\{\s*color:\s*rgb\(5,\s*99,\s*193\);/u);
+	}
+});
+
 test('links the three clause terms and marked definition cross-references without changing source text', () => {
 	const description = '<p>Where <u>closed functionality</u>*, <span style="text-decoration: underline"><em>platform</em></span>* or <u>assistive technology</u>* applies, see <u>[i.70]</u>*.</p>';
 	const result = generate(description, englishDefinitions);

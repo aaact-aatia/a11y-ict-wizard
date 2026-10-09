@@ -77,7 +77,7 @@ function createDestination(paragraph, label, reserved) {
 	anchor.id = id;
 	anchor.setAttribute('name', id);
 	anchor.setAttribute('tabindex', '-1');
-	anchor.setAttribute('style', 'color: inherit; text-decoration: none;');
+	anchor.setAttribute('style', 'color: black; text-decoration: none;');
 	anchor.append(range.extractContents());
 	range.insertNode(anchor);
 	return { id, paragraph };
