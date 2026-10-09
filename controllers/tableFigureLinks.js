@@ -82,8 +82,16 @@ function buildIndex(documents, reserved) {
 				continue;
 			}
 			const id = idFor(typeFor(match[1]), match[2], reserved);
-			block.id = id;
-			block.setAttribute('tabindex', '-1');
+			// Word only creates bookmarks from named anchors, so wrap the caption label.
+			const start = block.textContent.length - block.textContent.trimStart().length;
+			const range = rangeFor(block, start, start + match[0].replace(/\s*:$/u, '').length);
+			const anchor = block.ownerDocument.createElement('a');
+			anchor.id = id;
+			anchor.setAttribute('name', id);
+			anchor.setAttribute('tabindex', '-1');
+			anchor.setAttribute('style', 'color: black; text-decoration: none;');
+			anchor.append(range.extractContents());
+			range.insertNode(anchor);
 			index.set(key, { id, block });
 		}
 	}

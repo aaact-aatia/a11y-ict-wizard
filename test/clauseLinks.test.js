@@ -42,6 +42,8 @@ test('links underlined clause citations to included clause heading IDs', () => {
 	assert.equal(new JSDOM(result.intro[0].bodyHtml).window.document.querySelector('a[href="#clause_6_2_1"]').textContent, '6.2.1');
 	const criteria = new JSDOM(result.intro[1].bodyHtml).window.document;
 	assert.equal(criteria.getElementById('clause_4_2_1')?.textContent, '4.2.1 Usage without vision');
+	assert.equal(criteria.querySelector('a[name="clause_4_2_1"]')?.id, 'clause_4_2_1');
+	assert.deepEqual(linkClauses(result).intro, result.intro);
 	assert.deepEqual(result.unresolved.map((item) => item.clause), ['clause 5.2']);
 });
 
@@ -52,7 +54,9 @@ test('renders clause destinations in English and French clause tables', () => {
 		const html = pug.renderFile(path.resolve(__dirname, '..', 'views', 'includes', template), { item_list: result.clauses });
 		const document = new JSDOM(html).window.document;
 		for (const clause of result.clauses) {
-			assert.equal(document.getElementById(clause.clauseLinkId)?.textContent.trim(), `${clause.number} ${language === 'fr' ? clause.frName : clause.name}`);
+			const target = document.getElementById(clause.clauseLinkId);
+			assert.equal(target?.textContent.trim(), `${clause.number} ${language === 'fr' ? clause.frName : clause.name}`);
+			assert.equal(target.getAttribute('name'), clause.clauseLinkId);
 		}
 	}
 });
@@ -96,6 +100,11 @@ test('full-document downloads connect clause citations to rendered headings', as
 		const criterionLink = document.querySelector('a[href="#clause_4_2_1"]');
 		assert.equal(criterionLink?.textContent, '4.2.1');
 		assert.equal(document.querySelectorAll('#clause_4_2_1').length, 1);
+		// Word bookmarks: every internal link must target a named anchor.
+		for (const internal of document.querySelectorAll('a[href^="#"]')) {
+			const name = internal.getAttribute('href').slice(1);
+			assert.equal(document.querySelectorAll(`a[name="${name}"]`).length, 1, name);
+		}
 	}
 });
 
