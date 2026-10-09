@@ -11,6 +11,8 @@
     'use strict';
 
     function fixTabMarkup() {
+        // investigating when this actually gets called
+        console.log("fixTabMarkup called");
         // Find all WET-BOEW tab containers
         const tabContainers = document.querySelectorAll('.wb-tabs');
 
@@ -64,19 +66,29 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(fixTabMarkup, 100);
+            // investigating when this actually gets called
+            console.log("Run when DOM is ready");
         });
     } else {
         setTimeout(fixTabMarkup, 100);
+        // investigating when this actually gets called
+        console.log("Run when DOM is ready ELSE");
     }
 
     // Run when window loads
     window.addEventListener('load', function() {
         setTimeout(fixTabMarkup, 200);
+        // investigating when this actually gets called
+        console.log("Run when window loads");
     });
 
     // Run with delays to catch WET-BOEW initialization
     setTimeout(fixTabMarkup, 500);
+    // investigating when this actually gets called
+    console.log("Run with delays to catch WET-BOEW initialization 500");
     setTimeout(fixTabMarkup, 1000);
+    // investigating when this actually gets called
+    console.log("Run with delays to catch WET-BOEW initialization 1000");
 
     // Listen for WET-BOEW events
     document.addEventListener('wb-ready.wb', fixTabMarkup);
@@ -86,6 +98,8 @@
     document.addEventListener('click', function(e) {
         if (e.target.matches('.wb-tabs a[role="tab"]') || e.target.matches('.wb-tabs a')) {
             setTimeout(fixTabMarkup, 50);
+            // investigating when this actually gets called
+            console.log("Listen for tab clicks to re-apply fixes");
         }
     });
 })();
