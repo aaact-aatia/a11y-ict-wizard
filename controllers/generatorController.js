@@ -6,12 +6,39 @@ const enVersion = process.env.EN_VERSION;
 const async = require('async');
 const mongoose = require('mongoose');
 const path = require('path');
+const { JSDOM } = require('jsdom');
 const htmlDocx = require('html-docx-js');
 
 const Clause = require('../models/clauseSchema');
 const Question = require('../models/questionSchema');
 const Info = require('../models/infoSchema');
 const toClauseTree = require('./clauseTree');
+const linkDefinitions = require('./definitionLinks');
+const linkReferences = require('./referenceLinks');
+const linkClauses = require('./clauseLinks');
+const linkTableFigures = require('./tableFigureLinks');
+const formatDocument = require('./documentFormatting');
+
+function stripUnderlineElements(records, fields) {
+	for (const record of records) {
+		for (const field of fields) {
+			if (!record[field]) continue;
+			const fragment = JSDOM.fragment(record[field]);
+			for (const underline of fragment.querySelectorAll('u')) {
+				underline.replaceWith(...underline.childNodes);
+			}
+			for (const link of fragment.querySelectorAll('a')) {
+				for (const property of ['text-decoration', 'text-decoration-line']) {
+					if (/underline/iu.test(link.style.getPropertyValue(property))) link.style.removeProperty(property);
+				}
+				if (!link.getAttribute('style')?.trim()) link.removeAttribute('style');
+			}
+			const container = fragment.ownerDocument.createElement('div');
+			container.append(fragment);
+			record[field] = container.innerHTML;
+		}
+	}
+}
 
 const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
@@ -129,11 +156,71 @@ exports.download = (req, res, next) => {
 		}
 		results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
 		// Remove Tables and Figures annex if not applicable
-		let figureClauses = ['5.1.4', '8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5'];
+		let figureClauses = [
+			'5.1.4', '8.3.3.1', '8.3.3.3.1', '8.3.3.3.3', '8.3.3.3.4', '8.3.3.3.5',
+			'8.3.4.1', '8.3.4.3', '8.3.5.1', '8.3.5.3', '8.3.6.2', '8.3.6.4', '8.3.7',
+			'8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5', '13.1.1'
+		];
 		results.annex = results.annex.filter(function (el) {
 			return !el.name.includes('figures') ||
 				results.fps.some(e => figureClauses.includes(e.number));
 		});
+		if (['download_full_not_fillable_en', 'download_full_not_fillable_fr'].includes(strings.template)) {
+			let linked;
+			try {
+				linked = linkDefinitions({
+					clauses: results.fps,
+					annex: results.annex,
+					intro: results.intro,
+					language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+				});
+			} catch (error) {
+				return next(error);
+			}
+			results.fps = linked.clauses;
+			results.annex = linked.annex;
+			results.intro = linked.intro;
+			if (linked.unresolved.length) {
+				console.warn('Unresolved definition references:', linked.unresolved);
+			}
+			const linkedReferences = linkReferences({
+				clauses: results.fps,
+				annex: results.annex,
+				intro: results.intro,
+				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+			});
+			results.fps = linkedReferences.clauses;
+			results.annex = linkedReferences.annex;
+			results.intro = linkedReferences.intro;
+			if (linkedReferences.unresolved.length) {
+				console.warn('Unresolved document references:', linkedReferences.unresolved);
+			}
+			const linkedClauses = linkClauses({
+				clauses: results.fps,
+				annex: results.annex,
+				intro: results.intro,
+				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+			});
+			results.fps = linkedClauses.clauses;
+			results.annex = linkedClauses.annex;
+			results.intro = linkedClauses.intro;
+			if (linkedClauses.unresolved.length) {
+				console.warn('Unresolved clause references:', linkedClauses.unresolved);
+			}
+			const linkedTableFigures = linkTableFigures({
+				clauses: results.fps,
+				annex: results.annex,
+				intro: results.intro,
+				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
+			});
+			results.fps = linkedTableFigures.clauses;
+			results.annex = linkedTableFigures.annex;
+			results.intro = linkedTableFigures.intro;
+			const outputFields = strings.template.endsWith('_fr')
+				? ['frDescription', 'frCompliance', 'frBodyHtml']
+				: ['description', 'compliance', 'bodyHtml'];
+			stripUnderlineElements([...results.fps, ...results.annex, ...results.intro], outputFields);
+		}
 
 		// Set the correct headers for the attachment
 		res.setHeader('Content-Disposition', `attachment; filename*=UTF-8''${encodeURIComponent(strings.filename)}`);
@@ -167,6 +254,13 @@ exports.download = (req, res, next) => {
 						right: 1134
 					}
 				};
+				if (['download_full_not_fillable_en', 'download_full_not_fillable_fr'].includes(strings.template)) {
+					try {
+						output = formatDocument(output, options);
+					} catch (error) {
+						return next(error);
+					}
+				}
 				const docxBlob = htmlDocx.asBlob(output, options);
 				docxBlob.arrayBuffer().then((arrayBuffer) => {
 					const docxBuffer = Buffer.from(new Uint8Array(arrayBuffer));

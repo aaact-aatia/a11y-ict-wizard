@@ -8,7 +8,7 @@ if item_list.length > 0
         tr
           td(valign='top')
             p
-              strong #{item.number} #{item.frName}
+              strong(id=item.clauseLinkId) #{item.number} #{item.frName}
             | !{item.frDescription}
             if item.frCompliance.length > 0
               p
