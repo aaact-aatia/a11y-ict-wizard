@@ -38,7 +38,7 @@ test('links underlined clause citations to included clause heading IDs', () => {
 		assert(result.clauses.some((clause) => `#${clause.clauseLinkId}` === link.getAttribute('href')));
 	}
 	assert.equal(output.querySelector('u').textContent, 'clause 5.1.4');
-	assert.equal(output.body.textContent, 'Self clause 5.1.4*; see clause 6.2.1 and clause 9.');
+	assert.equal(output.body.textContent, 'Self clause 5.1.4; see clause 6.2.1 and clause 9.');
 	assert.equal(new JSDOM(result.intro[0].bodyHtml).window.document.querySelector('a[href="#clause_6_2_1"]').textContent, '6.2.1');
 	const criteria = new JSDOM(result.intro[1].bodyHtml).window.document;
 	assert.equal(criteria.getElementById('clause_4_2_1')?.textContent, '4.2.1 Usage without vision');
@@ -99,7 +99,7 @@ test('full-document downloads connect clause citations to rendered headings', as
 	}
 });
 
-test('keeps unresolved and self-referencing clause citations unchanged', () => {
+test('removes markers from self and unresolved clause citations without linking them', () => {
 	const result = linkClauses({
 		clauses: [{ number: '5.1.4', description: '<p><u>clause 5.1.4</u>* and <u>clause 6.2.1</u>*.</p>', compliance: '' }],
 		annex: []
@@ -107,6 +107,21 @@ test('keeps unresolved and self-referencing clause citations unchanged', () => {
 	const document = new JSDOM(result.clauses[0].description).window.document;
 
 	assert.equal(document.querySelectorAll('a').length, 0);
-	assert.equal(document.body.textContent, 'clause 5.1.4* and clause 6.2.1*.');
+	assert.equal(document.body.textContent, 'clause 5.1.4 and clause 6.2.1.');
 	assert.deepEqual(result.unresolved.map((item) => item.reason), ['missing']);
+});
+
+test('links plain starred clause references only when their target is included', () => {
+	const result = linkClauses({
+		clauses: [
+			{ number: '8.3.10.3', description: '<p>See clause 8.3.11.1* and clause C.6*.</p>' },
+			{ number: '8.3.11.1', description: '<p>Target clause.</p>' }
+		],
+		annex: []
+	});
+	const document = new JSDOM(result.clauses[0].description).window.document;
+	const link = document.querySelector('a[href="#clause_8_3_11_1"]');
+
+	assert.equal(link?.textContent, 'clause 8.3.11.1');
+	assert.equal(document.body.textContent, 'See clause 8.3.11.1 and clause C.6*.');
 });

@@ -71,7 +71,7 @@ function addCatalogTerm(catalog, term, target, canonicalKeys) {
 function splitDefinitionMarker(text, followingText) {
 	const inside = text.match(/^(.*?)(\s*)\*$/u);
 	if (inside) return { term: inside[1], offset: text.length - 1 };
-	const outside = followingText.match(/^(\s*)\*/u);
+	const outside = followingText.match(/^(\s*['\u2019]?\s*)\*/u);
 	if (outside) return { term: text, offset: text.length + outside[1].length };
 	return { term: text, offset: null };
 }
@@ -193,11 +193,17 @@ function transform(fragment, catalog, location, unresolved, matcher) {
 			const before = marked.ownerDocument.createRange();
 			before.selectNodeContents(root);
 			before.setEndBefore(marked);
-			const end = before.toString().length + marked.textContent.length;
+			const start = before.toString().length;
+			const end = start + marked.textContent.length;
 			const marker = splitDefinitionMarker(marked.textContent, root.textContent.slice(end));
 			const target = marker.offset === null ? catalog.get(normalize(marker.term)) : resolve(marker.term);
-			if (!target || target.paragraph === root) continue;
-			match = { target, markerOffset: marker.offset === null ? null : end + marker.offset };
+			if (!target || target.paragraph === root) {
+				if (marker.offset !== null && !/^\[[^\]]+\]$/u.test(marker.term.trim())) {
+					rangeFor(textNodes(root), start + marker.offset, start + marker.offset + 1).deleteContents();
+				}
+				continue;
+			}
+			match = { target, markerOffset: marker.offset === null ? null : start + marker.offset };
 			group.splice(1);
 		}
 		if (match.markerOffset !== null) {

@@ -54,6 +54,32 @@ test('links citations with a closing bracket after the asterisk', () => {
 	assert.deepEqual(result.unresolved, []);
 });
 
+test('removes the i.25 marker and keeps its adjacent period inside the link', () => {
+	const result = linkReferences({
+		clauses: [{ number: '10.2.5.8', description: '<p>See <u>[i.25]</u>.* and <u>[i.25]</u>*.</p>' }],
+		annex: [{ name: 'Annex - References', bodyHtml: '<p>[i.25] WCAG 2 ICT.</p>' }]
+	});
+	const document = new JSDOM(result.clauses[0].description).window.document;
+	const citationLinks = links(result.clauses[0].description);
+
+	assert.deepEqual(citationLinks.map((citationLink) => citationLink.textContent), ['[i.25].', '[i.25].']);
+	assert.equal(document.body.textContent, 'See [i.25]. and [i.25].');
+	assert.deepEqual(result.unresolved, []);
+});
+
+test('links plain starred references and retains the visible source spelling', () => {
+	const result = linkReferences({
+		clauses: [{ number: '9.6', description: '<p>See [4]*, [i.29]*, and [i34]*.</p>' }],
+		annex: [{ name: 'Annex - References', bodyHtml: '<p>[4] WCAG 2.2.</p><p>[i.29] Accessibility Act.</p><p>[i.34] UAAG 2.0.</p>' }]
+	});
+	const document = new JSDOM(result.clauses[0].description).window.document;
+	const citations = [...document.querySelectorAll('a[href^="#ref_"]')];
+
+	assert.deepEqual(citations.map((link) => link.textContent), ['[4]', '[i.29]', '[i34]']);
+	assert.equal(document.body.textContent, 'See [4], [i.29], and [i34].');
+	assert.deepEqual(result.unresolved, []);
+});
+
 test('links citations in English and French info sections and is idempotent', () => {
 	for (const language of ['en', 'fr']) {
 		const first = linkReferences(sample(language));

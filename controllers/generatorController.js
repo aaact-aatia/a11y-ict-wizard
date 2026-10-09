@@ -6,6 +6,7 @@ const enVersion = process.env.EN_VERSION;
 const async = require('async');
 const mongoose = require('mongoose');
 const path = require('path');
+const { JSDOM } = require('jsdom');
 const htmlDocx = require('html-docx-js');
 
 const Clause = require('../models/clauseSchema');
@@ -17,6 +18,27 @@ const linkReferences = require('./referenceLinks');
 const linkClauses = require('./clauseLinks');
 const linkTableFigures = require('./tableFigureLinks');
 const formatDocument = require('./documentFormatting');
+
+function stripUnderlineElements(records, fields) {
+	for (const record of records) {
+		for (const field of fields) {
+			if (!record[field]) continue;
+			const fragment = JSDOM.fragment(record[field]);
+			for (const underline of fragment.querySelectorAll('u')) {
+				underline.replaceWith(...underline.childNodes);
+			}
+			for (const link of fragment.querySelectorAll('a')) {
+				for (const property of ['text-decoration', 'text-decoration-line']) {
+					if (/underline/iu.test(link.style.getPropertyValue(property))) link.style.removeProperty(property);
+				}
+				if (!link.getAttribute('style')?.trim()) link.removeAttribute('style');
+			}
+			const container = fragment.ownerDocument.createElement('div');
+			container.append(fragment);
+			record[field] = container.innerHTML;
+		}
+	}
+}
 
 const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
@@ -194,6 +216,10 @@ exports.download = (req, res, next) => {
 			results.fps = linkedTableFigures.clauses;
 			results.annex = linkedTableFigures.annex;
 			results.intro = linkedTableFigures.intro;
+			const outputFields = strings.template.endsWith('_fr')
+				? ['frDescription', 'frCompliance', 'frBodyHtml']
+				: ['description', 'compliance', 'bodyHtml'];
+			stripUnderlineElements([...results.fps, ...results.annex, ...results.intro], outputFields);
 		}
 
 		// Set the correct headers for the attachment

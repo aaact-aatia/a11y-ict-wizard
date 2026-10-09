@@ -115,14 +115,33 @@ test('links known underlined definitions without a marker and preserves unknown 
 	assert.deepEqual(result.unresolved, []);
 });
 
-test('removes definition markers whether the asterisk is inside or after underlining', () => {
-	const result = generate('<p><u>intégrés</u>*; <u>non intégrée*</u>; <u>non intégrée</u><em>&nbsp;*</em>.</p>',
-		'<p><strong>intégré:</strong> détails.</p>', 'fr');
+test('removes definition markers and keeps a plural suffix outside the link', () => {
+	const result = generate('<p><u>intégrés</u>*; <u>non intégrée*</u>; <u>non intégrée</u><em>&nbsp;*</em>; <u>menu</u>*s.</p>',
+		'<p><strong>intégré:</strong> détails.</p><p><strong>menu:</strong> détails.</p>', 'fr');
 	const output = result.clauses[0].frDescription;
 
-	assert.deepEqual(links(output).map((link) => link.textContent), ['intégrés', 'non intégrée', 'non intégrée']);
-	assert.equal(JSDOM.fragment(output).textContent, 'intégrés; non intégrée; non intégrée\u00a0.');
+	const linkedTerms = links(output);
+	assert.deepEqual(linkedTerms.map((link) => link.textContent), ['intégrés', 'non intégrée', 'non intégrée', 'menu']);
+	assert.equal(linkedTerms[3].nextSibling.textContent, 's.');
+	assert.equal(JSDOM.fragment(output).textContent, 'intégrés; non intégrée; non intégrée\u00a0; menus.');
 	assert.deepEqual(result.unresolved, []);
+});
+
+test('removes a definition marker after a possessive apostrophe', () => {
+	const result = generate('<p><u>user interface elements</u>\'*</p>',
+		'<p><strong>user interface element:</strong> details.</p>');
+	const output = result.clauses[0].description;
+	const link = links(output)[0];
+
+	assert.equal(link.textContent, 'user interface elements');
+	assert.equal(link.nextSibling.textContent, '\'');
+	assert.equal(JSDOM.fragment(output).textContent, "user interface elements'");
+	assert.deepEqual(result.unresolved, []);
+});
+
+test('preserves bracketed citation markers for the reference linker', () => {
+	const result = generate('<p>See <u>[i.25]</u>*.</p>', englishDefinitions);
+	assert.equal(JSDOM.fragment(result.clauses[0].description).textContent, 'See [i.25]*.');
 });
 
 test('links definition references in informative intro sections', () => {
@@ -152,7 +171,9 @@ test('prefers an exact definition label over an inferred parenthetical alias', (
 test('preserves unknown, ambiguous, plural and existing linked terms', () => {
 	const description = '<p><u>unknown term</u>*, <u>content</u>*, <u>documents</u>* and <a href="https://example.org"><u>platform</u>*</a>.</p>';
 	const result = generate(description, '<p><strong>content:</strong> first.</p><p><strong>content:</strong> duplicate.</p><p><strong>document:</strong> single.</p>');
-	assert.equal(result.clauses[0].description, description);
+	const output = JSDOM.fragment(result.clauses[0].description);
+	assert.equal(output.textContent, 'unknown term, content, documents and platform*.');
+	assert([...output.querySelectorAll('u')].some((element) => element.textContent === 'unknown term'));
 	assert.deepEqual(result.unresolved.map((entry) => entry.reason), ['missing', 'ambiguous', 'missing']);
 	const targets = Array.from(JSDOM.fragment(result.annex[0].bodyHtml).querySelectorAll('a[id]'));
 	assert.equal(new Set(targets.map((target) => target.id)).size, targets.length);
@@ -254,7 +275,7 @@ test('full-document downloads render working English and French links; evaluatio
 	const path = require('node:path');
 	const controller = require('../controllers/generatorController');
 	const results = {
-		fps: [{ number: '5.1.4', name: 'Closed functionality', frName: 'Fonction restreinte', description: '<p><u>platform</u>*.</p>', frDescription: '<p><u>plateforme</u>*.</p>', compliance: '', frCompliance: '', informative: false }],
+		fps: [{ number: '5.1.4', name: 'Closed functionality', frName: 'Fonction restreinte', description: '<p><u>platform</u>*. Plain platform*.</p>', frDescription: '<p><u>plateforme</u>*. Logiciel de plateforme*.</p>', compliance: '', frCompliance: '', informative: false }],
 		questionsSelected: [],
 		intro: [{ bodyHtml: '', frBodyHtml: '' }],
 		annex: [{ name: 'Annex - Definition of terms', frName: 'Annexe - Termes', showHeading: true, bodyHtml: `<h3>3.1 Terms</h3>${englishDefinitions}`, frBodyHtml: '<h3>3.1 Termes</h3><p><strong>Logiciel de plateforme (plateforme):</strong> logiciel.</p>' }]
@@ -285,7 +306,11 @@ test('full-document downloads render working English and French links; evaluatio
 				assert.equal(references.length, 0);
 				assert.equal(document.querySelectorAll('a[name]').length, 0);
 			} else {
+				assert.equal(document.querySelectorAll('u').length, 0);
 				assert(references.length > 0);
+				for (const reference of references) {
+					assert.doesNotMatch(reference.style.textDecoration + reference.style.textDecorationLine, /underline/iu);
+				}
 				for (const reference of references) {
 					assert.equal(document.querySelectorAll(reference.getAttribute('href')).length, 1);
 					assert(reference.getAttribute('href').startsWith(`#def_${language}_`));

@@ -4,7 +4,7 @@ const normalize = (text) => text.normalize('NFC').replace(/\s+/gu, ' ').trim().t
 const copy = (record) => typeof record.toObject === 'function' ? record.toObject() : { ...record };
 const blockSelector = 'p, li, caption, figcaption, td, th';
 const captionPattern = /^(figure|table|tableau)\s+(\d+(?:\.\d+)+(?:[a-z])?)\s*:/iu;
-const referencePattern = /\b(figures?|tables?|tableaux)\s+(\d+(?:\.\d+)+(?:[a-z])?)/giu;
+const referencePattern = /\b(figures?|tables?|tableaux?)\s+(\d+(?:\.\d+)+(?:[a-z])?)/giu;
 
 function serialize(fragment) {
 	const container = fragment.ownerDocument.createElement('div');

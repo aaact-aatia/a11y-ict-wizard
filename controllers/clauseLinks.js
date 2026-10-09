@@ -84,6 +84,23 @@ function markedReference(element, root) {
 	return { start, end, text, marker: after ? end + after[1].length : null };
 }
 
+function removeMarkersAfterLinkedUnderlines(fragment) {
+	for (const link of fragment.querySelectorAll('a')) {
+		if (!link.querySelector('u, span[style*="underline"]')) continue;
+	const block = link.closest('p, li, td, th, div') || fragment;
+		const after = link.ownerDocument.createRange();
+		after.selectNodeContents(block);
+		after.setStartAfter(link);
+		const marker = after.toString().match(/^(\s*)\*/u);
+		if (!marker) continue;
+		const before = link.ownerDocument.createRange();
+		before.selectNodeContents(block);
+		before.setEndAfter(link);
+		const start = before.toString().length + marker[1].length;
+		rangeFor(block, start, start + 1).deleteContents();
+	}
+}
+
 function transform(fragment, index, location, unresolved, currentClause) {
 	const marked = [...fragment.querySelectorAll('u, span[style]')].filter(isUnderlined);
 	const outerMarked = marked.filter((element) => !marked.some((other) => other !== element && other.contains(element)));
@@ -93,11 +110,15 @@ function transform(fragment, index, location, unresolved, currentClause) {
 		const reference = markedReference(element, root);
 		const key = referenceFrom(reference.text);
 		if (!key) continue;
-		if (key === currentClause) continue;
+		if (key === currentClause) {
+			if (reference.marker !== null) rangeFor(root, reference.marker, reference.marker + 1).deleteContents();
+			continue;
+		}
 		const target = index.get(key);
 		if (!target) {
 			if (reference.marker !== null) {
 				unresolved.push({ clause: reference.text.trim(), location, reason: index.has(key) ? 'ambiguous' : 'missing' });
+				rangeFor(root, reference.marker, reference.marker + 1).deleteContents();
 			}
 			continue;
 		}
@@ -111,6 +132,28 @@ function transform(fragment, index, location, unresolved, currentClause) {
 		link.setAttribute('href', `#${target.id}`);
 		link.append(range.extractContents());
 		range.insertNode(link);
+	}
+	removeMarkersAfterLinkedUnderlines(fragment);
+	const blocks = [...fragment.querySelectorAll('p, li, td, th')].filter((block) => !block.querySelector('p, li, td, th'));
+	const plainReference = /\b(clauses?\s+)((?:[a-z]\.)?\d+(?:\.\d+)*)(\s*\*)/giu;
+	for (const block of blocks) {
+		const text = block.textContent;
+		for (const match of [...text.matchAll(plainReference)].reverse()) {
+			const key = normalize(match[2]);
+			const target = index.get(key);
+			if (!target || key === currentClause) continue;
+			const start = match.index;
+			const linkEnd = start + match[1].length + match[2].length;
+			const markerOffset = start + match[0].lastIndexOf('*');
+			const range = rangeFor(block, start, linkEnd);
+			if (range.cloneContents().querySelector('a, u, span[style*="underline"]') ||
+				range.startContainer.parentElement?.closest('a, u, span[style*="underline"]')) continue;
+			rangeFor(block, markerOffset, markerOffset + 1).deleteContents();
+			const link = block.ownerDocument.createElement('a');
+			link.setAttribute('href', `#${target.id}`);
+			link.append(range.extractContents());
+			range.insertNode(link);
+		}
 	}
 }
 

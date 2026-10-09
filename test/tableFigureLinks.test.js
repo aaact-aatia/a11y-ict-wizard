@@ -44,14 +44,15 @@ test('links figure and table citations to exact included captions without mutati
 
 test('links French figure and table labels and leaves absent targets unchanged', () => {
 	const input = sample('fr');
-	input.clauses[0].frDescription = '<p>Voir la figure 8.1 et le tableau 8.2.</p>';
-	input.annex[0].frBodyHtml = '<p><strong>Figure 8.1 : Portée avant</strong></p>';
+	input.clauses[0].frDescription = '<p>Voir la figure 8.1 et le tableau 8.1*; le tableau 8.2.</p>';
+	input.annex[0].frBodyHtml = '<p><strong>Figure 8.1 : Portée avant</strong></p><p><strong>Tableau 8.1 : Valeurs de portée</strong></p>';
 	const result = linkTableFigures({ ...input, language: 'fr' });
 	const document = new JSDOM(result.clauses[0].frDescription).window.document;
 
 	assert.equal(document.querySelector('a')?.textContent, 'figure 8.1');
-	assert.equal(document.querySelectorAll('a').length, 1);
-	assert.equal(document.body.textContent, 'Voir la figure 8.1 et le tableau 8.2.');
+	assert.equal(document.querySelector('a[href="#table_8_1"]')?.textContent, 'tableau 8.1');
+	assert.equal(document.querySelectorAll('a').length, 2);
+	assert.equal(document.body.textContent, 'Voir la figure 8.1 et le tableau 8.1; le tableau 8.2.');
 });
 
 test('links table citations inside figure captions and removes their asterisk markers', () => {
