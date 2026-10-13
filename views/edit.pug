@@ -16,6 +16,19 @@ block content
   br
   a(href='/edit/infos') Edit Step 3 informative sections
   br
+  h2 Digital Accessibility Toolkit export
+  p Download the full document, with all clauses and document links, as an HTML page prepared for the Digital Accessibility Toolkit. Styles and classes are removed and the page has no frontmatter or includes. Nothing in the database is changed.
+  ul
+    li
+      a(href='/edit/export/en' download) Download HTML page (English)
+      |  (
+      a(href='/edit/export/en?view') view in browser
+      | )
+    li
+      a(href='/edit/export/fr' download hreflang='fr') Download HTML page (French)
+      |  (
+      a(href='/edit/export/fr?view' hreflang='fr') view in browser
+      | )
   h2 Document link markup
   p Underline the part of a word or phrase that should link in generated documents. An asterisk immediately after the underlined text marks the end of the link and is removed during generation; any text after the asterisk stays outside the link. For example, to link only “menu” in “menus,” underline “menu” and place the asterisk before the final “s”. A target is the matching definition, reference, clause, table, or figure included in the generated document; without one, no link is created.
   h2 Clause and question loader

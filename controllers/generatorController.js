@@ -18,6 +18,8 @@ const linkReferences = require('./referenceLinks');
 const linkClauses = require('./clauseLinks');
 const linkTableFigures = require('./tableFigureLinks');
 const formatDocument = require('./documentFormatting');
+const cleanDocumentHtml = require('./cleanDocumentHtml');
+const formatDatPage = require('./datPage');
 
 function stripUnderlineElements(records, fields) {
 	for (const record of records) {
@@ -39,6 +41,44 @@ function stripUnderlineElements(records, fields) {
 		}
 	}
 }
+
+function linkFullDocument(results, language) {
+	const linked = linkDefinitions({ clauses: results.fps, annex: results.annex, intro: results.intro, language });
+	results.fps = linked.clauses;
+	results.annex = linked.annex;
+	results.intro = linked.intro;
+	if (linked.unresolved.length) {
+		console.warn('Unresolved definition references:', linked.unresolved);
+	}
+	const linkedReferences = linkReferences({ clauses: results.fps, annex: results.annex, intro: results.intro, language });
+	results.fps = linkedReferences.clauses;
+	results.annex = linkedReferences.annex;
+	results.intro = linkedReferences.intro;
+	if (linkedReferences.unresolved.length) {
+		console.warn('Unresolved document references:', linkedReferences.unresolved);
+	}
+	const linkedClauses = linkClauses({ clauses: results.fps, annex: results.annex, intro: results.intro, language });
+	results.fps = linkedClauses.clauses;
+	results.annex = linkedClauses.annex;
+	results.intro = linkedClauses.intro;
+	if (linkedClauses.unresolved.length) {
+		console.warn('Unresolved clause references:', linkedClauses.unresolved);
+	}
+	const linkedTableFigures = linkTableFigures({ clauses: results.fps, annex: results.annex, intro: results.intro, language });
+	results.fps = linkedTableFigures.clauses;
+	results.annex = linkedTableFigures.annex;
+	results.intro = linkedTableFigures.intro;
+	const outputFields = language === 'fr'
+		? ['frDescription', 'frCompliance', 'frBodyHtml']
+		: ['description', 'compliance', 'bodyHtml'];
+	stripUnderlineElements([...results.fps, ...results.annex, ...results.intro], outputFields);
+}
+
+const figureClauses = [
+	'5.1.4', '8.3.3.1', '8.3.3.3.1', '8.3.3.3.3', '8.3.3.3.4', '8.3.3.3.5',
+	'8.3.4.1', '8.3.4.3', '8.3.5.1', '8.3.5.3', '8.3.6.2', '8.3.6.4', '8.3.7',
+	'8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5', '13.1.1'
+];
 
 const getTestableClauses = (clauses) =>
 	clauses.filter((clause) =>
@@ -156,70 +196,16 @@ exports.download = (req, res, next) => {
 		}
 		results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
 		// Remove Tables and Figures annex if not applicable
-		let figureClauses = [
-			'5.1.4', '8.3.3.1', '8.3.3.3.1', '8.3.3.3.3', '8.3.3.3.4', '8.3.3.3.5',
-			'8.3.4.1', '8.3.4.3', '8.3.5.1', '8.3.5.3', '8.3.6.2', '8.3.6.4', '8.3.7',
-			'8.3.10.2', '8.3.10.3', '8.3.11.1', '8.3.11.2', '9.5', '13.1.1'
-		];
 		results.annex = results.annex.filter(function (el) {
 			return !el.name.includes('figures') ||
 				results.fps.some(e => figureClauses.includes(e.number));
 		});
 		if (['download_full_not_fillable_en', 'download_full_not_fillable_fr'].includes(strings.template)) {
-			let linked;
 			try {
-				linked = linkDefinitions({
-					clauses: results.fps,
-					annex: results.annex,
-					intro: results.intro,
-					language: strings.template.endsWith('_fr') ? 'fr' : 'en'
-				});
+				linkFullDocument(results, strings.template.endsWith('_fr') ? 'fr' : 'en');
 			} catch (error) {
 				return next(error);
 			}
-			results.fps = linked.clauses;
-			results.annex = linked.annex;
-			results.intro = linked.intro;
-			if (linked.unresolved.length) {
-				console.warn('Unresolved definition references:', linked.unresolved);
-			}
-			const linkedReferences = linkReferences({
-				clauses: results.fps,
-				annex: results.annex,
-				intro: results.intro,
-				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
-			});
-			results.fps = linkedReferences.clauses;
-			results.annex = linkedReferences.annex;
-			results.intro = linkedReferences.intro;
-			if (linkedReferences.unresolved.length) {
-				console.warn('Unresolved document references:', linkedReferences.unresolved);
-			}
-			const linkedClauses = linkClauses({
-				clauses: results.fps,
-				annex: results.annex,
-				intro: results.intro,
-				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
-			});
-			results.fps = linkedClauses.clauses;
-			results.annex = linkedClauses.annex;
-			results.intro = linkedClauses.intro;
-			if (linkedClauses.unresolved.length) {
-				console.warn('Unresolved clause references:', linkedClauses.unresolved);
-			}
-			const linkedTableFigures = linkTableFigures({
-				clauses: results.fps,
-				annex: results.annex,
-				intro: results.intro,
-				language: strings.template.endsWith('_fr') ? 'fr' : 'en'
-			});
-			results.fps = linkedTableFigures.clauses;
-			results.annex = linkedTableFigures.annex;
-			results.intro = linkedTableFigures.intro;
-			const outputFields = strings.template.endsWith('_fr')
-				? ['frDescription', 'frCompliance', 'frBodyHtml']
-				: ['description', 'compliance', 'bodyHtml'];
-			stripUnderlineElements([...results.fps, ...results.annex, ...results.intro], outputFields);
 		}
 
 		// Set the correct headers for the attachment
@@ -268,6 +254,55 @@ exports.download = (req, res, next) => {
 					res.send(docxBuffer);
 				});
 			}
+		});
+	});
+};
+
+// Read-only export of the full document (all clauses) as an HTML page prepared for the Digital Accessibility Toolkit
+exports.dat_page_get = (req, res, next) => {
+	const language = req.params.language;
+	if (!['en', 'fr'].includes(language)) return next();
+	const template = `download_full_not_fillable_${language}`;
+	const title = language === 'fr'
+		? 'Exigences en matière de TIC accessibles'
+		: 'ICT accessibility requirements with informative sections';
+	const filename = language === 'fr'
+		? 'exigences-en-matiere-de-technologies-de-linformation-et-des-communications-tic-accessibles.html'
+		: 'information-and-communication-technology-ict-accessibility-requirements.html';
+
+	async.parallel({
+		fps: (callback) => Clause.find().exec(callback),
+		intro: (callback) => Info.find({ name: /^(?!Annex).*/ }).sort([['order', 'ascending']]).exec(callback),
+		annex: (callback) => Info.find({ name: /^Annex/ }).sort([['order', 'ascending']]).exec(callback)
+	}, (err, results) => {
+		if (err) { return next(err); }
+		results.fps = results.fps.sort((a, b) => a.number.localeCompare(b.number, undefined, { numeric: true }));
+		results.annex = results.annex.filter((el) =>
+			!el.name.includes('figures') || results.fps.some((e) => figureClauses.includes(e.number)));
+		try {
+			linkFullDocument(results, language);
+		} catch (error) {
+			return next(error);
+		}
+		res.render(template, {
+			title,
+			format: 'html',
+			question_list: [],
+			item_list: results.fps,
+			test_list: getTestableClauses(results.fps),
+			intro: results.intro,
+			annex: results.annex
+		}, (renderError, output) => {
+			if (renderError) { return next(renderError); }
+			let page;
+			try {
+				page = formatDatPage(cleanDocumentHtml(output, language), language);
+			} catch (error) {
+				return next(error);
+			}
+			res.setHeader('Content-Type', 'text/html; charset=utf-8');
+			if (req.query.view === undefined) res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+			res.send(page);
 		});
 	});
 };
