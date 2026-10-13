@@ -31,12 +31,6 @@ $(document).on("wb-ready.wb", function (event) {
   setupShowHideHandler();
 
   undoHandler();
-  var $startingStepNum = $([role="tabpanel"][aria-expanded="true"] p.form-instructions-link a);
-  if (startingStepNum .getAttribute('href') === "#instructionsStep4") {
-    $('#clauses input').each(function () {
-      $(this).attr('aria-disabled', true);
-    }
-  }
 
 });
 
