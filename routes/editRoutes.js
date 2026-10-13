@@ -7,6 +7,7 @@ const upload = multer({ storage: multer.memoryStorage() }); // or configure as n
 const clause_controller = require('../controllers/clauseController');
 const info_controller = require('../controllers/infoController');
 const question_controller = require('../controllers/questionController');
+const generator_controller = require('../controllers/generatorController');
 
 router.use((req, res, next) => {
 	res.locals.isEditView = true;
@@ -114,6 +115,9 @@ router.get('/', info_controller.edit_list);
 router.get('/questionsdownload', question_controller.question_json_get);
 router.get('/clausesdownload', clause_controller.clause_json_get);
 router.get('/infosdownload', info_controller.info_json_get);
+
+// GET Digital Accessibility Toolkit Markdown export (read-only)
+router.get('/export/:language(en|fr)', generator_controller.dat_page_get);
 
 //POST Restore JSON file
 router.post('/questionsrestore', question_controller.question_json_restore_post);
