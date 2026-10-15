@@ -82,8 +82,8 @@ test('converts terms to a definition list with anchors and notes', () => {
 	const terms = [...document.querySelectorAll('dl')][0];
 	assert.deepEqual([...terms.querySelectorAll('dt')].map((dt) => dt.textContent), ['access space', 'accessibility', 'caption']);
 	const dt = terms.querySelector('dt');
-	assert.equal(dt.querySelector('a').getAttribute('id'), 'def_en_access_space_1');
-	assert.equal(dt.querySelector('a').getAttribute('name'), 'def_en_access_space_1');
+	assert.equal(dt.id, 'def_en_access_space_1');
+	assert.equal(dt.querySelector('a'), null);
 	assert.equal(terms.querySelectorAll('dd')[0].textContent, 'space intended to be occupied');
 	const notes = terms.querySelectorAll('dd')[1].querySelector('div.mrgn-lft-md');
 	assert.deepEqual([...notes.children].map((p) => [p.tagName, p.textContent]), [['P', 'NOTE 1: First note.'], ['P', 'NOTE 2: Second note.']]);
@@ -104,7 +104,7 @@ test('converts references to an unstyled list that keeps the anchors', () => {
 	const { document } = split();
 	const list = document.querySelector('ul.list-unstyled');
 	assert.equal(list.querySelectorAll('li').length, 2);
-	assert.equal(list.querySelector('a#ref_1[name="ref_1"] strong').textContent, '[1]');
+	assert.equal(list.querySelector('li#ref_1 strong').textContent, '[1]');
 	assert.equal(list.querySelectorAll('li')[1].textContent, '[2] ETSI ES 200: "Telephony".');
 });
 
@@ -190,4 +190,20 @@ test('keeps the list type set on a wrapper list when flattening', () => {
 	assert.equal(list.getAttribute('type'), 'a');
 	assert.equal(list.className, 'mrgn-lft-lg');
 	assert.equal(list.querySelectorAll('li').length, 2);
+});
+
+test('moves remaining destination IDs to their containers without removing links', () => {
+	for (const language of ['en', 'fr']) {
+		const input = '<p><strong><a id="clause_4_2_1" name="clause_4_2_1">4.2.1 Usage without vision</a></strong></p>' +
+			'<p><strong><a id="table_8_1" name="table_8_1">Table 8.1</a></strong></p>' +
+			'<p><a href="#clause_4_2_1">4.2.1</a> and <a href="#table_8_1">Table 8.1</a></p>';
+		const document = new JSDOM(formatDatPage(input, language)).window.document;
+		assert.equal(document.querySelector('a[id], a[name]'), null);
+		assert.equal(document.getElementById('clause_4_2_1').tagName, 'P');
+		assert.equal(document.getElementById('table_8_1').tagName, 'P');
+		assert.equal(document.querySelectorAll('a[href]').length, 2);
+		for (const link of document.querySelectorAll('a[href]')) {
+			assert.ok(document.getElementById(link.getAttribute('href').slice(1)));
+		}
+	}
 });
