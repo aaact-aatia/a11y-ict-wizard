@@ -219,6 +219,16 @@ function flattenClauseTable(document) {
 	table.replaceWith(fragment);
 }
 
+function moveDestinationIds(document) {
+	for (const anchor of document.querySelectorAll('a[id]:not([href])')) {
+		if (!/^(clause_|def_|ref_|table_|figure_)/u.test(anchor.id)) continue;
+		const parent = anchor.closest('p, dt, li, h2, h3, h4, h5, h6, caption, figcaption');
+		if (!parent || (parent.id && parent.id !== anchor.id)) continue;
+		parent.id = anchor.id;
+		unwrap(anchor);
+	}
+}
+
 function buildContents(document, heading) {
 	const items = [...document.querySelectorAll('[id^="clause_"]')]
 		.filter((a) => /^clause_\d+$/u.test(a.id))
@@ -273,6 +283,7 @@ function formatDatPage(html, language) {
 	convertIndents(document);
 	collapseNonBreakingSpaces(document);
 	wrapNotes(document);
+	moveDestinationIds(document);
 	buildContents(document, page.tocHeading);
 	normalizeTableHeaders(document);
 
