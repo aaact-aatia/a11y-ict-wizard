@@ -187,6 +187,17 @@ function collapseNonBreakingSpaces(document) {
 	}
 }
 
+function normalizeTableHeaders(document) {
+	for (const table of document.querySelectorAll('table')) {
+		const headers = [...table.children].filter((child) => child.tagName === 'THEAD');
+		if (headers.length < 2) continue;
+		for (const header of headers.slice(1)) {
+			while (header.firstChild) headers[0].append(header.firstChild);
+			header.remove();
+		}
+	}
+}
+
 // The clause list is a one-column table; its cell contents become regular page content with a heading per clause.
 function flattenClauseTable(document) {
 	const table = [...document.querySelectorAll('a[id]')].find((a) => /^clause_\d+$/u.test(a.id))?.closest('table');
@@ -263,6 +274,7 @@ function formatDatPage(html, language) {
 	collapseNonBreakingSpaces(document);
 	wrapNotes(document);
 	buildContents(document, page.tocHeading);
+	normalizeTableHeaders(document);
 
 	for (const element of document.querySelectorAll(BLOCK_START)) {
 		const previous = element.previousSibling;
