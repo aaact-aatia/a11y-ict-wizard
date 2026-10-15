@@ -5,6 +5,8 @@ const copy = (record) => typeof record.toObject === 'function' ? record.toObject
 const blockSelector = 'p, li, caption, figcaption, td, th';
 const captionPattern = /^(figure|table|tableau)\s+(\d+(?:\.\d+)+(?:[a-z])?)\s*:/iu;
 const referencePattern = /\b(figures?|tables?|tableaux?)\s+(\d+(?:\.\d+)+(?:[a-z])?)/giu;
+const isUnderlined = (element) => element.tagName === 'U' ||
+	(element.tagName === 'SPAN' && /underline/u.test(element.style.textDecoration + element.style.textDecorationLine));
 
 function serialize(fragment) {
 	const container = fragment.ownerDocument.createElement('div');
@@ -109,9 +111,21 @@ function linkBlock(block, index) {
 		const start = match.index;
 		const end = start + match[0].length;
 		const marker = text.slice(end).match(/^(\s*)\*/u);
-		if (marker) rangeFor(block, end + marker[1].length, end + marker[1].length + 1).deleteContents();
+		if (!marker) continue;
+		const covered = textNodes(block).filter((entry) => entry.end > start && entry.start < end);
+		const underlined = covered.every((entry) => {
+			const portion = entry.node.textContent.slice(Math.max(0, start - entry.start), end - entry.start);
+			if (!portion.trim()) return true;
+			for (let ancestor = entry.node.parentElement; ancestor; ancestor = ancestor.parentElement) {
+				if (isUnderlined(ancestor)) return true;
+				if (ancestor === block) break;
+			}
+			return false;
+		});
+		if (!underlined) continue;
 		const range = rangeFor(block, start, end);
 		if (range.cloneContents().querySelector('a') || range.startContainer.parentElement?.closest('a')) continue;
+		rangeFor(block, end + marker[1].length, end + marker[1].length + 1).deleteContents();
 		const link = block.ownerDocument.createElement('a');
 		link.setAttribute('href', `#${target.id}`);
 		link.append(range.extractContents());
@@ -120,7 +134,7 @@ function linkBlock(block, index) {
 }
 
 /**
- * Link table and figure references to matching captions included in generated content.
+ * Link underlined, starred table and figure references to matching included captions.
  * Missing and ambiguous targets are left untouched. Records are copied before mutation.
  * @param {{clauses: object[], annex: object[], intro?: object[], language?: 'en'|'fr'}} input
  * @returns {{clauses: object[], annex: object[], intro: object[]}}
