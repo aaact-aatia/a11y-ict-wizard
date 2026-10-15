@@ -288,18 +288,15 @@
         "caractéristiques d’accessibilité documentées"
       ]
     },
-    "Communication Client": {
+    "clients de communication": {
       "aliases": [
         "client de communication",
-        "clients de communication",
         "logiciel Communication Client",
         "un client de communication"
       ]
     },
-    "Communication client de visite": {
-      "aliases": [
-        "client de communication en visite"
-      ]
+    "client de communication en visite": {
+      "aliases": []
     },
     "contenu": {
       "aliases": []
