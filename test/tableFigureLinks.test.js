@@ -12,7 +12,7 @@ function sample(language = 'en') {
 	return {
 		clauses: [{
 			number: '8.3.3.1',
-			[descriptionField]: '<p>See Figure 8.1 and <strong>Table 10.2</strong>.</p><p><strong>Table 10.2: Reflow</strong></p>',
+			[descriptionField]: '<p>See <u>Figure 8.1</u>* and <strong><u>Table 10.2</u>*</strong>.</p><p><strong>Table 10.2: Reflow</strong></p>',
 			[complianceField]: ''
 		}],
 		annex: [{
@@ -47,7 +47,7 @@ test('links figure and table citations to exact included captions without mutati
 
 test('links French figure and table labels and leaves absent targets unchanged', () => {
 	const input = sample('fr');
-	input.clauses[0].frDescription = '<p>Voir la figure 8.1 et le tableau 8.1*; le tableau 8.2.</p>';
+	input.clauses[0].frDescription = '<p>Voir la <u>figure 8.1</u>* et le <u>tableau 8.1</u>*; le <u>tableau 8.2</u>*.</p>';
 	input.annex[0].frBodyHtml = '<p><strong>Figure 8.1 : Portée avant</strong></p><p><strong>Tableau 8.1 : Valeurs de portée</strong></p>';
 	const result = linkTableFigures({ ...input, language: 'fr' });
 	const document = new JSDOM(result.clauses[0].frDescription).window.document;
@@ -55,7 +55,21 @@ test('links French figure and table labels and leaves absent targets unchanged',
 	assert.equal(document.querySelector('a')?.textContent, 'figure 8.1');
 	assert.equal(document.querySelector('a[href="#table_8_1"]')?.textContent, 'tableau 8.1');
 	assert.equal(document.querySelectorAll('a').length, 2);
-	assert.equal(document.body.textContent, 'Voir la figure 8.1 et le tableau 8.1; le tableau 8.2.');
+	assert.equal(document.body.textContent, 'Voir la figure 8.1 et le tableau 8.1; le tableau 8.2*.');
+});
+
+test('requires both full underlining and a marker, preserving existing links', () => {
+	for (const language of ['en', 'fr']) {
+		const input = sample(language);
+		const field = language === 'fr' ? 'frDescription' : 'description';
+		input.clauses[0][field] = '<p>Figure 8.1; Figure 8.1*; <u>Figure 8.1</u>; Figure <u>8.1</u>*; <u>Figure </u><span style="text-decoration: underline;"><em>8.1</em>*</span>; <a href="https://example.org"><u>Figure 8.1</u></a>*.</p>';
+		const result = linkTableFigures(input);
+		const document = new JSDOM(result.clauses[0][field]).window.document;
+		assert.equal(document.querySelectorAll('a[href="#figure_8_1"]').length, 1);
+		assert.equal(document.querySelector('a[href="#figure_8_1"]').textContent, 'Figure 8.1');
+		assert.equal(document.querySelector('a[href="https://example.org"]').nextSibling.textContent, '*.');
+		assert.equal(document.body.textContent, 'Figure 8.1; Figure 8.1*; Figure 8.1; Figure 8.1*; Figure 8.1; Figure 8.1*.');
+	}
 });
 
 test('links table citations inside figure captions and removes their asterisk markers', () => {
@@ -80,7 +94,7 @@ test('full-document downloads link figure references and render their annex dest
 	const async = require('async');
 	const controller = require('../controllers/generatorController');
 	const results = {
-		fps: [{ number: '8.3.3.1', name: 'Forward reach', frName: 'Portée avant', description: '<p>See Figure 8.1.</p>', frDescription: '<p>Voir la figure 8.1.</p>', compliance: '', frCompliance: '', informative: false }],
+		fps: [{ number: '8.3.3.1', name: 'Forward reach', frName: 'Portée avant', description: '<p>See <u>Figure 8.1</u>*. Plain Figure 8.1.</p>', frDescription: '<p>Voir la <u>figure 8.1</u>*. Figure 8.1.</p>', compliance: '', frCompliance: '', informative: false }],
 		questionsSelected: [],
 		intro: [{ name: 'Part A', frName: 'Partie A', bodyHtml: '', frBodyHtml: '' }],
 		annex: [{
@@ -89,7 +103,7 @@ test('full-document downloads link figure references and render their annex dest
 			showHeading: true,
 			bodyHtml: '<p><strong>Figure 8.1: Forward reach</strong></p>',
 			frBodyHtml: '<p><strong>Figure 8.1 : Portée avant</strong></p>'
-		}]
+		}, { name: 'Annex - Definition of terms', bodyHtml: '<h3>3.1 Terms</h3><p><strong>menu:</strong> details.</p>', frBodyHtml: '<h3>3.1 Termes</h3><p><strong>menu:</strong> détails.</p>' }]
 	};
 	context.mock.method(async, 'parallel', (operations, callback) => callback(null, { ...results }));
 
@@ -111,6 +125,7 @@ test('full-document downloads link figure references and render their annex dest
 		const document = new JSDOM(output).window.document;
 		assert.equal(document.querySelector('a[href="#figure_8_1"]')?.textContent, language === 'fr' ? 'figure 8.1' : 'Figure 8.1');
 		assert.equal(document.querySelectorAll('#figure_8_1').length, 1);
+		assert.equal(document.querySelectorAll('a[href="#figure_8_1"]').length, 1);
 		assert.equal(document.querySelector('a[name="figure_8_1"]')?.id, 'figure_8_1');
 	}
 });

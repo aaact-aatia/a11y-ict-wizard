@@ -198,7 +198,8 @@ function transform(fragment, catalog, location, unresolved, matcher) {
 			const marker = splitDefinitionMarker(marked.textContent, root.textContent.slice(end));
 			const target = marker.offset === null ? catalog.get(normalize(marker.term)) : resolve(marker.term);
 			if (!target || target.paragraph === root) {
-				if (marker.offset !== null && !/^\[[^\]]+\]$/u.test(marker.term.trim())) {
+				if (marker.offset !== null && !/^\[[^\]]+\]$/u.test(marker.term.trim()) &&
+					!/\b(?:figures?|tables?|tableaux?)\s+\d+(?:\.\d+)+/iu.test(marker.term)) {
 					rangeFor(textNodes(root), start + marker.offset, start + marker.offset + 1).deleteContents();
 				}
 				continue;
