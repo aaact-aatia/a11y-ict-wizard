@@ -6,7 +6,8 @@ const formatDatPage = require('../controllers/datPage');
 const html = `<!DOCTYPE html><html lang="en"><head><title>Requirements</title></head><body>
 <p>Generated 2026-10-13</p><h1>ICT accessibility requirements</h1>
 <div><h2>Intro</h2></div><div><p>Body text with&nbsp;&nbsp;&nbsp;&nbsp; extra spaces and a single&nbsp;space.</p></div>
-<table border="1" width="438" title="Named table"><thead><tr><th scope="col">Abbreviation</th><th scope="col">Criterion</th></tr></thead><thead></thead><tbody><tr><td>WV</td><td>Usage without vision</td></tr></tbody></table>
+<table border="1" width="438" title="Named table"><thead><tr><td>Abbreviation</td><td>Criterion</td></tr></thead><thead></thead><tbody><tr><td>WV</td><td>Usage without vision</td></tr></tbody></table>
+<p><strong>Table 5.1: Viewing distances</strong></p><table><tbody><tr><td>Viewing distance</td><td>Minimum text height</td></tr><tr><td>400 mm</td><td>2.38 mm</td></tr></tbody></table>
 <table border="1" width="438"><thead><tr><th scope="col">Clause</th></tr></thead>
 <tbody><tr><td><p><strong><a id="clause_5" name="clause_5">5 Generic requirements</a></strong></p></td></tr>
 <tr><td><p><strong><a id="clause_5_1" name="clause_5_1">5.1 Closed</a></strong></p><p>See <a href="#def_en_access_space_1">access space</a>.</p></td></tr></tbody></table>
@@ -56,7 +57,7 @@ test('drops the title, generated line, includes and wrapper divs', () => {
 
 test('removes the single-column clause table but keeps its content in order', () => {
 	const { document } = split();
-	assert.equal(document.querySelectorAll('table').length, 1);
+	assert.equal(document.querySelectorAll('table').length, 2);
 	assert.equal(document.querySelector('table th').textContent, 'Abbreviation');
 	assert.equal(document.querySelector('th[scope="col"]').textContent, 'Abbreviation');
 	assert.ok(!document.body.textContent.includes('Clause'));
@@ -69,12 +70,15 @@ test('removes the single-column clause table but keeps its content in order', ()
 
 test('strips table attributes and adds the toolkit table classes', () => {
 	const { document } = split();
-	const table = document.querySelector('table');
-	assert.deepEqual(table.getAttributeNames(), ['class']);
-	assert.equal(table.className, 'table table-striped table-hover');
-	assert.equal(document.querySelector('th').getAttribute('scope'), 'col');
-	assert.equal(table.querySelectorAll(':scope > thead').length, 1);
-	assert.deepEqual([...table.querySelectorAll(':scope > thead th')].map((th) => th.textContent), ['Abbreviation', 'Criterion']);
+	const [firstTable, table51] = document.querySelectorAll('table');
+	assert.deepEqual(firstTable.getAttributeNames(), ['class']);
+	assert.equal(firstTable.className, 'table table-striped table-hover');
+	assert.equal(firstTable.querySelectorAll(':scope > thead').length, 1);
+	assert.deepEqual([...firstTable.querySelectorAll(':scope > thead th')].map((th) => th.textContent), ['Abbreviation', 'Criterion']);
+	assert.ok([...firstTable.querySelectorAll(':scope > thead th')].every((th) => th.getAttribute('scope') === 'col'));
+	assert.equal(table51.querySelectorAll(':scope > thead').length, 1);
+	assert.deepEqual([...table51.querySelectorAll(':scope > thead th')].map((th) => th.textContent), ['Viewing distance', 'Minimum text height']);
+	assert.ok([...table51.querySelectorAll(':scope > thead th')].every((th) => th.getAttribute('scope') === 'col'));
 });
 
 test('converts terms to a definition list with anchors and notes', () => {
