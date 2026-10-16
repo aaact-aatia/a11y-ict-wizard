@@ -189,11 +189,34 @@ function collapseNonBreakingSpaces(document) {
 
 function normalizeTableHeaders(document) {
 	for (const table of document.querySelectorAll('table')) {
-		const headers = [...table.children].filter((child) => child.tagName === 'THEAD');
-		if (headers.length < 2) continue;
-		for (const header of headers.slice(1)) {
-			while (header.firstChild) headers[0].append(header.firstChild);
-			header.remove();
+		let headers = [...table.children].filter((child) => child.tagName === 'THEAD');
+		if (headers.length > 1) {
+			for (const header of headers.slice(1)) {
+				while (header.firstChild) headers[0].append(header.firstChild);
+				header.remove();
+			}
+			headers = [headers[0]];
+		}
+
+		let header = headers[0];
+		if (!header?.querySelector('tr')) {
+			const firstRow = table.querySelector(':scope > tbody > tr, :scope > tr');
+			if (!firstRow) continue;
+			header ??= document.createElement('thead');
+			firstRow.closest('tbody')
+				? table.insertBefore(header, firstRow.closest('tbody'))
+				: table.insertBefore(header, firstRow);
+			header.append(firstRow);
+		}
+
+		for (const cell of header.querySelectorAll('td')) {
+			const th = document.createElement('th');
+			for (const attribute of [...cell.attributes]) th.setAttribute(attribute.name, attribute.value);
+			while (cell.firstChild) th.append(cell.firstChild);
+			cell.replaceWith(th);
+		}
+		for (const th of header.querySelectorAll('th')) {
+			if (!th.hasAttribute('scope')) th.setAttribute('scope', 'col');
 		}
 	}
 }
